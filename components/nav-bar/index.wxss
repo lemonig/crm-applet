@@ -1,0 +1,45 @@
+/* components/nav-bar/index.wxss */
+.custom-navbar {
+  padding: 0 15px;
+  background-color: #0252cc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+}
+.custom-navbar-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.custom-navbar-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*  */
+
+.nav-bar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: #fff;
+  background: #0252cc;
+}
+.nav-amin {
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.icon {
+  position: absolute;
+  left: 14px;
+}
+.nav-bar .search {
+  font-size: 14px;
+}

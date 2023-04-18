@@ -1,0 +1,12 @@
+// 不支持 isArray find
+function myfilter(option, value) {
+  if (option.constructor !== 'Array') return
+  var res = option.filter(function (ele) {
+    return ele.value == value
+  })
+  return res[0].label
+}
+
+module.exports = {
+  filterlabel: myfilter,
+};

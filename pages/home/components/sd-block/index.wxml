@@ -1,0 +1,9 @@
+<!--pages/home/components/sd-block/index.wxml-->
+<view class="block">
+  <view>
+    <slot></slot>
+  </view>
+  <view>
+    {{title}}
+  </view>
+</view>

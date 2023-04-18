@@ -1,0 +1,10 @@
+/* components/reg-bar/index.wxss */
+.echarts-container {
+  width: 100%;
+  height: 400rpx;
+}
+
+.charts-img {
+  width: 100%;
+  height: 400rpx;
+}

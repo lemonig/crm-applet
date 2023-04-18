@@ -1,0 +1,7 @@
+<!--pages/home/components/l-title/index.wxml-->
+<view class="title-search">
+  <view class="title">
+    {{title}}
+  </view>
+  <slot></slot>
+</view>

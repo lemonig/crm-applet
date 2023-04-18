@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/nav-bar/index",
+    "sd-title": "./components/sd-title/index",
+    "sd-block": "./components/sd-block/index",
+    "echart-bar": "/components/reg-bar/index"
+  }
+}

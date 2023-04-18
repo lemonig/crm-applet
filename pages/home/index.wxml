@@ -1,0 +1,77 @@
+<!--pages/home/index.wxml-->
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<navigation-bar default-data="{{defaultData}}"></navigation-bar>
+<view class="container">
+
+  <sd-title title="常用功能"></sd-title>
+  <view class="usual-contain">
+    <sd-block title="建商机">
+      <van-icon name="cross" />
+    </sd-block>
+    <sd-block title="建客户">
+      <van-icon name="cross" />
+    </sd-block>
+    <sd-block title="建联系人">
+      <van-icon name="cross" />
+    </sd-block>
+    <sd-block title="建任务">
+      <van-icon name="cross" />
+    </sd-block>
+  </view>
+
+  <sd-title title="我的销售">
+    <view class="select-btn" bindtap="onShowSalePopup">
+      <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
+      <van-icon name="arrow-down" />
+    </view>
+  </sd-title>
+  <view class="block-white block-main">
+    <van-row gutter="20">
+      <van-col span="12">
+        <view class="flex-col text-block">
+          <text>今日任务</text>
+          <text>2个</text>
+        </view>
+      </van-col>
+
+    </van-row>
+  </view>
+
+
+  <sd-title title="仪表盘">
+
+  </sd-title>
+  <view class="block-white block-main">
+    <view class="s-title">
+      销售简报
+    </view>
+    <van-row gutter="20">
+      <van-col span="12">
+        <view class="flex-col text-block">
+          <text>新签合同</text>
+          <text>2个</text>
+        </view>
+      </van-col>
+    </van-row>
+  </view>
+
+  <view class="block-white block-main">
+    <sd-title title="合同金额">
+      <view class="select-btn" bindtap="onContactPopupClick">
+        <text>{{utils.filterlabel(contractMOp,contractValue)}}</text>
+        <van-icon name="arrow-down" />
+      </view>
+    </sd-title>
+
+    <view class="text-block">
+      <echart-bar id="contract-money-bar" idRef="{{ 'contract-money-bar' }}" toImg="{{ false }}" />
+    </view>
+
+  </view>
+
+</view>
+
+<!-- 我的销售 -->
+<sd-select open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
+<sd-select open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>

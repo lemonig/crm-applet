@@ -1,0 +1,9 @@
+<!--components/reg-bar/index.wxml-->
+<view class="echarts-container">
+  <block wx:show="{{ !chartsImg }}">
+    <ec-canvas id="{{ idRef }}" canvas-id="{{ idRef }}" ec="{{ ec }}"></ec-canvas>
+  </block>
+  <block wx:show="{{ chartsImg }}">
+    <image class="charts-img" src="{{ chartsImg }}" />
+  </block>
+</view>

@@ -1,0 +1,8 @@
+/* components/select/index.wxss */
+/* 选择 */
+
+.popup-title {
+  width: 100%;
+  text-align: center;
+  padding: 26rpx 0;
+}

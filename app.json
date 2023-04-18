@@ -1,0 +1,107 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/deal/index",
+    "pages/customer/index",
+    "pages/task/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于地图定位"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "onLocationChange"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-row": "@vant/weapp/row/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-index-bar": "@vant/weapp/index-bar/index",
+    "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-transition": "@vant/weapp/transition/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-slider": "@vant/weapp/slider/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "ec-canvas": "/libs/ec-canvas/ec-canvas",
+    "sd-select": "/components/sd-select/index"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "tabBar": {
+    "custom": false,
+    "backgroundColor": "#fff",
+    "color": "#999",
+    "selectedColor": "#1E8AE8",
+    "borderStyle": "white",
+    "list": [{
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "/assets/imgs/1.png"
+      },
+      {
+        "pagePath": "pages/deal/index",
+        "text": "商机",
+        "iconPath": "/assets/imgs/2.png"
+      },
+      {
+        "pagePath": "pages/customer/index",
+        "text": "客户",
+        "iconPath": "/assets/imgs/3.png"
+      },
+      {
+        "pagePath": "pages/task/index",
+        "text": "任务",
+        "iconPath": "/assets/imgs/4.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "合同"
+      }
+    ]
+  }
+}

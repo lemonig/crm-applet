@@ -1,0 +1,10 @@
+/* pages/home/components/sd-block/index.wxss */
+.block {
+  width: 140rpx;
+  height: 140rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
