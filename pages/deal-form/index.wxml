@@ -1,0 +1,26 @@
+<!--pages/customer-form/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+
+<view class=" container form-container ">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.orId}}" name="orId" title="客户名称" options="{{columnsCustom}}"></sd-picker>
+      <van-field value="{{form.title}}" name='title' required label="商机名称" input-align="right" placeholder="请输入" />
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.pipelineId}}" name="pipelineId" title="销售阶段" options="{{columnsStage}}"></sd-picker>
+      <sd-picker value="{{form.isFinalOrg}}" name="isFinalOrg" title="最终用户" options="{{columnsUser}}"></sd-picker>
+      <sd-picker value="{{form.personList}}" name="personList" title="联系人" options="{{columnsLink}}"></sd-picker>
+      <sd-picker value="{{form.yewu}}" name="yewu" title="业务类型" options="{{columnsSale}}"></sd-picker>
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.probability}}" name="probability" title="信心指数" options="{{columnsIndex}}"></sd-picker>
+      <van-field value="{{form.value}}" name='value' required label="预计金额" input-align="right" placeholder="请输入" />
+      <sd-picker value="{{form.productList}}" name="productList" title="产品信息" options="{{columnsPro}}"></sd-picker>
+      <van-field value="{{form.description}}" name='description' required label="备注" input-align="right" placeholder="请输入" />
+    </van-cell-group>
+    <view class="form-btn-area">
+      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 600rpx;">提交</van-button>
+    </view>
+  </form>
+</view>

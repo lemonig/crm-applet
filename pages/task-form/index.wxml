@@ -1,0 +1,26 @@
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+<view class=" container form-container ">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.orgId}}" name="orgId" required title="任务类型" options="{{optionsOrg}}"></sd-picker>
+      <sd-picker value="{{form.orgId}}" name="orgId" required title="关联商机" options="{{optionsOrg}}"></sd-picker>
+      <sd-datetime-picker value="{{form.orgId}}" name="orgId" required title="开始时间"></sd-datetime-picker>
+      <sd-datetime-picker value="{{form.orgId}}" name="orgId" required title="结束日期"></sd-datetime-picker>
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <van-field value="{{form.department}}" placeholder="请输入" name='department' label="任务标题" input-align="right" />
+      <sd-picker value="{{form.isKdm}}" name="isKdm" title="联系人" options="{{optionsOrg}}"></sd-picker>
+      <van-cell title="地点" is-link value="{{location.address}}" bindtap="onChooseLocation" />
+      <!-- <sd-picker value="{{form.isKdm}}" name="isKdm" title="地点" options="{{optionsOrg}}"></sd-picker> -->
+      <van-field value="{{form.jobTitle}}" placeholder="完成纪要" name='jobTitle' label="职位" input-align="right" />
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <van-cell title="任务已完成">
+        <van-switch value="{{form.department}}" />
+      </van-cell>
+    </van-cell-group>
+    <view class=" form-btn-area">
+      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 600rpx;">提交</van-button>
+    </view>
+  </form>
+</view>

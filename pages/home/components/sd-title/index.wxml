@@ -1,7 +1,9 @@
 <!--pages/home/components/l-title/index.wxml-->
 <view class="title-search">
-  <view class="title">
+  <view wx:if="{{title}}" class="title">
     {{title}}
   </view>
-  <slot></slot>
+  <slot wx:else name="title"> </slot>
+
+  <slot name="select"></slot>
 </view>

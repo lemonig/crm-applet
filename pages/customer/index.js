@@ -5,8 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
+    titleProps: {
+      title: "客户"
+    },
+    option1: [{
+        text: '排序',
+        value: 0
+      },
+      {
+        text: '新款商品',
+        value: 1
+      },
 
+    ],
+    option2: [{
+        text: '高级排序',
+        value: 'a'
+      },
+      {
+        text: '好评排序',
+        value: 'b'
+      },
+      {
+        text: '销量排序',
+        value: 'c'
+      },
+    ],
+    value1: 0,
+    value2: 'a',
   },
+  gotolink(events) {
+    wx.navigateTo({
+      url: '/pages/linkman/index',
+      events: events,
+      success: (result) => {},
+      fail: (res) => {},
+      complete: (res) => {},
+    })
+  },
+  add() {
+    wx.navigateTo({
+      url: '/pages/customer-form/index',
+    })
+  },
+  edit() {
+    wx.navigateTo({
+      url: '/pages/customer-form/index?id=1',
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

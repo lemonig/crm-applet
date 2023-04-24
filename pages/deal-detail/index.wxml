@@ -1,0 +1,40 @@
+<!--pages/deal-detail/index.wxml-->
+<!--pages/deal/index.wxml-->
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class=" container deal-detail-container ">
+  <view class="card">
+    <view class="title">
+      <text>平湖标准站采购项目（拓展类）</text>
+      <text>进行中</text>
+    </view>
+    <view class="desc-1">
+      <van-icon name="hotel-o" /> 平湖生态环境局（非最终用户）
+      <van-icon name="contact" />陆骏
+    </view>
+    <view class="desc-2">
+      <text>¥600,000,000</text> <text>周巧夏南 信心指数70%</text>
+    </view>
+
+    <view>
+     <sd-stage></sd-stage>
+    </view>
+  </view>
+
+  <view style="margin-top: 100rpx;">
+
+    <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
+      <van-tab title="跟进记录">
+        <sd-record></sd-record>
+      </van-tab>
+      <van-tab title="基本资料">
+        <sd-base></sd-base>
+      </van-tab>
+      <van-tab title="相关信息">
+        <sd-info></sd-info>
+      </van-tab>
+    </van-tabs>
+  </view>
+
+</view>

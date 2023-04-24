@@ -12,6 +12,10 @@ Component({
       },
       observer: function (newVal, oldVal) {}
     },
+    back: {
+      type: Boolean,
+      value: true,
+    },
     title: {
       type: String,
 
@@ -32,6 +36,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    goback: function () {
+      wx.navigateBack({
+        delta: 1
+      })
 
+    }
   }
 })

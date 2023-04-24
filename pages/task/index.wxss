@@ -1,1 +1,7 @@
 /* pages/task/index.wxss */
+.check-style {
+  text-decoration: line-through;
+}
+.label-text{
+  font-size: 28rpx;
+}

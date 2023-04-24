@@ -1,0 +1,16 @@
+/* pages/task-detail/index.wxss */
+.text-color{
+}
+.task-container text{
+  color: #0252cc
+
+}
+.btn-wrap{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100rpx;
+}
+.cell-group-class {
+  margin-bottom: 50rpx;
+}

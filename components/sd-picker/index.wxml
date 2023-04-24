@@ -1,0 +1,4 @@
+<van-cell required="{{required}}" title="{{title}}" is-link bind:click="showPopup" data-index="2" value="{{label}}" />
+<van-popup show="{{ show }}" bind:close="onClose" custom-style="height: 40%;" position="bottom">
+  <van-picker columns="{{ options }}" default-index="{{ valIdx }}" bind:cancel="onClose" show-toolbar title="{{title}}" bind:confirm="confirmPicker" value-key="label" />
+</van-popup>

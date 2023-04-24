@@ -1,6 +1,9 @@
 //  import {} from './validate'
 
-const formatTime = date => {
+function formatTime(time) {
+  console.log(time);
+  var date = new Date(time)
+  console.log(date);
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()

@@ -1,0 +1,8 @@
+/* pages/deal-detail/info/index.wxss */
+.info-wrap {
+  width: 92%;
+  margin: 0 auto;
+}
+.card-margin {
+  margin-bottom: 100rpx;
+}

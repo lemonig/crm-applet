@@ -3,10 +3,14 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: auto;
   padding: 18rpx 0;
 }
 .title-search .title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
+}
+.title-search .s-title {
+  font-size: 14px;
 }

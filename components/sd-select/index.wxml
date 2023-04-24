@@ -3,11 +3,13 @@
   <view class="popup-title">
     筛选
   </view>
-  <van-cell-group>
-    <block wx:for="{{options}}" wx:key="unique">
-      <van-cell title="{{item.label}}" bind:click="onSelect" data-value="{{item.value}}">
-        <van-icon color="green" wx:if="{{value ==  item.value}}" slot="right-icon" name="success" class="custom-icon" />
-      </van-cell>
-    </block>
-  </van-cell-group>
+  <view class="select-main">
+    <van-cell-group>
+      <block wx:for="{{options}}" wx:key="unique">
+        <van-cell title="{{item.label}}" bind:click="onSelect" data-value="{{item.value}}">
+          <van-icon color="green" wx:if="{{value ==  item.value}}" slot="right-icon" name="success" class="custom-icon" />
+        </van-cell>
+      </block>
+    </van-cell-group>
+  </view>
 </van-popup>

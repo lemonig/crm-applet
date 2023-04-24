@@ -1,0 +1,6 @@
+/* pages/deal-detail/record/index.wxss */
+.label-text{
+  font-size: 24rpx;
+  line-height: 48rpx;
+ color: rgb(2, 82, 204);
+}

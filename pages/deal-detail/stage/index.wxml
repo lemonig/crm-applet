@@ -1,0 +1,10 @@
+<view class="pipeline-stage open">
+  <view class=".ul">
+    <view class="li {{item.isShow ? 'active' : ''}}" wx:for="{{msg}}" wx:key="text">
+      <view class="stage-content">
+        <text class="stagename">1天</text>
+        <text class="stage-arrow"></text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<van-cell 
+  required="{{required}}" 
+  title="{{title}}" 
+  is-link 
+  bind:click="showPopup" 
+  data-index="2" 
+  value="{{label}}" />
+<van-popup 
+  show="{{ show }}" 
+
+  custom-style="height: 40%;"
+  position="bottom">
+    <van-datetime-picker
+      type="date"
+      bind:close="onClose" 
+      bind:confirm="confirmPicker"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      bind:input="onInput"
+      formatter="{{ formatter }}"
+  />
+</van-popup>

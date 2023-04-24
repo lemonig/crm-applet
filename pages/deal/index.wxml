@@ -1,2 +1,18 @@
 <!--pages/deal/index.wxml-->
-<text>pages/deal/index.wxml</text>
+<navigation-bar default-data="{{titleProps}}" back="{{false}}"></navigation-bar>
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+</van-dropdown-menu>
+<view class="deal-container">
+  <view class="deal-title">
+    <text class="number">6个</text>商机 商机金额 <text class="moeny">600,000,000</text> 元，预测 <text class="moeny">200,000,000</text> 元
+  </view>
+  <sd-list></sd-list>
+  <sd-list></sd-list>
+  <sd-list></sd-list>
+</view>
+<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
+</view>

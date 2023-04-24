@@ -1,0 +1,14 @@
+<!--pages/customer/components/cu-list/index.wxml-->
+<view class="sd-list" bindtap="gotoDetail">
+  <view class="title">
+    <text> 嘉兴市生态环境局平湖分局 </text>
+  </view>
+
+  <view class="desc-label font-color-gray">
+    <text> 最近跟进: 寿丁奇 2023-06-02</text> <text>商机3个</text>
+  </view>
+
+  <view class="desc-label font-color-gray">
+    <text>累计合同额：3000万</text> <text>合同1个</text>
+  </view>
+</view>

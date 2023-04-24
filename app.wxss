@@ -1,7 +1,31 @@
 /**app.wxss**/
 .container {
-  height: 100vh;
-  padding: 0rpx 26rpx;
+  /* height: 100vh; */
   box-sizing: border-box;
-  background-color: #eee;
+  background-color: rgb(241, 244, 249);
+  box-sizing: border-box;
+}
+.page-padding {
+  padding: 0rpx 26rpx;
+}
+.form-btn-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.cell-group-class {
+  margin-bottom: 50rpx;
+}
+.list-padding {
+  padding: 24rpx;
+}
+list-margin-btm {
+  margin-bottom: 8rpx;
+}
+.bg-color {
+  background-color: rgb(241, 244, 249);
+}
+
+page {
+  --primary: #0252cc;
 }

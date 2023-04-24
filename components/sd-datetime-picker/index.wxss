@@ -1,0 +1,12 @@
+/* components/sd-datetime-picker/index.wxss */
+
+.popup-title {
+  width: 100%;
+  text-align: center;
+  padding: 26rpx 0;
+}
+.select-main {
+  height: 300rpx;
+  overflow-y: auto;
+  overscroll-behavior: none;
+}

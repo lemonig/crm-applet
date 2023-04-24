@@ -1,0 +1,51 @@
+/* pages/deal-detail/index.wxss */
+
+/* 卡片 */
+
+.deal-detail-container {
+  height: 100vh;
+  /* background: linear-gradient(#0252cc, #0252cc 20%, #fff 80%, #fff 100%); */
+  background-image: linear-gradient(to bottom, #0252cc 15%, #f1f4f9 15%);
+  background-color: #f1f4f9;
+  width: 100%;
+  padding: 0;
+}
+.card {
+  padding: 24rpx;
+  width: 92%;
+  height: 460rpx;
+  background-color: #fff;
+  border-radius: 18rpx;
+  box-shadow: 0px 7px 12px 0px rgba(2, 82, 204, 0.3);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.card .title {
+  font-size: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  font-size: 36rpx;
+}
+.desc-1 {
+  margin: 4rpx 0rpx;
+  color: rgba(136, 136, 136, 1);
+  font-size: 24rpx;
+  padding: 6rpx 0;
+}
+.desc-2 {
+  padding: 12rpx 0;
+  margin: 4rpx 0rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+}
+.desc-2 text:nth-child(2) {
+  font-size: 24rpx;
+  color: rgba(136, 136, 136, 1);
+}
+/*  */
+.tabs-title {
+  background-color: #f1f4f9;
+}

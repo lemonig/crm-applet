@@ -2,7 +2,8 @@
 <view class="nav-bar" style="height:{{navBarHeight}}px;">
   <view class="nav-amin" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px;  top:{{menuTop}}px;">
     <view class="icon">
-      <van-icon name="arrow-left" />
+      <van-icon wx:if="{{back}}" name="arrow-left" bindtap="goback" />
+      <slot></slot>
     </view>
     <view class="search">{{
       defaultData.title

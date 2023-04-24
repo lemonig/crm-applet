@@ -1,77 +1,181 @@
 <!--pages/home/index.wxml-->
 <wxs src="../wxs/utils.wxs" module="utils" />
 
-<navigation-bar default-data="{{defaultData}}"></navigation-bar>
-<view class="container">
+<navigation-bar default-data="{{defaultData}}" back="{{false}}"></navigation-bar>
+<view class="container page-padding">
 
   <sd-title title="常用功能"></sd-title>
   <view class="usual-contain">
-    <sd-block title="建商机">
-      <van-icon name="cross" />
+    <sd-block title="建商机" bindtap="gotoPage" data-panel="deal">
+      <van-icon name="gold-coin-o" />
     </sd-block>
-    <sd-block title="建客户">
-      <van-icon name="cross" />
+    <sd-block title="建客户" bindtap="gotoPage" data-panel="customer">
+      <van-icon name="hotel-o" />
     </sd-block>
-    <sd-block title="建联系人">
-      <van-icon name="cross" />
+    <sd-block title="建联系人" bindtap="gotoPage" data-panel="linkman">
+      <van-icon name="contact" />
     </sd-block>
-    <sd-block title="建任务">
-      <van-icon name="cross" />
+    <sd-block title="建任务" bindtap="gotoPage" data-panel="task">
+      <van-icon name="notes-o" />
     </sd-block>
   </view>
 
   <sd-title title="我的销售">
-    <view class="select-btn" bindtap="onShowSalePopup">
+    <view class="select-btn" bindtap="onShowSalePopup" slot="select">
       <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
       <van-icon name="arrow-down" />
     </view>
   </sd-title>
   <view class="block-white block-main">
     <van-row gutter="20">
-      <van-col span="12">
+      <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.label}}" bindtap="gotoSaleDetail">
         <view class="flex-col text-block">
-          <text>今日任务</text>
-          <text>2个</text>
+          <text>{{item.label}}</text>
+          <text>{{ item.val }}</text>
         </view>
       </van-col>
 
+
+
+
     </van-row>
+    <!-- <van-grid column-num="3">
+      <van-grid-item icon="photo-o" text="文字" wx:for="{{ 6 }}" />
+    </van-grid> -->
   </view>
 
 
   <sd-title title="仪表盘">
-
   </sd-title>
   <view class="block-white block-main">
     <view class="s-title">
+      <van-icon name="newspaper-o" color="#0252CC" />
       销售简报
     </view>
-    <van-row gutter="20">
+    <van-row gutter="12">
       <van-col span="12">
-        <view class="flex-col text-block">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新签合同">
           <text>新签合同</text>
-          <text>2个</text>
+          <text>2</text>
         </view>
       </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="合同金额">
+          <text>合同金额</text>
+          <text>6000,000</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="回款金额">
+          <text>回款金额</text>
+          <text>6000,000</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增商机">
+          <text>新增商机</text>
+          <text>2</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增商机金额">
+          <text>新增商机金额</text>
+          <text>6000,000</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="商机金额预测">
+          <text>商机金额预测</text>
+          <text>6000,000</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="赢单商机">
+          <text>赢单商机</text>
+          <text>2</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="输单商机">
+          <text>输单商机</text>
+          <text>2</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="终止商机">
+          <text>终止商机</text>
+          <text>2</text>
+        </view>
+      </van-col>
+      <van-col span="12">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增跟进记录">
+          <text>新增跟进记录</text>
+          <text>2</text>
+        </view>
+      </van-col>
+
     </van-row>
   </view>
 
   <view class="block-white block-main">
-    <sd-title title="合同金额">
-      <view class="select-btn" bindtap="onContactPopupClick">
+
+
+
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="balance-list-o" color="#0252CC" />
+        合同金额
+      </view>
+      <view class="select-btn" bindtap="onContactPopupClick" slot="select">
         <text>{{utils.filterlabel(contractMOp,contractValue)}}</text>
         <van-icon name="arrow-down" />
       </view>
     </sd-title>
-
-    <view class="text-block">
+    <view>
       <echart-bar id="contract-money-bar" idRef="{{ 'contract-money-bar' }}" toImg="{{ false }}" />
     </view>
+  </view>
 
+
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="bar-chart-o" color="#0252CC" />
+        排行版
+      </view>
+
+      <view class="select-btn" bindtap="onRankPopupClick" slot="select">
+        <text>{{utils.filterlabel(rankList,rankValue)}}</text>
+        <van-icon name="arrow-down" />
+      </view>
+    </sd-title>
+    <view>
+      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+    </view>
+  </view>
+
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="filter-o" color="#0252CC" />
+        销售漏斗
+      </view>
+      <view class="select-btn" bindtap="onRankPopupClick" slot="select">
+        <text>{{utils.filterlabel(funnelList,funnelValue)}}</text>
+        <van-icon name="arrow-down" />
+      </view>
+    </sd-title>
+    <view>
+      <echart-bar id="funnel-money-bar" idRef="{{ 'funnel-money-bar' }}" toImg="{{ false }}" />
+    </view>
   </view>
 
 </view>
 
+<van-notify id="van-notify" />
+
 <!-- 我的销售 -->
 <sd-select open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
 <sd-select open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
+<sd-select open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>
+<sd-select open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelhange"></sd-select>

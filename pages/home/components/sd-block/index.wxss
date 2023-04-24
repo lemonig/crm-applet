@@ -7,4 +7,13 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding: 12rpx 0;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+}
+.icon {
+  font-size: 48rpx;
+}
+.text {
+  font-size: 24rpx;
 }

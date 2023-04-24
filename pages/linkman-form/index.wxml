@@ -1,0 +1,25 @@
+<!--pages/customer-form/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+<view class=" container form-container ">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <van-cell-group custom-class="cell-group-class">
+      <van-field value="{{form.name}}" name='name' required label="姓名" input-align="right" placeholder="请输入" />
+      <van-field value="{{form.phone}}" name='phone' required label="联系电话" input-align="right" placeholder="请输入" />
+      <sd-picker value="{{form.orgId}}" name="orgId" required title="客户" options="{{optionsOrg}}"></sd-picker>
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.isKdm}}" name="isKdm" title="关键决策人" options="{{optionsOrg}}"></sd-picker>
+      <van-field value="{{form.department}}" placeholder="请输入" name='department' label="部门" input-align="right" />
+      <van-field value="{{form.jobTitle}}" placeholder="请输入" name='jobTitle' label="职位" input-align="right" />
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+      <sd-picker value="{{form.gender}}" name="gender" title="性别" options="{{optionsOrg}}"></sd-picker>
+      <van-field value="{{form.department}}" placeholder="请输入" name='department' label="部门" input-align="right" />
+      <van-field value="{{form.address}}" placeholder="请输入" name='address' label="地址" input-align="right" />
+      <van-field value="{{form.description}}" placeholder="请输入" name='description' label="备注" input-align="right" />
+    </van-cell-group>
+    <view class="form-btn-area">
+      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 600rpx;">提交</van-button>
+    </view>
+  </form>
+</view>

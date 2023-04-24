@@ -1,0 +1,8 @@
+/* pages/deal-form/index.wxss */
+.form-container {
+  padding: 0;
+}
+
+.group-class {
+  margin-bottom: 50rpx;
+}

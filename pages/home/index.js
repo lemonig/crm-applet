@@ -1,5 +1,5 @@
 // pages/home/index.js
-
+import Notify from '@vant/weapp/notify/notify';
 const salerData = [
 
   {
@@ -38,6 +38,33 @@ const contractMoney = [{
     value: "2",
   },
 ]
+const rankList = [{
+    label: "合同金额",
+    value: "1",
+  },
+  {
+    label: "回款金额",
+    value: "2",
+  },
+  {
+    label: "合同书",
+    value: "3",
+  },
+  {
+    label: "新增更进记录",
+    value: "4",
+  },
+]
+const funnelList = [{
+    label: "商机金额",
+    value: "1",
+  },
+  {
+    label: "商机数量",
+    value: "2",
+  },
+
+]
 
 Page({
 
@@ -51,9 +78,106 @@ Page({
     saleOptions: saleOptions,
     saleValue: "1",
     saleShow: false,
+
     contractMOp: contractMoney,
     contractValue: "1",
-    contractShow: false
+    contractShow: false,
+
+    rankList: rankList,
+    rankValue: "1",
+    rankShow: false,
+
+    funnelList: funnelList,
+    funnelValue: "1",
+    funnelShow: false,
+    // 表格
+    tableHeader: [{
+        prop: 'id',
+        width: 110,
+        label: '序号'
+      },
+      {
+        prop: 'status',
+        width: 300,
+        label: '姓名'
+      }, {
+        prop: 'datetime',
+        width: 200,
+        label: '日期',
+        color: '#55C355'
+      },
+
+
+    ],
+    stripe: true,
+    border: true,
+    outBorder: true,
+    row: [{
+      "id": 1,
+      "status": '张三',
+      "datetime": "12213",
+
+    }, {
+      "id": 2,
+      "status": '李四',
+      "datetime": "30402",
+
+    }, {
+      "id": 3,
+      "status": '王五',
+      "datetime": "10403",
+    }],
+    msg: '暂无数据',
+    salePanel: [
+
+      {
+        label: "今日任务",
+        val: "2",
+        unit: ""
+      },
+      {
+        label: "全部待办",
+        val: "6",
+        unit: ""
+      },
+      {
+        label: "超期任务",
+        val: "5",
+        unit: ""
+      },
+      {
+        label: "商机数量",
+        val: "4",
+        unit: ""
+      },
+      {
+        label: "无跟进计划商机",
+        val: "3",
+        unit: ""
+      },
+      {
+        label: "无变化商机",
+        val: "2",
+        unit: ""
+      },
+      {
+        label: "商机金额预测",
+        val: "600,00",
+        unit: ""
+      },
+      {
+        label: "应收未收额",
+        val: "400,000",
+        unit: ""
+      },
+      {
+        label: "已开票未收款",
+        val: "200",
+        unit: ""
+      },
+    ]
+
+
   },
 
 
@@ -92,7 +216,67 @@ Page({
     })
     // 自定义组件触发事件时提供的detail对象
   },
+  // 排行
+  onRankPopupClick() {
+    this.setData({
+      contractShow: true
+    });
+  },
+  onRankChange: function (e) {
+    console.log(e.detail);
+    this.setData({
+      rankValue: e.detail.value,
+      rankShow: false
+    })
+    // 自定义组件触发事件时提供的detail对象
+  },
+  // 漏斗
+  onFunnelPopupClick() {
+    this.setData({
+      funnelShow: true
+    });
+  },
+  onFunnelhange: function (e) {
+    console.log(e.detail);
+    this.setData({
+      funnelValue: e.detail.value,
+      funnelShow: false
+    })
+    // 自定义组件触发事件时提供的detail对象
+  },
+  // 跳转
+  gotoDetail: function (e) {
+    let {
+      panel
+    } = e.currentTarget.dataset
+    Notify({
+      message: panel,
+    });
+  },
+  gotoSaleDetail(e) {
+    let {
+      panel
+    } = e.currentTarget.dataset
+    Notify({
+      message: panel,
+    });
+  },
+  gotoPage(events) {
+    let {
+      panel
+    } = events.currentTarget.dataset
+    let url = `/pages/${panel}-form/index`
+    console.log(url);
+    wx.navigateTo({
+      url: url,
+      // events: events,
+      // success: (result) => {},
+      // fail: (res) => {},
+      // complete: (res) => {},
+      // url: '/pages/customer-form/index',
+    })
 
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -113,6 +297,7 @@ Page({
    */
   onShow() {
     this.contractMoneyBarInit()
+    this.funnelMoneyBarInit()
 
 
   },
@@ -158,12 +343,57 @@ Page({
     const charts = this.selectComponent('#contract-money-bar')
     if (!charts) return
     charts.init({
+      grid: {
+        top: 30,
+        left: 10,
+        right: 10,
+        bottom: 30,
+        containLabel: true,
+      },
+      tooltip: {
+        show: true,
+        textStyle: {
+          fontSize: 12
+        }
+      },
       xAxis: {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       yAxis: {
         type: 'value'
+      },
+      series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar'
+      }]
+    })
+  },
+
+  funnelMoneyBarInit() {
+    const charts = this.selectComponent('#funnel-money-bar')
+    if (!charts) return
+    charts.init({
+      grid: {
+        top: 30,
+        left: 10,
+        right: 10,
+        bottom: 30,
+        containLabel: true,
+      },
+      tooltip: {
+        show: true,
+        textStyle: {
+          fontSize: 12
+        }
+      },
+      xAxis: {
+        type: 'value'
+
+      },
+      yAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       series: [{
         data: [120, 200, 150, 80, 70, 110, 130],

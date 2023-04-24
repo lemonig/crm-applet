@@ -1,0 +1,21 @@
+<!--pages/deal-detail/record/index.wxml-->
+<van-cell-group>
+  
+  <sd-list 
+    wx:for="{{pageData}}" 
+    wx:key="id"
+    title="{{item.a1}}" 
+    value="{{item.a2}}" 
+    lab1="{{item.a3}}"
+    desc1="{{item.a4}}"
+  >
+    <view wx:if="{{item.a5}}" class="label-text" slot="lab2">
+      <van-icon name="location" /> {{item.a5}}
+    </view>
+  </sd-list>
+
+</van-cell-group>
+
+<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
+</view>

@@ -8,6 +8,9 @@ Component({
       type: String
     }
   },
+  options: {
+    multipleSlots: true
+  },
 
   /**
    * 组件的初始数据

@@ -1,0 +1,48 @@
+<!--pages/task-detail/index.wxml-->
+
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class="container task-container">
+  <van-cell-group custom-class="cell-group-class">
+    <van-cell title="任务类型">
+      <text>电话</text>
+    </van-cell>
+    <van-cell title="关联商机">
+      <text>平湖标准站采购项目</text>
+    </van-cell>
+    <van-cell title="开始日期">
+      <text>2023-04-10</text>
+    </van-cell>
+    <van-cell title="结束日期">
+      <text>2023-04-10</text>
+    </van-cell>
+  </van-cell-group>
+  <van-cell-group custom-class="cell-group-class">
+    <van-cell title="任务标题">
+      <text></text>
+    </van-cell>
+    <van-cell title="联系人">
+      <text>邱泉</text>
+    </van-cell>
+    <van-cell title="地点">
+      <text></text>
+    </van-cell>
+    <van-cell title="完成纪要">
+      <text></text>
+    </van-cell>
+  </van-cell-group>
+  <van-cell-group custom-class="cell-group-class">
+    <van-cell title="任务状态">
+      <text>未完成</text>
+    </van-cell>
+  </van-cell-group>
+
+  <view class="btn-wrap">
+      <van-button type="danger" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 250rpx;" bindtap="deleteItem">删除</van-button>
+      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
+    </view>
+</view>
+
+<van-notify id="van-notify" />
+<van-dialog id="van-dialog" />

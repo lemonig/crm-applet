@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@vant/weapp": "^1.10.15",
-    "dayjs": "^1.11.7"
+    "dayjs": "^1.11.7",
+    "miniprogram-table-component": "^1.1.0"
   }
 }

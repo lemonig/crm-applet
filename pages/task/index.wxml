@@ -1,2 +1,39 @@
 <!--pages/task/index.wxml-->
-<text>pages/task/index.wxml</text>
+
+<navigation-bar default-data="{{titleProps}}" back="{{false}}">
+
+
+</navigation-bar>
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item value="{{ value3 }}" options="{{ option3 }}" />
+</van-dropdown-menu>
+<view class="deal-container">
+  <van-cell-group>
+    <van-cell wx:for="{{pageData}}" wx:key="{{item.id}}" value="{{item.project}}" use-label-slot bindtap="gotoDetail">
+      <view slot="title">
+        <sd-space>
+          <van-checkbox value="{{ item.checked }}" checked-color="#07c160" data-checked="{{item.checked}}" id="{{item.id}}" bind:change="onChange">
+            <text class="{{item.checked ? 'check-style' :''}}">{{item.type}}</text>
+          </van-checkbox>
+        </sd-space>
+      </view>
+      <view slot="label">
+        <text class="label-text {{item.checked ? 'check-style' :''}}"> {{item.desc}}
+        </text>
+        <view>
+          <text>{{item.name}}</text>
+          <van-icon name="underway-o" /><text class="{{item.checked ? 'check-style' :''}}">{{item.time}}</text>>
+        </view>
+      </view>
+    </van-cell>
+
+
+  </van-cell-group>
+
+</view>
+<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
+</view>
+<van-notify id="van-notify" />

@@ -1,0 +1,4 @@
+<!--components/Space/index.wxml-->
+<view class="space-wrap">
+  <slot></slot>
+</view>
