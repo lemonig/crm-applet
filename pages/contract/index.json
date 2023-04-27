@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "sd-sort": "./components/sd-sort/index",
+    "sd-filter":"./components/sd-filter/index"
+  }
+}

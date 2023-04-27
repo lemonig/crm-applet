@@ -1,8 +1,8 @@
 <view class="pipeline-stage open">
   <view class=".ul">
-    <view class="li {{item.isShow ? 'active' : ''}}" wx:for="{{msg}}" wx:key="text">
+    <view class="li {{item.isShow ? 'active' : ''}}" wx:for="{{value}}" wx:key="id" bindtap="gotoPipeline">
       <view class="stage-content">
-        <text class="stagename">1天</text>
+        <text class="stagename"></text>
         <text class="stage-arrow"></text>
       </view>
     </view>

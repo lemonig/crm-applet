@@ -37,7 +37,7 @@
     ],
     "minifyWXSS": true,
     "showES6CompileOption": false,
-    "minifyWXML": false,
+    "minifyWXML": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -45,7 +45,7 @@
     },
     "condition": false,
     "ignoreDevUnusedFiles": false,
-    "ignoreUploadUnusedFiles": false
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",

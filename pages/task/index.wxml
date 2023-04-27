@@ -11,7 +11,7 @@
 </van-dropdown-menu>
 <view class="deal-container">
   <van-cell-group>
-    <van-cell wx:for="{{pageData}}" wx:key="{{item.id}}" value="{{item.project}}" use-label-slot bindtap="gotoDetail">
+    <van-cell wx:for="{{pageData}}" wx:key="{{item.id}}" value="{{item.project}}" use-label-slot catchtap="gotoDetail">
       <view slot="title">
         <sd-space>
           <van-checkbox value="{{ item.checked }}" checked-color="#07c160" data-checked="{{item.checked}}" id="{{item.id}}" bind:change="onChange">

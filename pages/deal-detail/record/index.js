@@ -4,7 +4,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    id: {
+      type:String
+    }
   },
 
   /**
@@ -37,7 +39,7 @@ Component({
   methods: {
     addDeal(events) {
       wx.navigateTo({
-        url: "/pages/task-form/index",
+        url: "/pages/task-form/index?id="+ this.properties.id,
         events: events,
         success: (result) => {},
         fail: (res) => {},

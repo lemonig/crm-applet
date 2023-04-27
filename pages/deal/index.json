@@ -1,5 +1,4 @@
 {
   "usingComponents": {
-    "sd-list": "./components/sd-list/index"
   }
 }

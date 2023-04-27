@@ -1,0 +1,49 @@
+.sort{
+  ox-sizing: border-box;
+    color: var(--dropdown-menu-title-text-color,#323233);
+    font-size: var(--dropdown-menu-title-font-size,15px);
+    line-height: var(--dropdown-menu-title-line-height,18px);
+    max-width: 100%;
+    padding: var(--dropdown-menu-title-padding,0 24px 0 8px);
+    position: relative;
+}
+
+.sort-asc{
+    border-color: transparent transparent currentcolor currentcolor;
+    border-style: solid;
+    border-width: 3px;
+    margin-top: -5px;
+    opacity: .8;
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: rotate(135deg);
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: currentcolor;
+    border-left-color: currentcolor;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+
+.sort-des{
+    top: 70%;
+    transform: rotate(-45deg);
+  
+}
+.ellipsis{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.acive{
+  border-color: transparent transparent #1989fa #1989fa;
+  border-bottom-color: #1989fa;
+  border-left-color: #1989fa;
+}

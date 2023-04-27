@@ -1,0 +1,39 @@
+<view class="container">
+
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="refund-o" color="#0252CC"/>
+        收款信息
+      </view>
+    </sd-title>
+    <view>
+      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+    </view>
+  </view>
+
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="refund-o" color="#0252CC"/>
+        开票信息
+      </view>
+    </sd-title>
+    <view>
+      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+    </view>
+  </view>
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="refund-o" color="#0252CC"/>
+        回款信息
+      </view>
+    </sd-title>
+    <view>
+      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+    </view>
+  </view>
+
+</view>
+

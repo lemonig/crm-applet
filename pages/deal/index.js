@@ -36,6 +36,20 @@ Page({
     ],
     value1: 0,
     value2: 'a',
+    list: [
+      {
+        id:'1',
+        a: '项目1',
+        b: '付钱了',
+        c: '123',
+        d: "杭州市环保局",
+        e: "蔡徐坤",
+        f: "2032-9-9",
+        g:'2039-9-9'
+      }
+    ],
+    id:''
+  
   },
 
   /**
@@ -49,6 +63,13 @@ Page({
   addDeal() {
     wx.navigateTo({
       url: '/pages/deal-form/index',
+    })
+  },
+  gotoDetail(eve) {
+    console.log(eve);
+    let id = eve.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/deal-detail/index?id='+ id
     })
   },
 

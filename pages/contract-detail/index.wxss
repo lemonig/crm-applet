@@ -1,0 +1,75 @@
+
+/* 卡片 */
+
+.deal-detail-container {
+  height: 100vh;
+  /* background: linear-gradient(#0252cc, #0252cc 20%, #fff 80%, #fff 100%); */
+  background-image: linear-gradient(to bottom, #0252cc 15%, #f1f4f9 15%);
+  background-color: #f1f4f9;
+  width: 100%;
+  padding: 0;
+}
+.card {
+  padding: 24rpx 0;
+  width: 92%;
+  height: 380rpx;
+  background-color: #fff;
+  border-radius: 18rpx;
+  box-shadow: 0px 7px 12px 0px rgba(2, 82, 204, 0.3);
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.card .title {
+  font-size: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 24rpx 0 12rpx 0;
+  font-size: 36rpx;
+}
+.desc-1 {
+  margin: 0rpx 0rpx 4rpx 0;
+  color: rgba(136, 136, 136, 1);
+  font-size: 24rpx;
+  padding: 6rpx 0;
+}
+.desc-2 {
+  padding: 12rpx 0;
+  margin: 4rpx 0rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.title,.desc-1 ,.desc-2{
+  margin: 0 24rpx;
+}
+/*  */
+.tabs-title {
+  background-color: #f1f4f9;
+}
+.stage-wrap{
+    width: 100%;
+    background-color: #DAEBFE;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 24rpx;
+    position: relative;
+    color: #BBBBBB;
+}
+.active-item{
+    color: #666666;
+}
+.triangle {
+  /* content: ""; */
+  position: absolute;
+  top: 0px;
+  left:calc(50% - 8rpx);
+  width: 0;
+  height: 0;
+  border-top: 16rpx solid #fff;
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+}
+

@@ -1,0 +1,7 @@
+<view class="sort active"  bindtap="sortItem">
+  <view class="ellipsis" >
+    <slot>{{value}}</slot>
+    <view class="sort-asc {{ sortType === 1 ?  'acive' :''}}" ></view>
+    <view class="sort-asc sort-des {{ sortType ===  -1 ?  'acive' :''}} "></view>
+  </view>
+</view>

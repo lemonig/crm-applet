@@ -1,0 +1,28 @@
+/* pages/contract/components/sd-filter/index.wxss */
+.filter-wrap{
+  width: 100%;
+  padding: 150rpx 24rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.s-title {
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  font-size: 28rpx;
+}
+.tag-wrap{
+
+
+}
+.tag-class{
+  margin: 0 24rpx;
+}
+.btn-wrap{
+  width: 100%;
+  position: fixed;
+  bottom: 24rpx;
+  left: 0;
+  text-align: center;
+  box-sizing: border-box;
+}

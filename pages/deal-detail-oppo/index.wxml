@@ -1,0 +1,29 @@
+<!--pages/deal-detail-pro/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+<view class="container">
+
+<van-checkbox-group value="{{ result }}" bind:change="onChange">
+  <van-cell-group>
+    <van-cell
+      wx:for="{{ list }}"
+      wx:key="index"
+      value-class="value-class"
+      data-index="{{ index }}"
+    >
+    <view slot="title">
+      <van-checkbox
+      catch:tap="noop"
+        class="checkboxes-{{ index }}"
+        name="{{ item.id }}"
+      >复选框 {{ item.label }}</van-checkbox> 
+    </view>
+    </van-cell>
+  </van-cell-group>
+</van-checkbox-group>
+
+</view>
+
+
+<view class="form-btn-area" style="margin-top: 50rpx;">
+      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." bind:click="submit" custom-style="width: 600rpx;">提交</van-button>
+</view>

@@ -1,10 +1,12 @@
-// pages/deal/components/sd-list/index.js
+// pages/deal-detail/base/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    id: {
+      type:String
+    }
   },
 
   /**
@@ -18,10 +20,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotoDetail() {
-      wx.navigateTo({
-        url: '/pages/deal-detail/index'
-      })
-    }
+
   }
 })

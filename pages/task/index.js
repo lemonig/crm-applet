@@ -73,6 +73,8 @@ Page({
 
   onChange(event) {
     console.log(event);
+    if (event.type === 'change') {
+    }
     let {
       dataset: {
         checked

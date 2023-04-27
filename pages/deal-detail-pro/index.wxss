@@ -1,0 +1,4 @@
+/* pages/deal-detail-pro/index.wxss */
+.value-class {
+  flex: none !important;
+}

@@ -1,5 +1,4 @@
 <!--pages/deal-detail/index.wxml-->
-<!--pages/deal/index.wxml-->
 <navigation-bar default-data="{{titleProps}}">
 </navigation-bar>
 
@@ -13,26 +12,32 @@
       <van-icon name="hotel-o" /> 平湖生态环境局（非最终用户）
       <van-icon name="contact" />陆骏
     </view>
-    <view class="desc-2">
+    <view class="desc-2" style="margin-bottom: 20rpx;">
       <text>¥600,000,000</text> <text>周巧夏南 信心指数70%</text>
     </view>
 
-    <view>
-     <sd-stage></sd-stage>
+    <view class="stage-wrap">
+      <view class="triangle"></view>
+      <text wx:for="{{msg}}" wx:key="id">
+        {{item.text}}
+      </text>
     </view>
+
+     <sd-stage value="{{msg}}"></sd-stage>
+     <van-steps steps="{{ steps }}" active="{{ active }}" />
   </view>
 
   <view style="margin-top: 100rpx;">
 
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
       <van-tab title="跟进记录">
-        <sd-record></sd-record>
+        <sd-record id="{{id}}"></sd-record>
       </van-tab>
       <van-tab title="基本资料">
-        <sd-base></sd-base>
+        <sd-base id="{{id}}"></sd-base>
       </van-tab>
       <van-tab title="相关信息">
-        <sd-info></sd-info>
+        <sd-info id="{{id}}"></sd-info>
       </van-tab>
     </van-tabs>
   </view>

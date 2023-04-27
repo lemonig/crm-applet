@@ -9,9 +9,23 @@
   <view class="deal-title">
     <text class="number">6个</text>商机 商机金额 <text class="moeny">600,000,000</text> 元，预测 <text class="moeny">200,000,000</text> 元
   </view>
-  <sd-list></sd-list>
-  <sd-list></sd-list>
-  <sd-list></sd-list>
+
+    <sd-list
+      wx:for="{{list}}"  
+      wx:key="id"
+      title="{{item.a}}" 
+      value="{{item.b}}" 
+      border="{{false}}"
+      data-id="{{item.id}}"
+      bindtap="gotoDetail"
+      >
+      <view slot="lab1" class="desc-label font-color-gray">
+        <van-icon name="gold-coin-o" />{{item.c}} · {{item.d}}
+      </view>
+      <view slot="lab2" class="desc-label font-color-gray">
+       {{item.e}} · 最近更进 {{item.f}} · {{item.g}}
+      </view>
+    </sd-list>
 </view>
 <view style="position: fixed;bottom: 30rpx;right: 30rpx;">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />

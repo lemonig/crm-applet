@@ -1,0 +1,15 @@
+<!--pages/deal-detail/base/index.wxml-->
+<view>
+
+  <van-cell-group>
+    <van-cell title="名称" value="平湖标准站采购" />
+    <van-cell title="编号" value="内容" />
+    <van-cell title="签订时间" value="内容" />
+    <van-cell title="客户名称" value="内容" />
+    <van-cell title="负责人" value="内容" />
+    <van-cell title="合同内容" value="内容" />
+    <van-cell title="附件" value="内容" />
+  </van-cell-group>
+
+
+</view>

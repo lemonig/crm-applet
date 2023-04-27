@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "van-steps": "@vant/weapp/steps/index",
     "sd-record": "./record/index",
     "sd-base": "./base/index",
     "sd-info": "./info/index",

@@ -1,0 +1,46 @@
+<!--pages/contract/index.wxml-->
+<navigation-bar default-data="{{titleProps}}" back="{{false}}">
+  <van-icon name="filter-o" bindtap="filterPop" />
+</navigation-bar>
+
+<view class="container">
+  <van-tabs active="{{ active }}" title-active-color="#0252CC" color="#0252CC" swipeable>
+    <van-tab wx:for="{{soetItme}}" title="{{item.label}}" wx:key="value">
+      <van-row gutter='16' custom-class="row-class">
+        <van-col span="12">项目</van-col>
+        <van-col span="6">
+          <sd-sort data-skey="value" bind:sort="sortBy">金额</sd-sort>
+        </van-col>
+        <van-col span="6">
+          <sd-sort data-skey="signedDate" bind:sort="sortBy">签订时间</sd-sort>
+        </van-col>
+      </van-row>
+      <!-- list -->
+
+      <van-row wx:for="{{pageData}}" wx:key="id" gutter='16' custom-class="row-class" data-id="{{item.id}}" bindtap="gotoDetail">
+        <van-col span="12">
+          <text>{{item.projectName}}</text>
+          <text class="color-gray">
+            {{item.orgName}}</text>
+        </van-col>
+        <van-col span="6">
+          <text> {{item.value}}</text>
+          <text class="color-gray">
+            {{item.projectCode}}
+          </text>
+        </van-col>
+        <van-col span="6">
+          <text>{{item.signedDate}}</text>
+          <text class="color-gray">
+            {{item.ownerUserName}}
+          </text>
+        </van-col>
+      </van-row>
+
+    </van-tab>
+
+  </van-tabs>
+</view>
+<van-popup show="{{ show }}" position="right" custom-style="width: 70%; height: 100%" bind:close="onClose" closeable>
+  <sd-filter bind:filtercall="filterData"></sd-filter>
+</van-popup>

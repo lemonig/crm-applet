@@ -1,0 +1,7 @@
+/* pages/deal-detail/base/index.wxss */
+.form-btn-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 50rpx 0;
+}

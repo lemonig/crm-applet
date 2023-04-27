@@ -1,7 +1,7 @@
 <!--pages/deal-detail/info/index.wxml-->
 <view class="info-wrap">
-  <sd-card custom-class="card-margin" title="产品">
-    <van-icon   slot="icon" name="edit" bindtap="selectProduct"></van-icon>
+  <sd-card custom-class="card-margin" title="产品" >
+    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="pro"></van-icon>
     <view slot="body">
       <sd-list 
         wx:for="{{productList}}" 
@@ -13,15 +13,64 @@
       </sd-list>
       <van-cell title="周桥" value="内容" />
     </view>
-
-
   </sd-card>
+
   <sd-card title="竞争对手">
+    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="oppo"></van-icon>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{productList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="{{item.a2}}" 
+        border="{{false}}"
+      >
+      </sd-list>
+      <van-cell title="周桥" value="内容" />
+    </view>
   </sd-card>
+
   <sd-card title="招标代理">
+    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="agent"></van-icon>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{productList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="{{item.a2}}" 
+        border="{{false}}"
+      >
+      </sd-list>
+      <van-cell title="周桥" value="内容" />
+    </view>
   </sd-card>
+
   <sd-card title="合作伙伴">
+    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="cro"></van-icon>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{productList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="{{item.a2}}" 
+        border="{{false}}"
+      >
+      </sd-list>
+      <van-cell title="周桥" value="内容" />
+    </view>
   </sd-card>
+
   <sd-card title="合同">
+    <view slot="body">
+      <sd-list 
+        wx:for="{{productList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="{{item.a2}}" 
+        border="{{false}}"
+      >
+      </sd-list>
+      <van-cell title="周桥" value="内容" />
+    </view>
   </sd-card>
 </view>

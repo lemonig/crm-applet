@@ -1,0 +1,18 @@
+<view class="filter-wrap">
+  <view class="s-title">
+    可见范围
+  </view>
+  <view class="tag-wrap">
+    <van-row>
+      <van-col span="8" wx:for="{{range}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap">
+        <van-tag size="large" class="tag-class" type="primary" plain="{{item.checked}}">{{item.label}}</van-tag>
+      </van-col>
+    </van-row>
+  </view>
+
+  <view class="btn-wrap">
+    <van-button type="danger" loading-text="loading..." custom-style="width: 30%;margin:0 30rpx" bindtap="deleteItem">重置</van-button>
+    <van-button type="info" loading-text="loading..." custom-style="width: 30%;margin:0 30rpx" bindtap="search">确定</van-button>
+  </view>
+
+</view>
