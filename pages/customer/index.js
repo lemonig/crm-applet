@@ -5,56 +5,101 @@ Page({
    * 页面的初始数据
    */
   data: {
-    titleProps: {
-      title: "客户"
-    },
+
+    isOwnPage: true,
+
     option1: [{
-        text: '排序',
+        text: '录入时间',
         value: 0
       },
       {
-        text: '新款商品',
+        text: '跟进时间',
         value: 1
+      },
+      {
+        text: '未收款',
+        value: 2
+      },
+      {
+        text: '商机数量',
+        value: 3
+      },
+      {
+        text: '合同数量',
+        value: 5
+      },
+      {
+        text: '累计合同额',
+        value: 6
       },
 
     ],
     option2: [{
-        text: '高级排序',
+        text: '和我相关',
         value: 'a'
       },
       {
-        text: '好评排序',
+        text: '全部',
         value: 'b'
       },
-      {
-        text: '销量排序',
-        value: 'c'
-      },
+
     ],
     value1: 0,
-    value2: 'a',
+    value2: 'b',
+    list: [
+      {
+        id:'1',
+        a: '杭州市环保局',
+        b: '未收款200w',
+        c: '2032-9-9',
+
+      },
+      {
+        id:'2',
+        a: '平湖市环保局',
+        b: '未收款600w',
+        c: '2032-9-9',
+
+      }
+    ],
   },
   gotolink(events) {
-    wx.navigateTo({
-      url: '/pages/linkman/index',
-      events: events,
-      success: (result) => {},
-      fail: (res) => {},
-      complete: (res) => {},
+    // wx.navigateTo({
+    //   url: '/pages/linkman/index',
+    //   events: events,
+    //   success: (result) => {},
+    //   fail: (res) => {},
+    //   complete: (res) => {},
+    // })
+    console.log('111');
+    this.setData({
+      isOwnPage: !this.data.isOwnPage
     })
+    console.log(this.data.isOwnPage);
   },
   add() {
     wx.navigateTo({
       url: '/pages/customer-form/index',
     })
   },
-  edit() {
+  gotoDetail() {
     wx.navigateTo({
-      url: '/pages/customer-form/index?id=1',
+      url: '/pages/customer-detail/index?id=1',
     })
   },
 
-
+  gotoSearch() {
+    if (this.data.isOwnPage) {
+      wx.navigateTo({
+        url: '/pages/customer/components/search-customer/index',
+      })
+      
+    } else {
+      wx.navigateTo({
+        url: '/pages/customer/components/search-linkman/index',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,7 +118,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    console.log(this.getTabBar());
+    this.getTabBar().init();
   },
 
   /**

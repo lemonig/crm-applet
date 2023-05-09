@@ -1,9 +1,11 @@
 // pages/contract/index.js
+const app = getApp()
 const mock = require('./mock')
 var cloneData = []
 
 Page({
-    data: {
+  data: {
+    navBarHeight: app.globalData.navBarHeight,
         titleProps: {
             title: "合同"
         },
@@ -115,7 +117,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+      this.getTabBar().init();
     },
 
     /**

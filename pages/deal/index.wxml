@@ -1,11 +1,14 @@
 <!--pages/deal/index.wxml-->
 <navigation-bar default-data="{{titleProps}}" back="{{false}}"></navigation-bar>
-<van-dropdown-menu>
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+
+<view class="container deal-container" style="height: calc(100vh - {{navBarHeight}}px)">
+
+  <van-dropdown-menu>
+  <van-dropdown-item title="流程阶段" value="{{ value1 }}" options="{{ option1 }}" />
+  <van-dropdown-item title="排序" value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item title="高级筛选" value="{{ value3 }}" options="{{ option3 }}" />
 </van-dropdown-menu>
-<view class="deal-container">
+<view style="margin-top:var(--dropdown-margin);">
   <view class="deal-title">
     <text class="number">6个</text>商机 商机金额 <text class="moeny">600,000,000</text> 元，预测 <text class="moeny">200,000,000</text> 元
   </view>
@@ -13,20 +16,26 @@
     <sd-list
       wx:for="{{list}}"  
       wx:key="id"
-      title="{{item.a}}" 
-      value="{{item.b}}" 
-      border="{{false}}"
+      title="{{item.title}}" 
       data-id="{{item.id}}"
       bindtap="gotoDetail"
       >
+      <view slot="value">
+        <text class="font-color-gray" style="font-size: 24rpx;" wx:if="{{item.status === '1'}}">{{item.statusName}} </text>
+        <van-tag size="large" wx:if="{{item.status === '2'}}" color="rgb(17, 145, 67)" type="primary">赢单</van-tag>
+        <van-tag size="large" wx:if="{{item.status === '3'}}" color="#ff4d4f" type="primary">丢单</van-tag>
+        <van-tag size="large" wx:if="{{item.status === '4'}}" color="#ff4d4f" type="primary">终止</van-tag>
+      </view>
       <view slot="lab1" class="desc-label font-color-gray">
-        <van-icon name="gold-coin-o" />{{item.c}} · {{item.d}}
+       ￥{{item.value}} · {{item.orgName}}
       </view>
       <view slot="lab2" class="desc-label font-color-gray">
-       {{item.e}} · 最近更进 {{item.f}} · {{item.g}}
+       {{item.ownerUserName}} · 最近跟进 {{item.latestFollowUpTime }} · 下次 {{item.nextActivity.valuie }}
       </view>
     </sd-list>
 </view>
-<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+</view>
+
+<view class="fix-add-btn">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
 </view>

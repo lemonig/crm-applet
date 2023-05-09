@@ -145,7 +145,11 @@ Page({
       "description": "",
       "probability": 92
     }
-    Notify('提交成功');
+    // Notify('提交成功');
+    wx.showToast({
+      title:"提交成功",
+      icon:'none'
+    })
     setTimeout(() => {
 
       wx.navigateBack()

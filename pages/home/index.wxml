@@ -2,7 +2,7 @@
 <wxs src="../wxs/utils.wxs" module="utils" />
 
 <navigation-bar default-data="{{defaultData}}" back="{{false}}"></navigation-bar>
-<view class="container page-padding">
+<view class="container home-container  page-padding" >
 
   <sd-title title="常用功能"></sd-title>
   <view class="usual-contain">
@@ -46,6 +46,18 @@
 
 
   <sd-title title="仪表盘">
+  <view slot="select" class="double-btn">
+    
+    <view class="select-btn" bindtap="onShowSalePopup" >
+      <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
+      <van-icon name="arrow-down" />
+    </view>
+    <view class="select-btn" bindtap="onShowRangPopup" >
+      <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
+      <van-icon name="arrow-down" />
+    </view>
+ 
+  </view>
   </sd-title>
   <view class="block-white block-main">
     <view class="s-title">
@@ -171,6 +183,8 @@
   </view>
 
 </view>
+
+
 
 <van-notify id="van-notify" />
 

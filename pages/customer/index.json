@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "sd-list": "./components/cu-list/index"
+    "link-page":"./components/link-man/index"
   }
 }

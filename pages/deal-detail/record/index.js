@@ -3,6 +3,9 @@ Component({
   /**
    * 组件的属性列表
    */
+  options: {
+    addGlobalClass: true, //解决
+  },
   properties: {
     id: {
       type:String

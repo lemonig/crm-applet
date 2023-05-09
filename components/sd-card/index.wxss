@@ -14,5 +14,9 @@
 }
 .title text {
   font-size: 36rpx;
-  margin: 0 12rpx;
+  margin: 0 8rpx;
+}
+.title .label{
+  display: flex;
+  align-items: center;
 }

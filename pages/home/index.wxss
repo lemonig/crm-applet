@@ -1,6 +1,8 @@
 /* pages/home/index.wxss */
-.container {
+.home-container {
   padding-top: 20px;
+  padding-bottom: 100rpx;
+  
 }
 
 .usual-contain {
@@ -64,4 +66,7 @@
 }
 
 .icon-clolr {
+}
+.double-btn{
+  display: flex;
 }

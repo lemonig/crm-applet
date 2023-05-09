@@ -1,1 +1,5 @@
 /* pages/customer-form/index.wxss */
+.gs-btn{
+  width: 50rpx !important;
+  border: none !important;
+}

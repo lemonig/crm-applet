@@ -1,0 +1,21 @@
+<!--pages/customer/components/search-customer/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+<van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+
+
+<view class="container cus-container">
+  <view class="margin-top: 50rpx">
+    <van-cell-group>
+    <sd-list
+      wx:for="{{list}}"  
+      wx:key="id"
+      title="{{item.a}}" 
+      data-id="{{item.id}}"
+      bindtap="gotoDetail"
+      lab1="{{item.c ? '最近跟新：'+item.c: '无跟进记录' }}"
+      desc1="{{item.b}}" 
+      >
+    </sd-list>
+  </van-cell-group>
+  </view>
+</view>

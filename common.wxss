@@ -1,0 +1,25 @@
+/* 加号按钮 */
+
+.fix-add-btn {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + 100rpx + 30rpx);
+  right: 30rpx;
+}
+
+.form-btn-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 100rpx 0 0rpx ;
+  padding-bottom: 50rpx;
+}
+
+.cell-group-class {
+  margin-bottom: 25rpx;
+}
+.font-color-gray{
+  color: rgb(107, 119, 140);
+}
+.font-money{
+  font-weight: bold;
+}

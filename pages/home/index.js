@@ -1,5 +1,6 @@
 // pages/home/index.js
 import Notify from '@vant/weapp/notify/notify';
+const app = getApp()
 const salerData = [
 
   {
@@ -72,6 +73,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     defaultData: {
       title: "首页", // 导航栏标题
     },
@@ -249,17 +251,24 @@ Page({
     let {
       panel
     } = e.currentTarget.dataset
-    Notify({
-      message: panel,
-    });
+    // Notify({
+    //   message: panel,
+    // });
+    wx.showToast({
+      title:panel,
+      icon:'none'
+    })
   },
   gotoSaleDetail(e) {
     let {
       panel
     } = e.currentTarget.dataset
-    Notify({
-      message: panel,
-    });
+    wx.showToast({
+      title: panel,
+    })
+    // Notify({
+    //   message: panel,
+    // });
   },
   gotoPage(events) {
     let {
@@ -298,6 +307,7 @@ Page({
   onShow() {
     this.contractMoneyBarInit()
     this.funnelMoneyBarInit()
+    this.getTabBar().init();
 
 
   },

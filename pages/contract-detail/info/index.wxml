@@ -7,7 +7,6 @@
         wx:key="id"
         title="{{item.a1}}" 
         value="{{item.a2}}" 
-        border="{{false}}"
       >
       </sd-list>
       <van-cell title="商机名称" value="内容" />

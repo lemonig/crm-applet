@@ -1,1 +1,25 @@
 /* pages/customer/index.wxss */
+.cus-container{
+  
+}
+.search-icon{
+  margin-right: 12px;
+}
+.bar-wrap{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 94px 0 14px;
+  position: relative;
+  box-sizing: border-box;
+}
+.animate-text {
+  font-size: 12px; /* 初始字体大小 */
+  color: rgb(242, 242, 242);
+  transition: font-size 0.5s, color 0.5s; /* 设置过渡属性 */
+}
+.active {
+  font-size: 18px; /* 悬停时字体大小 */
+  color: #fff; /* 悬停时字体颜色 */
+}

@@ -13,6 +13,10 @@ Component({
     prefix: {
       type: String
     },
+    icon: {
+      type: String
+    }
+
 
   },
 

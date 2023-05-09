@@ -1,0 +1,56 @@
+<!--pages/deal-detail/info/index.wxml-->
+<view class="info-wrap">
+  <sd-card custom-class="card-margin" title="联系人" >
+    <text slot="icon" class="iconfont icon-lxr-book" style="font-size: 1.2em;margin:0"></text>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{productList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        lab1="{{item.a3}} {{item.a4}}" 
+      >
+      <view slot="value" class="iconfont icon-callme" style="font-size: 1.2em;" data-phone="{{item.a3}}" bindtap="callMe" ></view>
+      <!-- <van-icon slot="value"  name="phone-o" data-phone="{{item.a3}}" bindtap="callMe" /> -->
+      </sd-list>
+ 
+    </view>
+  </sd-card>
+  <!-- <van-icon class="iconfont" class-prefix="icon"  name="lxr-book"  size="36" color="red" dot/>
+  <view class="iconfont icon-call-phone" style="font-size: 60px;"></view> -->
+  <sd-card title="商机">
+    <van-icon slot="icon" name="gold-coin-o" size="1.2em"/>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{dealList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="{{item.a2}}" 
+        lab1="{{item.a3}}" 
+        desc1="{{item.a4}}" 
+        
+      >
+      </sd-list>
+    </view>
+  </sd-card>
+
+
+
+
+
+  <sd-card title="合同">
+    <text slot="icon" class="iconfont icon-hetong" style="font-size: 1.2em;margin:0"></text>
+    <view slot="body">
+      <sd-list 
+        wx:for="{{conList}}" 
+        wx:key="id"
+        title="{{item.a1}}" 
+        value="负责人：{{item.a2}}" 
+        lab1="合同额：{{item.a3}}" 
+        desc1="签订：{{item.a4}}" 
+        lab2="已回款：{{item.a5}}" 
+        desc2="待回款：{{item.a6}}" 
+      >
+      </sd-list>
+    </view>
+  </sd-card>
+</view>

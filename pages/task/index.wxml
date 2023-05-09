@@ -5,35 +5,44 @@
 
 </navigation-bar>
 <van-dropdown-menu>
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-  <van-dropdown-item value="{{ value3 }}" options="{{ option3 }}" />
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="状态" />
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" title="类型" />
+  <van-dropdown-item value="{{ value3 }}" options="{{ option3 }}" title="高级筛选" />
 </van-dropdown-menu>
-<view class="deal-container">
-  <van-cell-group>
-    <van-cell wx:for="{{pageData}}" wx:key="{{item.id}}" value="{{item.project}}" use-label-slot catchtap="gotoDetail">
-      <view slot="title">
-        <sd-space>
-          <van-checkbox value="{{ item.checked }}" checked-color="#07c160" data-checked="{{item.checked}}" id="{{item.id}}" bind:change="onChange">
-            <text class="{{item.checked ? 'check-style' :''}}">{{item.type}}</text>
-          </van-checkbox>
-        </sd-space>
-      </view>
-      <view slot="label">
-        <text class="label-text {{item.checked ? 'check-style' :''}}"> {{item.desc}}
+<view class="task-container">
+  <!-- FIMME 点击范围无效 -->
+  <view wx:for="{{pageData}}" wx:key="id" class="flex-row" >
+    <view class="cell-left" bindtap="onChange" id="{{item.id}}" data-checked="{{item.checked}}">
+      <van-checkbox bind:change="onChange" value="{{ item.checked }}" checked-color="#07c160" data-checked="{{item.checked}}"  id="{{item.id}}"/>
+    </view>
+
+
+    <view class="cell-right" bindtap="gotoDetail">
+      <view class="one label-text">
+        <text>
+          {{item.type}}
         </text>
-        <view>
-          <text>{{item.name}}</text>
-          <van-icon name="underway-o" /><text class="{{item.checked ? 'check-style' :''}}">{{item.time}}</text>>
-        </view>
+        <text class="font-color-gray {{item.checked ? 'check-style' :''}}">
+          {{item.project}}
+        </text>
       </view>
-    </van-cell>
+      <view class="two desc-label">
+        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}">{{item.desc}}</text>
 
+      </view>
+      <view class="desc-label ">
+        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}">{{item.name}}</text> 
+        <van-icon name="underway-o" class="mar-12" />
+        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}"> {{item.time}} </text>
+      </view>
+    </view>
 
-  </van-cell-group>
+  </view>
 
 </view>
-<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+
+
+<view class="fix-add-btn">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
 </view>
 <van-notify id="van-notify" />

@@ -1,9 +1,8 @@
 /* pages/deal/index.wxss */
 .deal-container {
-  box-sizing: border-box;
   background-color: rgb(241, 244, 249);
-  height: 100vh;
-  margin-top: 32rpx;
+  padding-bottom: 100rpx;
+
 }
 .deal-title {
   font-size: 24rpx;
@@ -12,9 +11,11 @@
 }
 .deal-title .number {
   color: rgb(1, 119, 55);
+  font-weight: bold;
 }
 .deal-title .moeny {
   color: rgb(255, 77, 79);
+  font-weight: bold;
 }
 
 .font-color-gray {

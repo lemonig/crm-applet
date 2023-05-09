@@ -16,6 +16,6 @@
 
 </van-cell-group>
 
-<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
+<view class="fix-add-btn">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
 </view>

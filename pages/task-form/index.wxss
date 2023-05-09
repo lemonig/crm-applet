@@ -1,1 +1,4 @@
 /* pages/tast-form/index.wxss */
+.form-container{
+  padding-bottom: 50rpx;
+}

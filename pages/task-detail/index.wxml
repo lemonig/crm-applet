@@ -25,6 +25,9 @@
     <van-cell title="联系人">
       <text>邱泉</text>
     </van-cell>
+    <van-cell title="其它联系人">
+      <text>邱泉,王三</text>
+    </van-cell>
     <van-cell title="地点">
       <text></text>
     </van-cell>

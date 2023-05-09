@@ -1,11 +1,11 @@
 <!--components/sd-card/index.wxml-->
 <view class="card-container custom-class" style="margin-bottom: 30rpx;">
   <view class="title">
-    <view>
-      <van-icon name="chat" color="red" />
+    <view class="label">
+      <van-icon wx:if="{{ icon }}" name="{{icon}}" />
+      <slot wx:else name="icon" />
       <text>{{title}}</text>
     </view>
-    <slot name="icon"></slot>
   </view>
   <view class="body">
     <slot name="body"></slot>

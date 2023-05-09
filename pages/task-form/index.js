@@ -33,6 +33,8 @@ Page({
     form: {
       name: "",
       orgId: "",
+      dealId: "",
+      dealName:'',
       phone: "",
       email: "",
       department: "",
@@ -40,8 +42,10 @@ Page({
       description: "",
       gender: "",
       isKdm: "",
+      status:true
     },
-    location: {}
+    location: {},
+    status: false,
   },
 
 
@@ -50,6 +54,8 @@ Page({
       btnLoad: true
     })
     console.log(e.detail.value)
+    let params = e.detail.value
+    params.status = this.data.status
     let {
       description,
       title,
@@ -69,7 +75,18 @@ Page({
 				});
 			}
 		});
-	},
+  },
+  onTaskChange({ detail }) {
+    console.log(!detail);
+    this.setData({
+     status:detail
+    })
+  },
+  gotoBusiness() {
+    wx.navigateTo({
+      url: '/pages/search/business-select/index',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -1,0 +1,23 @@
+<!--pages/deal-detail/record/index.wxml-->
+<van-cell-group>
+
+  <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.a1}}" value="{{item.a2}}" desc1="联系人  {{item.a4}}" lab2="{{item.a5}}">
+    <view slot="lab1" class="label font-color-gray">
+      {{item.type}}
+
+      <van-button slot="button" custom-class="gs-btn" wx:if="{{item.type === '电话'}}" bind:click="callMe" data-phone="10086">
+        <text class="iconfont icon-callme" style="font-size: 1.2em;"></text>
+      </van-button>
+      <!-- <van-icon name="phone" wx:if="{{item.type === '电话'}}"/>   -->
+      {{item.a3}}
+    </view>
+    <view wx:if="{{item.a6}}" class="label-text" slot="lab3">
+      <van-icon name="location" /> {{item.a6}}
+    </view>
+  </sd-list>
+
+</van-cell-group>
+
+<!-- <view class="fix-add-btn">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
+</view> -->

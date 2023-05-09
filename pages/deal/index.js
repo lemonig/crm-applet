@@ -1,41 +1,85 @@
 // pages/deal/index.js
+import { dealPage} from '../../api/deal_list';
+const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     titleProps: {
       title: "商机", // 导航栏标题
     },
     option1: [{
-        text: '全部商品',
+        text: '关系建立',
         value: 0
       },
       {
-        text: '新款商品',
+        text: '公司认可',
         value: 1
       },
       {
-        text: '活动商品',
+        text: '按系统设定的流程阶段',
         value: 2
       },
     ],
     option2: [{
-        text: '默认排序',
+        text: '录入时间（正反）',
         value: 'a'
       },
       {
-        text: '好评排序',
+        text: '跟进时间（正反',
         value: 'b'
       },
       {
-        text: '销量排序',
+        text: '商机金额（正反）',
         value: 'c'
       },
+      {
+        text: '业务类型（正反）',
+        value: 'd'
+      },
+    ],
+    option3: [{
+        text: '全部商机',
+        value: 'a'
+      },
+      {
+        text: '我负责的商机',
+        value: 'b'
+      },
+      {
+        text: '下属负责的商机',
+        value: 'c'
+      },
+      {
+        text: '赢单商机',
+        value: 'd'
+      },
+      {
+        text: '输单商机',
+        value: 'e'
+      },
+      {
+        text: '终止商机',
+        value: 'g'
+      },
+      {
+        text: '进行中商机',
+        value: 'h'
+      },
+      {
+        text: '特殊业务商机',
+        value: 'i'
+      },
+      {
+        text: '默认我负责的商机',
+        value: 'j'
+      },
+
     ],
     value1: 0,
     value2: 'a',
+    value3: 'a',
     list: [
       {
         id:'1',
@@ -56,7 +100,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+  },
 
+   fetchData: async function() {
+    let { data } = await dealPage()
+    console.log(data);
+    this.setData({
+      list:data
+    })
+    
   },
 
 
@@ -77,6 +129,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    this.fetchData()
 
   },
 
@@ -84,7 +137,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    console.log(this.getTabBar);
+    this.getTabBar().init();
   },
 
   /**

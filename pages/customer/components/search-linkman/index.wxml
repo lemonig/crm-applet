@@ -1,0 +1,12 @@
+<!--pages/customer/components/search-linkman/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+<van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+
+
+<view class="container">
+
+  <van-cell-group>
+    <sd-list wx:for="{{list}}" wx:key="id" title="{{item.a}}" value="{{item.b}}" data-id="{{item.id}}" bindtap="gotoDetail">
+    </sd-list>
+  </van-cell-group>
+</view>

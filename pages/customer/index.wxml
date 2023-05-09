@@ -1,22 +1,43 @@
 <!--pages/customer/index.wxml-->
-<navigation-bar default-data="{{titleProps}}" back="{{false}}">
-  <sd-space>
-    <van-icon name="exchange" bindtap="gotolink" />
-    <van-icon name="search" />
-  </sd-space>
-
+<navigation-bar back="{{false}}">
+  <view class="bar-wrap" slot="body">
+    <sd-space>
+      <view class="animate-text {{isOwnPage ? 'active' :''}}" bindtap="gotolink">客户</view>
+      <van-divider borderColor="#fff" />
+      <view class="animate-text {{isOwnPage ? '' :'active'}}" bindtap="gotolink">联系人</view>
+    </sd-space>
+    <van-icon name="search" size="25px" class="search-icon" bindtap="gotoSearch" />
+  </view>
 </navigation-bar>
-<van-dropdown-menu>
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-</van-dropdown-menu>
-<view class="deal-container">
 
-  <sd-list bindtap="edit"></sd-list>
-  <sd-list></sd-list>
-  <sd-list></sd-list>
-</view>
+<view wx:if="{{isOwnPage}}">
 
-<view style="position: fixed;bottom: 30rpx;right: 30rpx;">
-  <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
+  <view class="container cus-container">
+    <van-dropdown-menu>
+      <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="排序"/>
+      <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" title="高级筛选"/>
+  </van-dropdown-menu>
+  <view style="margin-top:var(--dropdown-margin);">
+    <van-cell-group>
+      <sd-list
+        wx:for="{{list}}"  
+        wx:key="id"
+        title="{{item.a}}" 
+        data-id="{{item.id}}"
+        bindtap="gotoDetail"
+        lab1="{{item.c ? '最近跟新：'+item.c: '无跟进记录' }}"
+        desc1="{{item.b}}" 
+        >
+      </sd-list>
+  </van-cell-group>
+  </view>
+
+  </view>
+  
+  <view class="fix-add-btn">
+    <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
+  </view>
 </view>
+<block wx:else>
+  <link-page></link-page>
+</block>

@@ -22,6 +22,14 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        wx.request({
+          url: 'http://192.168.168.9:15612/api/open/switchUser/d3f3d3ddd89347f4b90f2a9023257710',
+          method:'post',
+          success({ data }) {
+            wx.setStorageSync('token', data.data)
+          }
+        })
       }
     })
   },

@@ -1,5 +1,6 @@
 import {formatTime } from "../../utils/util"
- 
+const dayjs = require('dayjs') 
+
 Component({
   behaviors: ['wx://form-field'],
   properties: {
@@ -16,6 +17,10 @@ Component({
     required: {
       type: Boolean,
       value: false
+    },
+    formated: {
+      type: String,
+      value:''
     }
   },
   data: {
@@ -67,7 +72,7 @@ Component({
     },
     confirmPicker(event) {
   
-      let time = formatTime(event.detail)
+      let time = dayjs(event.detail).format(this.properties.formated) 
       this.setData({
         value: time,
         label:time,

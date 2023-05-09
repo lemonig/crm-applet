@@ -29,6 +29,17 @@ Page({
       },
 
     ],
+    deciedOption: [{
+      label: '是',
+      value: '1'
+    },
+    {
+      label: '否',
+      value: '2'
+    },
+
+  ],
+
     form: {
       name: "",
       orgId: "",

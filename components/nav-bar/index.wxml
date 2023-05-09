@@ -1,15 +1,19 @@
 <!-- 自定义顶部栏 -->
-<view class="nav-bar" style="height:{{navBarHeight}}px;">
+<view class="nav-bar" style="height:{{navBarHeight}}px;z-index: 9999;">
   <view class="nav-amin" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px;  top:{{menuTop}}px;">
-    <view class="icon">
-      <van-icon wx:if="{{back}}" name="arrow-left" bindtap="goback" />
-      <slot></slot>
-    </view>
-    <view class="search">{{
-      defaultData.title
-      }}</view>
+    <block wx:if="{{defaultData.title}}">
+      <view class="icon">
+        <van-icon wx:if="{{back}}" name="arrow-left"  bindtap="goback" size="1.3em"/>
+        <slot></slot>
+      </view>
+      <view class="search" wx:if="{{ defaultData.title}}">{{
+        defaultData.title
+        }}</view>
+    </block>
+    <slot wx:else name="body"></slot>
+
   </view>
 </view>
 
 <!-- 占位，高度与顶部栏一样 -->
-<view style="height:{{navBarHeight}}px;"></view>
+<view style="height:{{navBarHeight}}px;z-index: 9999;"></view>

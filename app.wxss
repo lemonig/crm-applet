@@ -1,31 +1,113 @@
 /**app.wxss**/
-.container {
-  /* height: 100vh; */
-  box-sizing: border-box;
-  background-color: rgb(241, 244, 249);
-  box-sizing: border-box;
-}
-.page-padding {
-  padding: 0rpx 26rpx;
+/* 加号按钮 */
+.fix-add-btn {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + 100rpx + 30rpx);
+  right: 30rpx;
 }
 .form-btn-area {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin: 100rpx 0 0rpx ;
+  padding-bottom: 50rpx;
 }
 .cell-group-class {
-  margin-bottom: 50rpx;
+  margin-bottom: 25rpx;
+}
+.font-color-gray {
+  color: #6b778c;
+}
+@font-face {
+  font-family: "iconfont";
+  /* Project id 4053041 */
+  src: url('//at.alicdn.com/t/c/font_4053041_033ptxilms3h.woff2?t=1683530516159') format('woff2'), url('//at.alicdn.com/t/c/font_4053041_033ptxilms3h.woff?t=1683530516159') format('woff'), url('//at.alicdn.com/t/c/font_4053041_033ptxilms3h.ttf?t=1683530516159') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-gongsi:before {
+  content: "\e62e";
+}
+.icon-rmb:before {
+  content: "\e621";
+}
+.icon-hetong:before {
+  content: "\e70e";
+}
+.icon-meiyuan:before {
+  content: "\e90d";
+}
+.icon-a-SalesOrderManagement:before {
+  content: "\e635";
+}
+.icon-zhengfu:before {
+  content: "\e90f";
+}
+.icon-meiyuan8:before {
+  content: "\e73a";
+}
+.icon-baoxianxiaoshou:before {
+  content: "\e63f";
+}
+.icon-xiaoshoubaobiao:before {
+  content: "\e60d";
+}
+.icon-fl-renminbi:before {
+  content: "\e634";
+}
+.icon-call-phone:before {
+  content: "\e725";
+}
+.icon-call-tel:before {
+  content: "\e66e";
+}
+.icon-callme:before {
+  content: "\e6c2";
+}
+.icon-lxr-book:before {
+  content: "\e612";
+}
+.icon-qiandai:before {
+  content: "\e62f";
+}
+.icon-search:before {
+  content: "\e625";
+}
+.icon-gszc-a:before {
+  content: "\e749";
+}
+page {
+  --color-blue: #1989fa;
+  --primary: #0252cc;
+  --button-primary-background-color: #0252cc;
+  --button-info-background-color: #0252cc;
+  --button-border-radius: 6px;
+  --dropdown-menu-option-active-color: #0252cc;
+  --dropdown-menu-title-active-text-color: #0252cc;
+  --tabs-default-color: #0252cc;
+  --tabs-bottom-bar-color: #0252cc;
+  --dropdown-margin: 25rpx;
+  background-color: #f1f4f9;
+  color: #323233;
+}
+.container {
+  width: 100vw;
+  box-sizing: border-box;
+}
+.page-padding {
+  padding: 0rpx 26rpx;
 }
 .list-padding {
   padding: 24rpx;
 }
-list-margin-btm {
+.list-margin-btm {
   margin-bottom: 8rpx;
 }
 .bg-color {
-  background-color: rgb(241, 244, 249);
-}
-
-page {
-  --primary: #0252cc;
+  background-color: #f1f4f9;
 }

@@ -8,7 +8,7 @@
 <van-popup 
   show="{{ show }}" 
 
-  custom-style="height: 40%;"
+  custom-style="height: 620rpx;"
   position="bottom">
     <van-datetime-picker
       type="date"

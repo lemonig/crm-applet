@@ -1,0 +1,23 @@
+<!--pages/customer/components/link-man/index.wxml-->
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="排序"/>
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" title="高级筛选"/>
+</van-dropdown-menu>
+<view class="container">
+  <view style="margin-top:var(--dropdown-margin);">
+    <van-cell-group>
+      <sd-list
+        wx:for="{{list}}"  
+        wx:key="id"
+        title="{{item.a}}" 
+        value="{{item.b}}" 
+        data-id="{{item.id}}"
+        bindtap="gotoDetail"
+        >
+    </sd-list>
+  </van-cell-group>
+  </view>
+</view>
+<view class="fix-add-btn">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
+</view>

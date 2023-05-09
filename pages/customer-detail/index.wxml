@@ -1,0 +1,26 @@
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class=" container deal-detail-container ">
+  <view class="card">
+    <view class="title">
+      <text>平湖生态环境局</text>
+    </view>
+  </view>
+
+  <view style="margin-top: 50rpx;">
+
+    <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
+      <van-tab title="跟进记录">
+        <sd-record id="{{id}}"></sd-record>
+      </van-tab>
+      <van-tab title="基本资料">
+        <sd-base id="{{id}}"></sd-base>
+      </van-tab>
+      <van-tab title="相关信息">
+        <sd-info id="{{id}}"></sd-info>
+      </van-tab>
+    </van-tabs>
+  </view>
+
+</view>

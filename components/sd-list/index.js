@@ -25,6 +25,12 @@ Component({
     },
     desc2: {
       type:String
+    },
+    lab3: {
+      type:String
+    },
+    desc3: {
+      type:String
     }
   },
 

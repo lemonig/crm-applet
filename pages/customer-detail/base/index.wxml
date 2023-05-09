@@ -1,0 +1,19 @@
+<!--pages/deal-detail/base/index.wxml-->
+<view>
+
+  <van-cell-group>
+    <van-cell title="客户名称" value="平湖标准站采购" />
+    <van-cell title="机构类型" value="政府" />
+    <van-cell title="省份" value="浙江" />
+    <van-cell title="统一社会信用代码" value="XJ9238294" />
+    <van-cell title="地址" value="内容" />
+    <van-cell title="备注" value="内容" />
+    <van-cell title="首次录入人" value="内容" />
+    <van-cell title="首次录入时间" value="内容" />
+
+  </van-cell-group>
+
+  <view class="form-btn-area">
+    <van-button type="info" custom-style="width: 600rpx;" bindtap="gotoedit">编辑</van-button>
+  </view>
+</view>

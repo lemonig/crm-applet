@@ -1,6 +1,11 @@
 .sd-list {
   background-color: white;
-  padding: 12px;
+  padding: 10px 16px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 24px;
+  font-size: 14px;
 }
 .title {
   display: flex;
@@ -19,5 +24,5 @@
   line-height: 48rpx;
 }
 .border{
-  border-top: 4rpx solid #eee;
+  border-top: 1rpx solid #eee;
 }

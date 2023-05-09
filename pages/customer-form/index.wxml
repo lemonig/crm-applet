@@ -4,9 +4,22 @@
 <view class=" container form-container ">
   <form catchsubmit="formSubmit" catchreset="formReset">
     <van-cell-group custom-class="cell-group-class">
-      <van-field value="{{form.name}}" name='name' required label="客户名称" right-icon="search" input-align="right" placeholder="请输入" />
-      <sd-picker value="{{form.orgType}}" name="orgType" title="机构类型" options="{{optionsOrg}}"></sd-picker>
-      <sd-picker value="{{form.base}}" name="base" title="省份" options="{{optionsPri}}"></sd-picker>
+      <van-field 
+        value="{{form.name}}"
+        name='name'
+        required
+        center
+        label="客户名称" 
+        input-align="right"
+        placeholder="客户名称"
+        bind:change="debouncedHandleInput"
+        use-button-slot>
+        <van-button slot="button" custom-class="gs-btn"  bind:click="selectCustomer">
+          <text class="iconfont icon-gszc-a" style="font-size: 1.6em;color: var(--primary);"></text>
+        </van-button>
+      </van-field>
+      <sd-picker value="{{form.orgType}}" name="orgType" required title="机构类型" options="{{optionsOrg}}"></sd-picker>
+      <sd-picker value="{{form.base}}" name="base" required title="省份" options="{{optionsPri}}"></sd-picker>
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <van-field value="{{form.creditCode}}" placeholder="请输入" name='creditCode' label="统一社会信用代码" input-align="right" />

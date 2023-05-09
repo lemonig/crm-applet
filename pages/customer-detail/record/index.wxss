@@ -1,0 +1,13 @@
+/* pages/deal-detail/record/index.wxss */
+.label-text{
+  font-size: 24rpx;
+  line-height: 48rpx;
+ color: rgb(2, 82, 204);
+}
+.label{
+  font-size: 24rpx ;
+}
+.gs-btn{
+  width: 50rpx !important;
+  border: none !important;
+}

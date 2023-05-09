@@ -1,7 +1,47 @@
-/* pages/task/index.wxss */
-.check-style {
+.task-container .dis-block {
+  display: block;
+}
+.task-container .check-style {
   text-decoration: line-through;
 }
-.label-text{
+.task-container .label-text {
   font-size: 28rpx;
+}
+.task-container .title {
+  font-size: 24rpx;
+  background-color: #fff;
+  padding: 24rpx;
+}
+.task-container .font-color-gray {
+  color: #6b778c;
+}
+.task-container .desc-label {
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+.task-container .flex-row {
+  display: flex;
+  align-items: stretch;
+  padding: 0 24rpx;
+  background-color: #fff;
+  width: 100vw;
+  box-sizing: border-box;
+  border-top: 4rpx solid #eee;
+}
+.task-container .flex-row .cell-left {
+  flex-basis: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.task-container .flex-row .cell-right {
+  flex: 1;
+}
+.task-container .flex-row .cell-right .one {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-container .mar-12 {
+  margin-left: 12rpx;
 }

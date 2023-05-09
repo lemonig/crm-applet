@@ -5,12 +5,19 @@
     <text wx:if="{{value}}"> {{ value  }} </text>
     <slot wx:else="{{!value}}" name="value"></slot> 
   </view>
+
   <view wx:if="{{ lab1 }}"  class="desc-label font-color-gray">
     <text>{{lab1}} </text> <text>{{desc1}}</text>
   </view>
   <slot wx:if="{{ !lab1 }}" name="lab1"></slot>
+
   <view wx:if="{{ lab2 }}" class="desc-label font-color-gray">
     <text>{{ lab2 }}</text> <text>{{ desc2}}</text>
   </view>
   <slot wx:if="{{ !lab2 }}" name="lab2"></slot>
+
+  <view wx:if="{{ lab3 }}" class="desc-label font-color-gray">
+    <text>{{ lab3 }}</text> <text>{{ desc3}}</text>
+  </view>
+  <slot wx:if="{{ !lab3 }}" name="lab3"></slot>
 </view>

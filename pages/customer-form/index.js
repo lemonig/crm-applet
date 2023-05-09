@@ -1,3 +1,4 @@
+import { debounce} from './../../utils/util';
 Page({
 
   /**
@@ -68,7 +69,7 @@ Page({
       this.setData({
         id,
         titleProps: {
-          title: `编辑用户`
+          title: `编辑客户`
         },
         form: {
           address: "浙江",
@@ -82,7 +83,7 @@ Page({
     } else {
       this.setData({
         titleProps: {
-          title: "新建用户"
+          title: "新建客户"
         },
       })
 
@@ -91,6 +92,24 @@ Page({
     // TODO 请求用户详情
   },
 
+  debouncedHandleInput(event) {
+    // debounce()
+    this.setData({
+      form: {
+        ...this.data.form,
+        name:event.detail
+      }
+    })
+    console.log(event.detail);
+  },
+
+  // debouncedHandleInput : debounce(this.onCustomerChange, 300),
+
+  selectCustomer() {
+      wx.navigateTo({
+        url: '/pages/search/customer-search/index?text='+this.data.form.name,
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

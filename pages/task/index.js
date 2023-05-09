@@ -1,4 +1,5 @@
 // pages/task/index.js
+import { actPage } from '../../api/act_adm';
 Page({
 
   /**
@@ -9,42 +10,47 @@ Page({
       title: "任务"
     },
     option1: [{
-        text: '排序',
+        text: '全部',
         value: 0
       },
       {
-        text: '新款商品',
+        text: '未完成',
         value: 1
+      },
+      {
+        text: '已完成',
+        value: 2
+      },
+      {
+        text: '超时',
+        value: 3
       },
 
     ],
     option2: [{
-        text: '类型',
+        text: '全部',
         value: 'a'
       },
       {
-        text: '好评排序',
+        text: '电话',
         value: 'b'
       },
       {
-        text: '销量排序',
+        text: '拜访',
         value: 'c'
       },
     ],
     option3: [{
-        text: '高级排序',
+        text: '仅我本人',
         value: 'a'
       },
       {
-        text: '好评排序',
+        text: '我下属的',
         value: 'b'
       },
-      {
-        text: '销量排序',
-        value: 'c'
-      },
+
     ],
-    value1: 0,
+    value1: 1,
     value2: 'a',
     value3: 'a',
 
@@ -72,7 +78,6 @@ Page({
   },
 
   onChange(event) {
-    console.log(event);
     if (event.type === 'change') {
     }
     let {
@@ -82,12 +87,13 @@ Page({
       id,
     } = event.currentTarget
     let res = this.data.pageData.find(ele => ele.id == id)
-    console.log(res);
-    console.log(checked);
-    res.checked = !checked
-    this.setData({
-      pageData: [...this.data.pageData]
-    })
+    if (res) {
+      res.checked = !checked
+      this.setData({
+        pageData: [...this.data.pageData]
+      })
+    }
+   
   },
   add() {
     wx.navigateTo({
@@ -103,7 +109,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.fetchData()
+  },
 
+  async fetchData() {
+    let { data } = await actPage()
   },
 
   /**
@@ -117,7 +127,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getTabBar().init();
   },
 
   /**
