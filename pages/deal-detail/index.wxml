@@ -9,25 +9,27 @@
       <text>进行中</text>
     </view>
     <view class="desc-1">
-      <van-icon name="hotel-o" /> 平湖生态环境局（非最终用户）
-      <van-icon name="contact" />陆骏
+      <text class="iconfont icon-gongsi" style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"></text> 平湖生态环境局（非最终用户）
+      <text class="iconfont icon-lxr-book" style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"></text>陆骏
     </view>
     <view class="desc-2" style="margin-bottom: 20rpx;">
-      <text>¥600,000,000</text> <text>周巧夏南 信心指数70%</text>
+      <text style="font-weight: bold">¥600,000,000</text> <text>周巧夏南 信心指数70%</text>
     </view>
 
-    <view class="stage-wrap">
-      <view class="triangle"></view>
-      <text wx:for="{{msg}}" wx:key="id">
-        {{item.text}}
-      </text>
+    <view bindtap="selectPipeline">
+      <view class="stage-wrap" >
+        <view class="triangle"></view>
+        <text wx:for="{{msg}}" wx:key="id">
+          {{item.text}}
+        </text>
+     </view>
+      
+      <sd-stage value="{{msg}}"></sd-stage>
+      <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
     </view>
-
-     <sd-stage value="{{msg}}"></sd-stage>
-     <van-steps steps="{{ steps }}" active="{{ active }}" />
   </view>
 
-  <view style="margin-top: 100rpx;">
+  <view style="margin-top: 50rpx;">
 
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
       <van-tab title="跟进记录">

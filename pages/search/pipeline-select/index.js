@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    titleProps: {
+      title:'推进流程阶段'
+    },
     pipeState: [
       {
         id: "1",

@@ -15,6 +15,6 @@
   </van-cell-group>
 
   <view class="form-btn-area">
-    <van-button type="info" custom-style="width: 600rpx;">编辑</van-button>
+    <van-button type="info" custom-style="width: 600rpx;" bindtap="gotoedit">编辑</van-button>
   </view>
 </view>

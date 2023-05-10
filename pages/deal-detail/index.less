@@ -1,4 +1,5 @@
 /* 卡片 */
+
 .deal-detail-container {
   height: 100vh;
   /* background: linear-gradient(#0252cc, #0252cc 20%, #fff 80%, #fff 100%); */
@@ -18,20 +19,21 @@
   margin: 0 auto;
 }
 .card .title {
+  font-size: 36rpx;
   display: flex;
   justify-content: space-between;
   padding: 24rpx 0;
   font-size: 36rpx;
-}
-.card .title text:first-child {
-  font-weight: bold;
-}
-.card .title text:last-child {
-  font-size: 28rpx;
+  text:first-child{
+    font-weight: bold;    
+  }
+  text:last-child{
+    font-size: 28rpx;
+  }
 }
 .desc-1 {
   margin: 4rpx 0rpx;
-  color: #888888;
+  color: rgba(136, 136, 136, 1);
   font-size: 24rpx;
   padding: 6rpx 0;
 }
@@ -45,38 +47,37 @@
 }
 .desc-2 text:nth-child(2) {
   font-size: 24rpx;
-  color: #888888;
+  color: rgba(136, 136, 136, 1);
 }
-.title,
-.desc-1,
-.desc-2 {
+.title,.desc-1 ,.desc-2{
   margin: 0 24rpx;
 }
 /*  */
 .tabs-title {
   background-color: #f1f4f9;
 }
-.stage-wrap {
-  width: 100%;
-  background-color: #DAEBFE;
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  font-size: 24rpx;
-  position: relative;
-  color: #BBBBBB;
+.stage-wrap{
+    width: 100%;
+    background-color: #DAEBFE;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 24rpx;
+    position: relative;
+    color: #BBBBBB;
 }
-.active-item {
-  color: #666666;
+.active-item{
+    color: #666666;
 }
 .triangle {
   /* content: ""; */
   position: absolute;
   top: 0px;
-  left: calc(50% - 8rpx);
+  left:calc(50% - 8rpx);
   width: 0;
   height: 0;
   border-top: 16rpx solid #fff;
   border-left: 16rpx solid transparent;
   border-right: 16rpx solid transparent;
 }
+
