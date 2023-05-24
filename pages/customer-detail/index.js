@@ -1,5 +1,8 @@
+import { companyDetail } from '../../api/customer';
 Page({
-
+  options: {
+    pureDataPattern: /^_/ // 指定所有 _ 开头的数据字段为纯数据字段
+  },
   /**
    * 页面的初始数据
    */
@@ -29,19 +32,37 @@ Page({
     },
 
     ],
-    id:''
+    id:'',
+    active: 0,
+    data:{
+      baseInfo:{},
+      relatedInfo:{},
+      followUpInfo:{}
+    }
   },
-
+  onChange(event) {
+      this.setData({
+          active: event.detail.name
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     this.setData({
       id :options.id
     })
+
   },
 
+  async getDetail(){
+   let { data } =  await companyDetail({
+      id: this.data.id
+    })
+    this.setData({
+      data
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -53,6 +74,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    console.log('sss');
+
+    this.getDetail()
 
   },
 

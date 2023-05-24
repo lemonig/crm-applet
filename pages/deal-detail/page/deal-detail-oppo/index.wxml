@@ -15,7 +15,7 @@
       catch:tap="noop"
         class="checkboxes-{{ index }}"
         name="{{ item.id }}"
-      >复选框 {{ item.label }}</van-checkbox> 
+      > {{ item.label }}</van-checkbox> 
     </view>
     </van-cell>
   </van-cell-group>

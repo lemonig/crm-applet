@@ -1,39 +1,49 @@
 <view class="container">
 
-  <view class="block-white block-main">
+  <view class="block-white block-main block-one">
     <sd-title>
       <view class="s-title" slot="title">
-        <van-icon name="refund-o" color="#0252CC"/>
+        <van-icon name="refund-o" color="#0252CC" />
         收款信息
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+      <table-view headers="{{tableHeader1}}" data="{{ row1 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row table-one"/>
     </view>
   </view>
 
   <view class="block-white block-main">
     <sd-title>
       <view class="s-title" slot="title">
-        <van-icon name="refund-o" color="#0252CC"/>
+        <van-icon name="refund-o" color="#0252CC" />
         开票信息
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+      <table-view headers="{{tableHeader2}}" data="{{ row2 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
     </view>
   </view>
   <view class="block-white block-main">
     <sd-title>
       <view class="s-title" slot="title">
-        <van-icon name="refund-o" color="#0252CC"/>
+        <van-icon name="refund-o" color="#0252CC" />
         回款信息
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
+      <table-view headers="{{tableHeader3}}" data="{{ row3 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
+    </view>
+  </view>
+  <view class="block-white block-main">
+    <sd-title>
+      <view class="s-title" slot="title">
+        <van-icon name="refund-o" color="#0252CC" />
+        扣款信息
+      </view>
+    </sd-title>
+    <view>
+      <table-view headers="{{tableHeader4}}" data="{{ row4 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
     </view>
   </view>
 
 </view>
-

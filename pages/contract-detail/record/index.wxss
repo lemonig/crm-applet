@@ -1,8 +1,8 @@
 /* pages/deal-detail/record/index.wxss */
-.label-text{
+.label-text {
   font-size: 24rpx;
   line-height: 48rpx;
- color: rgb(2, 82, 204);
+  color: #0252cc;
 }
 .block-main {
   padding: 24rpx;
@@ -13,4 +13,18 @@
   font-weight: bold;
   margin-bottom: 24rpx;
   font-size: 28rpx;
+}
+.table-row {
+  font-size: 24rpx;
+}
+.table-one {
+  font-size: 24rpx;
+}
+.table-one .td {
+  text-align: left !important;
+}
+.block-one .table .tbody-tr .td {
+  white-space: wrap;
+  padding: 20rpx 10rpx;
+  text-align: left !important;
 }

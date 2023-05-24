@@ -1,40 +1,52 @@
 <!--pages/contract/index.wxml-->
 <navigation-bar default-data="{{titleProps}}" back="{{false}}">
-  <van-icon name="filter-o" bindtap="filterPop" />
+  <van-icon name="filter-o" bindtap="filterPop" size="40rpx"/>
 </navigation-bar>
 
 <view class="container con-container" style="height: calc(100vh - {{navBarHeight}}px)">
-  <van-tabs active="{{ active }}" title-active-color="#0252CC" color="#0252CC" swipeable>
+  <van-tabs active="{{ active }}" title-active-color="#0252CC" color="#0252CC" swipeable animated bind:change="onChange"
+  ellipsis="{{false}}"
+  >
     <van-tab wx:for="{{soetItme}}" title="{{item.label}}" wx:key="value">
-      <van-row gutter='16' custom-class="row-class">
-        <van-col span="12">项目</van-col>
+      <van-row gutter='5' custom-class="row-class">
+        <van-col span="12" style="text-align: center;">项目</van-col>
         <van-col span="6">
           <sd-sort data-skey="value" bind:sort="sortBy">金额</sd-sort>
         </van-col>
-        <van-col span="6">
-          <sd-sort data-skey="signedDate" bind:sort="sortBy">签订时间</sd-sort>
+        <van-col span="6" wx:if="{{  active === 0}}">
+          <sd-sort data-skey="signedDate" bind:sort="sortBy">签订时间</sd-sort> 
+        </van-col>
+        <van-col span="6" wx:else>
+          <sd-sort data-skey="signedDate" bind:sort="sortBy">比例</sd-sort>
         </van-col>
       </van-row>
       <!-- list -->
       <scroll-view style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 100px) ;" scroll-y="{{ true }}">
         <van-row wx:for="{{pageData}}" wx:key="id" gutter='16' custom-class="row-class" data-id="{{item.id}}" bindtap="gotoDetail">
           <van-col span="12">
-            <text>{{item.projectName}}</text>
-            <text class="color-gray">
-              {{item.orgName}}</text>
+            <view>{{item.projectName}}</view>
+            <sd-space>
+              <text class="color-gray">{{item.projectCode}}</text>
+              <text class="color-gray">{{item.ownerUserName}}</text>
+            </sd-space>
           </van-col>
           <van-col span="6">
-            <text> {{item.value}}</text>
-            <text class="color-gray">
-              {{item.projectCode}}
-            </text>
+            <sd-money bold style="color: {{(item.receivedValue / item.value) < 0.5 ? '#017737':'#FF4D4F'}}" text="{{item.value}}">
+              {{item.value}}
+            </sd-money>
+            <!-- <text style="color: {{(item.receivedValue / item.value) < 0.5 ? '#017737':'#FF4D4F'}}"> {{item.value}}</text> -->
           </van-col>
-          <van-col span="6">
+
+          <van-col span="6" wx:if="{{  active === 0}}">
             <text>{{item.signedDate}}</text>
-            <text class="color-gray">
-              {{item.ownerUserName}}
-            </text>
           </van-col>
+          <van-col span="6" wx:else>
+            <van-tag  color="{{ (item.receivedValue / item.value) < 0.5 ? '#017737':'#FF4D4F' }}" >
+              <view class="tag-text"> {{item.receivedValue / item.value * 100}}%
+              </view>
+            </van-tag>
+          </van-col>
+         
         </van-row>
         <van-divider contentPosition="center" customStyle="color: #1989fa; border-color: #1989fa; font-size: 12px;">
           到底了
@@ -47,6 +59,6 @@
 </view>
 
 
-<van-popup show="{{ show }}" position="right" custom-style="width: 70%; height: 100%" bind:close="onClose" closeable>
+<van-popup show="{{ show }}" position="right" custom-style="width: 90%; height: 100%" bind:close="onClose" closeable>
   <sd-filter bind:filtercall="filterData"></sd-filter>
 </van-popup>

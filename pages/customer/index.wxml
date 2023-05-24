@@ -12,25 +12,41 @@
 
 <view wx:if="{{isOwnPage}}">
 
-  <view class="container cus-container">
-    <van-dropdown-menu>
-      <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="排序"/>
-      <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" title="高级筛选"/>
+  <view class="container cus-container" style="height: calc(100vh - {{navBarHeight}}px)">
+    <van-dropdown-menu >
+      <van-dropdown-item bind:change="sortChange1" value="{{ value1 }}" options="{{ option1 }}" title="排序"/>
+      <van-dropdown-item bind:change="sortChange2" value="{{ value2 }}" options="{{ option2 }}" title="高级筛选"/>
   </van-dropdown-menu>
-  <view style="margin-top:var(--dropdown-margin);">
+  
+  <view style="margin-top:var(--dropdown-margin);"></view>
+
+  <scroll-view style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 120px) ;" 
+    scroll-y="{{ true }}"
+    bindscrolltolower="handleToLower"
+    > 
     <van-cell-group>
       <sd-list
-        wx:for="{{list}}"  
+        wx:for="{{pageData}}"  
         wx:key="id"
-        title="{{item.a}}" 
+        title="{{item.name}}" 
         data-id="{{item.id}}"
         bindtap="gotoDetail"
-        lab1="{{item.c ? '最近跟新：'+item.c: '无跟进记录' }}"
-        desc1="{{item.b}}" 
+        lab1="{{item.latestFollowUpTime ? '最近跟进：'+item.latestFollowUpTime: '无跟进记录' }}"
+        desc1="{{item.unreceivedValue}}" 
         >
       </sd-list>
+
   </van-cell-group>
-  </view>
+  <view style="text-align: center;margin: 8px 0"  wx:if="{{loading}}">
+        <van-loading  color="var(--primary)" >加载中...</van-loading>
+      </view>
+      <van-divider wx:if="{{isAllData}}" contentPosition="center" customStyle=" font-size: 12px;">
+        到底了
+      </van-divider>
+</scroll-view>
+
+
+
 
   </view>
   
@@ -39,5 +55,5 @@
   </view>
 </view>
 <block wx:else>
-  <link-page></link-page>
+  <link-page id="linkPage"></link-page>
 </block>

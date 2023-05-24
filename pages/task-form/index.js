@@ -1,3 +1,4 @@
+import dayjs from "dayjs"
 import {formatTime} from "../../utils/util"
 Page({
 
@@ -34,6 +35,8 @@ Page({
       name: "",
       orgId: "",
       dealId: "",
+      startTime:"",
+      endTime:'',
       dealName:'',
       phone: "",
       email: "",
@@ -42,7 +45,8 @@ Page({
       description: "",
       gender: "",
       isKdm: "",
-      status:true
+      status:true,
+      tipme:''
     },
     location: {},
     status: false,
@@ -61,10 +65,29 @@ Page({
       title,
       value
     } = e.detail.value
+    wx.addPhoneCalendar({
+      title,
+      startTime:dayjs(this.data.tipme).unix(),
+      endTime:dayjs(this.data.tipme).add(1,'day').unix(),
+      success(){
+        wx.showToast({
+          title: '添加日程成功',
+        })  
+        setTimeout(() => {
+          wx.showToast({
+            title: '添加日程失败',
+          })  
+          this.setData({
+            btnLoad: false
+          })
+        }, 2000)
+      },
+      fail(){
+        
+      }
 
-    setTimeout(() => {
+    })
 
-    }, 2000)
   },
   onChooseLocation () {
 		wx.chooseLocation({
@@ -93,9 +116,11 @@ Page({
    */
   onLoad(options) {
     let {
-      id
+      id,
+      dealId,
+      dealName,
     } = options
-    console.log(id);
+    console.log(options);
     if ("id" in options) {
       this.setData({
         id,
@@ -117,8 +142,13 @@ Page({
     } else {
       this.setData({
         titleProps: {
-          title: "新建任务"
+          title: "新建任务",
         },
+        form: {
+          ...this.data.form,
+          dealId: dealId,
+          dealName:dealName,
+        }
       })
 
     }

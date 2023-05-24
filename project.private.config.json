@@ -5,7 +5,7 @@
     "compileHotReLoad": true,
     "urlCheck": false,
     "autoAudits": false,
-    "bigPackageSizeSupport": true
+    "bigPackageSizeSupport": false
   },
-  "libVersion": "2.31.0"
+  "libVersion": "2.32.0"
 }

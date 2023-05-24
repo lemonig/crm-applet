@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<navigation-bar default-data="{{titleProps}}" back="{{false}}">
+
+
+</navigation-bar>
+<view class="container">
+  <view class="form">
+  
+    <van-field
+      value="{{ form.username.value }}"
+      placeholder="请输入账号"
+      border="{{ false }}"
+      input-class="input"
+      error="{{ form.username.validate }}"
+      error-message="{{ form.username.errorText }}"
+      bind:input="handleUsernameInput"
+    />
+    <van-field
+      value="{{ form.password.value }}"
+      placeholder="请输入密码"
+      border="{{ false }}"
+      type="password"
+      input-class="input"
+      error="{{ form.password.validate }}"
+      error-message="{{ form.password.errorText }}"
+      bind:input="handlePasswordInput"
+    />
+    <van-button type="primary" loading="{{ loading }}" disabled="{{ loading }}" block bind:click="handleLogin">登录</van-button>
+  </view>
+</view>
+
+<van-toast id="van-toast" />
+<van-notify id="van-notify" />

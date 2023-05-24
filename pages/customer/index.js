@@ -1,67 +1,57 @@
 // pages/customer/index.js
-Page({
+import { companyInfo } from '../../api/customer';
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
     isOwnPage: true,
 
-    option1: [{
+    option1: [
+      {
         text: '录入时间',
-        value: 0
+        value: 1,
       },
       {
         text: '跟进时间',
-        value: 1
+        value: 2,
       },
       {
         text: '未收款',
-        value: 2
+        value: 3,
       },
-      {
-        text: '商机数量',
-        value: 3
-      },
-      {
-        text: '合同数量',
-        value: 5
-      },
-      {
-        text: '累计合同额',
-        value: 6
-      },
-
+      // {
+      //   text: '商机数量',
+      //   value: 3
+      // },
+      // {
+      //   text: '合同数量',
+      //   value: 5
+      // },
+      // {
+      //   text: '累计合同额',
+      //   value: 6
+      // },
     ],
-    option2: [{
+    option2: [
+      {
         text: '和我相关',
-        value: 'a'
+        value: 1,
       },
       {
         text: '全部',
-        value: 'b'
+        value: 2,
       },
-
     ],
-    value1: 0,
-    value2: 'b',
-    list: [
-      {
-        id:'1',
-        a: '杭州市环保局',
-        b: '未收款200w',
-        c: '2032-9-9',
+    value1: 1,
+    value2: 1,
 
-      },
-      {
-        id:'2',
-        a: '平湖市环保局',
-        b: '未收款600w',
-        c: '2032-9-9',
-
-      }
-    ],
+    pageData: [],
+    isPage: false,
+    pageNo: 1,
+    loading: false,
+    isAllData: false,
   },
   gotolink(events) {
     // wx.navigateTo({
@@ -71,53 +61,110 @@ Page({
     //   fail: (res) => {},
     //   complete: (res) => {},
     // })
-    console.log('111');
     this.setData({
-      isOwnPage: !this.data.isOwnPage
-    })
+      isOwnPage: !this.data.isOwnPage,
+    });
     console.log(this.data.isOwnPage);
   },
   add() {
     wx.navigateTo({
       url: '/pages/customer-form/index',
-    })
+    });
   },
-  gotoDetail() {
+  gotoDetail(eve) {
+    let id = eve.currentTarget.dataset.id
+    console.log(id);
     wx.navigateTo({
-      url: '/pages/customer-detail/index?id=1',
-    })
+      url: '/pages/customer-detail/index?id='+ id,
+    });
   },
 
   gotoSearch() {
     if (this.data.isOwnPage) {
       wx.navigateTo({
         url: '/pages/customer/components/search-customer/index',
-      })
-      
+      });
     } else {
       wx.navigateTo({
         url: '/pages/customer/components/search-linkman/index',
-      })
+      });
     }
+  },
+
+  fetchData: async function () {
+    let params = {
+      page: this.data.pageNo,
+      size: 10,
+      data: {
+        orderBy: this.data.value1,
+        filterBy:this.data.value2,
+      },
+    };
+    let { data } = await companyInfo(params);
+    if (!data.length) {
+      this.setData({
+        isAllData: true,
+      });
+      return;
+    }
+    this.setData({
+      loading: false,
+      pageData: this.data.pageData.concat(data),
+    });
+  },
+
+  handleToLower: function () {
+    this.setData({
+      loading: true,
+      pageNo: this.data.pageNo + 1,
+    });
+    this.fetchData();
+  },
+  sortChange() {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+    });
+    this.fetchData();
+  },
+
+  sortChange1(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value1:eve.detail
+    });
+    this.fetchData();
+  },
+  sortChange2(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value2:eve.detail
+    });
+    this.fetchData();
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.fetchData()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    if(!this.data.isOwnPage){
+      const linkPage =   this.selectComponent('#linkPage')
+      linkPage.fetchData()
+    }
+  
     console.log(this.getTabBar());
     this.getTabBar().init();
   },
@@ -125,35 +172,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});

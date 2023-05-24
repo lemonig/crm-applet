@@ -6,3 +6,16 @@
 .group-class {
   margin-bottom: 50rpx;
 }
+.progress{
+  flex:1;
+  width: 400rpx;
+}
+.custom-button{
+    width: 52rpx;
+    color: #fff;
+    font-size: 24rpx;
+    line-height: 36rpx;
+    text-align: center;
+    background-color: #ee0a24;
+    border-radius: 30%;
+}

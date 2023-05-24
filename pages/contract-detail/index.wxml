@@ -8,12 +8,12 @@
       <text>工程</text>
     </view>
     <view class="desc-1">
-      <van-icon name="hotel-o" /> 平湖生态环境局（非最终用户）
+      <van-icon name="hotel-o" /> 平湖生态环境局
     </view>
-    <view class="desc-2" style="margin-bottom: 20rpx;">
+    <view class="desc-2">
       <text>编号：2023157SD</text> <text>签订：2022-10-26</text>
     </view>
-    <view class="desc-2" style="margin-bottom: 20rpx;">
+    <view class="desc-2" >
       <text>负责人：周巧夏南</text> <text>到期：2022-10-26</text>
     </view>
 
@@ -24,7 +24,6 @@
   </view>
 
   <view style="margin-top: 60rpx;">
-
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
       <van-tab title="资金信息">
         <sd-record id="{{id}}"></sd-record>

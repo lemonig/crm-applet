@@ -41,10 +41,10 @@
 .text-block text {
   line-height: 60rpx;
 }
-.text-block text:nth-child(1) {
+.text-block> text:first-child {
   color: rgb(107, 119, 140);
 }
-.text-block text:nth-child(2) {
+.text-block >text:nth-child(2) {
   color: rgb(17, 17, 17);
 }
 /* 选择 */

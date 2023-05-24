@@ -11,8 +11,8 @@
   custom-style="height: 620rpx;"
   position="bottom">
     <van-datetime-picker
-      type="date"
-      bind:close="onClose" 
+      type="{{type}}"
+      bind:cancel="onClose" 
       bind:confirm="confirmPicker"
       value="{{ currentDate }}"
       min-date="{{ minDate }}"

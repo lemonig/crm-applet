@@ -2,16 +2,16 @@
 <view>
 
   <van-cell-group>
-    <van-cell title="商机名称" value="平湖标准站采购" />
-    <van-cell title="商机编号" value="内容" />
-    <van-cell title="客户名称" value="内容" />
-    <van-cell title="销售阶段" value="内容" />
-    <van-cell title="最终用户" value="内容" />
-    <van-cell title="主要联系人" value="内容" />
-    <van-cell title="业务类型" value="内容" />
-    <van-cell title="信心指数" value="内容" />
-    <van-cell title="预计金额" value="内容" />
-    <van-cell title="备注" value="内容" />
+    <van-cell title="商机名称" value="{{pagaData.title}}" />
+    <van-cell title="商机编号" value="{{pagaData.code}}" />
+    <van-cell title="客户名称" value="{{pagaData.orgName}}" />
+    <van-cell title="销售阶段" value="{{pagaData.pipelineStageName}}" />
+    <van-cell title="最终用户" value="{{pagaData.isFinalOrg}}" />
+    <van-cell title="主要联系人" value="{{pageData.personName}}" />
+    <van-cell title="业务类型" value="{{pagaData.businessTypeName}}" />
+    <van-cell title="信心指数" value="{{pagaData.probability}}" />
+    <van-cell title="预计金额" value="{{pagaData.value}}" />
+    <van-cell title="备注" value="{{pagaData.description}}" />
   </van-cell-group>
 
   <view class="form-btn-area">

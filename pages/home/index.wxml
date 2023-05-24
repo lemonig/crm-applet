@@ -1,22 +1,25 @@
 <!--pages/home/index.wxml-->
 <wxs src="../wxs/utils.wxs" module="utils" />
 
-<navigation-bar default-data="{{defaultData}}" back="{{false}}"></navigation-bar>
-<view class="container home-container  page-padding" >
+<navigation-bar default-data="{{defaultData}}" back="{{false}}">
+  <!-- <text class="iconfont icon-tuichudenglu" style="font-size: 1em;color: #fff;"></text> -->
+  <van-icon name="revoke" bindtap="logout"/>
+</navigation-bar>
+<view class="container home-container  page-padding">
 
   <sd-title title="常用功能"></sd-title>
   <view class="usual-contain">
     <sd-block title="建商机" bindtap="gotoPage" data-panel="deal">
-      <van-icon name="gold-coin-o" />
+      <text class="iconfont icon-rmb" style="font-size: 1em;color: var(--primary);"></text>
     </sd-block>
     <sd-block title="建客户" bindtap="gotoPage" data-panel="customer">
-      <van-icon name="hotel-o" />
+      <text class="iconfont icon-gongsi" style="font-size: 1.2em;color: var(--primary);"></text>
     </sd-block>
     <sd-block title="建联系人" bindtap="gotoPage" data-panel="linkman">
-      <van-icon name="contact" />
+      <text class="iconfont icon-lxr-book" style="font-size: 1em;color: var(--primary);"></text>
     </sd-block>
     <sd-block title="建任务" bindtap="gotoPage" data-panel="task">
-      <van-icon name="notes-o" />
+      <view class="iconfont icon-xiaoshoubaobiao" style="font-size: 1em;color: var(--primary);"></view>
     </sd-block>
   </view>
 
@@ -28,10 +31,11 @@
   </sd-title>
   <view class="block-white block-main">
     <van-row gutter="20">
-      <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.label}}" bindtap="gotoSaleDetail">
+      <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.link}}" bindtap="gotoSaleDetail">
         <view class="flex-col text-block">
           <text>{{item.label}}</text>
-          <text>{{ item.val }}</text>
+          <text wx:if="{{item.unit}}">{{ item.val }}{{item.unit}}</text>
+          <sd-money style="color:#111" wx:else text="{{item.val}}">{{item.val}}</sd-money>
         </view>
       </van-col>
 
@@ -46,18 +50,18 @@
 
 
   <sd-title title="仪表盘">
-  <view slot="select" class="double-btn">
-    
-    <view class="select-btn" bindtap="onShowSalePopup" >
-      <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
-      <van-icon name="arrow-down" />
+    <view slot="select" class="double-btn">
+      <sd-space>
+        <view class="select-btn" bindtap="onShowSalePopup">
+          <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
+          <van-icon name="arrow-down" />
+        </view>
+        <view class="select-btn" bindtap="onShowTimePopup">
+          <text>{{utils.filterlabel(timeOptions,timeValue)}}</text>
+          <van-icon name="arrow-down" />
+        </view>
+      </sd-space>
     </view>
-    <view class="select-btn" bindtap="onShowRangPopup" >
-      <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
-      <van-icon name="arrow-down" />
-    </view>
- 
-  </view>
   </sd-title>
   <view class="block-white block-main">
     <view class="s-title">
@@ -66,63 +70,63 @@
     </view>
     <van-row gutter="12">
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新签合同">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>新签合同</text>
-          <text>2</text>
+          <text>2个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="合同金额">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>合同金额</text>
           <text>6000,000</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="回款金额">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>回款金额</text>
           <text>6000,000</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增商机">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>新增商机</text>
-          <text>2</text>
+          <text>2个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增商机金额">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>新增商机金额</text>
           <text>6000,000</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="商机金额预测">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>商机金额预测</text>
           <text>6000,000</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="赢单商机">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>赢单商机</text>
-          <text>2</text>
+          <text>2个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="输单商机">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>输单商机</text>
           <text>2</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="终止商机">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>终止商机</text>
-          <text>2</text>
+          <text>2个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="新增跟进记录">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="customer">
           <text>新增跟进记录</text>
-          <text>2</text>
+          <text>2个</text>
         </view>
       </van-col>
 
@@ -149,7 +153,7 @@
   </view>
 
 
-  <view class="block-white block-main">
+  <!-- <view class="block-white block-main">
     <sd-title>
       <view class="s-title" slot="title">
         <van-icon name="bar-chart-o" color="#0252CC" />
@@ -164,7 +168,7 @@
     <view>
       <table-view headers="{{tableHeader}}" data="{{ row }}" stripe="{{ stripe }}" border="{{ border }}" />
     </view>
-  </view>
+  </view> -->
 
   <view class="block-white block-main">
     <sd-title>
@@ -187,9 +191,10 @@
 
 
 <van-notify id="van-notify" />
-
+<van-dialog id="van-dialog" />
 <!-- 我的销售 -->
 <sd-select open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
+<sd-select open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
 <sd-select open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
 <sd-select open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>
 <sd-select open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelhange"></sd-select>

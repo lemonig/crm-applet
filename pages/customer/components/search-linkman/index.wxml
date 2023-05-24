@@ -6,7 +6,7 @@
 <view class="container">
 
   <van-cell-group>
-    <sd-list wx:for="{{list}}" wx:key="id" title="{{item.a}}" value="{{item.b}}" data-id="{{item.id}}" bindtap="gotoDetail">
+    <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.name}}" value="{{item.phone}}" data-id="{{item.id}}" bindtap="gotoDetail">
     </sd-list>
   </van-cell-group>
 </view>

@@ -1,11 +1,51 @@
-<view class="filter-wrap">
+<view class="filter-wrap" style="height:calc(100vh - {{ navBarHeight }}px  - 100px) ;padding-top: {{ navBarHeight }}px;">
+  <view class="s-title">
+    关键词
+  </view>
+  <view class="tag-wrap" style="margin-bottom: 30rpx;">
+    <van-row gutter="20">
+      <van-col span="24">
+        <van-search shape="round" value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入合同额、合同编号" />
+      </van-col>
+    </van-row>
+  </view>
   <view class="s-title">
     可见范围
   </view>
   <view class="tag-wrap">
-    <van-row>
+    <van-row gutter="20">
       <van-col span="8" wx:for="{{range}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap">
-        <van-tag size="large" class="tag-class" type="primary" plain="{{item.checked}}">{{item.label}}</van-tag>
+        <van-tag  size="large" custom-class="tag-class {{item.checked ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
+      </van-col>
+    </van-row>
+  </view>
+  <view class="s-title">
+    所属部门
+  </view>
+  <view class="tag-wrap">
+    <van-row gutter="20">
+      <van-col span="8" wx:for="{{appart}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap1">
+        <van-tag  size="large" custom-class="tag-class {{item.checked ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
+      </van-col>
+    </van-row>
+  </view>
+  <view class="s-title">
+    合同类型：
+  </view>
+  <view class="tag-wrap">
+    <van-row gutter="20">
+      <van-col span="8" wx:for="{{types}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap2">
+        <van-tag  size="large" custom-class="tag-class {{item.checked ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
+      </van-col>
+    </van-row>
+  </view>
+  <view class="s-title">
+    其他：
+  </view>
+  <view class="tag-wrap">
+    <van-row gutter="20">
+      <van-col span="8" wx:for="{{others}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap3">
+        <van-tag  size="large" custom-class="tag-class {{item.checked ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
       </van-col>
     </van-row>
   </view>

@@ -5,8 +5,9 @@
       <sd-picker value="{{form.orgId}}" name="orgId" required title="任务类型" options="{{optionsOrg}}"></sd-picker>
       <van-cell  value="{{form.dealName}}" name="dealId" required title="关联商机" bindtap="gotoBusiness" is-link></van-cell>
       <!-- <sd-picker value="{{form.orgId}}" name="orgId" required title="关联商机" options="{{optionsOrg}}"></sd-picker> -->
-      <sd-datetime-picker value="{{form.orgId}}" name="orgId" required title="开始时间" formated="YYYY-MM-DD"></sd-datetime-picker>
-      <sd-datetime-picker value="{{form.orgId}}" name="orgId" required title="结束日期" formated="YYYY-MM-DD"></sd-datetime-picker>
+      <sd-datetime-picker value="{{form.startTime}}" name="startTime" required title="开始日期" formated="YYYY-MM-DD"></sd-datetime-picker>
+      <sd-datetime-picker value="{{form.endTime}}" name="endTime" required title="结束日期" formated="YYYY-MM-DD"></sd-datetime-picker>
+      <sd-datetime-picker  type="datetime" value="{{form.tipme}}" name="orgId"  title="提醒我" formated="YYYY-MM-DD HH:mm"></sd-datetime-picker>
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <van-field value="{{form.department}}" placeholder="请输入" name='department' label="任务标题" input-align="right" />

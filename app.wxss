@@ -18,6 +18,9 @@
 .font-color-gray {
   color: #6b778c;
 }
+.font-money {
+  font-weight: bold;
+}
 @font-face {
   font-family: "iconfont";
   /* Project id 4053041 */

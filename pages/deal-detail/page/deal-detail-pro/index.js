@@ -28,6 +28,7 @@ Page({
     result: ['1', '2'],
   },
   onChange(event) {
+    console.log(event);
     this.setData({
       result: event.detail,
     });
@@ -39,7 +40,17 @@ Page({
     // checkbox.toggle();
   },
   submit() {
-      console.log(this.data.result);
+      // console.log(this.data.result);
+      // let res = this.data.list.filter(ele =>ele.checked)
+      // console.log(res);
+      var pages = getCurrentPages()
+      var prePages = pages[pages.length - 2]
+      prePages.setData({
+          "form.productList":`共${this.data.result.length}项`
+      })
+      wx.navigateBack({
+          delta: 1
+      })
   },
 
   noop() {},

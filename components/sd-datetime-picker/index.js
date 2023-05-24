@@ -21,6 +21,10 @@ Component({
     formated: {
       type: String,
       value:''
+    },
+    type:{
+      type: String,
+      value:"date"
     }
   },
   data: {

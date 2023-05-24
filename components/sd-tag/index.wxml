@@ -1,0 +1,4 @@
+<!--components/sd-tags/index.wxml-->
+<view class="tag custom-class" style="background-color:{{color}}">
+  <slot></slot>
+</view>

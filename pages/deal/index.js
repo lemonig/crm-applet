@@ -1,136 +1,143 @@
 // pages/deal/index.js
-import { dealPage} from '../../api/deal_list';
-const app = getApp()
+import { pageDeal } from '../../api/deal';
+const app = getApp();
 Page({
-
-
   data: {
     navBarHeight: app.globalData.navBarHeight,
     titleProps: {
-      title: "商机", // 导航栏标题
+      title: '商机', // 导航栏标题
     },
-    option1: [{
+    option1: [
+      {
         text: '关系建立',
-        value: 0
+        value: 0,
       },
       {
         text: '公司认可',
-        value: 1
+        value: 1,
       },
       {
         text: '按系统设定的流程阶段',
-        value: 2
+        value: 2,
       },
     ],
-    option2: [{
+    option2: [
+      {
         text: '录入时间（正反）',
-        value: 'a'
+        value: 'a',
       },
       {
         text: '跟进时间（正反',
-        value: 'b'
+        value: 'b',
       },
       {
         text: '商机金额（正反）',
-        value: 'c'
+        value: 'c',
       },
       {
         text: '业务类型（正反）',
-        value: 'd'
+        value: 'd',
       },
     ],
-    option3: [{
+    option3: [
+      {
         text: '全部商机',
-        value: 'a'
+        value: 'a',
       },
       {
         text: '我负责的商机',
-        value: 'b'
+        value: 'b',
       },
       {
         text: '下属负责的商机',
-        value: 'c'
+        value: 'c',
       },
       {
         text: '赢单商机',
-        value: 'd'
+        value: 'd',
       },
       {
         text: '输单商机',
-        value: 'e'
+        value: 'e',
       },
       {
         text: '终止商机',
-        value: 'g'
+        value: 'g',
       },
       {
         text: '进行中商机',
-        value: 'h'
+        value: 'h',
       },
       {
         text: '特殊业务商机',
-        value: 'i'
+        value: 'i',
       },
       {
         text: '默认我负责的商机',
-        value: 'j'
+        value: 'j',
       },
-
     ],
     value1: 0,
     value2: 'a',
     value3: 'a',
-    list: [
-      {
-        id:'1',
-        a: '项目1',
-        b: '付钱了',
-        c: '123',
-        d: "杭州市环保局",
-        e: "蔡徐坤",
-        f: "2032-9-9",
-        g:'2039-9-9'
-      }
-    ],
-    id:''
-  
+    pageData: [],
+    id: '',
+    isPage: false,
+    pageNo: 1,
+    loading: false,
+    isAllData: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.fetchData();
+
   },
 
-   fetchData: async function() {
-    let { data } = await dealPage()
-    console.log(data);
+  fetchData: async function () {
+    let params = {
+      page: this.data.pageNo,
+      size: 30,
+    };
+    let { data } = await pageDeal(params);
+    if (!data.length) {
+      this.setData({
+        isAllData: true,
+      });
+      return
+    }
     this.setData({
-      list:data
-    })
-    
+      loading: false,
+      pageData: this.data.pageData.concat(data),
+    });
   },
-
 
   addDeal() {
     wx.navigateTo({
       url: '/pages/deal-form/index',
-    })
+    });
   },
   gotoDetail(eve) {
     console.log(eve);
-    let id = eve.currentTarget.dataset.id
+    let id = eve.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/deal-detail/index?id='+ id
-    })
+      url: '/pages/deal-detail/index?id=' + id,
+    });
+  },
+  handleToLower: function () {
+    this.setData({
+      loading: true,
+      pageNo: this.data.pageNo + 1,
+    });
+    this.fetchData();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.fetchData()
-
   },
 
   /**
@@ -144,35 +151,51 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  onShareAppMessage() {},
 
-  }
-})
+
+  sortChange1(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value1:eve.detail
+    });
+    this.fetchData();
+  },
+  sortChange2(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value2:eve.detail
+    });
+    this.fetchData();
+  },
+  sortChange3(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value3:eve.detail
+    });
+    this.fetchData();
+  },
+});

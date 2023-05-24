@@ -1,0 +1,13 @@
+/* components/sd-tags/index.wxss */
+.tag {
+  width: 80rpx;
+  align-items: center;
+  border-radius: var(--tag-border-radius, 2px);
+  color: var(--tag-text-color, #fff);
+  display: inline-flex;
+  font-size: var(--tag-font-size, 12px);
+  line-height: var(--tag-line-height, 16px);
+  padding: var(--tag-padding, 0 4px);
+  position: relative;
+  text-align: center;
+}

@@ -2,10 +2,11 @@
 <view class="card-container custom-class" style="margin-bottom: 30rpx;">
   <view class="title">
     <view class="label">
-      <van-icon wx:if="{{ icon }}" name="{{icon}}" />
-      <slot wx:else name="icon" />
+      <van-icon wx:if="{{ prefix }}" name="{{prefix}}" />
+      <slot wx:else name="prefix" />
       <text>{{title}}</text>
     </view>
+    <slot  name="icon" />
   </view>
   <view class="body">
     <slot name="body"></slot>

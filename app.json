@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/deal/index",
     "pages/home/index",
     "pages/a-map/index",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/deal/index",
+  
     "pages/deal-detail/index",
     "pages/deal-form/index",
     "pages/linkman-form/index",
@@ -27,7 +28,12 @@
     "pages/search/customer-search/index",
     "pages/search/linkman-select/index",
     "pages/customer/components/search-customer/index",
-    "pages/customer/components/search-linkman/index"
+    "pages/customer/components/search-linkman/index",
+    "pages/search/customer-select/index",
+    "pages/view-file/index",
+    "pages/search/contract-win/index",
+    "pages/login/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -81,8 +87,10 @@
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-tag": "@vant/weapp/tag/index",
+    "van-slider": "@vant/weapp/slider/index",
     "van-index-bar": "@vant/weapp/index-bar/index",
     "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-overlay": "@vant/weapp/overlay/index",
     "ec-canvas": "/libs/ec-canvas/ec-canvas",
     "sd-select": "/components/sd-select/index",
     "navigation-bar": "/components/nav-bar/index",
@@ -90,23 +98,17 @@
     "sd-picker": "/components/sd-picker/index",
     "sd-card": "/components/sd-card/index",
     "sd-list": "/components/sd-list/index",
-    "sd-datetime-picker": "/components/sd-datetime-picker/index"
+    "sd-datetime-picker": "/components/sd-datetime-picker/index",
+    "sd-tag": "/components/sd-tag/index",
+    "sd-money": "/components/sd-money/index"
   },
   "networkTimeout": {
     "request": 10000
   },
   "plugins": {
-    "routePlan": {
-      "version": "1.0.19",
-      "provider": "wx50b5593e81dd937a"
-    },
     "chooseLocation": {
       "version": "1.0.10",
       "provider": "wx76a9a06e5b4e693e"
-    },
-    "subway": {
-      "version": "1.0.13",
-      "provider": "wx6aaf93c4435fa1c1"
     },
     "citySelector": {
       "version": "1.0.2",
@@ -122,28 +124,23 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页",
-        "iconPath": "/assets/imgs/1.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/deal/index",
-        "text": "商机",
-        "iconPath": "/assets/imgs/2.png"
+        "text": "商机"
       },
       {
         "pagePath": "pages/customer/index",
-        "text": "客户",
-        "iconPath": "/assets/imgs/3.png"
+        "text": "客户"
       },
       {
         "pagePath": "pages/task/index",
-        "text": "任务",
-        "iconPath": "/assets/imgs/4.png"
+        "text": "任务"
       },
       {
         "pagePath": "pages/contract/index",
-        "text": "合同",
-        "iconPath": "/assets/imgs/5.png"
+        "text": "合同"
       }
     ]
   }

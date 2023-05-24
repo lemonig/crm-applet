@@ -1,157 +1,153 @@
+import { linkmanAdd, linkmanUpdate,linkmanDetail } from '../../api/linkman';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     titleProps: {
-      title: ""
+      title: '',
     },
     id: undefined,
     btnLoad: false,
-    optionsOrg: [{
+    optionsOrg: [
+      {
         label: '政府',
-        value: '1'
+        value: '1',
       },
       {
         label: '国企',
-        value: '2'
+        value: '2',
       },
-
     ],
-    optionsPri: [{
+    optionsPri: [
+      {
         label: '浙江',
-        value: '1'
+        value: '1',
       },
       {
         label: '江苏',
-        value: '2'
+        value: '2',
       },
-
     ],
-    deciedOption: [{
-      label: '是',
-      value: '1'
-    },
-    {
-      label: '否',
-      value: '2'
-    },
-
-  ],
+    deciedOption: [
+      {
+        label: '是',
+        value: true,
+      },
+      {
+        label: '否',
+        value: false,
+      },
+    ],
+    sexOption: [
+      {
+        label: '男',
+        value: '1',
+      },
+      {
+        label: '否',
+        value: '女',
+      },
+    ],
 
     form: {
-      name: "",
-      orgId: "",
-      phone: "",
-      email: "",
-      department: "",
-      jobTitle: "",
-      description: "",
-      gender: "",
-      isKdm: "",
-    }
+      name: '',
+      phone: '',
+      orgId: '',
+      isKdm: '',
+      department: '',
+      jobTitle: '',
+      gender: '',
+      officeAddress:"",
+      address:"",
+      description: '',
+    },
   },
 
-
-  formSubmit: function (e) {
+  formSubmit: async function (e) {
     this.setData({
-      btnLoad: true
-    })
-    console.log(e.detail.value)
-    let {
-      description,
-      title,
-      value
-    } = e.detail.value
-
+      btnLoad: true,
+    });
+    let params = e.detail.value;
+    if (this.data.id) {
+      params.id = this.data.id
+      var { success } = await linkmanUpdate(params);
+    } else {
+      var { success } = await linkmanAdd(params);
+    }
+    wx.showToast({
+      title: success ? '提交成功' : '提交失败',
+    });
     setTimeout(() => {
-      wx.navigateBack()
-    }, 2000)
+      wx.navigateBack();
+    }, 2000);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let {
-      id
-    } = options
+    let { id } = options;
     console.log(id);
     if (id) {
       this.setData({
         id,
         titleProps: {
-          title: `编辑联系人`
+          title: `编辑联系人`,
         },
-        form: {
-          address: "浙江",
-          base: "1",
-          creditCode: "cs23",
-          description: "请我吃饭",
-          name: "客户",
-          orgType: "1",
-        }
-      })
+      });
+      this.getDetail()
+
     } else {
       this.setData({
         titleProps: {
-          title: "新建联系人"
+          title: '新建联系人',
         },
-      })
-
+      });
     }
 
     // TODO 请求联系人详情
   },
-
+  async getDetail(){
+    let { data } =  await linkmanDetail({
+       id: this.data.id
+     })
+     this.setData({
+      form: data,
+     })
+   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听联系人下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 联系人点击右上角分享
    */
-  onShareAppMessage() {
-
-  },
-
-})
+  onShareAppMessage() {},
+});

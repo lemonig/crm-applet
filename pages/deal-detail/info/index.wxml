@@ -10,7 +10,6 @@
         value="{{item.a2}}" 
       >
       </sd-list>
-      <van-cell title="周桥" value="内容" />
     </view>
   </sd-card>
 
@@ -18,13 +17,12 @@
     <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="oppo"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{oppoList}}" 
         wx:key="id"
         title="{{item.a1}}" 
         value="{{item.a2}}" 
       >
       </sd-list>
-      <van-cell title="周桥" value="内容" />
     </view>
   </sd-card>
 
@@ -32,13 +30,12 @@
     <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="agent"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{agentList}}" 
         wx:key="id"
         title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        lab1="{{item.a2}}" 
       >
       </sd-list>
-      <van-cell title="周桥" value="内容" />
     </view>
   </sd-card>
 
@@ -46,26 +43,28 @@
     <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="cro"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{conList}}" 
         wx:key="id"
         title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        lab1="{{item.a2}}" 
       >
       </sd-list>
-      <van-cell title="周桥" value="内容" />
     </view>
   </sd-card>
 
   <sd-card title="合同">
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{contList}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        title="{{item.name}}" 
+        value="负责人： {{item.ownerUserName}}" 
+        lab1="合同额：{{  item.value}}"
+        desc1="{{ item.signedDate}}"
+        lab2="已回款：{{  item.receivedValue}}"
+        desc2="待回款：{{ item.unreceivedValue}}"
       >
       </sd-list>
-      <van-cell title="周桥" value="内容" />
     </view>
   </sd-card>
 </view>

@@ -4,8 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    id: {
+    dealId: {
       type:String
+    },
+    pagaData:{
+      type:Object
     }
   },
 
@@ -22,7 +25,7 @@ Component({
   methods: {
     gotoedit() {
       wx.navigateTo({
-        url: '/pages/deal-form/index',
+        url: '/pages/deal-form/index?id='+ this.properties.dealId,
       })
     }
   }

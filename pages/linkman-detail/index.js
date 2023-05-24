@@ -1,4 +1,5 @@
 import Dialog from '@vant/weapp/dialog/dialog';
+import { linkmanDetail } from '../../api/linkman';
 
 const beforeClose = (action) => new Promise((resolve) => {
   console.log(action);
@@ -21,9 +22,19 @@ Page({
     titleProps: {
       title: "联系人"
     },
-    id:''
+    id:'',
+    data:{}
   },
 
+  async getDetail(){
+    let { data } =  await linkmanDetail({
+       id: this.data.id
+     })
+     this.setData({
+       data
+     })
+   },
+ 
 
 
   deleteItem() {
@@ -70,6 +81,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.getDetail()
 
   },
 

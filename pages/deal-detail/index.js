@@ -1,98 +1,102 @@
 // pages/deal-detail/index.js
+import { detailDeal } from '../../api/deal';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     titleProps: {
-      title: "详情"
+      title: '详情',
     },
-    msg: [{
-      text: "信息获取",
-      isShow: true,
-    },
-    {
-      text: "关系建立",
-      isShow: true,
-    },
-    {
-      text: "公司认可",
-      isShow: true,
-    },
-    {
-      text: "招标参与",
-      isShow: false,
-    },
-    {
-      text: "合同签订",
-      isShow: false,
-    },
-
+    msg: [
+      {
+        text: '信息获取',
+        isShow: true,
+      },
+      {
+        text: '关系建立',
+        isShow: true,
+      },
+      {
+        text: '公司认可',
+        isShow: true,
+      },
+      {
+        text: '招标参与',
+        isShow: false,
+      },
+      {
+        text: '合同签订',
+        isShow: false,
+      },
     ],
-    id:''
+    active: 0,
+    dealId: '',
+    data: {},
+  },
+
+  fetchData: async function () {
+    let { data } = await detailDeal({
+      id: this.data.dealId,
+    });
+    console.log(data);
+    this.setData({ data });
+  },
+  onChange(event) {
+    console.log(event.detail.name);
+    this.setData({
+      active: event.detail.name,
+    });
   },
   selectPipeline() {
     wx.navigateTo({
       url: '/pages/search/pipeline-select/index',
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     console.log(options);
+    
     this.setData({
-      id :options.id
-    })
+      dealId: options.id,
+    });
+    this.fetchData()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});

@@ -1,6 +1,7 @@
-// pages/customer/components/search-linkman/index.js
-Page({
+import { linkmanInfo } from '../../../../api/linkman';
+import { debounce } from "../../../../utils/util";
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -8,24 +9,40 @@ Page({
     titleProps: {
       title:"搜索联系人"
     },
-    list: [
-      {
-        id:'1',
-        a: '杭州市环保局 站长',
-        b: '张三',
-      },
-      {
-        id:'2',
-        a: '平湖市环保局 站长',
-        b: '李四',
-      }
-    ],
+
+    pageData: [],
+    loading: false,
   },
-  gotoDetail() {
-    wx.navigateTo({
-      url: '/pages/linkman-detail/index?id=1',
-    })
+  gotoDetail(eve) {
+    let id = eve.currentTarget.dataset.id
+      wx.navigateTo({
+        url: '/pages/linkman-detail/index?id='+ id,
+      })
   },
+
+  fetchData: async function () {
+    let params = {
+      page: this.data.pageNo,
+      size: 10000,
+      name: this.data.key
+    };
+    let { data } = await linkmanInfo(params);
+    if (!data.length) {
+      this.setData({
+        isAllData: true,
+      });
+      return
+    }
+    this.setData({
+      loading: false,
+      pageData: this.data.pageData.concat(data),
+    });
+  },
+  handleListFilter: debounce(function(){
+    this.fetchData()
+  },500) ,
+
+  
   /**
    * 生命周期函数--监听页面加载
    */

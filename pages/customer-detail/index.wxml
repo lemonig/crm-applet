@@ -4,7 +4,7 @@
 <view class=" container deal-detail-container ">
   <view class="card">
     <view class="title">
-      <text>平湖生态环境局</text>
+      <text>{{data.baseInfo.name}}</text>
     </view>
   </view>
 
@@ -12,13 +12,13 @@
 
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
       <van-tab title="跟进记录">
-        <sd-record id="{{id}}"></sd-record>
+        <sd-record wx:if="{{active == 0}}" dealId="{{id}}" pageData="{{data.followUpInfo}}"></sd-record>
       </van-tab>
       <van-tab title="基本资料">
-        <sd-base id="{{id}}"></sd-base>
+        <sd-base wx:if="{{active == 1}}" dealId="{{id}}"  pageData="{{data.baseInfo}}"></sd-base>
       </van-tab>
       <van-tab title="相关信息">
-        <sd-info id="{{id}}"></sd-info>
+        <sd-info wx:if="{{active == 2}}" dealId="{{id}}"  pageData="{{data.relatedInfo}}"></sd-info>
       </van-tab>
     </van-tabs>
   </view>

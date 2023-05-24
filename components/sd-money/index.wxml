@@ -1,0 +1,3 @@
+<!--components/sd-money/index.wxml-->
+<text style="font-weight: {{bold ? 'bold':''}};">{{value}}</text>
+

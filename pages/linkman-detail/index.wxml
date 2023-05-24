@@ -5,40 +5,41 @@
 <view class="container task-container">
   <van-cell-group custom-class="cell-group-class">
     <van-cell title=" 姓名">
-      <text>电话</text>
+      <text>{{data.name}}</text>
     </van-cell>
     <van-cell title=" 联系电话">
-      <text>平湖标准站采购项目</text>
+      <text>{{data.phone}}</text>
     </van-cell>
     <van-cell title=" 客户">
-      <text>2023-04-10</text>
+      <text>{{data.orgName}}</text>
     </van-cell>
   </van-cell-group>
 
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="关键决策人">
-      <text></text>
+      <text>{{data.isKdm ? '是': '否'}}</text>
     </van-cell>
     <van-cell title="部门">
-      <text>邱泉</text>
+      <text>{{data.department}}</text>
     </van-cell>
     <van-cell title="职位">
-      <text></text>
+      <text>{{data.jobTitle}}</text>
     </van-cell>
   </van-cell-group>
 
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="性别">
-      <text>未完成</text>
+      <text>{{data.gender >> 1 ? '女' : '男' }}</text>
     </van-cell>
-    <van-cell title="部门">
-      <text>未完成</text>
+  
+    <van-cell title="办公地址">
+      <text>{{data.officeAddress}}</text>
     </van-cell>
-    <van-cell title="地址">
-      <text>未完成</text>
+    <van-cell title="家庭地址">
+         <text>{{data.address}}</text>
     </van-cell>
     <van-cell title="备注">
-      <text>未完成</text>
+         <text>{{data.description}}</text>
     </van-cell>
   </van-cell-group>
 

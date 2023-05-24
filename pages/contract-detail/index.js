@@ -6,8 +6,9 @@ Page({
    */
   data: {
     titleProps: {
-      title: "详情"
+      title: "合同详情"
     },
+    active: 0,
     msg: [{
       text: "信息获取",
       isShow: true,
@@ -32,7 +33,12 @@ Page({
     ],
     id:''
   },
+  onChange(event) {
+    this.setData({
+      active: event.detail.name
+    })
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */

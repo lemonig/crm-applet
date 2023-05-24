@@ -4,8 +4,11 @@ Component({
     addGlobalClass: true,
   },
   properties: {
-    id: {
+    dealId: {
       type:String
+    },
+    pageData:{
+      type: Object,
     }
   },
 
@@ -22,8 +25,9 @@ Component({
   methods: {
     gotoedit() {
       wx.navigateTo({
-        url: '/pages/customer-form/index',
+        url: '/pages/customer-form/index?id='+ this.properties.dealId,
       })
-    }
+    },
+  
   }
 })

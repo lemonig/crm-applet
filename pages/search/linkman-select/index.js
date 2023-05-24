@@ -1,4 +1,5 @@
 // pages/search/customer-search/index.js
+import { linkmanInfo } from '../../../api/linkman';
 Page({
 
   /**
@@ -53,6 +54,29 @@ Page({
       delta: 1
     })
   },
+
+  fetchData: async function () {
+    let params = {
+      data:{
+        orderBy: this.data.value1,
+        filterBy:this.data.value2,
+      },
+      page: this.data.pageNo,
+      size: 10,
+    };
+    let { data } = await linkmanInfo(params);
+    if (!data.length) {
+      this.setData({
+        isAllData: true,
+      });
+      return
+    }
+    this.setData({
+      loading: false,
+      pageData: this.data.pageData.concat(data),
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

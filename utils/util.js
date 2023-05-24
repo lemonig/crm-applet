@@ -21,11 +21,13 @@ const formatNumber = n => {
 function debounce(func, delay) {
   let timeoutId;
 
-  return function(...args) {
-    clearTimeout(timeoutId);
+  return function() {
+    const context = this;
+    const args = arguments;
 
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {
+      func.apply(context, args);
     }, delay);
   };
 }

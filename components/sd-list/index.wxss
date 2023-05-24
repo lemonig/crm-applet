@@ -22,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   line-height: 48rpx;
+  width: 100%;
 }
 .border{
   border-top: 1rpx solid #eee;

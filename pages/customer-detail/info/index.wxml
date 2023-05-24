@@ -4,12 +4,12 @@
     <text slot="icon" class="iconfont icon-lxr-book" style="font-size: 1.2em;margin:0"></text>
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{pageData.persons}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        lab1="{{item.a3}} {{item.a4}}" 
+        title="{{item.name}}" 
+        lab1="{{item.phone}} {{item.department}} {{item.jobTitle}}" 
       >
-      <view slot="value" class="iconfont icon-callme" style="font-size: 1.2em;" data-phone="{{item.a3}}" bindtap="callMe" ></view>
+      <view slot="value" class="iconfont icon-callme" style="font-size: 1.2em;" data-phone="{{item.phone}}" bindtap="callMe" ></view>
       <!-- <van-icon slot="value"  name="phone-o" data-phone="{{item.a3}}" bindtap="callMe" /> -->
       </sd-list>
  
@@ -21,12 +21,12 @@
     <van-icon slot="icon" name="gold-coin-o" size="1.2em"/>
     <view slot="body">
       <sd-list 
-        wx:for="{{dealList}}" 
+      wx:for="{{pageData.deals}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="{{item.a2}}" 
-        lab1="{{item.a3}}" 
-        desc1="{{item.a4}}" 
+        title="{{item.deals}}" 
+        value="{{item.value}}" 
+        lab1="{{item.ownerUserName}}" 
+        desc1="{{item.pipelineStageName}}" 
         
       >
       </sd-list>
@@ -41,14 +41,14 @@
     <text slot="icon" class="iconfont icon-hetong" style="font-size: 1.2em;margin:0"></text>
     <view slot="body">
       <sd-list 
-        wx:for="{{conList}}" 
+      wx:for="{{pageData.contracts}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="负责人：{{item.a2}}" 
-        lab1="合同额：{{item.a3}}" 
-        desc1="签订：{{item.a4}}" 
-        lab2="已回款：{{item.a5}}" 
-        desc2="待回款：{{item.a6}}" 
+        title="{{item.name}}" 
+        value="负责人：{{item.ownerUserName}}" 
+        lab1="合同额：{{item.value}}" 
+        desc1="签订：{{item.signedDate}}" 
+        lab2="已回款：{{item.receivedValue}}" 
+        desc2="待回款：{{item.unreceivedValue}}" 
       >
       </sd-list>
     </view>

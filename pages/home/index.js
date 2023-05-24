@@ -1,5 +1,6 @@
 // pages/home/index.js
 import Notify from '@vant/weapp/notify/notify';
+import Dialog from '@vant/weapp/dialog/dialog';
 const app = getApp()
 const salerData = [
 
@@ -66,6 +67,40 @@ const funnelList = [{
   },
 
 ]
+const timeList = [{
+    label: "本周",
+    value: "1",
+  },
+  {
+    label: "本月",
+    value: "2",
+  },
+  {
+    label: "本季度",
+    value: "3",
+  },
+  {
+    label: "本年",
+    value: "4",
+  },
+  {
+    label: "上月",
+    value: "5",
+  },
+  {
+    label: "上周",
+    value: "6",
+  },
+  {
+    label: "上季度",
+    value: "7",
+  },
+  {
+    label: "上年",
+    value: "8",
+  },
+
+]
 
 Page({
 
@@ -80,6 +115,10 @@ Page({
     saleOptions: saleOptions,
     saleValue: "1",
     saleShow: false,
+
+    timeOptions: timeList,
+    timeValue: "1",
+    timeShow: false,
 
     contractMOp: contractMoney,
     contractValue: "1",
@@ -135,47 +174,56 @@ Page({
       {
         label: "今日任务",
         val: "2",
-        unit: ""
+        unit: "个",
+        link:"task"
       },
       {
         label: "全部待办",
         val: "6",
-        unit: ""
+        unit: "个",
+        link:"task"
       },
       {
         label: "超期任务",
         val: "5",
-        unit: ""
+        unit: "个",
+        link:"task"
       },
       {
         label: "商机数量",
         val: "4",
-        unit: ""
+        unit: "个",
+        link:"deal"
       },
       {
         label: "无跟进计划商机",
         val: "3",
-        unit: ""
+        unit: "个",
+        link:"deal"
       },
       {
         label: "无变化商机",
         val: "2",
-        unit: ""
+        unit: "个",
+        link:"deal"
       },
       {
         label: "商机金额预测",
-        val: "600,00",
-        unit: ""
+        val: 60000,
+        unit: "",
+        link:"deal"
       },
       {
         label: "应收未收额",
-        val: "400,000",
-        unit: ""
+        val: 400000,
+        unit: "",
+        link:"deal"
       },
       {
         label: "已开票未收款",
-        val: "200",
-        unit: ""
+        val: 200,
+        unit: "",
+        link:"deal"
       },
     ]
 
@@ -201,6 +249,20 @@ Page({
     this.setData({
       saleValue: e.detail.value,
       saleShow: false
+    })
+    // 自定义组件触发事件时提供的detail对象
+  },
+  // 时间
+  onShowTimePopup() {
+    this.setData({
+      timeShow: true
+    });
+  },
+  onTimeChange: function (e) {
+    console.log(e.detail);
+    this.setData({
+      timeValue: e.detail.value,
+      timeShow: false
     })
     // 自定义组件触发事件时提供的detail对象
   },
@@ -251,24 +313,25 @@ Page({
     let {
       panel
     } = e.currentTarget.dataset
-    // Notify({
-    //   message: panel,
-    // });
-    wx.showToast({
-      title:panel,
-      icon:'none'
+    let url = `/pages/${panel}/index`
+    wx.switchTab({
+      url: url,
     })
+  
+  
   },
-  gotoSaleDetail(e) {
+  gotoSaleDetail(events) {
     let {
       panel
-    } = e.currentTarget.dataset
-    wx.showToast({
-      title: panel,
+    } = events.currentTarget.dataset
+    let url = `/pages/${panel}/index`
+    console.log(url);
+    wx.switchTab({
+      url: url,
     })
-    // Notify({
-    //   message: panel,
-    // });
+  
+  
+  
   },
   gotoPage(events) {
     let {
@@ -286,7 +349,22 @@ Page({
     })
 
   },
-
+  logout(){
+    Dialog.confirm({
+      title: '提示',
+      message: '确定退出吗',
+    })
+      .then(() => {
+        // on confirm
+        wx.clearStorage()
+        wx.redirectTo({
+          url: '/pages/login/index',
+        })
+      })
+      .catch(() => {
+        // on cancel
+      });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
