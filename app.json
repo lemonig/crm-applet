@@ -91,6 +91,8 @@
     "van-index-bar": "@vant/weapp/index-bar/index",
     "van-index-anchor": "@vant/weapp/index-anchor/index",
     "van-overlay": "@vant/weapp/overlay/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
     "ec-canvas": "/libs/ec-canvas/ec-canvas",
     "sd-select": "/components/sd-select/index",
     "navigation-bar": "/components/nav-bar/index",

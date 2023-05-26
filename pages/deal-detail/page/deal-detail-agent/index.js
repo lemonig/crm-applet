@@ -1,3 +1,4 @@
+import { listAgent,updateDeal } from '../../../../api/deal';
 Page({
   data: {
     titleProps: {
@@ -5,27 +6,11 @@ Page({
     },
     id:'',
     list: [
-      {
-        id:'1',
-        label: "浙江致信招标代理有限公司嘉兴分公司",
-        value: 1,
-        checked:true
-      },
-      {
-        id:'2',
-        label: "嘉兴市华信工程咨询有限公司",
-        value: 2,
-        checked:true
-      },
-      {
-        id:'3',
-        label: "浙江国际招投标有限公司",
-        value: 3,
-        checked:false
-      },
+    
 
     ],
-    result: ['1', '2'],
+    result: [],
+    btnLoad: false,
   },
   onChange(event) {
     this.setData({
@@ -38,9 +23,28 @@ Page({
     // const checkbox = this.selectComponent(`.checkboxes-${index}`);
     // checkbox.toggle();
   },
-  submit() {
-      console.log(this.data.result);
+  async submit() {
+    this.setData({
+      btnLoad: true,
+    });
+    console.log(this.data.result);
+    let { success, message } =await updateDeal({
+      id: this.data.id,
+      biddingAgencyId:  this.data.result,
+    });
+    wx.showToast({
+      title: message,
+      icon: 'none',
+    });
+    setTimeout(()=>{
+      if(success){
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    },1000)
   },
+
 
   noop() {},
   /**
@@ -48,10 +52,28 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      id:options.id
-    })
+      id: options.dealId,
+      result: options.selected.split(',').filter(Boolean),
+    });
+    this.getDetail();
   },
 
+  async getDetail() {
+    let { data } = await listAgent({
+      id: this.data.id,
+    });
+    data.forEach((item) => {
+      this.data.result.forEach((jtem) => {
+        if (item.id == jtem) {
+          item.checked = true;
+          item.value = jtem.num;
+        }
+      });
+    });
+    this.setData({
+      list: data,
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

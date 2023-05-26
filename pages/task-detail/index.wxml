@@ -6,42 +6,42 @@
 <view class="container task-container">
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="任务类型">
-      <text>电话</text>
+      <text>{{data.typeName}}</text>
     </van-cell>
     <van-cell title="关联商机">
-      <text>平湖标准站采购项目</text>
+      <text>{{data.dealName}}</text>
     </van-cell>
     <van-cell title="开始日期">
-      <text>2023-04-10</text>
+      <text>{{data.startTimeDto.date}}</text>
     </van-cell>
     <van-cell title="结束日期">
-      <text>2023-04-10</text>
+      <text>{{data.endTimeDto.date}}</text>
     </van-cell>
   </van-cell-group>
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="任务标题">
-      <text></text>
+      <text>{{data.subject}}</text>
     </van-cell>
     <van-cell title="联系人">
-      <text>邱泉</text>
+      <text>{{data.personName}}</text>
     </van-cell>
     <van-cell title="其它联系人">
-      <text>邱泉,王三</text>
+      <text>{{data.participant}}</text>
     </van-cell>
     <van-cell title="地点">
-      <text></text>
+      <text>{{data.address}}</text>
     </van-cell>
     <van-cell title="完成纪要">
-      <text></text>
+      <text>{{data.description}}</text>
     </van-cell>
   </van-cell-group>
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="任务状态">
-      <text>未完成</text>
+      <text>{{data.done ? '已完成': '未完成'}}</text>
     </van-cell>
   </van-cell-group>
 
-  <view class="btn-wrap">
+  <view class="btn-wrap" wx:if="{{!data.isOwner}}">
       <van-button type="danger" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 250rpx;" bindtap="deleteItem">删除</van-button>
       <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
     </view>

@@ -1,29 +1,13 @@
+import { listPartner,updateDeal } from '../../../../api/deal';
 Page({
   data: {
     titleProps: {
       title:"选择合作伙伴"
     },
     id:'',
+    btnLoad: false,
     list: [
-      {
-        id:'1',
-        label: "宁波联通",
-        value: 1,
-        checked:true
-      },
-      {
-        id:'2',
-        label: "宁波移动",
-        value: 2,
-        checked:true
-      },
-      {
-        id:'3',
-        label: "北方中奥",
-        value: 3,
-        checked:false
-      },
-
+     
     ],
     result: ['1', '2'],
   },
@@ -38,18 +22,56 @@ Page({
     // const checkbox = this.selectComponent(`.checkboxes-${index}`);
     // checkbox.toggle();
   },
-  submit() {
-      console.log(this.data.result);
+  async submit() {
+    this.setData({
+      btnLoad: true,
+    });
+    console.log(this.data.result);
+    let { success, message } =await updateDeal({
+      id: this.data.id,
+      partnerList:  this.data.result.map(item=> ({partnerId:item})),
+    });
+    wx.showToast({
+      title: message,
+      icon: 'none',
+    });
+    setTimeout(()=>{
+      if(success){
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    },1000)
   },
 
   noop() {},
+
+  
+  async getDetail() {
+    let { data } = await listPartner({
+      id: this.data.id,
+    });
+    data.forEach((item) => {
+      this.data.result.forEach((jtem) => {
+        if (item.id == jtem) {
+          item.checked = true;
+          item.value = jtem.num;
+        }
+      });
+    });
+    this.setData({
+      list: data,
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     this.setData({
-      id:options.id
-    })
+      id: options.dealId,
+      result: options.selected.split(',').filter(Boolean),
+    });
+    this.getDetail();
   },
 
   /**

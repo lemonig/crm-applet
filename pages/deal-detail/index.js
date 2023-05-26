@@ -1,5 +1,5 @@
 // pages/deal-detail/index.js
-import { detailDeal } from '../../api/deal';
+import { detailDeal , listPipelineStage } from '../../api/deal';
 Page({
   /**
    * 页面的初始数据
@@ -8,28 +8,8 @@ Page({
     titleProps: {
       title: '详情',
     },
-    msg: [
-      {
-        text: '信息获取',
-        isShow: true,
-      },
-      {
-        text: '关系建立',
-        isShow: true,
-      },
-      {
-        text: '公司认可',
-        isShow: true,
-      },
-      {
-        text: '招标参与',
-        isShow: false,
-      },
-      {
-        text: '合同签订',
-        isShow: false,
-      },
-    ],
+    pipeState: [],
+    pipelineId: '',
     active: 0,
     dealId: '',
     data: {},
@@ -39,7 +19,6 @@ Page({
     let { data } = await detailDeal({
       id: this.data.dealId,
     });
-    console.log(data);
     this.setData({ data });
   },
   onChange(event) {
@@ -50,19 +29,29 @@ Page({
   },
   selectPipeline() {
     wx.navigateTo({
-      url: '/pages/search/pipeline-select/index',
+      url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId,
     });
   },
+
+  async getListPipelineStage() {
+    let { data } = await listPipelineStage();
+    this.setData({
+      pipeState: data.map((item) => ({
+        ...item,
+        label: item.name,
+        value: item.dealProbability,
+      })),
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     console.log(options);
-    
     this.setData({
       dealId: options.id,
     });
-    this.fetchData()
   },
 
   /**
@@ -73,7 +62,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.fetchData();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

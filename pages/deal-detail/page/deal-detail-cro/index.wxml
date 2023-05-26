@@ -15,7 +15,7 @@
       catch:tap="noop"
         class="checkboxes-{{ index }}"
         name="{{ item.id }}"
-      > {{ item.label }}</van-checkbox> 
+      > {{ item.name }}</van-checkbox> 
     </view>
     </van-cell>
   </van-cell-group>

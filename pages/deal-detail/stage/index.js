@@ -1,14 +1,14 @@
 // pages/deal-detail/stage/index.js
+import {  listPipelineStagePlus} from "../../../api/deal";
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    value: {
+    list: {
       type: Array,
-      value: []
+      list: []
     },
- 
   },
 
   /**
@@ -26,6 +26,6 @@ Component({
       wx.navigateTo({
         url: '/pages/pipeline-select/index',
       })
-    }
+    },
   }
 })

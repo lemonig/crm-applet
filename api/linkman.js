@@ -25,7 +25,7 @@ export function linkmanInfo(data) {
 // 客户联系人分页查询
 export function linkmanDetail(data) {
   return _post({
-    url: `/mini/api/person/detail`,
+    url: `/mini/api/person/get`,
     data,
   });
 }

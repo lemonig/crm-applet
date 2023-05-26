@@ -10,7 +10,7 @@
   </van-dropdown-menu>
   <view style="margin-top:var(--dropdown-margin);">
     <view class="deal-title">
-      <text class="number">6个</text>商机 商机金额 <text class="moeny">600,000,000</text> 元，预测 <text class="moeny">200,000,000</text> 元
+      <text class="number">{{pageDataCum.total}}个</text>商机 商机金额 <sd-money class="moeny" text="{{pageDataCum.pv}}"></sd-money> 元，预测 <sd-money class="moeny" text="{{pageDataCum.prev}}"></sd-money> 元   
     </view>
     <scroll-view style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 120px) ;" 
     scroll-y="{{ true }}"

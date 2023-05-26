@@ -1,31 +1,13 @@
+import { listCompetitor, updateDeal } from '../../../../api/deal';
 Page({
   data: {
     titleProps: {
-      title:"选择竞争对手"
+      title: '选择竞争对手',
     },
-    id:'',
-    list: [
-      {
-        id:'1',
-        label: "北京尚洋",
-        value: 1,
-        checked:true
-      },
-      {
-        id:'2',
-        label: "湖南力合",
-        value: 2,
-        checked:true
-      },
-      {
-        id:'3',
-        label: "上海衡普",
-        value: 3,
-        checked:false
-      },
-
-    ],
-    result: ['1', '2'],
+    id: '',
+    list: [],
+    result: [],
+    btnLoad: false,
   },
   onChange(event) {
     this.setData({
@@ -38,66 +20,91 @@ Page({
     // const checkbox = this.selectComponent(`.checkboxes-${index}`);
     // checkbox.toggle();
   },
-  submit() {
-      console.log(this.data.result);
+  async submit() {
+    this.setData({
+      btnLoad: true,
+    });
+    console.log(this.data.result);
+    let { success, message } =await updateDeal({
+      id: this.data.id,
+      competitorList: this.data.result.map(item=> ({competitorId:item})),
+    });
+    wx.showToast({
+      title: message,
+      icon: 'none',
+    });
+    setTimeout(()=>{
+      if(success){
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    },1000)
+    
   },
 
   noop() {},
+
+  async getDetail() {
+    let { data } = await listCompetitor({
+      id: this.data.id,
+    });
+    data.forEach((item) => {
+      this.data.result.forEach((jtem) => {
+        if (item.id == jtem) {
+          item.checked = true;
+          item.value = jtem.num;
+        }
+      });
+    });
+    this.setData({
+      list: data,
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+  
     this.setData({
-      id:options.id
-    })
+      id: options.dealId,
+      result: options.selected.split(',').filter(Boolean),
+    });
+    this.getDetail();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});

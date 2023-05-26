@@ -5,9 +5,9 @@
 
 <view class="select-main">
   <van-cell-group>
-    <block wx:for="{{options}}" wx:key="unique">
-      <van-cell title="{{item.name}}" bind:click="onSelect" data-value="{{item.name}}">
-        <van-icon color="#0252cc" wx:if="{{value ==  item.name}}" slot="right-icon" name="success" class="custom-icon"  size="1.4em"/>
+    <block wx:for="{{pageData}}" wx:key="unique">
+      <van-cell title="{{item.name}}" bind:click="onCheck" data-value="{{item.name}}" data-index="{{index}}">
+        <van-icon color="#0252cc" wx:if="{{ item.checked}}" slot="right-icon" name="success" class="custom-icon"  size="1.4em"/>
       </van-cell>
     </block>
   </van-cell-group>

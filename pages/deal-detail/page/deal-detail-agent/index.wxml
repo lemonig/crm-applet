@@ -2,7 +2,7 @@
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
 <view class="container">
 
-<van-checkbox-group value="{{ result }}" bind:change="onChange">
+<van-radio-group value="{{ result }}" bind:change="onChange">
   <van-cell-group>
     <van-cell
       wx:for="{{ list }}"
@@ -11,15 +11,15 @@
       data-index="{{ index }}"
     >
     <view slot="title">
-      <van-checkbox
+      <van-radio 
       catch:tap="noop"
         class="checkboxes-{{ index }}"
         name="{{ item.id }}"
-      > {{ item.label }}</van-checkbox> 
+      > {{ item.name }}</van-radio > 
     </view>
     </van-cell>
   </van-cell-group>
-</van-checkbox-group>
+</van-radio-group>
 
 </view>
 

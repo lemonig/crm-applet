@@ -1,135 +1,129 @@
 // pages/search/customer-search/index.js
 import { linkmanInfo } from '../../../api/linkman';
+import { debounce } from '../../../utils/util';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     titleProps: {
-      title:'选择联系人'
+      title: '选择联系人',
     },
-    key: '',
-    options:[{
-      name: "张三",
-      value: "1",
-    },
-    {
-      name: "零四",
-      value: "2",
-    },
-    {
-      name: "王五",
-      value: "3",
-    },
-    {
-      name: "赵六",
-      value: "4",
-    },
-    {
-      name: "钱吧",
-      value: "5",
-    }
-    ],
+    pageData: [],
     btnLoad: false,
-    value:''
-    
+    value: [],
   },
-  onSelect(event) {
-    console.log(event);
+  onCheck(event) {
+    let { index, value } = event.currentTarget.dataset;
+    let item = this.data.pageData[index];
+    item.checked = !item.checked;
+    console.log(item);
     this.setData({
-      value:event.currentTarget.dataset.value
-    })
-   
+      pageData: [...this.data.pageData],
+    });
   },
 
   comfirm() {
-    console.log(this.data.value);
-    var pages = getCurrentPages()
-    var prePages = pages[pages.length - 2]
+    var pages = getCurrentPages();
+    var prePages = pages[pages.length - 2];
+    let personList = this.data.pageData.filter((item) => item.checked);
     prePages.setData({
-      "form.name":this.data.value
-    })
+      linkmanMsg: personList.map((item) => item.id),
+      'form.personName': personList.map(item => item.name),
+    });
     wx.navigateBack({
-      delta: 1
-    })
+      delta: 1,
+    });
   },
 
   fetchData: async function () {
     let params = {
-      data:{
+      data: {
         orderBy: this.data.value1,
-        filterBy:this.data.value2,
+        filterBy: this.data.value2,
       },
-      page: this.data.pageNo,
-      size: 10,
     };
     let { data } = await linkmanInfo(params);
-    if (!data.length) {
-      this.setData({
-        isAllData: true,
+    if (!!this.data.value) {
+      console.log(this.data.value);
+      let newD = data.map((item) => {
+        console.log(this.data.value.includes(item.id),);
+        return {
+          ...item,
+          checked: this.data.value.includes(item.id),
+        };
       });
-      return
+      console.log(newD);
+      this.setData({
+        loading: false,
+        pageData: newD,
+      });
+    } else {
+      let newD = data.map((item) => {
+        return {
+          ...item,
+          checked: false,
+        };
+      });
+      this.setData({
+        loading: false,
+        pageData,
+      });
     }
-    this.setData({
-      loading: false,
-      pageData: this.data.pageData.concat(data),
-    });
   },
-
+  handleListFilter: debounce(function (eve) {
+    this.setData({
+      key: eve.detail,
+    });
+    if (!eve.detail) {
+      return;
+    }
+  }, 500),
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if (options.selected) {
+      this.setData({
+        value: [...options.selected].map(Number),
+      });
+    }
 
+    this.fetchData();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});

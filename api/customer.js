@@ -33,7 +33,7 @@ export function companyAdd(data) {
 // 客户
 export function companyDetail(data) {
   return _post({
-    url: `/mini/api/organization/detail`,
+    url: `/mini/api/organization/get`,
     data,
   });
 }

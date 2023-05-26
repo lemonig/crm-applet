@@ -1,52 +1,53 @@
 <!--pages/deal-detail/info/index.wxml-->
 <view class="info-wrap">
   <sd-card custom-class="card-margin" title="产品" >
-    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="pro"></van-icon>
+    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="pro" data-text="products" data-key="productId"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{productList}}" 
+        wx:for="{{pagaDate.products}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        title="{{item.name}}" 
+        value="{{item.num}}个" 
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="竞争对手">
-    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="oppo"></van-icon>
+    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="oppo" data-text="competitors" data-key="competitorId" ></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{oppoList}}" 
+       wx:for="{{pagaDate.competitors}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        title="{{item.competitorName}}" 
+
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="招标代理">
-    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="agent"></van-icon>
+    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="agent" data-text="biddingAgencies" data-key="biddingAgencyId"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{agentList}}" 
+       wx:for="{{pagaDate.biddingAgencies}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        lab1="{{item.a2}}" 
+        title="{{item.biddingAgencyName}}" 
+        lab1="{{item.biddingAgencyPersonName}}{{item.biddingAgencyPersonPhone}}" 
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="合作伙伴">
-    <van-icon   slot="icon" name="edit" bindtap="selectProduct" data-url="cro"></van-icon>
+    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="cro" data-text="partners" data-key="partnerId"></van-icon>
     <view slot="body">
       <sd-list 
-        wx:for="{{conList}}" 
+        wx:for="{{pagaDate.partners}}" 
+
         wx:key="id"
-        title="{{item.a1}}" 
-        lab1="{{item.a2}}" 
+        title="{{item.partnerName}}" 
+        lab1="{{item.partnerPersonPhone}}{{item.partnerPersonName}}" 
       >
       </sd-list>
     </view>
@@ -55,7 +56,7 @@
   <sd-card title="合同">
     <view slot="body">
       <sd-list 
-        wx:for="{{contList}}" 
+      wx:for="{{pagaDate.contracts}}" 
         wx:key="id"
         title="{{item.name}}" 
         value="负责人： {{item.ownerUserName}}" 

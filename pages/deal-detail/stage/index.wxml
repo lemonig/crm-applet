@@ -1,6 +1,6 @@
 <view class="pipeline-stage open">
   <view class="ul">
-    <view class="li {{item.isShow ? 'active' : ''}}" wx:for="{{value}}" wx:key="id" >
+    <view class="li {{item.isShow ? 'active' : ''}}" wx:for="{{list}}" wx:key="id" >
       <view class="stage-content">
         <text class="stagename"></text>
         <text class="stage-arrow"></text>

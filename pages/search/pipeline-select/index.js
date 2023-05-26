@@ -1,5 +1,12 @@
 // pages/pipeline-select/index.js
 import Notify from '@vant/weapp/notify/notify';
+import {
+  listPipelineStagePlus,
+  dealAct,
+  activityList,
+  terminationReasonList,
+  lostReasonList,
+} from '../../../api/deal';
 Page({
   /**
    * 页面的初始数据
@@ -8,115 +15,128 @@ Page({
     titleProps: {
       title: '推进流程阶段',
     },
-    pipeState: [
-      {
-        id: '1',
-        label: '信息获取',
-        value: 12,
-      },
-      {
-        id: '2',
-        label: '关系建立',
-        value: 12,
-      },
-      {
-        id: '3',
-        label: '公司认可',
-        value: 12,
-      },
-      {
-        id: '4',
-        label: '招投标签订',
-        value: 12,
-      },
-      {
-        id: '5',
-        label: '商机终止',
-        value: 100,
-      },
-      {
-        id: '6',
-        label: '输单',
-        value: 100,
-      },
-      {
-        id: '7',
-        label: '赢单',
-        value: 100,
-      },
-    ],
-
-    tarminalList: [
-      {
-        label: '客户取消项目',
-        value: '1',
-      },
-      {
-        label: '预算过大',
-        value: '2',
-      },
-    ],
-    loseList: [
-      {
-        label: '方案修改',
-        value: '1',
-      },
-      {
-        label: '临时取消',
-        value: '2',
-      },
-    ],
-
-    terminalForm:{
-      terminationReasonId:'1',
-      description:''
+    pipeState: [],
+    tarminalList: [],
+    loseList: [],
+    terminaId: '',
+    loseId: '',
+    description: '',
+    winForm: {
+      conNmae: '',
+      conId: '',
     },
-    loseForm:{
-      lostReasonId :'1',
-      description:''
-    },
-    winForm:{
-      conNmae :'',
-      conId:''
-    },
-
+    dealId: '',
     currentID: '',
+    pipelineType: 'default',
     btnLoad: false,
   },
   choosePipe(eve) {
-    let id = eve.currentTarget.dataset.id;
-    console.log(id);
+    let { id, ptype } = eve.currentTarget.dataset;
     this.setData({
       currentID: id,
+      pipelineType: ptype,
     });
   },
-  submit() {
+
+  onConfirmt(event) {
+    const { picker, value, index } = event.detail;
+    console.log(event.detail);
+    this.setData({
+      terminaId: value
+    })
+  },
+  onConfirml(event) {
+    const { picker, value, index } = event.detail;
+    this.setData({
+      loseId: value
+    })
+  },
+
+  async submit() {
     this.setData({
       btnLoad: true,
     });
-    // Notify({
-    //   message: '自定义时长',
-    //   duration: 1000,
-    // });
+    let { terminaId, loseId, winForm, dealId, currentID, pipelineType, description } = this.data;
+    let params = {
+      id: dealId,
+      pipelineStageId: currentID,
+      type: pipelineType,
+    };
+    console.log(pipelineType);
+    switch (pipelineType) {
+      case 'terminate':
+        params.terminationReasonId = terminaId;
+        params.description = description;
+        break;
+      case 'lose':
+        params.lostReasonId = loseId;
+        params.description = description;
+        break;
+      case 'win':
+        params.contractId = winForm.conId;
+        break;
+      default:
+        params.pipelineStageId;
+    }
+    let { success } = await dealAct(params);
     wx.showToast({
       title: '提交',
       icon: 'none',
     });
-    setTimeout(() => {
+    if (success) {
       wx.navigateBack();
+    }
+
+    setTimeout(() => {
       // wx.navigateBackMiniProgram()
     }, 2000);
   },
   selectCon() {
     wx.navigateTo({
       url: '/pages/search/contract-win/index',
-    })
-},
+    });
+  },
+
+  async getListPipelineStage() {
+    let { data } = await listPipelineStagePlus();
+    this.setData({
+      pipeState: data.map((item) => ({
+        ...item,
+        label: item.name,
+        value: item.dealProbability,
+      })),
+    });
+  },
+  async getTerminationReasonList() {
+    let { data } = await terminationReasonList();
+    this.setData({
+      tarminalList: data.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+    });
+  },
+  async getLostReasonList() {
+    let { data } = await lostReasonList();
+    this.setData({
+      loseList: data.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.setData({
+      dealId: options.dealId,
+    });
+    this.getListPipelineStage();
+    this.getTerminationReasonList();
+    this.getLostReasonList();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

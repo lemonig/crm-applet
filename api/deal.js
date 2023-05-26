@@ -24,7 +24,7 @@ export function organizationSearch(data) {
 // 商机详情
 export function detailDeal(data) {
   return _post({
-    url: `/mini/api/deal/detail`,
+    url: `/mini/api/deal/get`,
     data,
   });
 }
@@ -57,6 +57,12 @@ export function listPartner(data) {
     data,
   });
 }
+export function dealAct(data) {
+  return _post({
+    url: `/mini/api/deal/act`,
+    data,
+  });
+}
 // 竞争对手列表
 export function listCompetitor(data) {
   return _post({
@@ -71,3 +77,32 @@ export function listPipelineStage(data) {
     data,
   });
 }
+// 销售流程列表
+export function listPipelineStagePlus(data) {
+  return _post({
+    url: `/mini/api/pipeline/stage/plus`,
+    data,
+  });
+}
+
+  // 活动类型列表 
+  export function activityList(data) {  
+    return _post({    
+      url:`/mini/api/type/activity/list`,    
+      data  
+    })
+  }
+  // 终止原因列表 
+  export function terminationReasonList(data) {  
+    return _post({    
+      url:`/mini/api/type/terminationReason/list`,    
+      data  
+    })
+  }
+  // 丢单原因列表 
+  export function lostReasonList(data) {  
+    return _post({    
+      url:`/mini/api/type/lostReason/list`,    
+      data  
+    })
+  }

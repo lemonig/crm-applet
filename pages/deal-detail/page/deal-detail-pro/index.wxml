@@ -2,7 +2,6 @@
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
 <view class="container">
 
-<van-checkbox-group value="{{ result }}" bind:change="onChange">
   <van-cell-group>
     <van-cell
       wx:for="{{ list }}"
@@ -12,17 +11,20 @@
     >
     <view slot="title">
       <van-checkbox
-        catch:tap="noop"
         class="checkboxes-{{ index }}"
         name="{{ item.id }}"
+        bind:change="onCheckChange"
+        value="{{item.checked}}"
+        data-index="{{index}}"
       > 
-        {{ item.label }}
+        {{ item.name }}  （单位：{{item.unit ? item.unit : '--'}}）
       </van-checkbox> 
     </view>
-    <van-stepper value="{{ item.value }}" integer min="0" max="1000"/>
+    <van-stepper 
+    bind:change="stepChange" 
+    value="{{ item.value }}" integer min="0" max="1000" data-index="{{index}}" />
     </van-cell>
   </van-cell-group>
-</van-checkbox-group>
 
 </view>
 

@@ -1,6 +1,8 @@
 // pages/home/index.js
 import Notify from '@vant/weapp/notify/notify';
 import Dialog from '@vant/weapp/dialog/dialog';
+import { saleCount,dashboard } from '../../api/home';
+
 const app = getApp()
 const salerData = [
 
@@ -365,6 +367,11 @@ Page({
         // on cancel
       });
   },
+
+  async getSaleCount(){
+    SaleCount
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -386,8 +393,6 @@ Page({
     this.contractMoneyBarInit()
     this.funnelMoneyBarInit()
     this.getTabBar().init();
-
-
   },
 
   /**

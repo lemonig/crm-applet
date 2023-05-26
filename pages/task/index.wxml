@@ -11,34 +11,44 @@
 </van-dropdown-menu>
 <view class="task-container">
   <!-- FIMME 点击范围无效 -->
-  <view wx:for="{{pageData}}" wx:key="id" class="flex-row" >
-    <view class="cell-left" bindtap="onChange" id="{{item.id}}" data-checked="{{item.checked}}">
-      <van-checkbox bind:change="onChange" value="{{ item.checked }}" checked-color="#07c160" data-checked="{{item.checked}}"  id="{{item.id}}"/>
+  <scroll-view style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) ) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
+    <view wx:for="{{pageData}}" wx:key="id" class="flex-row">
+      <view class="cell-left" bindtap="onChange" id="{{item.id}}" data-checked="{{item.done}}">
+        <van-checkbox bind:change="onChange" value="{{ item.done }}" checked-color="#07c160" data-checked="{{item.done}}" id="{{item.id}}" disabled="{{item.isOwner}}" />
+      </view>
+
+
+      <view class="cell-right" bindtap="gotoDetail" data-id="{{item.id}}">
+        <view class="one label-text">
+          <text>
+            {{item.typeName}}
+          </text>
+          <text class="font-color-gray {{item.done ? 'check-style' :''}}">
+            {{item.dealName}}
+          </text>
+        </view>
+        <view class="two desc-label">
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}">{{item.subject}}</text>
+
+        </view>
+        <view class="desc-label ">
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}">{{item.personName}} {{item.personPhone}}</text>
+          <van-icon name="underway-o" class="mar-12" />
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}"> {{item.time}} </text>
+        </view>
+      </view>
     </view>
 
-
-    <view class="cell-right" bindtap="gotoDetail">
-      <view class="one label-text">
-        <text>
-          {{item.type}}
-        </text>
-        <text class="font-color-gray {{item.checked ? 'check-style' :''}}">
-          {{item.project}}
-        </text>
-      </view>
-      <view class="two desc-label">
-        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}">{{item.desc}}</text>
-
-      </view>
-      <view class="desc-label ">
-        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}">{{item.name}}</text> 
-        <van-icon name="underway-o" class="mar-12" />
-        <text class="font-color-gray  {{item.checked ? 'check-style' :''}}"> {{item.time}} </text>
-      </view>
+    <view style="text-align: center;margin: 8px 0" wx:if="{{loading}}">
+      <van-loading color="var(--primary)">加载中...</van-loading>
     </view>
+    <van-divider wx:if="{{isAllData}}" contentPosition="center" customStyle=" font-size: 12px;">
+      到底了
+    </van-divider>
 
-  </view>
 
+
+  </scroll-view>
 </view>
 
 

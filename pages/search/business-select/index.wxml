@@ -4,29 +4,32 @@
   bind:change="handleListFilter"
   bind:search="handleListFilter"
   placeholder="请输入搜索关键词" />
-<!-- <van-index-bar index-list="{{ indexList }}">
-  <view wx:for="{{ filterList }}" wx:key="*this" wx:for-item="class" wx:for-index="classIdx">
-    <van-index-anchor wx:if="{{ class.list.length }}" index="{{ indexList[classIdx] }}">{{ indexList[classIdx] }}</van-index-anchor>
-    <van-cell wx:for="{{ class.list }}" wx:key="*this" title="{{ item.label }}" value="{{ item.value }}" data-id="{{ item.id }}"  data-siteName="{{ item.label }}" data-siteId="{{ item.id }}" data-classIdx="{{ classIdx }}" bind:click="handleSiteClick" />
-  </view>
-</van-index-bar> -->
 
-<van-index-bar>
+
+<!-- <van-index-bar>
   <view>
     <van-index-anchor index="A" />
     <van-cell title="湖州商机" bindtap="seDxxxx" data-data="湖州商机" data-id="1"/>
     <van-cell title="文本" />
     <van-cell title="文本" />
   </view>
+</van-index-bar> -->
 
-  <view>
-    <van-index-anchor index="B" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
-    <van-cell title="文本" />
+<view class="select-main">
+  <van-cell-group>
+    <block wx:for="{{pageData}}" wx:key="unique">
+      <van-cell title="{{item.title}}" bind:click="onSelect" data-value="{{item.title}}" data-item="{{item}}">
+        <van-icon color="#0252cc" wx:if="{{value.id ==  item.id}}" slot="right-icon" name="success" class="custom-icon" size="1.4em" />
+      </van-cell>
+    </block>
+  </van-cell-group>
+
+  <view class="form-btn-area">
+    <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." bind:click="comfirm" custom-style="width: 600rpx;">确定</van-button>
   </view>
 
-</van-index-bar>
+</view>
+
 
 <van-toast id="van-toast" />
 <van-notify id="van-notify" />

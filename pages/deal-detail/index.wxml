@@ -19,12 +19,12 @@
     <view bindtap="selectPipeline">
       <view class="stage-wrap" >
         <view class="triangle"></view>
-        <text wx:for="{{msg}}" wx:key="id">
-          {{item.text}}
+        <text wx:for="{{data.pipelineDetailList}}" wx:key="id">
+          {{item.name}}
         </text>
      </view>
       
-      <sd-stage value="{{msg}}"></sd-stage>
+      <sd-stage list="{{data.pipelineDetailList}}" value="{{pipelineId}}"></sd-stage>
       <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
     </view>
   </view>
@@ -39,7 +39,7 @@
         <sd-base wx:if="{{ active ==   1}}" dealId="{{dealId}}" pagaData="{{data.baseInfo}}"></sd-base>
       </van-tab>
       <van-tab title="相关信息">
-        <sd-info wx:if="{{ active ==   2}}" dealId="{{dealId}}" pagaData="{{data.relatedInfo}}"></sd-info>
+        <sd-info wx:if="{{ active ==   2}}" dealId="{{dealId}}" pagaDate="{{data.relatedInfo}}"></sd-info>
       </van-tab>
     </van-tabs>
   </view>

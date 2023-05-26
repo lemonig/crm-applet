@@ -1,5 +1,7 @@
 // pages/task-detail/index.js
 import Dialog from '@vant/weapp/dialog/dialog';
+import { addTask,updateTask,detailTask,searchDeal,listTask,activityList } from '../../api/task';
+
 
 const beforeClose = (action) => new Promise((resolve) => {
   console.log(action);
@@ -22,7 +24,8 @@ Page({
     titleProps: {
       title: "任务"
     },
-    id:''
+    id:'',
+    data:{}
   },
 
 
@@ -50,6 +53,13 @@ Page({
       url: '/pages/task-form/index?id='+ this.data.id,
     })
   },
+  fetchData: async function () {
+    let { data } = await detailTask({
+      id: this.data.id,
+    });
+    this.setData({ data });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -64,13 +74,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.fetchData()
 
   },
 

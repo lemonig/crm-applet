@@ -1,5 +1,5 @@
 // pages/deal/index.js
-import { pageDeal } from '../../api/deal';
+import { pageDeal,listPipelineStage } from '../../api/deal';
 const app = getApp();
 Page({
   data: {
@@ -8,79 +8,69 @@ Page({
       title: '商机', // 导航栏标题
     },
     option1: [
-      {
-        text: '关系建立',
-        value: 0,
-      },
-      {
-        text: '公司认可',
-        value: 1,
-      },
-      {
-        text: '按系统设定的流程阶段',
-        value: 2,
-      },
+
     ],
     option2: [
       {
         text: '录入时间（正反）',
-        value: 'a',
+        value: 1,
       },
       {
         text: '跟进时间（正反',
-        value: 'b',
+        value: 2,
       },
       {
         text: '商机金额（正反）',
-        value: 'c',
+        value: 3,
       },
       {
         text: '业务类型（正反）',
-        value: 'd',
+        value: 4,
       },
     ],
     option3: [
       {
         text: '全部商机',
-        value: 'a',
+        value: 1,
       },
       {
         text: '我负责的商机',
-        value: 'b',
+        value: 2,
       },
       {
         text: '下属负责的商机',
-        value: 'c',
+        value: 3,
       },
       {
         text: '赢单商机',
-        value: 'd',
+        value: 4,
       },
       {
         text: '输单商机',
-        value: 'e',
+        value: 5,
       },
       {
         text: '终止商机',
-        value: 'g',
+        value: 6,
       },
       {
         text: '进行中商机',
-        value: 'h',
+        value: 7,
       },
       {
         text: '特殊业务商机',
-        value: 'i',
+        value: 8,
       },
       {
         text: '默认我负责的商机',
-        value: 'j',
+        value: 9,
       },
     ],
-    value1: 0,
-    value2: 'a',
-    value3: 'a',
+    value1: 1,
+    value2: 1,
+    value3: 1,
     pageData: [],
+    pageDataCum:{},
     id: '',
     isPage: false,
     pageNo: 1,
@@ -93,15 +83,22 @@ Page({
    */
   onLoad(options) {
     this.fetchData();
+    this.getListPipelineStage()
 
   },
 
   fetchData: async function () {
+    let { value1,value2,value3} = this.data
     let params = {
       page: this.data.pageNo,
       size: 30,
+      data:{
+        pipelineStageId: value1,
+        filterBy:value3,
+        orderBy:value2,
+      }
     };
-    let { data } = await pageDeal(params);
+    let { data,additional_data } = await pageDeal(params);
     if (!data.length) {
       this.setData({
         isAllData: true,
@@ -111,6 +108,7 @@ Page({
     this.setData({
       loading: false,
       pageData: this.data.pageData.concat(data),
+      pageDataCum: additional_data.count.totalCount
     });
   },
 
@@ -133,7 +131,16 @@ Page({
     });
     this.fetchData();
   },
-
+  // 
+  async getListPipelineStage() {
+    let { data } = await listPipelineStage();
+    this.setData({
+      option1: data.map((item) => ({
+        text: item.name,
+        value: item.id,
+      })),
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

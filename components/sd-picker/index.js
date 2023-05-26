@@ -9,7 +9,9 @@ Component({
     },
     value: {
       type: String | Number,
-      observer: function (newVal, oldVal) {}
+      observer: function (newVal, oldVal) {
+        console.log(newVal);
+      }
     },
     required: {
       type: Boolean,
@@ -58,6 +60,7 @@ Component({
         label: value.label,
         show: false
       })
+      this.triggerEvent('confirm', value )
     }
   },
 })
