@@ -4,7 +4,8 @@
 .popup-title {
   width: 100%;
   text-align: center;
-  padding: 26rpx 0;
+  /* padding: 26rpx 0; */
+  line-height: 100rpx;
 }
 .select-main {
   height: 300rpx;

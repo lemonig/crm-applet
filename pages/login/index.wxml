@@ -4,30 +4,24 @@
 
 </navigation-bar>
 <view class="container">
+  <van-image
+      class="logo"
+      fit="contain"
+      src="/assets/imgs/bg_welcome.png"
+    />
+    <view class="title">CRM</view>
   <view class="form">
-  
-    <van-field
-      value="{{ form.username.value }}"
-      placeholder="请输入账号"
-      border="{{ false }}"
-      input-class="input"
-      error="{{ form.username.validate }}"
-      error-message="{{ form.username.errorText }}"
-      bind:input="handleUsernameInput"
-    />
-    <van-field
-      value="{{ form.password.value }}"
-      placeholder="请输入密码"
-      border="{{ false }}"
-      type="password"
-      input-class="input"
-      error="{{ form.password.validate }}"
-      error-message="{{ form.password.errorText }}"
-      bind:input="handlePasswordInput"
-    />
-    <van-button type="primary" loading="{{ loading }}" disabled="{{ loading }}" block bind:click="handleLogin">登录</van-button>
+    <van-field value="{{ form.username.value }}" placeholder="请输入账号" border="{{ false }}" input-class="input" error="{{ form.username.validate }}" error-message="{{ form.username.errorText }}" bind:input="handleUsernameInput" />
+    <van-field value="{{ form.password.value }}" placeholder="请输入密码" border="{{ false }}" type="password" input-class="input" error="{{ form.password.validate }}" error-message="{{ form.password.errorText }}" bind:input="handlePasswordInput" />
+    <van-button custom-style="margin-top: 50rpx;" type="primary" loading="{{ loading }}" disabled="{{ loading }}" block bind:click="handleLogin">登录</van-button>
   </view>
 </view>
 
 <van-toast id="van-toast" />
 <van-notify id="van-notify" />
+
+<!-- <view class="container">
+  <view class="logo"></view>
+  <view class="title">欢迎登录</view>
+  <van-button class="login-btn" type="primary" round block open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" color ="#07c160">微信一键登录</van-button>
+</view> -->

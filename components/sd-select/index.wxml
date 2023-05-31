@@ -1,9 +1,9 @@
 <!--components/select/index.wxml-->
-<van-popup show="{{ open }}" closeable close-icon-position="top-left" position="bottom" custom-style="height: 30%" bind:close="onClose">
+<van-popup show="{{ open }}" closeable close-icon-position="top-left" position="bottom" custom-style="height: {{height}}%" bind:close="onClose">
   <view class="popup-title">
     筛选
   </view>
-  <view class="select-main">
+  <scroll-view class="select-main" style="height:calc( 100% - 100rpx);">
     <van-cell-group>
       <block wx:for="{{options}}" wx:key="unique">
         <van-cell title="{{item.label}}" bind:click="onSelect" data-value="{{item.value}}">
@@ -11,5 +11,5 @@
         </van-cell>
       </block>
     </van-cell-group>
-  </view>
+  </scroll-view>
 </van-popup>

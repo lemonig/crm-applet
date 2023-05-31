@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/deal/index",
     "pages/home/index",
     "pages/a-map/index",
     "pages/index/index",
     "pages/logs/logs",
-  
+    "pages/deal/index",
     "pages/deal-detail/index",
     "pages/deal-form/index",
     "pages/linkman-form/index",
@@ -50,7 +49,7 @@
   },
   "requiredPrivateInfos": [
     "getLocation",
-    "onLocationChange",
+
     "chooseLocation"
   ],
   "lazyCodeLoading": "requiredComponents",

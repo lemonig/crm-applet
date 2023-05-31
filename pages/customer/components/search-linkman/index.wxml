@@ -1,6 +1,6 @@
 <!--pages/customer/components/search-linkman/index.wxml-->
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
-<van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+<van-search model:value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
 
 
 <view class="container">

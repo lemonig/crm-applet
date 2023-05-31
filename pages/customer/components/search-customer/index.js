@@ -1,4 +1,6 @@
 // pages/customer/components/search-customer/index.js
+import { companyInfo } from '../../../../api/customer';
+import { debounce } from "../../../../utils/util";
 Page({
 
   /**
@@ -9,28 +11,34 @@ Page({
       title:"客户搜索"
     },
     list: [
-      {
-        id:'1',
-        a: '杭州市环保局',
-        b: '未收款200w',
-        c: '2032-9-9',
-
-      },
-      {
-        id:'2',
-        a: '平湖市环保局',
-        b: '未收款600w',
-        c: '2032-9-9',
-
-      }
+  
     ],
+    key: '',
   },
-  gotoDetail() {
-    wx.navigateTo({
-      url: '/pages/customer-detail/index?id=1',
-    })
+  gotoDetail(eve) {
+    let id = eve.currentTarget.dataset.id
+      wx.navigateTo({
+        url: '/pages/linkman-detail/index?id='+ id,
+      })
   },
+  fetchData: async function () {
+    let params = {
+      page: 1,
+      size: 20,
+      data:{
+        name: this.data.key
+      }
+    };
+    let { data } = await companyInfo(params);
 
+    this.setData({
+      loading: false,
+      list: data,
+    });
+  },
+  handleListFilter: debounce(function(){
+    this.fetchData()
+  },500) ,
   /**
    * 生命周期函数--监听页面加载
    */

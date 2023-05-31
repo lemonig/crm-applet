@@ -1,6 +1,7 @@
 // pages/contract/index.js
 const app = getApp();
 const mock = require('./mock');
+import { pagecContract,getContract } from '../../api/contract';
 var cloneData = [];
 
 Page({

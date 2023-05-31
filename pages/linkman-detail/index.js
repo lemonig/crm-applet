@@ -1,5 +1,5 @@
 import Dialog from '@vant/weapp/dialog/dialog';
-import { linkmanDetail } from '../../api/linkman';
+import { linkmanDetail ,linkmanDelete} from '../../api/linkman';
 
 const beforeClose = (action) => new Promise((resolve) => {
   console.log(action);
@@ -46,6 +46,15 @@ Page({
         console.log(action);
         setTimeout(() => {
           if (action === 'confirm') {
+            linkmanDelete({
+              id:this.data.id
+            }).then(res=>{
+              wx.showToast({
+                title: res.message,
+                icon:'none'
+              });
+              wx.navigateBack()
+            })
             resolve(true);
           } else {
             // 拦截取消操作

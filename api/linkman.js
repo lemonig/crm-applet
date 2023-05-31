@@ -32,7 +32,7 @@ export function linkmanDetail(data) {
 // 客户联系人删除
 export function linkmanDelete(data) {
   return _post({
-    url: `/api/person/delete`,
+    url: `/mini/api/person/delete`,
     data,
   });
 }

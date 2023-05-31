@@ -69,11 +69,45 @@ Page({
     // params.password = hexMD5(params.password);
     let { data ,success} =await login(params);
     if(success){
-      // wx.setStorage({ key: 'token', data: data });
+      wx.setStorage({ key: 'token', data: data.access_token });
         wx.switchTab({
           url: '/pages/home/index',
         })
     }
 
   },
+  
+
+
+
+  // wxlogin
+  onGetPhoneNumber: function(e) {
+    if (e.detail.errMsg === 'getPhoneNumber:ok') {
+      // 用户点击了授权按钮并成功获取手机号码
+      const encryptedData = e.detail.encryptedData;
+      const iv = e.detail.iv;
+      
+      // 在这里可以进行手机号码的解密和处理
+      // 例如，可以将手机号码发送给服务器进行验证
+      
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success',
+        duration: 2000,
+        complete: function() {
+          // 在这里可以进行登录成功后的操作，例如跳转到其他页面
+          wx.switchTab({
+            url: '/pages/home/home' // 跳转到首页
+          });
+        }
+      });
+    } else {
+      // 用户点击了拒绝按钮或获取手机号码失败
+      wx.showToast({
+        title: '登录失败',
+        icon: 'none',
+        duration: 2000
+      });
+    }
+  }
 });

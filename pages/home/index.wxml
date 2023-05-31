@@ -3,7 +3,7 @@
 
 <navigation-bar default-data="{{defaultData}}" back="{{false}}">
   <!-- <text class="iconfont icon-tuichudenglu" style="font-size: 1em;color: #fff;"></text> -->
-  <van-icon name="revoke" bindtap="logout"/>
+  <van-icon name="revoke" bindtap="logout" />
 </navigation-bar>
 <view class="container home-container  page-padding">
 
@@ -34,7 +34,7 @@
       <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.link}}" bindtap="gotoSaleDetail">
         <view class="flex-col text-block">
           <text>{{item.label}}</text>
-          <text wx:if="{{item.unit}}">{{ item.val }}{{item.unit}}</text>
+          <text wx:if="{{item.unit}}">{{ pageData1[item.key] }}{{item.unit}}</text>
           <sd-money style="color:#111" wx:else text="{{item.val}}">{{item.val}}</sd-money>
         </view>
       </van-col>
@@ -52,8 +52,8 @@
   <sd-title title="仪表盘">
     <view slot="select" class="double-btn">
       <sd-space>
-        <view class="select-btn" bindtap="onShowSalePopup">
-          <text>{{utils.filterlabel(saleOptions,saleValue)}}</text>
+        <view class="select-btn" bindtap="onShowSalePopup1">
+          <text>{{utils.filterlabel(saleOptions1,saleValue1)}}</text>
           <van-icon name="arrow-down" />
         </view>
         <view class="select-btn" bindtap="onShowTimePopup">
@@ -72,61 +72,61 @@
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>新签合同</text>
-          <text>2个</text>
+          <text>{{pageData2.contractAddNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>合同金额</text>
-          <text>6000,000</text>
+          <sd-money text="{{pageData2.contractValue}}">{{pageData2.contractValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract">
           <text>回款金额</text>
-          <text>6000,000</text>
+          <sd-money text="{{pageData2.contractReceivedValue}}">{{pageData2.contractReceivedValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>新增商机</text>
-          <text>2个</text>
+          <text>{{pageData2.dealAddNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>新增商机金额</text>
-          <text>6000,000</text>
+          <sd-money text="{{pageData2.dealAddValue}}">{{pageData2.dealAddValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>商机金额预测</text>
-          <text>6000,000</text>
+          <sd-money text="{{pageData2.dealPrevValue}}">{{pageData2.dealPrevValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>赢单商机</text>
-          <text>2个</text>
+          <text>{{pageData2.dealWinNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>输单商机</text>
-          <text>2</text>
+          <text>{{pageData2.dealLoseNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal">
           <text>终止商机</text>
-          <text>2个</text>
+          <text>{{pageData2.dealTerminateNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
         <view class="flex-col text-block" bindtap="gotoDetail" data-panel="customer">
           <text>新增跟进记录</text>
-          <text>2个</text>
+          <text>{{pageData2.followUpAddNum}}个</text>
         </view>
       </van-col>
 
@@ -176,7 +176,7 @@
         <van-icon name="filter-o" color="#0252CC" />
         销售漏斗
       </view>
-      <view class="select-btn" bindtap="onRankPopupClick" slot="select">
+      <view class="select-btn" bindtap="onFunnelPopupClick" slot="select">
         <text>{{utils.filterlabel(funnelList,funnelValue)}}</text>
         <van-icon name="arrow-down" />
       </view>
@@ -193,7 +193,8 @@
 <van-notify id="van-notify" />
 <van-dialog id="van-dialog" />
 <!-- 我的销售 -->
-<sd-select open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
+<sd-select  open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
+<sd-select height="50" open="{{ saleShow1 }}" options="{{saleOptions1}}" value="{{saleValue1}}" bindmyevent="onSaleChange1"></sd-select>
 <sd-select open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
 <sd-select open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
 <sd-select open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>

@@ -14,7 +14,7 @@
       type="{{type}}"
       bind:cancel="onClose" 
       bind:confirm="confirmPicker"
-      value="{{ currentDate }}"
+      value="{{ value }}"
       min-date="{{ minDate }}"
       bind:input="onInput"
       formatter="{{ formatter }}"

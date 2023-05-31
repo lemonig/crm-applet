@@ -9,7 +9,7 @@ Page({
     titleProps: {
       title:"搜索联系人"
     },
-
+    key: '',
     pageData: [],
     loading: false,
   },
@@ -22,20 +22,18 @@ Page({
 
   fetchData: async function () {
     let params = {
-      page: this.data.pageNo,
-      size: 10000,
-      name: this.data.key
+      page:1,
+      size: 20,
+      data:{
+        name: this.data.key
+
+      }
     };
     let { data } = await linkmanInfo(params);
-    if (!data.length) {
-      this.setData({
-        isAllData: true,
-      });
-      return
-    }
+
     this.setData({
       loading: false,
-      pageData: this.data.pageData.concat(data),
+      pageData: data,
     });
   },
   handleListFilter: debounce(function(){

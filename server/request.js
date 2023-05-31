@@ -3,8 +3,9 @@ import { contentType, messageName, statusName, successCode } from '../config/ind
 import { isArray } from '../utils/validate.js';
 import Notify from '@vant/weapp/notify/notify';
 import Toast from '@vant/weapp/toast/toast';
-const baseURL = 'http://192.168.188.176:8890';
-// const baseURL = 'https://z500c36535.goho.co';
+// const baseURL = 'http://192.168.188.176:8890';
+const baseURL = 'https://wx.greandata1.com';
+// const baseURL = 'http://192.168.168.9:15612';
 
 let loadingInstance = null;
 
@@ -40,10 +41,10 @@ const request = ({ url, method, data, header }) => {
   }
   wx.showLoading({
     title: '请稍等...',
-    mask:true,
-  })
+    mask: true,
+  });
   return new Promise((resolve, reject) => {
-  console.log('params===='+ data);
+    console.log('params====' + data);
 
     wx.request({
       url: baseURL + url,
@@ -60,10 +61,15 @@ const request = ({ url, method, data, header }) => {
         switch (code) {
           case 200:
             //  请求成功
-            return resolve(data);
-     
+            resolve(data);
+            break;
 
-            
+          case 401:
+            wx.redirectTo({
+              url: '/pages/login/index',
+            });
+            break;
+
           default:
             //  请求异常
             if (code === 10004) {
@@ -82,8 +88,8 @@ const request = ({ url, method, data, header }) => {
             console.log(errMsg);
             wx.showToast({
               title: errMsg,
-              icon: 'error'
-            })
+              icon: 'error',
+            });
             Notify({
               type: 'danger',
               message: errMsg,
@@ -92,16 +98,16 @@ const request = ({ url, method, data, header }) => {
         }
       },
       fail: function (err) {
-        console.log('err-----'+err);
+        console.log('err-----' + err);
         wx.showToast({
           title: err.message,
-          icon: 'error'
-        })
+          icon: 'error',
+        });
         reject(err);
       },
-      complete(){
-        wx.hideLoading()
-      }
+      complete() {
+        wx.hideLoading();
+      },
     });
   });
 };

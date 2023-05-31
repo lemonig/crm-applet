@@ -54,7 +54,8 @@ Page({
       name: '',
       phone: '',
       orgId: '',
-      isKdm: '',
+      orgName:"",
+      isKdm: true,
       department: '',
       jobTitle: '',
       gender: '',
@@ -69,6 +70,7 @@ Page({
       btnLoad: true,
     });
     let params = e.detail.value;
+    params.orgId = this.data.form.orgId
     if (this.data.id) {
       params.id = this.data.id
       var { success } = await linkmanUpdate(params);
@@ -83,6 +85,11 @@ Page({
     }, 2000);
   },
 
+  selectCus() {
+    wx.navigateTo({
+      url: '/pages/search/customer-select/index',
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

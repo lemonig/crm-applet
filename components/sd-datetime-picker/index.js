@@ -7,12 +7,20 @@ Component({
     title: {
       type: String
     },
-    options: {
-      type: Array
-    },
+
     value: {
       type: String | Number,
-      observer: function (newVal, oldVal) {}
+      observer: function (newVal, oldVal) {
+        console.log(newVal);
+        console.log(oldVal);
+        if(newVal){
+          this.setData({
+            value: dayjs(newVal).valueOf(),
+            label:dayjs(newVal).format(this.properties.formated)
+          })
+        }
+      },
+      value: dayjs().valueOf()
     },
     required: {
       type: Boolean,
@@ -29,14 +37,12 @@ Component({
   },
   data: {
     show: false,
-    value: "",
     // 分开，label留本地，val回传
     label: "",
     valIdx: "",
     minHour: 10,
     maxHour: 20,
-    minDate: new Date(2008, 1, 1).getTime(),
-    currentDate: new Date().getTime(),
+    minDate: dayjs('2008-01-01').valueOf(),
     formatter(type, value) {
       if (type === 'year') {
         return `${value}年`;
@@ -52,14 +58,8 @@ Component({
   },
   lifetimes: {
     ready: function () {
-      // FIXEDME此处因为生命周期加载两次
-      let res = this.data.options.find(ele => ele.value == this.properties.value)
-      if (res) {
-        this.setData({
-          label: res.label,
-          value: res.value
-        })
-      }
+    
+     
     },
   },
 
@@ -75,7 +75,6 @@ Component({
       });
     },
     confirmPicker(event) {
-  
       let time = dayjs(event.detail).format(this.properties.formated) 
       this.setData({
         value: time,

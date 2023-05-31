@@ -1,5 +1,5 @@
 // pages/deal-detail/index.js
-import { detailDeal , listPipelineStage } from '../../api/deal';
+import { detailDeal, listPipelineStage } from '../../api/deal';
 Page({
   /**
    * 页面的初始数据
@@ -10,6 +10,7 @@ Page({
     },
     pipeState: [],
     pipelineId: '',
+    pipelineIdx: -1,
     active: 0,
     dealId: '',
     data: {},
@@ -19,7 +20,9 @@ Page({
     let { data } = await detailDeal({
       id: this.data.dealId,
     });
-    this.setData({ data });
+    let res = data.pipelineDetailList.findLastIndex((item) => item.isShow);
+    console.log(res);
+    this.setData({ data, pipelineIdx: res + 1 });
   },
   onChange(event) {
     console.log(event.detail.name);

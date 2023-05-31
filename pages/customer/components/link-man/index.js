@@ -115,4 +115,9 @@ Component({
   ready: function () {
     this.fetchData();
   },
+  detached(){
+    this.setData({
+      pageData: []
+    });
+  }
 });

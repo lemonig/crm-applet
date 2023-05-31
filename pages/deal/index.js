@@ -1,5 +1,5 @@
 // pages/deal/index.js
-import { pageDeal,listPipelineStage } from '../../api/deal';
+import { pageDeal, listPipelineStage } from '../../api/deal';
 const app = getApp();
 Page({
   data: {
@@ -7,70 +7,64 @@ Page({
     titleProps: {
       title: '商机', // 导航栏标题
     },
-    option1: [
-
-    ],
+    option1: [],
     option2: [
       {
-        text: '录入时间（正反）',
+        text: '录入时间',
         value: 1,
       },
       {
-        text: '跟进时间（正反',
+        text: '跟进时间',
         value: 2,
       },
       {
-        text: '商机金额（正反）',
+        text: '商机金额',
         value: 3,
-      },
-      {
-        text: '业务类型（正反）',
-        value: 4,
       },
     ],
     option3: [
       {
         text: '全部商机',
-        value: 1,
+        value: 0,
       },
       {
         text: '我负责的商机',
-        value: 2,
+        value: 1,
       },
       {
         text: '下属负责的商机',
-        value: 3,
+        value: 2,
       },
       {
         text: '赢单商机',
-        value: 4,
+        value: 3,
       },
       {
         text: '输单商机',
-        value: 5,
+        value: 4,
       },
       {
         text: '终止商机',
-        value: 6,
+        value: 5,
       },
       {
         text: '进行中商机',
-        value: 7,
+        value: 6,
       },
       {
         text: '特殊业务商机',
-        value: 8,
+        value: 7,
       },
       {
-        text: '默认我负责的商机',
-        value: 9,
+        text: '普通业务商机',
+        value: 8,
       },
     ],
-    value1: 1,
+    value1: 0,
     value2: 1,
     value3: 1,
     pageData: [],
-    pageDataCum:{},
+    pageDataCum: {},
     id: '',
     isPage: false,
     pageNo: 1,
@@ -82,34 +76,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.fetchData();
-    this.getListPipelineStage()
-
+    this.getListPipelineStage();
   },
 
   fetchData: async function () {
-    let { value1,value2,value3} = this.data
+    let { value1, value2, value3 } = this.data;
     let params = {
       page: this.data.pageNo,
       size: 30,
-      data:{
+      data: {
         pipelineStageId: value1,
-        filterBy:value3,
-        orderBy:value2,
-      }
+        filterBy: value3,
+        orderBy: value2,
+      },
     };
-    let { data,additional_data } = await pageDeal(params);
+    let { data, additional_data } = await pageDeal(params);
     if (!data.length) {
       this.setData({
         isAllData: true,
+        loading: false,
+        pageDataCum: additional_data.count.totalCount,
       });
-      return
+      return;
     }
     this.setData({
       loading: false,
       pageData: this.data.pageData.concat(data),
-      pageDataCum: additional_data.count.totalCount
+      pageDataCum: additional_data.count.totalCount,
     });
+    console.log(this, data.pageDataCum);
   },
 
   addDeal() {
@@ -131,34 +126,42 @@ Page({
     });
     this.fetchData();
   },
-  // 
+  //
   async getListPipelineStage() {
     let { data } = await listPipelineStage();
     this.setData({
-      option1: data.map((item) => ({
-        text: item.name,
-        value: item.id,
-      })),
+      option1: [
+        { text: '全部', value: 0 },
+        ...data.map((item) => ({
+          text: item.name,
+          value: item.id,
+        })),
+      ],
     });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
     console.log(this.getTabBar);
+    this.fetchData();
+
     this.getTabBar().init();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() {
+    this.setData({
+      pageData: [],
+    });
+  },
 
   /**
    * 生命周期函数--监听页面卸载
@@ -180,12 +183,11 @@ Page({
    */
   onShareAppMessage() {},
 
-
   sortChange1(eve) {
     this.setData({
       pageNo: 1,
       pageData: [],
-      value1:eve.detail
+      value1: eve.detail,
     });
     this.fetchData();
   },
@@ -193,7 +195,7 @@ Page({
     this.setData({
       pageNo: 1,
       pageData: [],
-      value2:eve.detail
+      value2: eve.detail,
     });
     this.fetchData();
   },
@@ -201,7 +203,7 @@ Page({
     this.setData({
       pageNo: 1,
       pageData: [],
-      value3:eve.detail
+      value3: eve.detail,
     });
     this.fetchData();
   },

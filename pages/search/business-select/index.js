@@ -67,11 +67,13 @@ Page({
     console.log(this.data.value);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
+    console.log(prePages);
     prePages.setData({
       'form.dealName': this.data.value.title,
       'form.dealId': this.data.value.id,
 
     });
+    console.log(prePages.data.form);
     wx.navigateBack({
       delta: 1,
     });

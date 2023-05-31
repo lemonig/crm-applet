@@ -22,7 +22,7 @@ Page({
       probability: 50,
       isFinalOrg: true,
       personList: [],
-      personName:"",
+      personName: '',
       productList: '',
       businessType: '1',
     },
@@ -59,17 +59,13 @@ Page({
     btnLoad: false,
     productMsg: [],
     linkmanMsg: [],
-    personName:'',
+    personName: '',
   },
 
   async getListPipelineStage() {
     let { data } = await listPipelineStage();
-    this.setData({
-      columnsStage: data.map((item) => ({
-        label: item.name,
-        value: item.id,
-      })),
-    });
+
+    return data;
   },
 
   showPopup(e) {
@@ -122,7 +118,7 @@ Page({
     //   btnLoad: false,
     // });
 
-      wx.navigateBack();
+    wx.navigateBack();
   },
 
   selectCus() {
@@ -137,7 +133,9 @@ Page({
   },
   selectProduct() {
     wx.navigateTo({
-      url: '/pages/deal-detail/page/deal-detail-pro/index?selected=' + JSON.stringify(this.data.productMsg),
+      url:
+        '/pages/deal-detail/page/deal-detail-pro/index?selected=' +
+        JSON.stringify(this.data.productMsg),
     });
   },
   fetchData: async function () {
@@ -157,24 +155,22 @@ Page({
    */
   onLoad(options) {
     // this.getLinkman();
-    this.getListPipelineStage();
-    console.log(options);
     let { id } = options;
-    if (id) {
-      this.setData({
-        _id: id,
-        titleProps: {
-          title: `编辑商机`,
-        },
-      });
-      this.fetchData();
-    } else {
-      this.setData({
-        titleProps: {
-          title: '新建商机',
-        },
-      });
-    }
+    this.pageInit(id);
+  },
+  pageInit: async function (id) {
+    let res = await this.getListPipelineStage();
+    this.setData({
+      _id: id,
+      titleProps: {
+        title: `${id ? '编辑' : '新建'}商机`,
+      },
+      columnsStage: res.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+    });
+    if (id) this.fetchData();
   },
 
   /**

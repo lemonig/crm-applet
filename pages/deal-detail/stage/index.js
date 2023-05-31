@@ -24,7 +24,7 @@ Component({
   methods: {
     gotoPipeline() {
       wx.navigateTo({
-        url: '/pages/pipeline-select/index',
+        url: '/pages/search/pipeline-select/index',
       })
     },
   }

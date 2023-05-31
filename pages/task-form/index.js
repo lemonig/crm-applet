@@ -19,7 +19,7 @@ Page({
     titleProps: {
       title: '任务',
     },
-    id: undefined,
+    _id: undefined,
     btnLoad: false,
     optionsLink: [],
     optionsActive: [],
@@ -34,26 +34,20 @@ Page({
       },
     ],
     form: {
-      name: '',
-      orgId: '',
-      orgName: '',
       dealId: '',
       dealName: '',
       startTime: '',
       endTime: '',
-      phone: '',
-      email: '',
       department: '',
-      jobTitle: '',
       description: '',
-      gender: '',
       personId: '',
       done: true,
       remindMe: '',
-      participant:"",
-      longitude:'',
-      latitude:'',
-      subject:''
+      participant: '',
+      longitude: '',
+      latitude: '',
+      address: '',
+      subject: '',
     },
     location: {},
     status: false,
@@ -65,22 +59,22 @@ Page({
     });
     console.log(e.detail.value);
     let params = e.detail.value;
+    params.dealId = this.data.form.dealId
     params.done = this.data.status;
     params.longitude = this.data.location.longitude;
     params.latitude = this.data.location.latitude;
+    params.address = this.data.location.address;
     params.startTimeDto = {
-      // time : dayjs(params.startTime).format('HHmm'),
-      date : dayjs(params.startTime).format('YYYYMMDD'),
-    } 
+      date: dayjs(params.startTime).format('YYYYMMDD'),
+    };
     params.endTimeDto = {
-      // time : dayjs(params.endTime).format('HHmm'),
-      date : dayjs(params.endTime).format('YYYYMMDD'),
-    } 
+      date: dayjs(params.endTime).format('YYYYMMDD'),
+    };
 
     let { description, title, value } = e.detail.value;
 
-    if (this.data.id) {
-      params.id = this.data.id;
+    if (this.data._id) {
+      params.id = this.data._id;
       var { success } = await updateTask(params);
     } else {
       var { success } = await addTask(params);
@@ -91,7 +85,9 @@ Page({
     setTimeout(() => {
       wx.navigateBack();
     }, 2000);
-
+    this.setData({
+      btnLoad: false,
+    });
     wx.addPhoneCalendar({
       title,
       startTime: dayjs(this.data.tipme).unix(),
@@ -140,29 +136,29 @@ Page({
       size: 100000,
     };
     let { data } = await linkmanInfo(params);
-    this.setData({
-      optionsLink: data.map((item) => ({
-        label: item.name,
-        value: item.id,
-      })),
-    });
+    return data;
   },
   getActivityList: async function () {
     let { data } = await activityList();
-    this.setData({
-      optionsActive: data.map((item) => ({
-        label: item.name,
-        value: item.id,
-      })),
-    });
+    return data;
   },
   fetchData: async function () {
     let { data } = await detailTask({
-      id: this.data.id,
+      id: this.data._id,
     });
-    data.startTime = dayjs(data.startTimeDto.date).format()
-    data.endTime = dayjs(data.endTimeDto.date).format()
-    this.setData({ form:data });
+    // data.startTime = dayjs(data.startTime).format();
+    // data.endTime = dayjs(data.endTime).format();
+    this.setData({
+      form: {
+        ...data,
+      },
+      location: {
+        address: data.address,
+        longitude: data.longitude,
+        latitude: data.latitude,
+      },
+      status: data.done,
+    });
     console.log(this.data.form);
   },
 
@@ -171,32 +167,37 @@ Page({
    */
   onLoad(options) {
     let { id, dealId, dealName } = options;
-    console.log(options);
-    this.getActivityList();
-    this.getLinkman();
-    if ('id' in options) {
-      this.setData({
-        id,
-        titleProps: {
-          title: `编辑任务`,
-        },
-      
-      });
-      this.fetchData()
-    } else {
-      this.setData({
-        titleProps: {
-          title: '新建任务',
-        },
-        form: {
-          ...this.data.form,
-          dealId: dealId,
-          dealName: dealName,
-        },
-      });
-    }
+    console.log(id);
+    this.pageInit(id, dealId, dealName);
+  },
 
-    // TODO 请求联系人详情
+  pageInit: async function (id, dealId, dealName) {
+    let res1 = await this.getActivityList();
+    let res2 = await this.getLinkman();
+    this.setData({
+      _id: id,
+      titleProps: {
+        title: `${id ? '编辑' : '新建'}任务`,
+      },
+      optionsActive: res1.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+      optionsLink: res2.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+    });
+    if (id) this.fetchData();
+    // if (!id) {
+    //   this.setData({
+    //     form: {
+    //       ...this.data.form,
+    //       dealId: dealId,
+    //       dealName: dealName,
+    //     },
+    //   });
+    // }
   },
 
   /**

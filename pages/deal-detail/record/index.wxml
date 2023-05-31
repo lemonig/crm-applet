@@ -2,15 +2,15 @@
 <van-cell-group>
   
   <sd-list 
-    wx:for="{{pageData}}" 
+    wx:for="{{pagaData}}" 
     wx:key="id"
-    title="{{item.a1}}" 
-    value="{{item.a2}}" 
-    lab1="{{item.a3}}"
-    desc1="{{item.a4}}"
+    title="{{item.ownerUserName}}" 
+    value="{{item.startTime}}" 
+    lab1="{{item.typeName}} {{item.description}}"
+    desc1="联系人 {{item.personName}}"
   >
-    <view wx:if="{{item.a5}}" class="label-text" slot="lab2">
-      <van-icon name="location" /> {{item.a5}}
+    <view wx:if="{{item.address}}" class="label-text" slot="lab2">
+      <van-icon name="location" /> {{item.address}}
     </view>
   </sd-list>
 

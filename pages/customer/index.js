@@ -1,13 +1,13 @@
 // pages/customer/index.js
 import { companyInfo } from '../../api/customer';
-
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     isOwnPage: true,
-
+    navBarHeight: app.globalData.navBarHeight,
     option1: [
       {
         text: '录入时间',
@@ -148,7 +148,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.fetchData()
   },
 
   /**
@@ -164,6 +163,7 @@ Page({
       const linkPage =   this.selectComponent('#linkPage')
       linkPage.fetchData()
     }
+    this.fetchData()
   
     console.log(this.getTabBar());
     this.getTabBar().init();
@@ -172,7 +172,15 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() {
+    this.setData({
+      pageData:[]
+    })
+    const linkPage =   this.selectComponent('#linkPage')
+    linkPage.setData({
+      pageData:[]
+    })
+  },
 
   /**
    * 生命周期函数--监听页面卸载

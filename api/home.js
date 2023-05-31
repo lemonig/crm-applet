@@ -16,3 +16,10 @@ export function dashboard(data) {
     data,
   });
 }
+
+export function taskInfo(data) {
+  return _post({
+    url: `/mini/api/index/infoCount`,
+    data,
+  });
+}

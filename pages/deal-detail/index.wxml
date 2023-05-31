@@ -17,23 +17,23 @@
     </view>
 
     <view bindtap="selectPipeline">
-      <view class="stage-wrap" >
-        <view class="triangle"></view>
-        <text wx:for="{{data.pipelineDetailList}}" wx:key="id">
+      <view class="stage-wrap">
+        <view class="triangle" style="left: calc({{(pipelineIdx / data.pipelineDetailList.length ) * 100 - (100 /  data.pipelineDetailList.length / 2)}}vw - 8px);"></view>
+        <text style="width:calc( {{ 100 / data.pipelineDetailList.length }}vw ) ;" wx:for="{{data.pipelineDetailList}}" wx:key="id">
           {{item.name}}
         </text>
-     </view>
-      
+      </view>
+
       <sd-stage list="{{data.pipelineDetailList}}" value="{{pipelineId}}"></sd-stage>
       <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
     </view>
   </view>
 
-  <view style="margin-top: 50rpx;"  >
+  <view style="margin-top: 50rpx;">
 
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title" lazy-render>
       <van-tab title="跟进记录">
-        <sd-record wx:if="{{ active ==   0}}" dealId="{{dealId}}" pagaData="{{data.followUpInfo}}"></sd-record>
+        <sd-record  dealId="{{dealId}}" pagaData="{{data.followUpInfo}}"></sd-record>
       </van-tab>
       <van-tab title="基本资料">
         <sd-base wx:if="{{ active ==   1}}" dealId="{{dealId}}" pagaData="{{data.baseInfo}}"></sd-base>

@@ -1,6 +1,7 @@
 /* pages/customer/index.wxss */
 .cus-container{
-  
+  background-color: rgb(241, 244, 249);
+  padding-bottom: 100rpx;
 }
 .search-icon{
   margin-right: 12px;

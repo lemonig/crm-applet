@@ -31,16 +31,9 @@ Page({
     ],
     option2: [{
         text: '全部',
-        value: 'a'
+        value: 0
       },
-      {
-        text: '电话',
-        value: 'b'
-      },
-      {
-        text: '拜访',
-        value: 'c'
-      },
+
     ],
     option3: [{
         text: '仅我本人',
@@ -52,8 +45,8 @@ Page({
       },
 
     ],
-    value1: 1,
-    value2: 1,
+    value1: 0,
+    value2: 0,
     value3: 1,
 
     checked: false,
@@ -104,6 +97,14 @@ Page({
       url: '/pages/task-form/index',
     })
   },
+
+  handleToLower: function () {
+    this.setData({
+      loading: true,
+      pageNo: this.data.pageNo + 1,
+    });
+    this.fetchData();
+  },
   gotoDetail(eve) {
     console.log(eve);
     let id = eve.currentTarget.dataset.id;
@@ -134,12 +135,20 @@ Page({
       pageData: this.data.pageData.concat(data),
     });
   },
-
+  getActivityList: async function () {
+    let { data } = await activityList();
+    this.setData({
+      option2:[...this.data.option2,...data.map(item=> ({
+        text: item.name,
+        value:item.id
+      }))]
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.getActivityList()
   },
 
 
@@ -164,7 +173,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    this.setData({
+      pageData:[]
+    })
   },
 
   /**
@@ -193,5 +204,29 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+  sortChange1(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value1:eve.detail
+    });
+    this.fetchData();
+  },
+  sortChange2(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value2:eve.detail
+    });
+    this.fetchData();
+  },
+  sortChange3(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value3:eve.detail
+    });
+    this.fetchData();
+  },
 })

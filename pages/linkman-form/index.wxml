@@ -5,7 +5,8 @@
     <van-cell-group custom-class="cell-group-class">
       <van-field value="{{form.name}}" name='name' required label="姓名" input-align="right" placeholder="请输入" />
       <van-field value="{{form.phone}}" name='phone' required label="联系电话" input-align="right" placeholder="请输入" />
-      <sd-picker value="{{form.orgId}}" name="orgId" required title="客户" options="{{optionsOrg}}"></sd-picker>
+      <!-- <sd-picker value="{{form.orgId}}" name="orgId" required title="客户" options="{{optionsOrg}}"></sd-picker> -->
+      <van-cell value="{{form.orgName}}" name="orgId" required title="客户名称" is-link bind:click="selectCus" />
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <sd-picker value="{{form.isKdm}}" name="isKdm" title="关键决策人" options="{{deciedOption}}"></sd-picker>

@@ -12,6 +12,10 @@ Component({
     },
     value: {
       type: String | Number
+    },
+    height:{
+      type: Number | String,
+      value: 30
     }
   },
 
