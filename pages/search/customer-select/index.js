@@ -25,7 +25,7 @@ Page({
     });
   },
 
-  comfirm() {
+   confirm() {
     console.log(this.data.value);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];

@@ -25,7 +25,7 @@
   </van-cell-group>
 
   <view class="form-btn-area" wx:if="{{pageData.length}}">
-    <van-button type="info" loading="{{btnLoad}}"   bind:click="comfirm" custom-style="width: 600rpx;">确定</van-button>
+    <van-button type="info" loading="{{btnLoad}}"   bind:click=" confirm" custom-style="width: 600rpx;">确定</van-button>
   </view>
 
 </view>

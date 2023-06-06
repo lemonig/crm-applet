@@ -44,7 +44,7 @@ Page({
 
   },
 
-  comfirm() {
+   confirm() {
       console.log(this.data);
       var pages = getCurrentPages()
       var prePages = pages[pages.length - 2]

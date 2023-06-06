@@ -27,7 +27,7 @@ Page({
     });
   },
 
-  comfirm() {
+   confirm() {
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
     let personList = this.data.pageData.filter((item) => item.checked);

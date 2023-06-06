@@ -22,7 +22,7 @@ Page({
     });
   },
 
-  comfirm() {
+   confirm() {
     console.log(this.data.value);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
@@ -43,15 +43,10 @@ Page({
       return
     }
     let { data } = await tylook({ keyword: this.data.key });
-    if (!data.length) {
-      this.setData({
-        isAllData: true,
-      });
-      return;
-    }
+
     this.setData({
       loading: false,
-      pageData: this.data.pageData.concat(data),
+      pageData:data
     });
   },
   handleListFilter: debounce(function (eve) {

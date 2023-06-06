@@ -82,6 +82,7 @@ Page({
     }
     wx.showToast({
       title: success ? '提交成功' : '提交失败',
+      icon:'none'
     });
 
     wx.addPhoneCalendar({
@@ -92,14 +93,16 @@ Page({
         wx.showToast({
           title: '添加日程成功',
         });
+        wx.navigateBack();
+
       },
       fail() {
         wx.showToast({
           title: '添加日程失败',
+          icon:'none'
         });
       },
       complete() {
-        wx.navigateBack();
         that.setData({
           btnLoad: false,
         });
