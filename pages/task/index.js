@@ -1,56 +1,70 @@
 // pages/task/index.js
-import { addTask,updateTask,detailTask,searchDeal,listTask,activityList } from '../../api/task';
+import {
+  addTask,
+  updateTask,
+  detailTask,
+  searchDeal,
+  listTask,
+  activityList,
+} from '../../api/task';
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     navBarHeight: app.globalData.navBarHeight,
     titleProps: {
-      title: "任务"
+      title: '任务',
     },
-    option1: [{
+    option1: [
+      {
         text: '全部',
-        value: 0
+        value: 0,
       },
       {
         text: '未完成',
-        value: 1
+        value: 1,
       },
       {
         text: '已完成',
-        value: 2
+        value: 2,
       },
       {
         text: '超时',
-        value: 3
+        value: 3,
       },
-
     ],
-    option2: [{
+    option2: [
+      {
         text: '全部',
-        value: 0
+        value: 0,
       },
-
     ],
-    option3: [{
+    option3: [
+      {
+        text: '全部',
+        value: 0,
+      },
+      {
         text: '仅我本人',
-        value: 1
+        value: 1,
       },
       {
         text: '我下属的',
-        value: 2
+        value: 2,
       },
-
+      {
+        text: '我及我下属的',
+        value: 3,
+      },
     ],
     value1: 0,
     value2: 0,
     value3: 1,
 
     checked: false,
-    pageDataCum:{},
+    pageDataCum: {},
     pageData: [],
     isPage: false,
     pageNo: 1,
@@ -62,11 +76,12 @@ Page({
     if (event.type === 'change') {
     }
     let {
-      dataset: {
-        checked
-      },
+      dataset: { checked,myself },
       id,
-    } = event.currentTarget
+    } = event.currentTarget;
+    if(!myself){
+      return
+    }
     // let res = this.data.pageData.find(ele => ele.id == id)
     // if (res) {
     //   res.done = !done
@@ -76,26 +91,25 @@ Page({
     // }
     console.log(checked);
     let params = {
-      id ,
-      done: !checked
-    }
-    updateTask(params).then(res=> {
+      id,
+      done: !checked,
+    };
+    updateTask(params).then((res) => {
       console.log(res);
       wx.showToast({
         title: res.success ? '提交成功' : '提交失败',
-        icon: 'none'
+        icon: 'none',
       });
-      this.fetchData()
+      this.fetchData();
       this.setData({
-        pageData:[]
-      })
-    })
-   
+        pageData: [],
+      });
+    });
   },
   add() {
     wx.navigateTo({
       url: '/pages/task-form/index',
-    })
+    });
   },
 
   handleToLower: function () {
@@ -109,26 +123,27 @@ Page({
     console.log(eve);
     let id = eve.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/task-detail/index?id='+id,
-    })
+      url: '/pages/task-detail/index?id=' + id,
+    });
   },
   fetchData: async function () {
-    let { value1,value2,value3} = this.data
+    let { value1, value2, value3 } = this.data;
     let params = {
       page: this.data.pageNo,
       size: 30,
-      data:{
+      data: {
         status: value1,
-        typeId:value2,
-        filterBy:value3,
-      }
+        typeId: value2,
+        filterBy: value3,
+      },
     };
-    let { data,additional_data } = await listTask(params);
+    let { data, additional_data } = await listTask(params);
     if (!data.length) {
-      this.setData({
+       this.setData({
         isAllData: true,
+        loading: false,
       });
-      return
+      return;
     }
     this.setData({
       loading: false,
@@ -138,33 +153,32 @@ Page({
   getActivityList: async function () {
     let { data } = await activityList();
     this.setData({
-      option2:[...this.data.option2,...data.map(item=> ({
-        text: item.name,
-        value:item.id
-      }))]
-    })
+      option2: [
+        ...this.data.option2,
+        ...data.map((item) => ({
+          text: item.name,
+          value: item.id,
+        })),
+      ],
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getActivityList()
+    this.getActivityList();
   },
-
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.fetchData()
+    this.fetchData();
 
     this.getTabBar().init();
   },
@@ -174,42 +188,34 @@ Page({
    */
   onHide() {
     this.setData({
-      pageData:[]
-    })
+      pageData: [],
+    });
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  },
+  onShareAppMessage() {},
   sortChange1(eve) {
     this.setData({
       pageNo: 1,
       pageData: [],
-      value1:eve.detail
+      value1: eve.detail,
     });
     this.fetchData();
   },
@@ -217,7 +223,7 @@ Page({
     this.setData({
       pageNo: 1,
       pageData: [],
-      value2:eve.detail
+      value2: eve.detail,
     });
     this.fetchData();
   },
@@ -225,8 +231,8 @@ Page({
     this.setData({
       pageNo: 1,
       pageData: [],
-      value3:eve.detail
+      value3: eve.detail,
     });
     this.fetchData();
   },
-})
+});

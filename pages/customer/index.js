@@ -102,8 +102,9 @@ Page({
     };
     let { data } = await companyInfo(params);
     if (!data.length) {
-      this.setData({
+       this.setData({
         isAllData: true,
+        loading: false,
       });
       return;
     }

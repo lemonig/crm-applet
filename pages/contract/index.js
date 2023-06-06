@@ -152,8 +152,9 @@ Page({
     };
     let { data } = await pageContract(params);
     if (!data.length) {
-      this.setData({
+       this.setData({
         isAllData: true,
+        loading: false,
       });
       return;
     }

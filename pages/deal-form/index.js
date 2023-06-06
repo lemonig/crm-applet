@@ -107,16 +107,16 @@ Page({
 
     if (this.data._id) {
       params.id = this.data._id;
-      var { success } = await updateDeal(params);
+      var { success,message } = await updateDeal(params);
     } else {
-      var { success } = await addDeal(params);
+      var { success ,message} = await addDeal(params);
     }
     this.setData({
       btnLoad: false,
     });
     if (success) {
       wx.showToast({
-        title: success ? '提交成功' : '提交失败',
+         title: message,
       });
       wx.navigateBack();
     }

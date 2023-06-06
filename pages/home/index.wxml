@@ -35,8 +35,8 @@
       <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.link}}" bindtap="gotoSaleDetail">
         <view class="flex-col text-block">
           <text>{{item.label}}</text>
-          <text wx:if="{{item.unit}}">{{ pageData1[item.key] }}{{item.unit}}</text>
-          <sd-money style="color:#111" wx:else text="{{item.val}}">{{item.val}}</sd-money>
+          <text wx:if="{{!!item.unit}}">{{ pageData1[item.key] }}{{item.unit}}</text>
+          <sd-money style="color:#111" wx:else text="{{ pageData1[item.key] }}">{{ pageData1[item.key] }}</sd-money>
         </view>
       </van-col>
 

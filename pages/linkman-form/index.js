@@ -73,16 +73,21 @@ Page({
     params.orgId = this.data.form.orgId
     if (this.data.id) {
       params.id = this.data.id
-      var { success } = await linkmanUpdate(params);
+      var { success ,message} = await linkmanUpdate(params);
     } else {
-      var { success } = await linkmanAdd(params);
+      var { success,message } = await linkmanAdd(params);
     }
-    wx.showToast({
-      title: success ? '提交成功' : '提交失败',
+    this.setData({
+      btnLoad: false,
     });
-    setTimeout(() => {
-      wx.navigateBack();
-    }, 2000);
+    if (success) {
+      wx.navigateBack({
+        delta: 1, // 返回上一页
+      });
+      wx.showToast({
+         title: message,
+      });
+    }
   },
 
   selectCus() {

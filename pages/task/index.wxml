@@ -13,7 +13,7 @@
   <!-- FIMME 点击范围无效 -->
   <scroll-view  wx:if="{{pageData.length}}"  style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px)  - 60px ) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
     <view wx:for="{{pageData}}" wx:key="id" class="flex-row">
-      <view class="cell-left" bindtap="onChange" id="{{item.id}}" data-checked="{{item.done}}">
+      <view class="cell-left" bindtap="onChange" id="{{item.id}}" data-checked="{{item.done}}" data-myself="{{item.isOwner}}">
         <van-checkbox bind:change="onChange" value="{{ item.done }}" checked-color="#07c160" data-checked="{{item.done}}" id="{{item.id}}" disabled="{{!item.isOwner}}" />
       </view>
 

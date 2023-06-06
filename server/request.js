@@ -52,6 +52,8 @@ const request = ({ url, method, data, header }) => {
       timeout: 30000,
       // enableHttp2:true,
       success({ data }) {
+        wx.hideLoading();
+
         // 若data.code存在，覆盖默认code
         let code = data && data[statusName] ? data[statusName] : 9999;
         if (codeVerificationArray.indexOf(data[statusName]) + 1) code = 200;
@@ -75,7 +77,6 @@ const request = ({ url, method, data, header }) => {
                 url: '/pages/login/index',
               });
             }
-            console.log(data);
             const errMsg = `${
               data && data[messageName]
                 ? data[messageName]
@@ -93,16 +94,19 @@ const request = ({ url, method, data, header }) => {
         }
       },
       fail: function (err) {
-        console.log(err);
-        wx.showToast({
-          title: err.message,
-          icon: 'error',
-          duration: 2000,
-        });
+        console.log('err---',err);
+        // wx.hideLoading();
+
+        // wx.showToast({
+        //   title: err.message,
+        //   icon: 'error',
+        //   duration: 2000,
+        // });
         reject(err);
       },
       complete() {
-        wx.hideLoading();
+        // wx.hideLoading();
+
       },
     });
   });

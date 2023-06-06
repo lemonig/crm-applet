@@ -16,6 +16,8 @@
 </van-index-bar> -->
 
 <view class="select-main">
+  <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px  - 360rpx) ;" scroll-y="{{ true }}">
+
   <van-cell-group>
     <block wx:for="{{pageData}}" wx:key="unique">
       <van-cell title="{{item.title}}" bind:click="onSelect" data-value="{{item.title}}" data-item="{{item}}">
@@ -23,9 +25,12 @@
       </van-cell>
     </block>
   </van-cell-group>
+  </scroll-view>
+  <van-empty wx:else class="custom-image"
+     description="无数据" />
 
   <view class="form-btn-area" wx:if="{{pageData.length}}">
-    <van-button type="info" loading="{{btnLoad}}"   bind:click=" confirm" custom-style="width: 600rpx;">确定</van-button>
+    <van-button type="info" loading="{{btnLoad}}"   bind:click="confirm" custom-style="width: 600rpx;">确定</van-button>
   </view>
 
 </view>

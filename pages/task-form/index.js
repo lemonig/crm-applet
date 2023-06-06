@@ -42,7 +42,7 @@ Page({
       description: '',
       personId: '',
       done: true,
-      remindMe:  dayjs().format(),
+      remindMe: dayjs().format(),
       participant: '',
       longitude: '',
       latitude: '',
@@ -76,38 +76,42 @@ Page({
 
     if (this.data._id) {
       params.id = this.data._id;
-      var { success } = await updateTask(params);
+      var { success,message } = await updateTask(params);
     } else {
-      var { success } = await addTask(params);
+      var { success,message } = await addTask(params);
     }
     wx.showToast({
-      title: success ? '提交成功' : '提交失败',
-      icon:'none'
+      title: message,
+      icon: 'none',
     });
-
-    wx.addPhoneCalendar({
-      title,
-      startTime: dayjs(this.data.tipme).unix(),
-      endTime: dayjs(this.data.tipme).add(1, 'day').unix(),
-      success() {
-        wx.showToast({
-          title: '添加日程成功',
-        });
-        wx.navigateBack();
-
-      },
-      fail() {
-        wx.showToast({
-          title: '添加日程失败',
-          icon:'none'
-        });
-      },
-      complete() {
-        that.setData({
-          btnLoad: false,
-        });
-      },
-    });
+    if (success) {
+      wx.addPhoneCalendar({
+        title,
+        startTime: dayjs(this.data.tipme).unix(),
+        endTime: dayjs(this.data.tipme).add(1, 'day').unix(),
+        success() {
+          wx.showToast({
+            title: '添加日程成功',
+          });
+          wx.navigateBack();
+        },
+        fail() {
+          wx.showToast({
+            title: '添加日程失败',
+            icon: 'none',
+          });
+        },
+        complete() {
+          that.setData({
+            btnLoad: false,
+          });
+        },
+      });
+    } else {
+      this.setData({
+        btnLoad: false,
+      });
+    }
   },
   onChooseLocation() {
     wx.chooseLocation({

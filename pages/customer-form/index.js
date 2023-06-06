@@ -50,9 +50,9 @@ Page({
     let params = e.detail.value;
     if (this.data._id) {
       params.id = this.data._id;
-      var { success } = await companyUpdate(params);
+      var { success ,message} = await companyUpdate(params);
     } else {
-      var { success } = await companyAdd(params);
+      var { success,message } = await companyAdd(params);
     }
     this.setData({
       btnLoad: false,
@@ -62,7 +62,8 @@ Page({
         delta: 1, // 返回上一页
       });
       wx.showToast({
-        title: success ? '提交成功' : '提交失败',
+         title: message,
+         icon:'none'
       });
     }
   },
