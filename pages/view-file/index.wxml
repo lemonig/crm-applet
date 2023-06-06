@@ -1,5 +1,6 @@
 <view class="page-body">
   <view class="page-section page-section-gap">
-    <web-view src="https://z500c36535.goho.co/files/%E5%9C%B0%E8%A1%A8%E6%B0%B4%E7%8E%AF%E5%A2%83%E8%B4%A8%E9%87%8F%E6%A0%87%E5%87%86%EF%BC%88GB_3838-2002_%EF%BC%89.pdf"></web-view>
+    <web-view wx:if="{{filepath}}" src="{{filepath}}"></web-view>
+    <van-empty wx:else description="无法预览" />
   </view>
 </view>

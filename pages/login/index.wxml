@@ -3,12 +3,8 @@
 
 
 </navigation-bar>
-<view class="container">
-  <van-image
-      class="logo"
-      fit="contain"
-      src="/assets/imgs/bg_welcome.png"
-    />
+<!-- <view class="container">
+
     <view class="title">CRM</view>
   <view class="form">
     <van-field value="{{ form.username.value }}" placeholder="请输入账号" border="{{ false }}" input-class="input" error="{{ form.username.validate }}" error-message="{{ form.username.errorText }}" bind:input="handleUsernameInput" />
@@ -18,10 +14,17 @@
 </view>
 
 <van-toast id="van-toast" />
-<van-notify id="van-notify" />
+<van-notify id="van-notify" /> -->
 
-<!-- <view class="container">
-  <view class="logo"></view>
-  <view class="title">欢迎登录</view>
-  <van-button class="login-btn" type="primary" round block open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" color ="#07c160">微信一键登录</van-button>
-</view> -->
+<view class="container">
+  <van-image class="logo" fit="contain" src="/assets/imgs/bg_welcome.png" />
+  <view class="title">CRM</view>
+  <van-button class="login-btn" type="primary" round block open-type="getPhoneNumber" bind:getphonenumber="onGetPhoneNumber" color="#07c160">微信一键登录</van-button>
+  <van-divider contentPosition="center">
+  </van-divider>
+  <!-- 其它登录方式 -->
+
+  <text class="iconfont icon-suoti" style="font-size: 2em;"></text>
+  <text class="iconfont icon-shouji" style="font-size: 2em;"></text>
+
+</view>

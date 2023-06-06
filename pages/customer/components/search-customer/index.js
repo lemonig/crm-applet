@@ -18,7 +18,7 @@ Page({
   gotoDetail(eve) {
     let id = eve.currentTarget.dataset.id
       wx.navigateTo({
-        url: '/pages/linkman-detail/index?id='+ id,
+        url: '/pages/customer-detail/index?id='+ id,
       })
   },
   fetchData: async function () {

@@ -1,4 +1,5 @@
 // app.js
+import {wxLogin  } from "./api/user";
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -18,21 +19,7 @@ App({
     that.globalData.menuTop = menuButtonInfo.top;
     that.globalData.menuHeight = menuButtonInfo.height;
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: 'https://z500c36535.goho.co/api/open/switchUser/d3f3d3ddd89347f4b90f2a9023257710',
-          method:'post',
-          success({ data }) {
-        console.log(data);
-
-            wx.setStorageSync('token', data.data)
-          }
-        })
-      }
-    })
+  
   },
   globalData: {
     userInfo: null,

@@ -6,6 +6,9 @@ Component({
   properties: {
     id: {
       type:String
+    },
+    pageData:{
+      type:Object
     }
   },
 
@@ -14,62 +17,62 @@ Component({
    */
   data: {
     tableHeader1: [{
-      prop: 'id',
+      prop: 'name',
       width: 300,
       label: '名称'
     },
     {
-      prop: 'status',
+      prop: 'value',
       width: 200,
       label: '金额'
     }, {
-      prop: 'datetime',
+      prop: 'rate',
       width: 200,
       label: '比例',
       color: '#55C355'
     },
   ],
     tableHeader2: [{
-      prop: 'id',
+      prop: 'invoiceIssuer',
       width: 300,
       label: '开票人'
     },
     {
-      prop: 'status',
+      prop: 'invoiceDate',
       width: 200,
       label: '开票日期'
     }, {
-      prop: 'datetime',
+      prop: 'invoiceValue',
       width: 200,
       label: '发票金额',
       color: '#55C355'
     },
   ],
     tableHeader3: [{
-      prop: 'status',
+      prop: 'paymentDate',
       width: 300,
       label: '收款日期'
     },
     {
-      prop: 'datetime',
+      prop: 'paymentValue',
       width: 400,
       label: '收款金额'
     }
   ],
     tableHeader4: [{
-      prop: 'a',
+      prop: 'deductionDate',
       width: 300,
       label: '扣款日期'
     },
     {
-      prop: 'b',
+      prop: 'deductionValue',
       width: 200,
       label: '扣款金额'
     },
     {
-      prop: 'c',
+      prop: 'deductionDescription',
       width: 200,
-      label: '扣款日期'
+      label: '扣款备注'
     }
   ],
   stripe: true,

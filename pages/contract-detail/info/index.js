@@ -6,6 +6,9 @@ Component({
   properties: {
     id: {
       type:String
+    },
+    pageData:{
+      type:Object
     }
   },
 
@@ -13,20 +16,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    productList: [
-      {
-        id:"1",
-        a1: "标准水站",
-        a2: "15个",
-     
-      },
-      {
-        id:"2",
-        a1: "水站运维服务",
-        a2: "3个",
 
-      }
-    ]
 
   },
 

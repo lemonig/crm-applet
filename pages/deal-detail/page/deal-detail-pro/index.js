@@ -95,9 +95,9 @@ Page({
     console.log(options);
 
     this.setData({
-      id: options.dealId,
+      id: options.dealId ? options.dealId:'',
       result: options.selected ? JSON.parse(options.selected) : [],
-      needPost: JSON.parse(options.post),
+      needPost:options.post ? JSON.parse(options.post) : false
     });
 
     this.getDetail();

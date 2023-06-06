@@ -9,8 +9,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 100rpx 0 0rpx ;
-  padding-bottom: 50rpx;
+  margin: 50rpx 0 0rpx ;
+  padding-bottom: 40rpx;
 }
 .cell-group-class {
   margin-bottom: 25rpx;

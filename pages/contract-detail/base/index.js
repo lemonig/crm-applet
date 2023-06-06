@@ -7,6 +7,9 @@ Component({
     id: {
       type: String,
     },
+    pageData:{
+      type:Object
+    }
   },
 
   /**
@@ -26,9 +29,10 @@ Component({
 
       this.setData({ show: true, pageShow: page });
     },
-    viewL() {
+    viewL(eve) {
+      console.log(eve);
       wx.navigateTo({
-        url: '/pages/view-file/index',
+        url: '/pages/view-file/index?filepath='+eve.currentTarget.dataset.filepath,
       });
       // wx.downloadFile({
       //   url: 'https://grean-project-file.oss-cn-hangzhou.aliyuncs.com/rule/%E5%9C%B0%E8%A1%A8%E6%B0%B4%E7%8E%AF%E5%A2%83%E8%B4%A8%E9%87%8F%E6%A0%87%E5%87%86%EF%BC%88GB%203838-2002%20%EF%BC%89.pdf',

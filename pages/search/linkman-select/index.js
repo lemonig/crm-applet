@@ -1,17 +1,21 @@
 // pages/search/customer-search/index.js
 import { linkmanInfo } from '../../../api/linkman';
 import { debounce } from '../../../utils/util';
+
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     titleProps: {
       title: '选择联系人',
     },
     pageData: [],
     btnLoad: false,
     value: [],
+    orgId: '',
   },
   onCheck(event) {
     let { index, value } = event.currentTarget.dataset;
@@ -29,7 +33,7 @@ Page({
     let personList = this.data.pageData.filter((item) => item.checked);
     prePages.setData({
       linkmanMsg: personList.map((item) => item.id),
-      'form.personName': personList.map(item => item.name),
+      'form.personName': personList.map((item) => item.name),
     });
     wx.navigateBack({
       delta: 1,
@@ -41,13 +45,15 @@ Page({
       data: {
         orderBy: this.data.value1,
         filterBy: this.data.value2,
+        orgId: this.data.orgId ? this.data.orgId : -1,
       },
     };
+
     let { data } = await linkmanInfo(params);
     if (!!this.data.value) {
       console.log(this.data.value);
       let newD = data.map((item) => {
-        console.log(this.data.value.includes(item.id),);
+        console.log(this.data.value.includes(item.id));
         return {
           ...item,
           checked: this.data.value.includes(item.id),
@@ -83,12 +89,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options);
     if (options.selected) {
       this.setData({
         value: [...options.selected].map(Number),
       });
     }
-
+    if(options.orgId){
+      this.setData({
+        orgId:options.orgId
+      })
+    }
     this.fetchData();
   },
 

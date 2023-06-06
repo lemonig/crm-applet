@@ -111,14 +111,15 @@ Page({
     } else {
       var { success } = await addDeal(params);
     }
-    wx.showToast({
-      title: success ? '提交成功' : '提交失败',
+    this.setData({
+      btnLoad: false,
     });
-    // this.setData({
-    //   btnLoad: false,
-    // });
-
-    wx.navigateBack();
+    if (success) {
+      wx.showToast({
+        title: success ? '提交成功' : '提交失败',
+      });
+      wx.navigateBack();
+    }
   },
 
   selectCus() {
@@ -128,14 +129,20 @@ Page({
   },
   selectLinkman() {
     wx.navigateTo({
-      url: '/pages/search/linkman-select/index?selected=' + this.data.linkmanMsg.join(''),
+      url:
+        '/pages/search/linkman-select/index?orgId=' +
+        this.data.form.orgId +
+        '&selected=' +
+        this.data.linkmanMsg.join(''),
     });
   },
   selectProduct() {
+    let url = '/pages/deal-detail/page/deal-detail-pro/index';
+    if (this.data.productMsg.length) {
+      url = url + '?selected=' + JSON.stringify(this.data.productMsg);
+    }
     wx.navigateTo({
-      url:
-        '/pages/deal-detail/page/deal-detail-pro/index?selected=' +
-        JSON.stringify(this.data.productMsg),
+      url,
     });
   },
   fetchData: async function () {
@@ -169,7 +176,9 @@ Page({
         label: item.name,
         value: item.id,
       })),
+      'form.pipelineStageId': id ? '' : res[0].id,
     });
+
     if (id) this.fetchData();
   },
 

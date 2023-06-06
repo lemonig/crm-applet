@@ -3,7 +3,8 @@
 
 <navigation-bar default-data="{{defaultData}}" back="{{false}}">
   <!-- <text class="iconfont icon-tuichudenglu" style="font-size: 1em;color: #fff;"></text> -->
-  <van-icon name="revoke" bindtap="logout" />
+  <!-- <van-icon name="revoke" bindtap="logout" /> -->
+  <van-icon name="apps-o" bindtap="gotoMyself" size="24"/>
 </navigation-bar>
 <view class="container home-container  page-padding">
 

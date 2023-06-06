@@ -1,6 +1,6 @@
 /* pages/deal-detail/info/index.wxss */
 .info-wrap {
-  width: 92%;
+  width: 100%;
   margin: 0 auto;
   height: 100%;
 }

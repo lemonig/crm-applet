@@ -1,0 +1,35 @@
+/* pages/myself/index.wxss *//* login.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20%;
+}
+.logo .van-image {
+  width: 150rpx;
+  height: 150rpx;
+}
+.title {
+  font-size: 24px;
+  margin: 20rpx 0;
+}
+.login-btn {
+  margin-top: 40px;
+  width: 80%;
+  font-size: 30rpx;
+}
+
+
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}

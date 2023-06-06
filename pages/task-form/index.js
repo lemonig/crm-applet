@@ -36,13 +36,13 @@ Page({
     form: {
       dealId: '',
       dealName: '',
-      startTime: '',
-      endTime: '',
+      startTime: dayjs().format(),
+      endTime: dayjs().add(1, 'day').format(),
       department: '',
       description: '',
       personId: '',
       done: true,
-      remindMe: '',
+      remindMe:  dayjs().format(),
       participant: '',
       longitude: '',
       latitude: '',
@@ -54,12 +54,13 @@ Page({
   },
 
   formSubmit: async function (e) {
+    let that = this;
     this.setData({
       btnLoad: true,
     });
     console.log(e.detail.value);
     let params = e.detail.value;
-    params.dealId = this.data.form.dealId
+    params.dealId = this.data.form.dealId;
     params.done = this.data.status;
     params.longitude = this.data.location.longitude;
     params.latitude = this.data.location.latitude;
@@ -82,12 +83,7 @@ Page({
     wx.showToast({
       title: success ? '提交成功' : '提交失败',
     });
-    setTimeout(() => {
-      wx.navigateBack();
-    }, 2000);
-    this.setData({
-      btnLoad: false,
-    });
+
     wx.addPhoneCalendar({
       title,
       startTime: dayjs(this.data.tipme).unix(),
@@ -96,16 +92,18 @@ Page({
         wx.showToast({
           title: '添加日程成功',
         });
-        setTimeout(() => {
-          wx.showToast({
-            title: '添加日程失败',
-          });
-          this.setData({
-            btnLoad: false,
-          });
-        }, 2000);
       },
-      fail() {},
+      fail() {
+        wx.showToast({
+          title: '添加日程失败',
+        });
+      },
+      complete() {
+        wx.navigateBack();
+        that.setData({
+          btnLoad: false,
+        });
+      },
     });
   },
   onChooseLocation() {

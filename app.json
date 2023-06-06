@@ -31,8 +31,8 @@
     "pages/search/customer-select/index",
     "pages/view-file/index",
     "pages/search/contract-win/index",
-    "pages/login/index"
-
+    "pages/login/index",
+    "pages/myself/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -49,7 +49,6 @@
   },
   "requiredPrivateInfos": [
     "getLocation",
-
     "chooseLocation"
   ],
   "lazyCodeLoading": "requiredComponents",
@@ -145,4 +144,5 @@
       }
     ]
   }
+
 }

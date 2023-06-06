@@ -1,21 +1,19 @@
 import { tylook } from '../../../api/public';
 import { debounce } from '../../../utils/util';
-
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     titleProps: {
       title: '工商信息查询',
     },
     key: '',
-    pageData: [
-  
-    ],
+    pageData: [],
     btnLoad: false,
     value: '',
-
   },
   onSelect(event) {
     console.log(event);
@@ -30,9 +28,9 @@ Page({
     var prePages = pages[pages.length - 2];
     prePages.setData({
       'form.name': this.data.value.name,
-      // 'form.address':this.data.value.address,
+      'form.address':this.data.value.address,
       // 'form.base': this.data.value.base,
-      // 'form.creditCode': this.data.value.creditCode,
+      'form.creditCode': this.data.value.creditCode,
       // 'form.orgType': this.data.value.orgType,
     });
     wx.navigateBack({
@@ -41,6 +39,9 @@ Page({
   },
 
   fetchData: async function () {
+    if(!this.data.key){
+      return
+    }
     let { data } = await tylook({ keyword: this.data.key });
     if (!data.length) {
       this.setData({
@@ -54,12 +55,12 @@ Page({
     });
   },
   handleListFilter: debounce(function (eve) {
-    if(!eve.detail){
-      return
+    if (!eve.detail) {
+      return;
     }
     this.setData({
       key: eve.detail,
-    })
+    });
     this.fetchData();
   }, 500),
 
@@ -71,6 +72,7 @@ Page({
     this.setData({
       key: options.text,
     });
+    this.fetchData();
   },
 
   /**

@@ -1,7 +1,7 @@
 // pages/contract/index.js
+import { pageContract, getContract } from '../../api/contract';
+import { debounce } from "../../utils/util";
 const app = getApp();
-const mock = require('./mock');
-import { pagecContract,getContract } from '../../api/contract';
 var cloneData = [];
 
 Page({
@@ -15,104 +15,81 @@ Page({
     soetItme: [
       {
         label: '合同额',
-        value: '1',
+        value: 1,
       },
       {
         label: '回款',
-        value: '2',
+        value: 2,
       },
       {
         label: '已开票未收',
-        value: '3',
+        value: 3,
       },
       {
         label: '应收未收',
-        value: '4',
+        value: 4,
       },
       {
         label: '已开票',
-        value: '5',
+        value: 5,
       },
       {
         label: '未开票',
-        value: '6',
+        value: 6,
       },
     ],
     pageData: [],
+    id: '',
+    isPage: false,
+    pageNo: 1,
+    loading: false,
+    isAllData: false,
+    isScrollFeatch: false,
+    filterD: {
+      dataScope: 0,
+      contractType: 0,
+      otherType: 0,
+      name: '',
+    }, //search data
+    sortData: {
+      value: 0,
+      signedDate: 0,
+      rate: 0,
+    },
   },
+  //tab change
   onChange(event) {
     this.setData({
       active: event.detail.name,
+      isScrollFeatch: false,
+      pageNo: 1,
+      sortData: {
+        value: 0,
+        signedDate: 0,
+        rate: 0,
+      },
     });
+    this.fetchData();
   },
+  // sort
   sortBy(eve) {
     let type = eve.detail.value;
     let key = eve.currentTarget.dataset.skey;
-    console.log(type);
-    console.log(key);
-    if (key === 'signedDate') {
-      if (type === 1) {
-        this.data.pageData.sort((a, b) => {
-          let na = Number(a[key].replace(/\D/g, ''));
-          let nb = Number(b[key].replace(/\D/g, ''));
-          return na - nb;
-        });
-        this.setData({
-          pageData: [...this.data.pageData],
-        });
-      } else if (type === -1) {
-        this.data.pageData.sort((a, b) => {
-          let na = Number(a[key].replace(/\D/g, ''));
-          let nb = Number(b[key].replace(/\D/g, ''));
-          return nb - na;
-          // if (na > nb) {
-          //   return type
-          // }
-        });
-        this.setData({
-          pageData: [...this.data.pageData],
-        });
-      } else {
-        this.setData({
-          pageData: cloneData,
-        });
-      }
-    } else if (key === 'value') {
-      if (type === 1) {
-        this.data.pageData.sort(function (a, b) {
-          return a[key] - b[key];
-        });
-        this.setData({
-          pageData: [...this.data.pageData],
-        });
-      } else if (type === -1) {
-        this.data.pageData.sort(function (a, b) {
-          return b[key] - a[key];
-        });
-        this.setData({
-          pageData: [...this.data.pageData],
-        });
-      } else {
-        this.setData({
-          pageData: cloneData,
-        });
-      }
-    }
+ 
+    this.data.sortData[key] = type;
+    this.setData({
+      sortData: { ...this.data.sortData },
+      isScrollFeatch: false,
+      pageNo: 1,
+    });
+    this.fetchData();
   },
   gotoDetail(eve) {
     wx.navigateTo({
       url: '/pages/contract-detail/index?id=' + eve.currentTarget.dataset.id,
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    cloneData = JSON.parse(JSON.stringify(mock.default.data));
-    this.setData({
-      pageData: mock.default.data,
-    });
-  },
+
   filterPop() {
     this.setData({
       show: true,
@@ -124,8 +101,87 @@ Page({
     });
   },
   filterData(eve) {
-    console.log(eve);
     this.onClose();
+    this.setData({
+      filterD: eve.detail,
+      pageNo: 1,
+      isScrollFeatch: false,
+    });
+    this.fetchData();
+  },
+
+  fetchData: async function () {
+    this.setData({
+      loading: true,
+    });
+    let sortData = [];
+    let {active} = this.data
+    for (let i in this.data.sortData) {
+      if (active === 0) {
+        if (i == 'rate') {
+          continue;
+        }
+      }
+
+      if (active !== 0) {
+        if (i == 'signedDate') {
+          continue;
+        }
+      }
+      let direction = '';
+      if (this.data.sortData[i] === 1) {
+        direction = 'asc';
+      } else if (this.data.sortData[i] === -1) {
+        direction = 'desc';
+      } else {
+        direction = '';
+      }
+      sortData.push({
+        name: i,
+        direction,
+      });
+    }
+    let params = {
+      page: this.data.pageNo,
+      size: 20,
+      data: {
+        ...this.data.filterD,
+        valueType: this.data.active + 1,
+        orderBy: sortData,
+      },
+    };
+    let { data } = await pageContract(params);
+    if (!data.length) {
+      this.setData({
+        isAllData: true,
+      });
+      return;
+    }
+    if (this.data.isScrollFeatch) {
+      this.setData({
+        loading: false,
+        pageData: this.data.pageData.concat(data),
+      });
+    } else {
+      this.setData({
+        loading: false,
+        pageData: data,
+      });
+    }
+  },
+
+  handleToLower:debounce(function () {
+    this.setData({
+      pageNo: this.data.pageNo + 1,
+      isScrollFeatch: true,
+    });
+    this.fetchData();
+  },500), 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.fetchData();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

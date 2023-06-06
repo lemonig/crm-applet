@@ -1,21 +1,14 @@
 <!--pages/deal-detail/info/index.wxml-->
 <view class="info-wrap">
-  <sd-card custom-class="card-margin" title="商机" >
+  <sd-card custom-class="card-margin" title="商机">
     <view slot="body">
-      <sd-list 
-        wx:for="{{productList}}" 
+      <!-- <sd-list 
+        wx:for="{{pageData.deals}}" 
         wx:key="id"
-        title="{{item.a1}}" 
-        value="{{item.a2}}" 
+        title="{{item.dealName}}" 
       >
-      </sd-list>
-      <van-cell title="商机名称" value="内容" />
+      </sd-list> -->
+      <van-cell wx:key="index" wx:for="{{pageData.deals}}" title="{{item.dealName}}" />
     </view>
   </sd-card>
-
-
-
-
-
-
 </view>

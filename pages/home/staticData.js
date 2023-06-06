@@ -18,18 +18,18 @@ export const saleOptions1 = [
     label: '本人及下属',
     value: '2',
   },
-  {
-    label: '公司',
-    value: '3',
-  },
-  {
-    label: '东部大区',
-    value: '4',
-  },
-  {
-    label: '北部大区',
-    value: '5',
-  },
+  // {
+  //   label: '公司',
+  //   value: '3',
+  // },
+  // {
+  //   label: '东部大区',
+  //   value: '4',
+  // },
+  // {
+  //   label: '北部大区',
+  //   value: '5',
+  // },
 ];
 
 export const contractMoney = [

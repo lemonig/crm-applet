@@ -6,6 +6,7 @@ import { searchDeal as getDealList } from '../../../api/task';
 import { debounce } from '../../../utils/util';
 Page({
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     loading: false,
     titleProps: {
       title: '商机',

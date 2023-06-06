@@ -8,7 +8,7 @@
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader1}}" data="{{ row1 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row table-one"/>
+      <table-view headers="{{tableHeader1}}" data="{{ pageData.details  }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row table-one"/>
     </view>
   </view>
 
@@ -20,7 +20,7 @@
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader2}}" data="{{ row2 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
+      <table-view headers="{{tableHeader2}}" data="{{ pageData.invoices  }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
     </view>
   </view>
   <view class="block-white block-main">
@@ -31,7 +31,7 @@
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader3}}" data="{{ row3 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
+      <table-view headers="{{tableHeader3}}" data="{{ pageData.payments }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
     </view>
   </view>
   <view class="block-white block-main">
@@ -42,7 +42,7 @@
       </view>
     </sd-title>
     <view>
-      <table-view headers="{{tableHeader4}}" data="{{ row4 }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
+      <table-view headers="{{tableHeader4}}" data="{{  pageData.deductions  }}" stripe="{{ stripe }}" border="{{ border }}" row-class-name="table-row"/>
     </view>
   </view>
 

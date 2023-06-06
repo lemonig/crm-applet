@@ -1,12 +1,13 @@
 import { tylook } from '../../../api/public';
 import { debounce } from '../../../utils/util';
 import { organizationSearch } from '../../../api/deal';
-
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     titleProps: {
       title: '选择客户名称',
     },

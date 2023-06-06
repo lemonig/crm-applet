@@ -32,7 +32,7 @@ Page({
         value: 4,
       },
     ],
-    optionsPri:province.map(item => ({label:item, value:item})),
+    optionsPri: province.map((item) => ({ label: item, value: item })),
     form: {
       address: '',
       base: '',
@@ -54,17 +54,17 @@ Page({
     } else {
       var { success } = await companyAdd(params);
     }
-    wx.showToast({
-      title: success ? '提交成功' : '提交失败',
+    this.setData({
+      btnLoad: false,
     });
-    setTimeout(() => {
-      wx.navigateBack(
-        {
-          delta: 1,  // 返回上一页
-         
-        }
-      );
-    }, 2000);
+    if (success) {
+      wx.navigateBack({
+        delta: 1, // 返回上一页
+      });
+      wx.showToast({
+        title: success ? '提交成功' : '提交失败',
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -126,8 +126,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏

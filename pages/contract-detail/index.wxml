@@ -4,17 +4,17 @@
 <view class=" container deal-detail-container ">
   <view class="card">
     <view class="title">
-      <text>平湖标准站采购项目（拓展类）</text>
-      <text>工程</text>
+      <text>{{data.baseInfo.name}}</text>
+      <text>{{data.baseInfo.type}}</text>
     </view>
     <view class="desc-1">
-      <van-icon name="hotel-o" /> 平湖生态环境局
+      <van-icon name="hotel-o" />   <text>{{data.baseInfo.orgName}}</text>
     </view>
     <view class="desc-2">
-      <text>编号：2023157SD</text> <text>签订：2022-10-26</text>
+      <text>编号：  <text>{{data.baseInfo.code}}</text></text> <text>签订：  <text>{{data.baseInfo.signedDate}}</text></text>
     </view>
     <view class="desc-2" >
-      <text>负责人：周巧夏南</text> <text>到期：2022-10-26</text>
+      <text>负责人：  <text>{{data.baseInfo.ownerUserName}}</text></text> <text>到期：  <text>{{data.baseInfo.finishedDate}}</text></text>
     </view>
 
 
@@ -26,13 +26,13 @@
   <view style="margin-top: 60rpx;">
     <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title">
       <van-tab title="资金信息">
-        <sd-record id="{{id}}"></sd-record>
+        <sd-record  pageData="{{data.financeInfo}}" id="{{id}}"></sd-record>
       </van-tab>
       <van-tab title="基本资料">
-        <sd-base id="{{id}}"></sd-base>
+        <sd-base pageData="{{data.baseInfo}}"  id="{{id}}"></sd-base>
       </van-tab>
       <van-tab title="相关信息">
-        <sd-info id="{{id}}"></sd-info>
+        <sd-info pageData="{{data.relatedInfo}}"  id="{{id}}"></sd-info>
       </van-tab>
     </van-tabs>
   </view>

@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'iconfont';  /* Project id 4053041 */
-  src: url('//at.alicdn.com/t/c/font_4053041_8qq2uwbch0w.woff2?t=1684809273698') format('woff2'),
-       url('//at.alicdn.com/t/c/font_4053041_8qq2uwbch0w.woff?t=1684809273698') format('woff'),
-       url('//at.alicdn.com/t/c/font_4053041_8qq2uwbch0w.ttf?t=1684809273698') format('truetype');
+  font-family: "iconfont"; /* Project id 4053041 */
+  src: url('//at.alicdn.com/t/c/font_4053041_k5r0yjtkuih.woff2?t=1685697357749') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4053041_k5r0yjtkuih.woff?t=1685697357749') format('woff'),
+       url('//at.alicdn.com/t/c/font_4053041_k5r0yjtkuih.ttf?t=1685697357749') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-account_sms:before {
+  content: "\e915";
+}
+
+.icon-shouji:before {
+  content: "\e914";
+}
+
+.icon-suoti:before {
+  content: "\e630";
 }
 
 .icon-tuichudenglu:before {

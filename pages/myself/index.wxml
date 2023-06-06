@@ -1,0 +1,28 @@
+<!--pages/myself/index.wxml-->
+<navigation-bar default-data="{{titleProps}}">
+
+
+</navigation-bar>
+<view class="container">
+  <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image wx:if="{{avatarUrl}}" class="avatar" src="{{avatarUrl}}"></image>
+    <image wx:else class="avatar" src="../../assets/imgs/head.png"></image>
+  </button> -->
+  <van-image class="logo" fit="fill" src="{{pageData.avatar}}" round />
+  <!-- <mp-form>
+    <mp-cells>
+      <mp-cell title="昵称">
+        <input type="nickname" class="weui-input" placeholder="请输入昵称"/>
+      </mp-cell>
+    </mp-cells>
+  </mp-form> -->
+
+  <!-- <form bindsubmit="">
+    <van-cell-group>
+      <van-field type="nickname" label="昵称" placeholder="请输入昵称"  model:value="{{ userName }}" bind:blur="nameChange"/>
+    </van-cell-group>
+  </form> -->
+  <view class="title">{{pageData.nickname}}</view>
+  <van-button class="login-btn" type="primary" round block bind:click="logout"   color="linear-gradient(to right, #4bb0ff, #6149f6)">退出登录</van-button>
+</view>
+<van-dialog id="van-dialog" />

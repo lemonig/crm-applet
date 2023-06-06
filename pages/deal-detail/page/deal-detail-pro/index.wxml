@@ -31,5 +31,5 @@
 <view>找不到产品，请联系管理员添加</view>
 
 <view class="form-btn-area" style="margin-top: 50rpx;">
-      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." bind:click="submit" custom-style="width: 600rpx;">提交</van-button>
+      <van-button type="info" loading="{{btnLoad}}"   bind:click="submit" custom-style="width: 600rpx;">提交</van-button>
 </view>

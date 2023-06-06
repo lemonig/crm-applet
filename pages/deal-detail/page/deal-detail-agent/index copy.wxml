@@ -1,0 +1,44 @@
+<!--pages/deal/index.wxml-->
+<navigation-bar default-data="{{titleProps}}" back="{{false}}"></navigation-bar>
+
+<view class="container deal-container" style="height: calc(100vh - {{navBarHeight}}px)">
+
+  <van-dropdown-menu>
+    <van-dropdown-item bind:change="sortChange1" title="流程阶段" value="{{ value1 }}" options="{{ option1 }}" />
+    <van-dropdown-item bind:change="sortChange2" title="排序" value="{{ value2 }}" options="{{ option2 }}" />
+    <van-dropdown-item bind:change="sortChange3" title="高级筛选" value="{{ value3 }}" options="{{ option3 }}" />
+  </van-dropdown-menu>
+  <view style="margin-top:var(--dropdown-margin);">
+    <view class="deal-title">
+      <text class="number">{{pageDataCum.total}}个</text>商机 商机金额 <sd-money class="moeny" text="{{pageDataCum.pv}}">{{pageDataCum.pv}}</sd-money> 元，预测 <sd-money class="moeny" text="{{pageDataCum.prev}}">{{pageDataCum.prev}}</sd-money> 元
+    </view>
+    <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 220rpx) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
+      <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.title}}" data-id="{{item.id}}" bindtap="gotoDetail">
+        <view slot="value">
+          <text class="font-color-gray" style="font-size: 24rpx;" wx:if="{{item.status === '1'}}"> {{item.pipelineStageName}} </text>
+          <van-tag size="large" wx:if="{{item.status === '2'}}" color="rgb(17, 145, 67)" type="primary">赢单</van-tag>
+          <van-tag size="large" wx:if="{{item.status === '3'}}" color="#ff4d4f" type="primary">丢单</van-tag>
+          <van-tag size="large" wx:if="{{item.status === '4'}}" color="#ff4d4f" type="primary">终止</van-tag>
+        </view>
+        <view slot="lab1" class="desc-label font-color-gray">
+          ￥{{item.value}} · {{item.orgName}}
+        </view>
+        <view slot="lab2" class="desc-label font-color-gray">
+          {{item.ownerUserName}} · 最近跟进 {{item.latestFollowUpTime ? item.latestFollowUpTime :'--'}} · <text style="color: {{item.nextActivity.isOver? '#ff4d4f': ''}}">下次 {{item.nextActivity.value ? item.nextActivity.value :'--'}}</text>
+        </view>
+      </sd-list>
+      <view style="text-align: center;margin: 8px 0" wx:if="{{loading}}">
+        <van-loading color="var(--primary)">加载中...</van-loading>
+      </view>
+      <van-divider wx:if="{{isAllData}}" contentPosition="center" customStyle=" font-size: 12px;">
+        到底了
+      </van-divider>
+    </scroll-view>
+    <van-empty wx:else class="custom-image"
+     description="无数据" />
+  </view>
+</view>
+
+<view class="fix-add-btn">
+  <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
+</view>

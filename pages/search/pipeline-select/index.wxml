@@ -28,10 +28,8 @@
 
 
 
-
-
-  <view class=" form-btn-area">
-    <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." custom-style="width: 600rpx;" bindtap="submit">确定</van-button>
+  <view class=" form-btn-area" wx:if="{{pageData.length}}">
+    <van-button type="info" loading="{{btnLoad}}"   custom-style="width: 600rpx;" bindtap="submit">确定</van-button>
   </view>
 </view>
 

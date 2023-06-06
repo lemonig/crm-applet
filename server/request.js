@@ -44,8 +44,6 @@ const request = ({ url, method, data, header }) => {
     mask: true,
   });
   return new Promise((resolve, reject) => {
-    console.log('params====' + data);
-
     wx.request({
       url: baseURL + url,
       method,
@@ -54,7 +52,6 @@ const request = ({ url, method, data, header }) => {
       timeout: 30000,
       // enableHttp2:true,
       success({ data }) {
-        console.log(data);
         // 若data.code存在，覆盖默认code
         let code = data && data[statusName] ? data[statusName] : 9999;
         if (codeVerificationArray.indexOf(data[statusName]) + 1) code = 200;
@@ -78,6 +75,7 @@ const request = ({ url, method, data, header }) => {
                 url: '/pages/login/index',
               });
             }
+            console.log(data);
             const errMsg = `${
               data && data[messageName]
                 ? data[messageName]
@@ -85,23 +83,21 @@ const request = ({ url, method, data, header }) => {
                 ? CODE_MESSAGE[code]
                 : '未知错误'
             }`;
-            console.log(errMsg);
             wx.showToast({
               title: errMsg,
               icon: 'error',
+              duration: 2000,
             });
-            Notify({
-              type: 'danger',
-              message: errMsg,
-            });
-            return reject(data);
+            console.log(data);
+            return resolve(data);
         }
       },
       fail: function (err) {
-        console.log('err-----' + err);
+        console.log(err);
         wx.showToast({
           title: err.message,
           icon: 'error',
+          duration: 2000,
         });
         reject(err);
       },
@@ -126,6 +122,7 @@ const _post = async ({
     header,
     method: 'POST',
   });
+  console.log(res);
   return res;
 };
 const _get = async ({

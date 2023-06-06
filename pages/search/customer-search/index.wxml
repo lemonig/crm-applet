@@ -3,7 +3,7 @@
 <van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
 
 
-<view class="select-main">
+<scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px  - 360rpx) ;" scroll-y="{{ true }}">
   <van-cell-group>
     <block wx:for="{{pageData}}" wx:key="unique">
       <van-cell title="{{item.name}}" bind:click="onSelect" data-value="{{item.name}}" data-item="{{item}}">
@@ -11,9 +11,9 @@
       </van-cell>
     </block>
   </van-cell-group>
-
-  <view class="form-btn-area">
-    <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." bind:click="comfirm" custom-style="width: 600rpx;">确定</van-button>
-  </view>
-
+</scroll-view>
+<van-empty wx:else class="custom-image"
+     description="无数据" />
+<view class="form-btn-area" wx:if="{{pageData.length}}">
+  <van-button type="info" loading="{{btnLoad}}"   bind:click="comfirm" custom-style="width: 600rpx;">确定</van-button>
 </view>

@@ -1,6 +1,5 @@
 // pages/home/index.js
 import Notify from '@vant/weapp/notify/notify';
-import Dialog from '@vant/weapp/dialog/dialog';
 import { saleCount, dashboard } from '../../api/home';
 import {
   saleOptions1,
@@ -179,7 +178,7 @@ Page({
       saleValue: e.detail.value,
       saleShow: false,
     });
-    this.getSaleCount()
+    this.getSaleCount();
   },
   onShowSalePopup1() {
     this.setData({
@@ -285,23 +284,12 @@ Page({
       // url: '/pages/customer-form/index',
     });
   },
-  logout() {
-    Dialog.confirm({
-      title: '提示',
-      message: '确定退出吗',
-    })
-      .then(() => {
-        // on confirm
-        wx.clearStorage();
-        wx.redirectTo({
-          url: '/pages/login/index',
-        });
-      })
-      .catch(() => {
-        // on cancel
-      });
-  },
 
+  gotoMyself() {
+    wx.navigateTo({
+      url: '/pages/myself/index',
+    });
+  },
   async getSaleCount() {
     let { success, data } = await saleCount({
       filterBy: this.data.saleValue,

@@ -28,7 +28,7 @@
       <van-field value="{{form.description}}" name='description' label="备注" input-align="right" placeholder="请输入" />
     </van-cell-group>
     <view class="form-btn-area">
-      <van-button type="info" loading="{{btnLoad}}" loading-text="loading..." form-type="submit" custom-style="width: 600rpx;">提交</van-button>
+      <van-button type="info" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 600rpx;">提交</van-button>
     </view>
   </form>
 </view>

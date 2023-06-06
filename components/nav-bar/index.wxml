@@ -3,7 +3,7 @@
   <view class="nav-amin" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px;  top:{{menuTop}}px;">
     <block wx:if="{{defaultData.title}}">
       <view class="icon">
-        <van-icon wx:if="{{back}}" name="arrow-left"  bindtap="goback" size="1.3em"/>
+        <van-icon wx:if="{{back}}" name="arrow-left"  bindtap="goback" size="1.4em"/>
         <slot></slot>
       </view>
       <view class="search" wx:if="{{ defaultData.title}}">{{
