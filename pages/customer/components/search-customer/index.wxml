@@ -1,12 +1,25 @@
 <!--pages/customer/components/search-customer/index.wxml-->
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
-<van-search model:value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+<van-search
+  model:value="{{ key }}"
+  bind:change="handleListFilter"
+  bind:search="handleListFilter"
+  placeholder="请输入搜索关键词"
+/>
 
 
 <view class="container cus-container">
   <view class="margin-top: 50rpx">
     <van-cell-group>
-      <sd-list wx:for="{{list}}" wx:key="id" title="{{item.name}}" data-id="{{item.id}}" bindtap="gotoDetail" lab1="{{item.latestFollowUpTime ? '最近跟进：'+item.latestFollowUpTime: '无跟进记录' }}" desc1="未收款 {{item.unreceivedValue}}w">
+      <sd-list
+        wx:for="{{list}}"
+        wx:key="id"
+        title="{{item.name}}"
+        data-id="{{item.id}}"
+        bindtap="gotoDetail"
+        lab1="{{item.latestFollowUpTime ? '最近跟进：'+item.latestFollowUpTime: '无跟进记录' }}"
+        desc1=" {{item.unreceivedValue ?'未收款'+item.unreceivedValue+'w' : '' }}"
+      >
       </sd-list>
     </van-cell-group>
   </view>

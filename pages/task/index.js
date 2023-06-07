@@ -76,11 +76,11 @@ Page({
     if (event.type === 'change') {
     }
     let {
-      dataset: { checked,myself },
+      dataset: { checked, myself },
       id,
     } = event.currentTarget;
-    if(!myself){
-      return
+    if (!myself) {
+      return;
     }
     // let res = this.data.pageData.find(ele => ele.id == id)
     // if (res) {
@@ -95,14 +95,19 @@ Page({
       done: !checked,
     };
     updateTask(params).then((res) => {
-      console.log(res);
+      if (res.success) {
+        let res = this.data.pageData.find((ele) => ele.id == id);
+        console.log(res);
+        if (res) {
+          res.done = !checked;
+          this.setData({
+            pageData: [...this.data.pageData],
+          });
+        }
+      }
       wx.showToast({
-        title: res.success ? '提交成功' : '提交失败',
+        title: res.message,
         icon: 'none',
-      });
-      this.fetchData();
-      this.setData({
-        pageData: [],
       });
     });
   },
@@ -139,7 +144,7 @@ Page({
     };
     let { data, additional_data } = await listTask(params);
     if (!data.length) {
-       this.setData({
+      this.setData({
         isAllData: true,
         loading: false,
       });

@@ -133,6 +133,14 @@ Page({
         key: 'noChangeDealCount',
       },
       {
+        label: '商机金额',
+        val: '2',
+        unit: '',
+        link: 'deal',
+        key: 'allDealValue',
+      },
+
+      {
         label: '商机金额预测',
         val: 60000,
         unit: '',
@@ -402,6 +410,12 @@ Page({
         {
           data: yData,
           type: 'bar',
+          label: {
+            show: true,
+            position: 'right',
+            color: '#000', 
+            fontSize: 12 
+          }
         },
       ],
     });
@@ -419,8 +433,8 @@ Page({
     charts.init({
       grid: {
         top: 30,
-        left: 10,
-        right: 10,
+        left: 0,
+        right: 30,
         bottom: 30,
         containLabel: true,
       },
@@ -441,6 +455,12 @@ Page({
         {
           data: yData,
           type: 'bar',
+          label: {
+            show: true,
+            position: 'right',
+            color: '#000',
+            fontSize: 12 
+          }
         },
       ],
     });

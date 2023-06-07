@@ -45,8 +45,8 @@ Page({
         value: '1',
       },
       {
-        label: '否',
-        value: '女',
+        label: '女',
+        value: '2',
       },
     ],
 

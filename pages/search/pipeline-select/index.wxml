@@ -13,17 +13,17 @@
   </van-cell-group>
 
   <van-cell-group wx:if="{{pipelineType == 'terminate'}}">
-    <sd-picker value="{{terminaId}}"  title="终止原因" options="{{tarminalList}}"   bind:confirm="onConfirmt"></sd-picker>
+    <sd-picker value="{{terminaId}}"  title="终止原因" options="{{tarminalList}}" required  bind:confirm="onConfirmt"></sd-picker>
     <van-field  model:value="{{ description }}" label="备注" placeholder="请输入" />
   </van-cell-group>
 
   <van-cell-group wx:if="{{pipelineType == 'lose'}}">
-    <sd-picker value="{{loseId}}" title="输单原因" options="{{loseList}}"   bind:confirm="onConfirml"></sd-picker>
+    <sd-picker value="{{loseId}}" title="输单原因" options="{{loseList}}" required  bind:confirm="onConfirml"></sd-picker>
     <van-field  model:value="{{ description }}" label="备注" placeholder="请输入" />
   </van-cell-group>
 
   <van-cell-group wx:if="{{pipelineType == 'win'}}">
-    <van-cell value="{{winForm.conName}}" name="conId" required title="签订合同" is-link bind:click="selectCon"/>
+    <van-cell value="{{winForm.conName}}" name="conId"  title="签订合同" is-link bind:click="selectCon"/>
   </van-cell-group>
 
 

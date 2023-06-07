@@ -17,7 +17,7 @@
             <sd-sort data-skey="signedDate" bind:sort="sortBy">签订时间</sd-sort>
           </van-col>
           <van-col span="6" wx:else>
-            <sd-sort data-skey=" rate" bind:sort="sortBy">比例</sd-sort>
+            <sd-sort data-skey="rate" bind:sort="sortBy">比例</sd-sort>
           </van-col>
         </van-row>
         <!-- list -->

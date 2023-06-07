@@ -6,6 +6,7 @@ import {
   activityList,
   terminationReasonList,
   lostReasonList,
+  pageDeal
 } from '../../../api/deal';
 Page({
   /**

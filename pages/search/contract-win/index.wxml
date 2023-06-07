@@ -1,11 +1,24 @@
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
-<van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+<van-search
+  value="{{ key }}"
+  bind:change="handleListFilter"
+  bind:search="handleListFilter"
+  placeholder="请输入搜索关键词"
+/>
 
 
 <view class="select-main">
-  <van-cell-group>
-    <block wx:for="{{options}}" wx:key="unique">
-      <!-- <van-cell title="{{item.name}}" bind:click="onSelect" data-value="{{item.name}}" use-label-slot>
+  <scroll-view
+    wx:if="{{pageData.length}}"
+    style="height:calc(100vh - {{ navBarHeight }}px  - 360rpx) ;"
+    scroll-y="{{ true }}"
+  >
+    <van-cell-group>
+      <block
+        wx:for="{{pageData}}"
+        wx:key="unique"
+      >
+        <!-- <van-cell title="{{item.name}}" bind:click="onSelect" data-value="{{item.name}}" use-label-slot>
         <van-icon color="#0252cc" wx:if="{{value ==  item.name}}" slot="right-icon" name="success" class="custom-icon"  size="1.4em"/>
         <view slot="label">
           <text>{{item.orgName}}</text>
@@ -13,24 +26,46 @@
         </view>
       </van-cell> -->
 
-      <sd-list title="{{item.name}}（{{item.projectCode}}）" bind:click="onSelect" data-value="{{item.id}}" data-name="{{item.name}}">
-        <van-icon slot="value" color="#0252cc" wx:if="{{value ==  item.id}}" name="success" class="custom-icon" size="1.4em" />
-        <view slot="lab1">
-          <sd-space>
-            <text class="desc-label font-color-gray">{{item.orgName}} </text>
-            <text class="desc-label ">负责人：{{item.ownerUserName}}</text>
-          </sd-space>
-        </view>
-      </sd-list>
+        <sd-list
+          title="{{item.name ? item.name :'--'}}（{{item.code}}）"
+          bind:click="onSelect"
+          data-value="{{item.id}}"
+          data-name="{{item.name}}"
+        >
+          <van-icon
+            slot="value"
+            color="#0252cc"
+            wx:if="{{value ==  item.id}}"
+            name="success"
+            class="custom-icon"
+            size="1.4em"
+          />
+          <view slot="lab1">
+            <sd-space>
+              <text class="desc-label font-color-gray">{{item.orgName}} </text>
+              <text class="desc-label ">负责人：{{item.ownerUserName}}</text>
+            </sd-space>
+          </view>
+        </sd-list>
 
 
 
 
-    </block>
-  </van-cell-group>
-
-  <view class="form-btn-area">
-    <van-button type="info" loading="{{btnLoad}}"   bind:click="confirm" custom-style="width: 600rpx;">确定</van-button>
+      </block>
+    </van-cell-group>
+  </scroll-view>
+  <van-empty
+    wx:else
+    class="custom-image"
+    description="无数据"
+  />
+  <view class="form-btn-area"   wx:if="{{pageData.length}}">
+    <van-button
+      type="info"
+      loading="{{btnLoad}}"
+      bind:click="confirm"
+      custom-style="width: 600rpx;"
+    >确定</van-button>
   </view>
 
 </view>

@@ -75,7 +75,6 @@ Page({
   sortBy(eve) {
     let type = eve.detail.value;
     let key = eve.currentTarget.dataset.skey;
- 
     this.data.sortData[key] = type;
     this.setData({
       sortData: { ...this.data.sortData },
@@ -136,10 +135,12 @@ Page({
       } else {
         direction = '';
       }
-      sortData.push({
-        name: i,
-        direction,
-      });
+      if(direction){
+        sortData.push({
+          name: i,
+          direction,
+        });
+      }
     }
     let params = {
       page: this.data.pageNo,

@@ -1,53 +1,82 @@
 <!--pages/deal-detail/info/index.wxml-->
 <view class="info-wrap">
-  <sd-card custom-class="card-margin" title="产品" >
-    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="pro" data-text="products" data-key="productId"></van-icon>
+  <sd-card
+    custom-class="card-margin"
+    title="产品"
+  >
+    <van-icon
+      slot="icon"
+      name="edit"
+      bindtap="gotoEdit"
+      data-url="pro"
+      data-text="products"
+      data-key="productId"
+    ></van-icon>
     <view slot="body">
-      <sd-list 
-        wx:for="{{pagaDate.products}}" 
+      <sd-list
+        wx:for="{{pagaDate.products}}"
         wx:key="id"
-        title="{{item.name}}" 
-        value="{{item.num}}个" 
+        title="{{item.name}}"
+        value="{{item.num}}个"
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="竞争对手">
-    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="oppo" data-text="competitors" data-key="competitorId" ></van-icon>
+    <van-icon
+      slot="icon"
+      name="edit"
+      bindtap="gotoEdit"
+      data-url="oppo"
+      data-text="competitors"
+      data-key="competitorId"
+    ></van-icon>
     <view slot="body">
-      <sd-list 
-       wx:for="{{pagaDate.competitors}}" 
+      <sd-list
+        wx:for="{{pagaDate.competitors}}"
         wx:key="id"
-        title="{{item.competitorName}}" 
-
+        title="{{item.competitorName}}"
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="招标代理">
-    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="agent" data-text="biddingAgencies" data-key="biddingAgencyId"></van-icon>
+    <van-icon
+      slot="icon"
+      name="edit"
+      bindtap="gotoEdit"
+      data-url="agent"
+      data-text="biddingAgencies"
+      data-key="biddingAgencyId"
+    ></van-icon>
     <view slot="body">
-      <sd-list 
-       wx:for="{{pagaDate.biddingAgencies}}" 
+      <sd-list
+        wx:for="{{pagaDate.biddingAgencies}}"
         wx:key="id"
-        title="{{item.biddingAgencyName}}" 
-        lab1="{{item.biddingAgencyPersonName}}{{item.biddingAgencyPersonPhone}}" 
+        title="{{item.biddingAgencyName}}"
+        lab1="{{item.biddingAgencyPersonName}}{{item.biddingAgencyPersonPhone}}"
       >
       </sd-list>
     </view>
   </sd-card>
 
   <sd-card title="合作伙伴">
-    <van-icon   slot="icon" name="edit" bindtap="gotoEdit" data-url="cro" data-text="partners" data-key="partnerId"></van-icon>
+    <van-icon
+      slot="icon"
+      name="edit"
+      bindtap="gotoEdit"
+      data-url="cro"
+      data-text="partners"
+      data-key="partnerId"
+    ></van-icon>
     <view slot="body">
-      <sd-list 
-        wx:for="{{pagaDate.partners}}" 
-
+      <sd-list
+        wx:for="{{pagaDate.partners}}"
         wx:key="id"
-        title="{{item.partnerName}}" 
-        lab1="{{item.partnerPersonPhone}}{{item.partnerPersonName}}" 
+        title="{{item.partnerName}}"
+        lab1="{{item.partnerPersonPhone}}{{item.partnerPersonName}}"
       >
       </sd-list>
     </view>
@@ -55,16 +84,29 @@
 
   <sd-card title="合同">
     <view slot="body">
-      <sd-list 
-      wx:for="{{pagaDate.contracts}}" 
+      <sd-list
+        wx:for="{{pagaDate.contracts}}"
         wx:key="id"
-        title="{{item.name}}" 
-        value="负责人： {{item.ownerUserName}}" 
-        lab1="合同额：{{  item.value}}"
-        desc1="{{ item.signedDate}}"
-        lab2="已回款：{{  item.receivedValue}}"
-        desc2="待回款：{{ item.unreceivedValue}}"
+        title="{{item.name ? item.name: '--'}}"
+        value="负责人： {{item.ownerUserName}}"
+      
       >
+        <view slot="lab1">
+          <view style="display: flex;justify-content: space-between; color: rgb(107, 119, 140);">
+            <view>合同额：<sd-money text="{{  item.value}}"></sd-money>
+            </view>
+            {{ item.signedDate}}
+          </view>
+        </view>
+        <view slot="lab2">
+          <view style="display: flex;justify-content: space-between; color: rgb(107, 119, 140);">
+            <view>已回款：<sd-money text="{{  item.receivedValue}}"></sd-money>
+            </view>
+            <view>待回款：<sd-money text="{{  item.unreceivedValue}}"></sd-money>
+            </view>
+          </view>
+        </view>
+
       </sd-list>
     </view>
   </sd-card>
