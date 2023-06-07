@@ -40,3 +40,10 @@ export function activityList(data) {
     data,
   });
 }
+// 商机删除
+export function activityDelte(data) {
+  return _post({
+    url: `/mini/api/activity/delete`,
+    data,
+  });
+}

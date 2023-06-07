@@ -7,6 +7,10 @@ export const saleOptions = [
     label: '我下属的',
     value: '2',
   },
+  {
+    label: '我及我下属的',
+    value: '3',
+  },
 
 ];
 export const saleOptions1 = [
@@ -18,6 +22,11 @@ export const saleOptions1 = [
     label: '本人及下属',
     value: '2',
   },
+  {
+    label: '我及我下属的',
+    value: '3',
+  },
+
   // {
   //   label: '公司',
   //   value: '3',

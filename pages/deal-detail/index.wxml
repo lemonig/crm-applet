@@ -6,40 +6,98 @@
   <view class="card">
     <view class="title">
       <text>{{data.baseInfo.title}}</text>
-      <text>{{data.baseInfo.statusName}}</text>
+      <text
+        class="font-color-gray"
+        style="font-size: 24rpx;"
+        wx:if="{{data.baseInfo.status === '1'}}"
+      > {{data.baseInfo.statusName}} </text>
+      <van-tag
+        size="large"
+        wx:if="{{data.baseInfo.status === '2'}}"
+        color="rgb(17, 145, 67)"
+        type="primary"
+      >赢单</van-tag>
+      <van-tag
+        size="large"
+        wx:if="{{data.baseInfo.status === '3'}}"
+        color="#ff4d4f"
+        type="primary"
+      >丢单</van-tag>
+      <van-tag
+        size="large"
+        wx:if="{{data.baseInfo.status === '4'}}"
+        color="#ff4d4f"
+        type="primary"
+      >终止</van-tag>
     </view>
+
     <view class="desc-1">
-      <text class="iconfont icon-gongsi" style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"></text>{{data.baseInfo.orgName}}
-      <text class="iconfont icon-lxr-book" style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"></text> {{data.baseInfo.personName}}
+      <text bindtap="gotoCustomer"><text
+          class="iconfont icon-gongsi"
+          style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
+        ></text> {{data.baseInfo.orgName}} </text> <text
+        wx:if="{{data.baseInfo.personName}}"
+        class="iconfont icon-lxr-book"
+        style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
+      ></text> {{data.baseInfo.personName}}
     </view>
-    <view class="desc-2" style="margin-bottom: 20rpx;">
-      <text style="font-weight: bold">¥{{data.baseInfo.value}}</text> <text>{{data.baseInfo.ownerUserName}} 信心指数{{data.baseInfo.probability}}%</text>
+    <view
+      class="desc-2"
+      style="margin-bottom: 20rpx;"
+    >
+      <text style="font-weight: bold">¥{{data.baseInfo.value}}</text><text>{{data.baseInfo.ownerUserName}} 信心指数{{data.baseInfo.probability}}%</text>
     </view>
 
     <view bindtap="selectPipeline">
       <view class="stage-wrap">
-        <view class="triangle" style="left: calc({{(pipelineIdx / data.pipelineDetailList.length ) * 100 - (100 /  data.pipelineDetailList.length / 2)}}vw - 8px);"></view>
-        <text style="width:calc( {{ 100 / data.pipelineDetailList.length }}vw ) ;" wx:for="{{data.pipelineDetailList}}" wx:key="id">
+        <view
+          class="triangle"
+          style="left: calc({{(pipelineIdx / data.pipelineDetailList.length ) * 100 - (100 /  data.pipelineDetailList.length / 2)}}vw - 8px);"
+        ></view>
+        <text
+          style="width:calc( {{ 100 / data.pipelineDetailList.length }}vw ) ;"
+          wx:for="{{data.pipelineDetailList}}"
+          wx:key="id"
+        >
           {{item.name}}
         </text>
       </view>
 
-      <sd-stage list="{{data.pipelineDetailList}}" value="{{pipelineId}}"></sd-stage>
+      <sd-stage
+        list="{{data.pipelineDetailList}}"
+        value="{{pipelineId}}"
+      ></sd-stage>
       <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
     </view>
   </view>
 
   <view style="margin-top: 50rpx;">
 
-    <van-tabs active="{{ active }}" bind:change="onChange" title-style="tabs-title" lazy-render>
+    <van-tabs
+      active="{{ active }}"
+      bind:change="onChange"
+      title-style="tabs-title"
+      lazy-render
+    >
       <van-tab title="跟进记录">
-        <sd-record  dealId="{{dealId}}" pagaData="{{data.followUpInfo}}"></sd-record>
+        <sd-record
+          dealId="{{dealId}}"
+          pagaData="{{data.followUpInfo}}"
+        ></sd-record>
       </van-tab>
       <van-tab title="基本资料">
-        <sd-base wx:if="{{ active ==   1}}" dealId="{{dealId}}" pagaData="{{data.baseInfo}}"></sd-base>
+        <sd-base
+          wx:if="{{ active ==   1}}"
+          dealId="{{dealId}}"
+          pagaData="{{data.baseInfo}}"
+        ></sd-base>
       </van-tab>
       <van-tab title="相关信息">
-        <sd-info wx:if="{{ active ==   2}}" dealId="{{dealId}}" pagaDate="{{data.relatedInfo}}"></sd-info>
+        <sd-info
+          wx:if="{{ active ==   2}}"
+          dealId="{{dealId}}"
+          pagaDate="{{data.relatedInfo}}"
+        ></sd-info>
       </van-tab>
     </van-tabs>
   </view>

@@ -29,6 +29,10 @@ Component({
         text: '我的下属',
         value: 2,
       },
+      {
+        label: '我及我下属的',
+        value: '3',
+      },
     ],
     value1: 1,
     value2: 1,

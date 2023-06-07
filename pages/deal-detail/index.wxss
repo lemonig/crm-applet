@@ -34,6 +34,7 @@
   color: #888888;
   font-size: 24rpx;
   padding: 6rpx 0;
+  display: inline;
 }
 .desc-2 {
   padding: 12rpx 0;

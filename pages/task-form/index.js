@@ -72,41 +72,55 @@ Page({
       date: dayjs(params.endTime).format('YYYYMMDD'),
     };
 
-    let { description, title, value } = e.detail.value;
+    let { description, subject, value } = e.detail.value;
 
     if (this.data._id) {
       params.id = this.data._id;
-      var { success,message } = await updateTask(params);
+      var { success, message } = await updateTask(params);
     } else {
-      var { success,message } = await addTask(params);
+      var { success, message } = await addTask(params);
     }
     wx.showToast({
       title: message,
       icon: 'none',
     });
+
     if (success) {
-      wx.addPhoneCalendar({
-        title,
-        startTime: dayjs(this.data.tipme).unix(),
-        endTime: dayjs(this.data.tipme).add(1, 'day').unix(),
-        success() {
-          wx.showToast({
-            title: '添加日程成功',
-          });
+      wx.requestSubscribeMessage({
+        tmplIds: ['qtdVbTeX4B04lSAgzfTAI77IgePhkq80y9IxLGC_wyQ'],
+        success(res) {
+          console.log(res);
           wx.navigateBack();
         },
-        fail() {
-          wx.showToast({
-            title: '添加日程失败',
-            icon: 'none',
-          });
-        },
-        complete() {
-          that.setData({
-            btnLoad: false,
-          });
+        fail(res) {
+          console.log(res);
         },
       });
+      console.log(subject);
+      // wx.addPhoneCalendar({
+      //   title:subject,
+      //   startTime: dayjs(this.data.tipme).unix(),
+      //   endTime: dayjs(this.data.tipme).add(1, 'day').unix(),
+      //   success(res) {
+      //     console.log(res);
+      //     wx.showToast({
+      //       title: '添加日程成功',
+      //     });
+      //     wx.navigateBack();
+      //   },
+      //   fail(res) {
+      //     console.log(res);
+      //     wx.showToast({
+      //       title: '添加日程失败',
+      //       icon: 'none',
+      //     });
+      //   },
+      //   complete() {
+      //     that.setData({
+      //       btnLoad: false,
+      //     });
+      //   },
+      // });
     } else {
       this.setData({
         btnLoad: false,

@@ -14,7 +14,7 @@
     <van-cell title="备注" value="{{pagaData.description}}" />
   </van-cell-group>
 
-  <view class="form-btn-area">
+  <view class="form-btn-area" wx:if="{{pagaData.isOwner}}">
     <van-button type="info" custom-style="width: 600rpx;" bindtap="gotoedit">编辑</van-button>
   </view>
 </view>

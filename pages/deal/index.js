@@ -59,6 +59,14 @@ Page({
         text: '普通业务商机',
         value: 8,
       },
+      {
+        text: '无跟进商机',
+        value: 9,
+      },
+      {
+        text: '无变化商机',
+        value: 10,
+      },
     ],
     value1: 0,
     value2: 1,

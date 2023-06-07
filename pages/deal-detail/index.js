@@ -47,6 +47,15 @@ Page({
     });
   },
 
+  gotoCustomer(){
+    if(!this.data.data.baseInfo.orgName){
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/customer-detail/index?id=' + this.data.data.baseInfo.orgId,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

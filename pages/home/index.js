@@ -143,14 +143,14 @@ Page({
         label: '应收未收额',
         val: 400000,
         unit: '',
-        link: 'deal',
+        link: 'contract',
         key: 'unreceivedValue',
       },
       {
         label: '已开票未收款',
         val: 200,
         unit: '',
-        link: 'deal',
+        link: 'contract',
         key: 'invoicedUnreceivedValue',
       },
     ],
@@ -190,6 +190,7 @@ Page({
       saleValue1: e.detail.value,
       saleShow1: false,
     });
+    this.getDashboard()
   },
   // 时间
   onShowTimePopup() {
@@ -203,6 +204,7 @@ Page({
       timeValue: e.detail.value,
       timeShow: false,
     });
+    this.getDashboard()
     // 自定义组件触发事件时提供的detail对象
   },
   // 合同
@@ -326,7 +328,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() {
+    
+  },
 
   /**
    * 生命周期函数--监听页面显示

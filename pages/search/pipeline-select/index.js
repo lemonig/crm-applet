@@ -78,10 +78,13 @@ Page({
       default:
         params.pipelineStageId;
     }
-    let { success } = await dealAct(params);
+    let { success ,message} = await dealAct(params);
     wx.showToast({
-      title: '提交',
+      title: message,
       icon: 'none',
+    });
+    this.setData({
+      btnLoad: false,
     });
     if (success) {
       wx.navigateBack();

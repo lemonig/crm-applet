@@ -125,7 +125,7 @@
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="customer">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="task">
           <text>新增跟进记录</text>
           <text>{{pageData2.followUpAddNum}}个</text>
         </view>
@@ -175,7 +175,7 @@
     <sd-title>
       <view class="s-title" slot="title">
         <van-icon name="filter-o" color="#0252CC" />
-        销售漏斗
+        商机统计
       </view>
       <view class="select-btn" bindtap="onFunnelPopupClick" slot="select">
         <text>{{utils.filterlabel(funnelList,funnelValue)}}</text>
@@ -194,9 +194,9 @@
 <van-notify id="van-notify" />
 <van-dialog id="van-dialog" />
 <!-- 我的销售 -->
-<sd-select  open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
+<sd-select  height="50" open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
 <sd-select height="50" open="{{ saleShow1 }}" options="{{saleOptions1}}" value="{{saleValue1}}" bindmyevent="onSaleChange1"></sd-select>
-<sd-select open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
-<sd-select open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
-<sd-select open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>
-<sd-select open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelhange"></sd-select>
+<sd-select  height="62" open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
+<sd-select  open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
+<sd-select  open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>
+<sd-select  open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelhange"></sd-select>

@@ -1,42 +1,98 @@
 <!--pages/customer/index.wxml-->
 <navigation-bar back="{{false}}">
-  <view class="bar-wrap" slot="body">
+  <view
+    class="bar-wrap"
+    slot="body"
+  >
     <sd-space>
-      <view class="animate-text {{isOwnPage ? 'active' :''}}" bindtap="gotolink">客户</view>
+      <view
+        class="animate-text {{isOwnPage ? 'active' :''}}"
+        bindtap="gotolink"
+      >客户</view>
       <van-divider borderColor="#fff" />
-      <view class="animate-text {{isOwnPage ? '' :'active'}}" bindtap="gotolink">联系人</view>
+      <view
+        class="animate-text {{isOwnPage ? '' :'active'}}"
+        bindtap="gotolink"
+      >联系人</view>
     </sd-space>
-    <van-icon name="search" size="25px" class="search-icon" bindtap="gotoSearch" />
+    <van-icon
+      name="search"
+      size="25px"
+      class="search-icon"
+      bindtap="gotoSearch"
+    />
   </view>
 </navigation-bar>
 
 <view wx:if="{{isOwnPage}}">
-  <view class="container cus-container" style="height: calc(100vh - {{navBarHeight}}px)">
+  <view
+    class="container cus-container"
+    style="height: calc(100vh - {{navBarHeight}}px)"
+  >
     <van-dropdown-menu>
-      <van-dropdown-item bind:change="sortChange1" value="{{ value1 }}" options="{{ option1 }}" title="排序" />
-      <van-dropdown-item bind:change="sortChange2" value="{{ value2 }}" options="{{ option2 }}" title="高级筛选" />
+      <van-dropdown-item
+        bind:change="sortChange1"
+        value="{{ value1 }}"
+        options="{{ option1 }}"
+        title="排序"
+      />
+      <van-dropdown-item
+        bind:change="sortChange2"
+        value="{{ value2 }}"
+        options="{{ option2 }}"
+        title="高级筛选"
+      />
     </van-dropdown-menu>
     <view style="margin-top:var(--dropdown-margin);"></view>
 
-    <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px)  - 60px ) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
-      <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.name}}" data-id="{{item.id}}" bindtap="gotoDetail" lab1="{{item.latestFollowUpTime ? '最近跟进：'+item.latestFollowUpTime: '无跟进记录' }}" desc1="未收款 {{item.unreceivedValue}}w">
+    <scroll-view
+      wx:if="{{pageData.length}}"
+      style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px)  - 60px ) ;"
+      scroll-y="{{ true }}"
+      bindscrolltolower="handleToLower"
+    >
+      <sd-list
+        wx:for="{{pageData}}"
+        wx:key="id"
+        title="{{item.name}}"
+        data-id="{{item.id}}"
+        bindtap="gotoDetail"
+        lab1="{{item.latestFollowUpTime ? '最近跟进：'+item.latestFollowUpTime: '无跟进记录' }}"
+        desc1=" {{item.unreceivedValue ?'未收款'+item.unreceivedValue+'w' : '' }}"
+      >
       </sd-list>
 
-      <view style="text-align: center;margin: 8px 0" wx:if="{{loading}}">
+      <view
+        style="text-align: center;margin: 8px 0"
+        wx:if="{{loading}}"
+      >
         <van-loading color="var(--primary)">加载中...</van-loading>
       </view>
-      <van-divider wx:if="{{isAllData}}" contentPosition="center" customStyle=" font-size: 12px;">
+      <van-divider
+        wx:if="{{isAllData}}"
+        contentPosition="center"
+        customStyle=" font-size: 12px;"
+      >
         到底了
       </van-divider>
     </scroll-view>
 
-    <van-empty wx:else class="custom-image" description="无数据" />
+    <van-empty
+      wx:else
+      class="custom-image"
+      description="无数据"
+    />
 
 
   </view>
 
   <view class="fix-add-btn">
-    <van-icon name="add" style="font-size: 100rpx;" bindtap="add" color="#0252CC" />
+    <van-icon
+      name="add"
+      style="font-size: 100rpx;"
+      bindtap="add"
+      color="#0252CC"
+    />
   </view>
 </view>
 <block wx:else>

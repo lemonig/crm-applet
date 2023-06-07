@@ -42,8 +42,8 @@
   </van-cell-group>
 
   <view class="btn-wrap" wx:if="{{data.isOwner}}">
-      <van-button type="danger" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 250rpx;" bindtap="deleteItem">删除</van-button>
-      <van-button type="info" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
+      <van-button type="danger" loading="{{btnLoad}}"   custom-style="width: 250rpx;" bind:click="deleteItem">删除</van-button>
+      <van-button type="info" loading="{{btnLoad}}"   custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
     </view>
 </view>
 

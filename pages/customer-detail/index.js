@@ -1,7 +1,7 @@
 import { companyDetail } from '../../api/customer';
 Page({
   options: {
-    pureDataPattern: /^_/ // 指定所有 _ 开头的数据字段为纯数据字段
+    pureDataPattern: /^_/ 
   },
   /**
    * 页面的初始数据
