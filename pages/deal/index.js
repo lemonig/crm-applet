@@ -168,6 +168,7 @@ Page({
   onHide() {
     this.setData({
       pageData: [],
+      pageNo:1
     });
   },
 
