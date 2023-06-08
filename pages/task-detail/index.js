@@ -44,10 +44,10 @@ Page({
         new Promise((resolve) => {
           console.log(action);
             if (action === 'confirm') {
-              let {success,message} = activityDelte({
+              activityDelte({
                 id:this.data.id
               }).then(res =>{
-                if(success){
+                if(res.success){
                   wx.navigateBack()
                 }
                 resolve(true);
