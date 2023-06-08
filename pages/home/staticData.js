@@ -1,6 +1,6 @@
 export const saleOptions = [
   {
-    label: '本人',
+    label: '仅本人',
     value: '1',
   },
   {
@@ -19,7 +19,7 @@ export const saleOptions1 = [
     value: '1',
   },
   {
-    label: '本人及下属',
+    label: '我下属的',
     value: '2',
   },
   {

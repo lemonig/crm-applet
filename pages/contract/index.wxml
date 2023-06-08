@@ -21,7 +21,7 @@
           </van-col>
         </van-row>
         <!-- list -->
-        <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 220rpx) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
+        <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 270rpx) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
           <van-row wx:for="{{pageData}}" wx:key="id" gutter='16' custom-class="row-class" data-id="{{item.id}}" bindtap="gotoDetail">
             <van-col span="12">
               <view>{{item.name}}</view>

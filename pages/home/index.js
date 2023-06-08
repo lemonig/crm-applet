@@ -311,7 +311,7 @@ Page({
 
   async getDashboard() {
     let params = {
-      filterBy: this.data.saleValue,
+      filterBy: this.data.saleValue1,
       timeBy: this.data.timeValue,
     };
     let { success, data } = await dashboard(params);

@@ -1,12 +1,7 @@
 // pages/task/index.js
-import {
-  addTask,
-  updateTask,
-  detailTask,
-  searchDeal,
-  listTask,
-  activityList,
-} from '../../api/task';
+import { updateTask, listTask, activityList } from '../../api/task';
+import { taskInfo } from '../../api/home';
+
 const app = getApp();
 Page({
   /**
@@ -66,7 +61,6 @@ Page({
     checked: false,
     pageDataCum: {},
     pageData: [],
-    isPage: false,
     pageNo: 1,
     loading: false,
     isAllData: false,
@@ -103,6 +97,7 @@ Page({
           this.setData({
             pageData: [...this.data.pageData],
           });
+          this.getRelaInfo();
         }
       }
       wx.showToast({
@@ -143,7 +138,7 @@ Page({
       },
     };
     let { data, additional_data } = await listTask(params);
-    if (!data.length) {
+    if (additional_data.pagination.total === this.data.pageData.length) {
       this.setData({
         isAllData: true,
         loading: false,
@@ -167,6 +162,14 @@ Page({
       ],
     });
   },
+
+  async getRelaInfo() {
+    let { data } = await taskInfo();
+    this.getTabBar().setData({
+      taskNum: data.undoneActivityCount,
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -183,6 +186,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.setData({
+      isAllData: false
+    })
     this.fetchData();
 
     this.getTabBar().init();
@@ -194,7 +200,7 @@ Page({
   onHide() {
     this.setData({
       pageData: [],
-      pageNo:1
+      pageNo: 1,
     });
   },
 

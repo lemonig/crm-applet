@@ -13,7 +13,7 @@
     wx:key="index"
     dot="{{item.dot}}"
     icon="{{ item.icon }}"
-    info="{{item.info ?item.info : null }}"
+    info="{{ item.info &&  taskNum ? taskNum : null }}"
   >
     <!-- <view class="custom-tab-bar-wrapper"> -->
     <view class="text">{{ item.text }}</view>

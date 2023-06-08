@@ -1,6 +1,6 @@
 // pages/contract/index.js
 import { pageContract, getContract } from '../../api/contract';
-import { debounce } from "../../utils/util";
+import { debounce } from '../../utils/util';
 const app = getApp();
 var cloneData = [];
 
@@ -114,7 +114,7 @@ Page({
       loading: true,
     });
     let sortData = [];
-    let {active} = this.data
+    let { active } = this.data;
     for (let i in this.data.sortData) {
       if (active === 0) {
         if (i == 'rate') {
@@ -135,7 +135,7 @@ Page({
       } else {
         direction = '';
       }
-      if(direction){
+      if (direction) {
         sortData.push({
           name: i,
           direction,
@@ -152,33 +152,31 @@ Page({
       },
     };
     let { data } = await pageContract(params);
-    if (!data.length) {
-       this.setData({
+    if (this.data.isScrollFeatch && !data.length) {
+      this.setData({
         isAllData: true,
         loading: false,
       });
       return;
     }
-    if (this.data.isScrollFeatch) {
-      this.setData({
-        loading: false,
-        pageData: this.data.pageData.concat(data),
-      });
-    } else {
-      this.setData({
-        loading: false,
-        pageData: data,
-      });
-    }
+    this.setData({
+      loading: false,
+      pageData: this.data.isScrollFeatch ? this.data.pageData.concat(data) : data,
+      isScrollFeatch:false
+    });
   },
 
-  handleToLower:debounce(function () {
+  handleToLower: debounce(function () {
     this.setData({
       pageNo: this.data.pageNo + 1,
       isScrollFeatch: true,
     });
     this.fetchData();
-  },500), 
+  }, 500),
+
+
+
+  
   /**
    * 生命周期函数--监听页面加载
    */

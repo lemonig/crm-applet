@@ -31,7 +31,7 @@
   <!-- FIMME 点击范围无效 -->
   <scroll-view
     wx:if="{{pageData.length}}"
-    style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px)  - 160rpx ) ;"
+    style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px)  - 165rpx ) ;"
     scroll-y="{{ true }}"
     bindscrolltolower="handleToLower"
   >

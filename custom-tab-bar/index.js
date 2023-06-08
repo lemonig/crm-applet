@@ -1,7 +1,9 @@
 import { taskInfo } from '../api/home';
+const app = getApp();
 Component({
   data: {
     active: 0,
+    taskNum: 1,
     list: [
       {
         icon: 'wap-home-o',
@@ -26,7 +28,7 @@ Component({
         text: '任务',
         url: 'pages/task/index',
         dot: false,
-        info: 0,
+        info: true,
       },
       {
         icon: 'orders-o',
@@ -63,10 +65,10 @@ Component({
     },
     async getRelaInfo() {
       let { data } = await taskInfo();
-      this.data.list[3].info = data.undoneActivityCount;
       this.setData({
-        list: [...this.data.list],
-      });
+        taskNum: data.undoneActivityCount
+      })
+ 
     },
 
     init() {
