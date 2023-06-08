@@ -1,5 +1,7 @@
 // pages/deal-detail/index.js
-import { detailDeal, listPipelineStage } from '../../api/deal';
+import { detailDeal, listPipelineStage,dealAct } from '../../api/deal';
+import Dialog from '@vant/weapp/dialog/dialog';
+
 Page({
   /**
    * 页面的初始数据
@@ -31,6 +33,33 @@ Page({
     });
   },
   selectPipeline() {
+    if(!this.data.data.baseInfo.isOwner){
+      return
+    }
+    if(['2','3','4'].includes(this.data.data.baseInfo.status )){
+      Dialog.confirm({
+        title: '提示',
+        message: `商机已 ${this.data.data.baseInfo.statusName} ,确认重新打开？`,
+        beforeClose: (action) =>
+          new Promise(async(resolve) => {
+              if (action === 'confirm') {
+                let { success, message } = await dealAct({
+                  id: this.data.dealId,
+                  type: 'reopen'
+                });
+                if(success){
+                  wx.navigateTo({
+                    url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId,
+                  });
+                }
+                  resolve(true);
+              } else {
+                resolve(true);
+              }
+          }),
+      });
+      return 
+    }
     wx.navigateTo({
       url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId,
     });

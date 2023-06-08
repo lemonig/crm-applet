@@ -1,5 +1,5 @@
 <!--pages/deal-detail/record/index.wxml-->
-<van-cell-group>
+<van-cell-group wx:if="{{pagaData.length}}">
 
   <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.ownerUserName}}" value="{{item.startTime}}" desc1="联系人  {{item.a4}}" lab2="{{item.dealName}}">
     <view slot="lab1" class="label font-color-gray">
@@ -15,7 +15,7 @@
   </sd-list>
 
 </van-cell-group>
-
+<van-empty wx:else description="无数据" />
 <!-- <view class="fix-add-btn">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
 </view> -->

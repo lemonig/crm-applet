@@ -13,6 +13,9 @@ Component({
       pagaData: {
         type: Array,
       },
+      isOwner:{
+        type:Boolean
+      }
     },
 
     /**

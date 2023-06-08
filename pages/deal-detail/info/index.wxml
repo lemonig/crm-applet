@@ -5,6 +5,7 @@
     title="产品"
   >
     <van-icon
+      wx:if="{{isOwner}}"
       slot="icon"
       name="edit"
       bindtap="gotoEdit"
@@ -25,6 +26,7 @@
 
   <sd-card title="竞争对手">
     <van-icon
+      wx:if="{{isOwner}}"
       slot="icon"
       name="edit"
       bindtap="gotoEdit"
@@ -44,6 +46,7 @@
 
   <sd-card title="招标代理">
     <van-icon
+      wx:if="{{isOwner}}"
       slot="icon"
       name="edit"
       bindtap="gotoEdit"
@@ -64,6 +67,7 @@
 
   <sd-card title="合作伙伴">
     <van-icon
+      wx:if="{{isOwner}}"
       slot="icon"
       name="edit"
       bindtap="gotoEdit"
@@ -89,7 +93,6 @@
         wx:key="id"
         title="{{item.name ? item.name: '--'}}"
         value="负责人： {{item.ownerUserName}}"
-      
       >
         <view slot="lab1">
           <view style="display: flex;justify-content: space-between; color: rgb(107, 119, 140);">

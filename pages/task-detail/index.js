@@ -39,7 +39,7 @@ Page({
     let that = this;
     Dialog.confirm({
       title: '警告',
-      message: '确定要删除吗，',
+      message: '确定要删除吗？',
       beforeClose: (action) =>
         new Promise((resolve) => {
           console.log(action);

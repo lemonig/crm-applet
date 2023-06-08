@@ -10,6 +10,9 @@ Component({
     pagaDate: {
       type: Object,
     },
+    isOwner:{
+      type:Boolean
+    }
   },
 
   /**

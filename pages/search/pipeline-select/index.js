@@ -6,7 +6,7 @@ import {
   activityList,
   terminationReasonList,
   lostReasonList,
-  pageDeal
+  pageDeal,
 } from '../../../api/deal';
 Page({
   /**
@@ -43,14 +43,14 @@ Page({
     const { picker, value, index } = event.detail;
     console.log(event.detail);
     this.setData({
-      terminaId: value
-    })
+      terminaId: value,
+    });
   },
   onConfirml(event) {
     const { picker, value, index } = event.detail;
     this.setData({
-      loseId: value
-    })
+      loseId: value,
+    });
   },
 
   async submit() {
@@ -79,7 +79,7 @@ Page({
       default:
         params.pipelineStageId;
     }
-    let { success ,message} = await dealAct(params);
+    let { success, message } = await dealAct(params);
     wx.showToast({
       title: message,
       icon: 'none',
