@@ -24,9 +24,11 @@
 }
 .card .title text:first-child {
   font-weight: bold;
+  flex: 1;
 }
 .card .title text:last-child {
   font-size: 28rpx;
+  /* flex-basis: 100rpx; */
 }
 .desc-1 {
   margin: 4rpx 0rpx;

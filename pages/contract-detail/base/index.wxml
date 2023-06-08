@@ -23,8 +23,8 @@
   </van-cell-group>
 </view>
 <van-overlay show="{{ show }}" bind:click="onClickHide" root-portal="{{true}}" z-index='9999' custom-class="over-lay" lock-scroll="{{false}}">
-  <view class="wrapper">
-    <view class="block">
+  <view class="wrapper" >
+    <view class="block" style="padding-top:calc( {{ navBarHeight }}px ) ;">
       <text wx:if="{{pageShow == 1}}">
         {{pageData.deliveryContent}}
       </text>

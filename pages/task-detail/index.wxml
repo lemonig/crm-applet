@@ -17,6 +17,9 @@
     <van-cell title="结束日期">
       <text>{{data.endTimeDto.date}}</text>
     </van-cell>
+    <van-cell title="提醒我">
+      <text>{{data.remindMe}}</text>
+    </van-cell>
   </van-cell-group>
   <van-cell-group custom-class="cell-group-class">
     <van-cell title="任务标题">

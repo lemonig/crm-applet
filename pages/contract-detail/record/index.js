@@ -8,7 +8,11 @@ Component({
       type:String
     },
     pageData:{
-      type:Object
+      type:Object,
+      observer: function (newVal, oldVal) {
+
+        console.log(newVal);
+      }
     }
   },
 

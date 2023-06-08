@@ -52,10 +52,25 @@ Page({
   },
   async getPageData(id) {
     let { data } = await getContract({id});
+    data?.financeInfo?.details.map(item=> {
+      if(item.rate) item.rate += '%'
+    })
     this.setData({
      data
     })
   },
+
+  gotoCustomer(){
+    if(!this.data.data.baseInfo.orgName){
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/customer-detail/index?id=' + this.data.data.baseInfo.orgId,
+    })
+  },
+
+  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

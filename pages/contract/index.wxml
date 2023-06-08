@@ -41,7 +41,7 @@
               <text>{{item.signedDate}}</text>
             </van-col>
             <van-col span="6" wx:else>
-              <van-tag color="{{ item.rate < 50 ? '#017737':'#FF4D4F' }}">
+              <van-tag wx:if="{{item.rate}}" color="{{ item.rate < 50 ? '#017737':'#FF4D4F' }}">
                 <view class="tag-text"> {{item.rate}}%
                 </view>
               </van-tag>

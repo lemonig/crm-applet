@@ -25,6 +25,7 @@
 }
 .card .title text:first-child {
   font-weight: bold;
+  flex: 1;
 }
 .card .title text:last-child {
   font-size: 28rpx;

@@ -412,7 +412,7 @@ Page({
           type: 'bar',
           label: {
             show: true,
-            position: 'right',
+            position: 'top',
             color: '#000', 
             fontSize: 12 
           }

@@ -13,6 +13,9 @@
   align-items: center;
   margin-bottom: 8rpx;
 }
+.title> text:first-child{
+  flex: 1;
+}
 .font-color-gray {
   color: rgb(107, 119, 140);
 }

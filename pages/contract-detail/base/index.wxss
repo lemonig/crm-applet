@@ -5,6 +5,7 @@
   justify-content: center;
   height: 100vh;
   z-index: 9999;
+  box-sizing: border-box;
 }
 
 .block {

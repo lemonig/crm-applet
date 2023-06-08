@@ -7,14 +7,15 @@
       <text>{{data.baseInfo.name}}</text>
       <text>{{data.baseInfo.type}}</text>
     </view>
-    <view class="desc-1">
+    <view class="desc-1" bindtap="gotoCustomer">
       <van-icon name="hotel-o" />   <text>{{data.baseInfo.orgName}}</text>
     </view>
     <view class="desc-2">
       <text>编号：  <text>{{data.baseInfo.code}}</text></text> <text>签订：  <text>{{data.baseInfo.signedDate}}</text></text>
     </view>
     <view class="desc-2" >
-      <text>负责人：  <text>{{data.baseInfo.ownerUserName}}</text></text> <text>到期：  <text>{{data.baseInfo.finishedDate}}</text></text>
+      <text>负责人：  <text>{{data.baseInfo.ownerUserName}}</text></text>
+       <!-- <text>到期：  <text>{{data.baseInfo.finishedDate}}</text></text> -->
     </view>
 
 
