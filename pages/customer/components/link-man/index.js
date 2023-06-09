@@ -1,5 +1,6 @@
 // pages/customer/components/link-man/index.js
 import { linkmanInfo } from '../../../../api/linkman';
+import { debounce } from '../../../../utils/util';
 Component({
   /**
    * 组件的属性列表
@@ -48,13 +49,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    handleToLower: function () {
+
+    handleToLower: debounce(function () {
       this.setData({
         loading: true,
         pageNo: this.data.pageNo + 1,
       });
       this.fetchData();
-    },
+    }, 500),
+  
+
     fetchData: async function () {
       let params = {
         data: {
@@ -65,7 +69,7 @@ Component({
         size: 10,
       };
       let { data } = await linkmanInfo(params);
-      if (!data.length) {
+      if (additional_data.pagination.total === this.data.pageData.length) {
         this.setData({
           isAllData: true,
         });

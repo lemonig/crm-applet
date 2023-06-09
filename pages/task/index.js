@@ -1,6 +1,7 @@
 // pages/task/index.js
 import { updateTask, listTask, activityList } from '../../api/task';
 import { taskInfo } from '../../api/home';
+import { debounce } from '../../utils/util';
 
 const app = getApp();
 Page({
@@ -112,13 +113,14 @@ Page({
     });
   },
 
-  handleToLower: function () {
+  handleToLower: debounce(function () {
     this.setData({
       loading: true,
       pageNo: this.data.pageNo + 1,
     });
     this.fetchData();
-  },
+  }, 500),
+
   gotoDetail(eve) {
     console.log(eve);
     let id = eve.currentTarget.dataset.id;

@@ -1,5 +1,7 @@
 // pages/deal/index.js
 import { pageDeal, listPipelineStage } from '../../api/deal';
+import { debounce } from '../../utils/util';
+
 const app = getApp();
 Page({
   data: {
@@ -111,7 +113,7 @@ Page({
       },
     };
     let { data, additional_data } = await pageDeal(params);
-    if (!data.length) {
+    if (additional_data.pagination.total === this.data.pageData.length) {
       this.setData({
         isAllData: true,
         loading: false,
@@ -139,13 +141,14 @@ Page({
       url: '/pages/deal-detail/index?id=' + id,
     });
   },
-  handleToLower: function () {
+  handleToLower: debounce(function () {
     this.setData({
       loading: true,
       pageNo: this.data.pageNo + 1,
     });
     this.fetchData();
-  },
+  }, 500),
+
   //
   async getListPipelineStage() {
     let { data } = await listPipelineStage();

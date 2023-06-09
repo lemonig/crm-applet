@@ -1,5 +1,6 @@
 // pages/customer/index.js
 import { companyInfo } from '../../api/customer';
+import { debounce } from '../../utils/util';
 const app = getApp();
 Page({
   /**
@@ -101,7 +102,7 @@ Page({
       },
     };
     let { data } = await companyInfo(params);
-    if (!data.length) {
+    if (additional_data.pagination.total === this.data.pageData.length) {
        this.setData({
         isAllData: true,
         loading: false,
@@ -114,13 +115,16 @@ Page({
     });
   },
 
-  handleToLower: function () {
+
+  handleToLower: debounce(function () {
     this.setData({
       loading: true,
       pageNo: this.data.pageNo + 1,
     });
     this.fetchData();
-  },
+  }, 500),
+
+
   sortChange() {
     this.setData({
       pageNo: 1,
