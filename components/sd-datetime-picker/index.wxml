@@ -1,22 +1,24 @@
-<van-cell 
-  required="{{required}}" 
-  title="{{title}}" 
-  is-link 
-  bind:click="showPopup" 
-  data-index="2" 
-  value="{{label}}" />
-<van-popup 
-  show="{{ show }}" 
-
+<van-cell
+  required="{{required}}"
+  title="{{title}}"
+  is-link
+  bind:click="showPopup"
+  data-index="2"
+  value="{{label}}"
+/>
+<van-popup
+  show="{{ show }}"
+  overlay="{{overlay}}"
   custom-style="height: 620rpx;"
-  position="bottom">
-    <van-datetime-picker
-      type="{{type}}"
-      bind:cancel="onClose" 
-      bind:confirm="confirmPicker"
-      value="{{ value }}"
-      min-date="{{ minDate }}"
-      bind:input="onInput"
-      formatter="{{ formatter }}"
+  position="bottom"
+>
+  <van-datetime-picker
+    type="{{type}}"
+    bind:cancel="onClose"
+    bind:confirm="confirmPicker"
+    model:value="{{ value }}"
+    min-date="{{ minDate }}"
+    bind:input="onInput"
+    formatter="{{ formatter }}"
   />
 </van-popup>

@@ -11,8 +11,6 @@ Component({
     value: {
       type: String | Number,
       observer: function (newVal, oldVal) {
-        console.log(newVal);
-        console.log(oldVal);
         if(newVal){
           this.setData({
             value: dayjs(newVal).valueOf(),
@@ -33,6 +31,10 @@ Component({
     type:{
       type: String,
       value:"date"
+    },
+    overlay:{
+      type:Boolean,
+      value: true
     }
   },
   data: {
@@ -76,6 +78,7 @@ Component({
     },
     confirmPicker(event) {
       let time = dayjs(event.detail).format(this.properties.formated) 
+      console.log(time);
       this.setData({
         value: time,
         label:time,

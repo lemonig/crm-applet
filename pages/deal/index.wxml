@@ -28,6 +28,12 @@
       value="{{ value3 }}"
       options="{{ option3 }}"
     />
+    <van-dropdown-item
+      bind:change="sortChange4"
+      title="权限范围"
+      value="{{ value4 }}"
+      options="{{ option4 }}"
+    />
   </van-dropdown-menu>
   <view style="margin-top:var(--dropdown-margin);">
     <view class="deal-title">

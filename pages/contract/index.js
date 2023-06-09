@@ -1,4 +1,5 @@
 // pages/contract/index.js
+import dayjs from 'dayjs';
 import { pageContract, getContract } from '../../api/contract';
 import { debounce } from '../../utils/util';
 const app = getApp();
@@ -142,6 +143,7 @@ Page({
         });
       }
     }
+    console.log(this.data.filterD);
     let params = {
       page: this.data.pageNo,
       size: 20,
@@ -151,6 +153,8 @@ Page({
         orderBy: sortData,
       },
     };
+
+
     let { data } = await pageContract(params);
     if (this.data.isScrollFeatch && !data.length) {
       this.setData({

@@ -1,4 +1,5 @@
 // pages/contract/components/sd-filter/index.js
+import dayjs from 'dayjs';
 import { contractTypeList } from '../../../../api/contract';
 const app = getApp();
 Component({
@@ -73,6 +74,8 @@ Component({
     value: 0,
     // value1:0,
     value2: 0,
+    beginTime:'',
+    endTime:''
   },
 
   /**
@@ -108,15 +111,20 @@ Component({
 
     deleteItem() {},
     search(event) {
-      let { value, key,value2, others } = this.data;
+      let { value, key,value2, others,beginTime,endTime} = this.data;
+
       let otherType = others[0].cecked ? 1: 0;
-      console.log(key,value,value2);
       var myEventDetail = {
         dataScope: value,
         contractType: value2,
         otherType:otherType,
         name: key,
-      }; // detail对象，提供给事件监听函数
+        beginTime: beginTime ? dayjs(beginTime).format('YYYY-MM-DD') : undefined,
+        endTime:endTime ? dayjs(endTime).format('YYYY-MM-DD') : undefined
+
+      };
+      console.log(myEventDetail);
+      // detail对象，提供给事件监听函数
       var myEventOption = {}; // 触发事件的选项
       this.triggerEvent('filtercall', myEventDetail, myEventOption);
     },

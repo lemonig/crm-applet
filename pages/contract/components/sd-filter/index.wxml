@@ -1,11 +1,23 @@
-<view class="filter-wrap" style="height:calc(100vh - {{ navBarHeight }}px  - 100px) ;padding-top: {{ navBarHeight }}px;">
+<scroll-view
+  class="filter-wrap"
+  style="height:calc(100vh - {{ navBarHeight }}px  - 100px) ;padding-top: {{ navBarHeight }}px;"
+>
   <view class="s-title">
     关键词
   </view>
-  <view class="tag-wrap" style="margin-bottom: 30rpx;">
+  <view
+    class="tag-wrap"
+    style="margin-bottom: 30rpx;"
+  >
     <van-row gutter="20">
       <van-col span="24">
-        <van-search shape="round" model:value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入合同额、合同编号" />
+        <van-search
+          shape="round"
+          model:value="{{ key }}"
+          bind:change="handleListFilter"
+          bind:search="handleListFilter"
+          placeholder="请输入合同额、合同编号"
+        />
       </van-col>
     </van-row>
   </view>
@@ -14,8 +26,18 @@
   </view>
   <view class="tag-wrap">
     <van-row gutter="20">
-      <van-col span="8" wx:for="{{range}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap">
-        <van-tag  size="large" custom-class="tag-class {{item.id == value ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
+      <van-col
+        span="8"
+        wx:for="{{range}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="choseWrap"
+      >
+        <van-tag
+          size="large"
+          custom-class="tag-class {{item.id == value ? 'checked' : ''  }}"
+          plain
+        >{{item.label}}</van-tag>
       </van-col>
     </van-row>
   </view>
@@ -34,12 +56,49 @@
   </view>
   <view class="tag-wrap">
     <van-row gutter="20">
-      <van-col span="12" wx:for="{{types}}" wx:key="id" data-id="{{item.id}}" bindtap="choseWrap2">
-        <van-tag  size="large" custom-class="tag-class {{item.id == value2 ? 'checked' : ''  }}" plain>{{item.name}}</van-tag>
+      <van-col
+        span="12"
+        wx:for="{{types}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="choseWrap2"
+      >
+        <van-tag
+          size="large"
+          custom-class="tag-class {{item.id == value2 ? 'checked' : ''  }}"
+          plain
+        >{{item.name}}</van-tag>
       </van-col>
     </van-row>
   </view>
+
   <view class="s-title">
+    合同年份：
+  </view>
+  <view class="tag-wrap">
+    <van-row gutter="20">
+
+      <van-col span="24">
+        <sd-datetime-picker
+          overlay="{{false}}"
+          model:value="{{beginTime}}"
+          title="开始年份"
+          formated="YYYY-MM-DD"
+        ></sd-datetime-picker>
+      </van-col>
+    </van-row>
+    <van-row gutter="20">
+      <van-col span="24">
+        <sd-datetime-picker
+          overlay="{{false}}"
+          model:value="{{endTime}}"
+          title="结束日期"
+          formated="YYYY-MM-DD"
+        ></sd-datetime-picker>
+      </van-col>
+    </van-row>
+  </view>
+  <!-- <view class="s-title">
     其他：
   </view>
   <view class="tag-wrap">
@@ -48,11 +107,19 @@
         <van-tag  size="large" custom-class="tag-class {{item.checked ? 'checked' : ''  }}" plain>{{item.label}}</van-tag>
       </van-col>
     </van-row>
-  </view>
+  </view> -->
 
   <view class="btn-wrap">
-    <van-button type="danger"   custom-style="width: 30%;margin:0 30rpx" bindtap="deleteItem">重置</van-button>
-    <van-button type="info"   custom-style="width: 30%;margin:0 30rpx" bindtap="search">确定</van-button>
+    <van-button
+      type="danger"
+      custom-style="width: 30%;margin:0 30rpx"
+      bindtap="deleteItem"
+    >重置</van-button>
+    <van-button
+      type="info"
+      custom-style="width: 30%;margin:0 30rpx"
+      bindtap="search"
+    >确定</van-button>
   </view>
 
-</view>
+</scroll-view>

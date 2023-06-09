@@ -21,8 +21,47 @@ Page({
         text: '商机金额',
         value: 3,
       },
+      {
+        text: '业务类型',
+        value: 4,
+      },
     ],
     option3: [
+    
+      {
+        text: '赢单商机',
+        value: 1,
+      },
+      {
+        text: '输单商机',
+        value: 2,
+      },
+      {
+        text: '终止商机',
+        value: 3,
+      },
+      {
+        text: '进行中商机',
+        value: 4,
+      },
+      {
+        text: '特殊业务商机',
+        value: 5,
+      },
+      {
+        text: '普通业务商机',
+        value: 6,
+      },
+      // {
+      //   text: '无跟进商机',
+      //   value: 7,
+      // },
+      // {
+      //   text: '无变化商机',
+      //   value: 8,
+      // },
+    ],
+    option4: [
       {
         text: '全部商机',
         value: 0,
@@ -36,41 +75,14 @@ Page({
         value: 2,
       },
       {
-        text: '赢单商机',
+        text: '我及我下属负责的商机',
         value: 3,
-      },
-      {
-        text: '输单商机',
-        value: 4,
-      },
-      {
-        text: '终止商机',
-        value: 5,
-      },
-      {
-        text: '进行中商机',
-        value: 6,
-      },
-      {
-        text: '特殊业务商机',
-        value: 7,
-      },
-      {
-        text: '普通业务商机',
-        value: 8,
-      },
-      {
-        text: '无跟进商机',
-        value: 9,
-      },
-      {
-        text: '无变化商机',
-        value: 10,
       },
     ],
     value1: 0,
     value2: 1,
     value3: 1,
+    value4: 0,
     pageData: [],
     pageDataCum: {},
     id: '',
@@ -213,6 +225,14 @@ Page({
       pageNo: 1,
       pageData: [],
       value3: eve.detail,
+    });
+    this.fetchData();
+  },
+  sortChange4(eve) {
+    this.setData({
+      pageNo: 1,
+      pageData: [],
+      value4: eve.detail,
     });
     this.fetchData();
   },
