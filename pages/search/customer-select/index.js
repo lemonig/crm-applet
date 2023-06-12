@@ -17,16 +17,17 @@ Page({
     value: null,
     name: '',
   },
+  
   onSelect(event) {
-    console.log(event);
+    const { value, name } = event.currentTarget.dataset;
     this.setData({
-      value: event.currentTarget.dataset.value,
-      name: event.currentTarget.dataset.name,
+      value,
+      name,
     });
   },
+  
 
    confirm() {
-    console.log(this.data.value);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
     prePages.setData({

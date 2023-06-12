@@ -49,7 +49,6 @@ Component({
         value: res.id,
       });
     },
-    choseWrap1(eve) {},
     choseWrap2(eve) {
       let id = eve.currentTarget.dataset.id;
       let res = this.data.types.find((ele) => ele.id == id);
@@ -60,7 +59,6 @@ Component({
     choseWrap3(eve) {
       let id = eve.currentTarget.dataset.id;
       let res = this.data.others.find((ele) => ele.id == id);
-      console.log(res);
       res.checked = !res.checked;
       this.setData({
         others: [...this.data.others],
@@ -72,25 +70,21 @@ Component({
       this.setData({
         value: 0,
         value2: 0,
-        // otherType: otherType,
         key: '',
         beginTime: new Date().getFullYear() ,
         endTime: new Date().getFullYear(),
       })
     },
     search(event) {
-      let { value, key, value2, others, beginTime, endTime } = this.data;
+      let { value, key, value2, beginTime, endTime } = this.data;
       console.log(beginTime);
-      let otherType = others[0].cecked ? 1 : 0;
       var myEventDetail = {
         dataScope: value,
         contractType: value2,
-        // otherType: otherType,
         name: key,
         beginTime: beginTime ,
         endTime: endTime,
       };
-      console.log(myEventDetail);
       // detail对象，提供给事件监听函数
       var myEventOption = {}; // 触发事件的选项
       this.triggerEvent('filtercall', myEventDetail, myEventOption);
@@ -115,7 +109,6 @@ Component({
     },
     confirmPicker(event) {
       const { picker, value, index } = event.detail;
-      console.log(value);
       this.setData({
         beginTime: value,
         showPicker: false,
@@ -133,7 +126,6 @@ Component({
     },
     confirmPicker1(event) {
       const { picker, value, index } = event.detail;
-      console.log(value);
       this.setData({
         endTime: value,
         showPicker1: false,

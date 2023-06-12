@@ -65,7 +65,6 @@ Page({
     this.setData({
       isOwnPage: !this.data.isOwnPage,
     });
-    console.log(this.data.isOwnPage);
   },
   add() {
     wx.navigateTo({
@@ -74,7 +73,6 @@ Page({
   },
   gotoDetail(eve) {
     let id = eve.currentTarget.dataset.id
-    console.log(id);
     wx.navigateTo({
       url: '/pages/customer-detail/index?id='+ id,
     });
@@ -101,7 +99,7 @@ Page({
         filterBy:this.data.value2,
       },
     };
-    let { data } = await companyInfo(params);
+    let { data ,additional_data} = await companyInfo(params);
     if (additional_data.pagination.total === this.data.pageData.length) {
        this.setData({
         isAllData: true,
@@ -170,7 +168,6 @@ Page({
     }
     this.fetchData()
   
-    console.log(this.getTabBar());
     this.getTabBar().init();
   },
 

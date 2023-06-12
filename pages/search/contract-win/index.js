@@ -22,7 +22,6 @@ Page({
     isAllData: false,
   },
   onSelect(event) {
-    console.log(event);
     this.setData({
       value: event.currentTarget.dataset.value,
       name: event.currentTarget.dataset.name,
@@ -30,7 +29,6 @@ Page({
   },
 
   confirm() {
-    console.log(this.data);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
     prePages.setData({
@@ -73,7 +71,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     this.setData({
       key: options.text,
     });

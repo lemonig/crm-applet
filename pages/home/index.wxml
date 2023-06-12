@@ -205,4 +205,4 @@
 <sd-select  height="62" open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
 <sd-select  open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
 <sd-select  open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>
-<sd-select  open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelhange"></sd-select>
+<sd-select  open="{{ funnelShow }}" options="{{funnelList}}" value="{{funnelValue}}" bindmyevent="onFunnelChange"></sd-select>

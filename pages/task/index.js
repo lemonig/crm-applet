@@ -60,7 +60,6 @@ Page({
     value3: 1,
 
     checked: false,
-    pageDataCum: {},
     pageData: [],
     pageNo: 1,
     loading: false,
@@ -84,7 +83,6 @@ Page({
     //     pageData: [...this.data.pageData]
     //   })
     // }
-    console.log(checked);
     let params = {
       id,
       done: !checked,
@@ -92,7 +90,6 @@ Page({
     updateTask(params).then((res) => {
       if (res.success) {
         let res = this.data.pageData.find((ele) => ele.id == id);
-        console.log(res);
         if (res) {
           res.done = !checked;
           this.setData({

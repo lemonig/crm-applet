@@ -18,20 +18,27 @@ Page({
     orgId: '',
   },
   onCheck(event) {
-    let { index, value } = event.currentTarget.dataset;
-    let item = this.data.pageData[index];
-    item.checked = !item.checked;
-    console.log(item);
+    const { index } = event.currentTarget.dataset;
+    const pageData = this.data.pageData.map((item, i) => {
+      if (i === index) {
+        return {
+          ...item,
+          checked: !item.checked,
+        };
+      }
+      return item;
+    });
     this.setData({
-      pageData: [...this.data.pageData],
+      pageData: pageData,
     });
   },
+  
 
-   confirm() {
-    var pages = getCurrentPages();
-    var prePages = pages[pages.length - 2];
-    let personList = this.data.pageData.filter((item) => item.checked);
-    prePages.setData({
+  confirm() {
+    const pages = getCurrentPages();
+    const prePage = pages[pages.length - 2];
+    const personList = this.data.pageData.filter((item) => item.checked);
+    prePage.setData({
       linkmanMsg: personList.map((item) => item.id),
       'form.personName': personList.map((item) => item.name),
     });
@@ -39,42 +46,32 @@ Page({
       delta: 1,
     });
   },
+  
 
-  fetchData: async function () {
+  async fetchData() {
     let params = {
       data: {
         orderBy: this.data.value1,
         filterBy: this.data.value2,
         orgId: this.data.orgId ? this.data.orgId : -1,
+        name:this.data.key
       },
     };
-
-    let { data } = await linkmanInfo(params);
-    if (!!this.data.value) {
-      console.log(this.data.value);
+  
+    try {
+      let { data } = await linkmanInfo(params);
       let newD = data.map((item) => {
-        console.log(this.data.value.includes(item.id));
         return {
           ...item,
-          checked: this.data.value.includes(item.id),
+          checked: !!this.data.value ? this.data.value.includes(item.id) : false,
         };
       });
-      console.log(newD);
       this.setData({
         loading: false,
         pageData: newD,
       });
-    } else {
-      let newD = data.map((item) => {
-        return {
-          ...item,
-          checked: false,
-        };
-      });
-      this.setData({
-        loading: false,
-        pageData,
-      });
+    } catch (error) {
+      // 处理请求失败的情况
     }
   },
   handleListFilter: debounce(function (eve) {
@@ -84,12 +81,14 @@ Page({
     if (!eve.detail) {
       return;
     }
+    // 添加请求数据的逻辑
+    this.fetchData();
   }, 500),
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     if (options.selected) {
       this.setData({
         value: [...options.selected].map(Number),

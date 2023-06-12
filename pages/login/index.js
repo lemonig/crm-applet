@@ -28,8 +28,7 @@ Page({
       },
     },
     hasUserInfo: false,
-    errMsg:'xx',
-    closeAnimation:true
+    errMsg:'',
   },
   onLoad() {},
   //  用户名输入框输入方法
@@ -111,13 +110,8 @@ Page({
             }else{
               this.setData({
                 errMsg:message,
-                closeAnimation:false
               })
-              setTimeout(()=>{
-                this.setData({
-                  closeAnimation: true
-                })
-              },1000).bind(this)
+           
             }
           }else{
 

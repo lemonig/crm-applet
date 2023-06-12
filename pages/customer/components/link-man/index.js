@@ -68,7 +68,7 @@ Component({
         page: this.data.pageNo,
         size: 10,
       };
-      let { data } = await linkmanInfo(params);
+      let { data,additional_data } = await linkmanInfo(params);
       if (additional_data.pagination.total === this.data.pageData.length) {
         this.setData({
           isAllData: true,

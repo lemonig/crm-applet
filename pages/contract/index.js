@@ -1,9 +1,7 @@
 // pages/contract/index.js
-import dayjs from 'dayjs';
 import { pageContract, getContract } from '../../api/contract';
 import { debounce } from '../../utils/util';
 const app = getApp();
-var cloneData = [];
 
 Page({
   data: {
@@ -143,7 +141,6 @@ Page({
         });
       }
     }
-    console.log(this.data.filterD);
     let params = {
       page: this.data.pageNo,
       size: 20,
@@ -155,8 +152,8 @@ Page({
     };
 
 
-    let { data } = await pageContract(params);
-    if (this.data.isScrollFeatch && !data.length) {
+    let { data,additional_data } = await pageContract(params);
+    if (this.data.isScrollFeatch && additional_data.pagination.total === this.data.pageData.length) {
       this.setData({
         isAllData: true,
         loading: false,

@@ -1,5 +1,4 @@
 // pages/home/index.js
-import Notify from '@vant/weapp/notify/notify';
 import { saleCount, dashboard } from '../../api/home';
 import {
   saleOptions1,
@@ -207,7 +206,6 @@ Page({
     });
   },
   onTimeChange: function (e) {
-    console.log(e.detail);
     this.setData({
       timeValue: e.detail.value,
       timeShow: false,
@@ -222,7 +220,6 @@ Page({
     });
   },
   onContractChange: function (e) {
-    console.log(e.detail);
     this.setData({
       contractValue: e.detail.value,
       contractShow: false,
@@ -232,18 +229,17 @@ Page({
     // 自定义组件触发事件时提供的detail对象
   },
   // 排行
-  onRankPopupClick() {
-    this.setData({
-      contractShow: true,
-    });
-  },
+  // onRankPopupClick() {
+  //   this.setData({
+  //     contractShow: true,
+  //   });
+  // },
   onFunnelPopupClick() {
     this.setData({
       funnelShow: true,
     });
   },
   onRankChange: function (e) {
-    console.log(e.detail);
     this.setData({
       rankValue: e.detail.value,
       rankShow: false,
@@ -256,8 +252,7 @@ Page({
       funnelShow: true,
     });
   },
-  onFunnelhange: function (e) {
-    console.log(e.detail);
+  onFunnelChange: function (e) {
     this.setData({
       funnelValue: e.detail.value,
       funnelShow: false,
@@ -330,7 +325,6 @@ Page({
   onLoad(options) {
     this.getSaleCount();
     this.getDashboard();
-    console.log(this.data.height);
   },
 
   /**
@@ -361,8 +355,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.getSaleCount();
-    this.getDashboard();
+    wx.startPullDownRefresh({
+      success(){
+        this.getSaleCount();
+        this.getDashboard();
+      }
+    })
   },
 
   /**

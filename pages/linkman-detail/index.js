@@ -1,17 +1,7 @@
 import Dialog from '@vant/weapp/dialog/dialog';
 import { linkmanDetail ,linkmanDelete} from '../../api/linkman';
 
-const beforeClose = (action) => new Promise((resolve) => {
-  console.log(action);
-  setTimeout(() => {
-    if (action === 'confirm') {
-      resolve(true);
-    } else {
-      // 拦截取消操作
-      resolve(false);
-    }
-  }, 1000);
-})
+
 
 Page({
 
@@ -43,7 +33,6 @@ Page({
       title: '警告',
       message: '确定要删除吗？',
       beforeClose:(action) => new Promise((resolve) => {
-        console.log(action);
         setTimeout(() => {
           if (action === 'confirm') {
             linkmanDelete({
@@ -73,7 +62,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     this.setData({
       id:options.id
     })

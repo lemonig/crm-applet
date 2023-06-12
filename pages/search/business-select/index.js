@@ -57,7 +57,6 @@ Page({
   handleSiteClick(event) {},
   //  搜索数组过滤
   onSelect(event) {
-    console.log(event);
     this.setData({
       value: event.currentTarget.dataset.item,
     });
@@ -65,16 +64,13 @@ Page({
   // delete
 
    confirm() {
-    console.log(this.data.value);
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
-    console.log(prePages);
     prePages.setData({
       'form.dealName': this.data.value.title,
       'form.dealId': this.data.value.id,
 
     });
-    console.log(prePages.data.form);
     wx.navigateBack({
       delta: 1,
     });

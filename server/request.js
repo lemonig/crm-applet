@@ -1,8 +1,6 @@
 import { contentType, messageName, statusName, successCode } from '../config/index.js';
 
 import { isArray } from '../utils/validate.js';
-import Notify from '@vant/weapp/notify/notify';
-import Toast from '@vant/weapp/toast/toast';
 // const baseURL = 'http://192.168.188.176:8890';
 const baseURL = 'https://wx.greandata1.com';
 // const baseURL = 'http://192.168.168.9:15612';
@@ -89,7 +87,6 @@ const request = ({ url, method, data, header }) => {
               icon: 'error',
               duration: 2000,
             });
-            console.log(data);
             return resolve(data);
         }
       },

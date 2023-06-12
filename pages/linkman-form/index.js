@@ -100,10 +100,9 @@ Page({
    */
   onLoad(options) {
     let { id } = options;
-    console.log(id);
     if (id) {
       this.setData({
-        id,
+        id:id,
         titleProps: {
           title: `编辑联系人`,
         },

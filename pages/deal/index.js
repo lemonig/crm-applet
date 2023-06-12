@@ -130,7 +130,6 @@ Page({
       pageData: this.data.pageData.concat(data),
       pageDataCum: additional_data.count.totalCount,
     });
-    console.log(this, data.pageDataCum);
   },
 
   addDeal() {
@@ -139,7 +138,6 @@ Page({
     });
   },
   gotoDetail(eve) {
-    console.log(eve);
     let id = eve.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/deal-detail/index?id=' + id,
@@ -175,7 +173,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    console.log(this.getTabBar);
     this.fetchData();
 
     this.getTabBar().init();
@@ -187,7 +184,9 @@ Page({
   onHide() {
     this.setData({
       pageData: [],
-      pageNo:1
+      pageNo:1,
+      pageDataCum:{},
+      isAllData: false,
     });
   },
 

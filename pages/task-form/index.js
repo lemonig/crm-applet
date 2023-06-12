@@ -54,11 +54,9 @@ Page({
   },
 
   formSubmit: async function (e) {
-    let that = this;
     this.setData({
       btnLoad: true,
     });
-    console.log(e.detail.value);
     let params = e.detail.value;
     params.dealId = this.data.form.dealId;
     params.done = this.data.status;
@@ -89,14 +87,12 @@ Page({
       wx.requestSubscribeMessage({
         tmplIds: ['qtdVbTeX4B04lSAgzfTAI77IgePhkq80y9IxLGC_wyQ'],
         success(res) {
-          console.log(res);
           wx.navigateBack();
         },
         fail(res) {
           console.log(res);
         },
       });
-      console.log(subject);
       // wx.addPhoneCalendar({
       //   title:subject,
       //   startTime: dayjs(this.data.tipme).unix(),
@@ -130,7 +126,6 @@ Page({
   onChooseLocation() {
     wx.chooseLocation({
       success: (res) => {
-        console.log(res);
         this.setData({
           location: res,
         });

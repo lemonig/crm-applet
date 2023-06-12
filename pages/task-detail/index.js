@@ -10,18 +10,6 @@ import {
   activityDelte,
 } from '../../api/task';
 
-const beforeClose = (action) =>
-  new Promise((resolve) => {
-    console.log(action);
-    setTimeout(() => {
-      if (action === 'confirm') {
-        resolve(true);
-      } else {
-        // 拦截取消操作
-        resolve(false);
-      }
-    }, 1000);
-  });
 
 Page({
   /**
@@ -36,28 +24,11 @@ Page({
   },
 
   deleteItem() {
-    let that = this;
     Dialog.confirm({
       title: '警告',
       message: '确定要删除吗？',
       beforeClose: (action) =>
-        new Promise((resolve) => {
-          console.log(action);
-            if (action === 'confirm') {
-              activityDelte({
-                id:this.data.id
-              }).then(res =>{
-                if(res.success){
-                  wx.navigateBack()
-                }
-                resolve(true);
-              })
-             
-            } else {
-              // 拦截取消操作
-              resolve(true);
-            }
-        }),
+        action === 'confirm' ? activityDelte({ id: this.data.id }).then(res => res.success && wx.navigateBack()) : true,
     });
   },
   gotoForm() {
