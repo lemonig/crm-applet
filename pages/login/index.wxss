@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
   padding-top: 30%;
 }
 .logo .van-image {
@@ -17,4 +18,45 @@
   margin-top: 40px;
   width: 80%;
   font-size: 30rpx;
+}
+.error-container {
+  display: flex;
+  align-items: center;
+  color: #ff0000;
+  font-weight: bold;
+}
+.error-icon {
+  margin-right: 10px;
+  animation: error-icon-anim 0.8s infinite;
+}
+@keyframes error-icon-anim {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-10px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.error-message {
+  animation: error-text-anim 0s infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes error-text-anim {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
 }

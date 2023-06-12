@@ -1,6 +1,7 @@
 // pages/contract/components/sd-filter/index.js
 import dayjs from 'dayjs';
 import { contractTypeList } from '../../../../api/contract';
+import { range, yearListFun } from './dataColum';
 const app = getApp();
 Component({
   /**
@@ -14,54 +15,11 @@ Component({
   data: {
     navBarHeight: app.globalData.navBarHeight,
 
-    range: [
-      {
-        id: 0,
-        label: '全部',
-        value: 0,
-      },
-      {
-        id: 1,
-        label: '我负责',
-        value: 1,
-      },
-      {
-        id: 2,
-        label: '下属负责',
-        value: 2,
-      },
-    ],
+    range: range,
     //全部、东部大区、北部大区、南部大区
-    appart: [
-      //   {
-      //     id: '1',
-      //     label: '全部',
-      //     value: '1',
-      //     checked: false,
-      //   },
-      //   {
-      //     id: '2',
-      //     label: '东部大区',
-      //     value: '3',
-      //     checked: true,
-      //   },
-      //   {
-      //     id: '3',
-      //     label: '北部大区',
-      //     value: '3',
-      //     checked: false,
-      //   },
-      //   {
-      //     id: '4',
-      //     label: '南部大区',
-      //     value: '4',
-      //     checked: false,
-      //   },
-    ],
+    appart: [],
     //全部、工程、运维、贸易、其他
-    types: [
-    
-    ],
+    types: [],
     others: [
       {
         id: '1',
@@ -70,14 +28,16 @@ Component({
         checked: false,
       },
     ],
-    key:'',
+    key: '',
     value: 0,
     // value1:0,
     value2: 0,
-    beginTime:'',
-    endTime:''
+    beginTime: new Date().getFullYear(),
+    endTime: new Date().getFullYear(),
+    yearList: yearListFun(),
+    showPicker:false,
+    showPicker1:false,
   },
-
   /**
    * 组件的方法列表
    */
@@ -89,9 +49,7 @@ Component({
         value: res.id,
       });
     },
-    choseWrap1(eve) {
-
-    },
+    choseWrap1(eve) {},
     choseWrap2(eve) {
       let id = eve.currentTarget.dataset.id;
       let res = this.data.types.find((ele) => ele.id == id);
@@ -109,19 +67,28 @@ Component({
       });
     },
 
-    deleteItem() {},
-    search(event) {
-      let { value, key,value2, others,beginTime,endTime} = this.data;
+    deleteItem() {
 
-      let otherType = others[0].cecked ? 1: 0;
+      this.setData({
+        value: 0,
+        value2: 0,
+        // otherType: otherType,
+        key: '',
+        beginTime: new Date().getFullYear() ,
+        endTime: new Date().getFullYear(),
+      })
+    },
+    search(event) {
+      let { value, key, value2, others, beginTime, endTime } = this.data;
+      console.log(beginTime);
+      let otherType = others[0].cecked ? 1 : 0;
       var myEventDetail = {
         dataScope: value,
         contractType: value2,
-        otherType:otherType,
+        // otherType: otherType,
         name: key,
-        beginTime: beginTime ? dayjs(beginTime).format('YYYY-MM-DD') : undefined,
-        endTime:endTime ? dayjs(endTime).format('YYYY-MM-DD') : undefined
-
+        beginTime: beginTime ,
+        endTime: endTime,
       };
       console.log(myEventDetail);
       // detail对象，提供给事件监听函数
@@ -130,20 +97,56 @@ Component({
     },
 
     async getContractTypeList() {
-        let { data } = await contractTypeList();
-        this.setData({
-          types: [{name:"全部",id:'0'}, ...data],
-        });
-      },
+      let { data } = await contractTypeList();
+      this.setData({
+        types: [{ name: '全部', id: '0' }, ...data],
+      });
+    },
+    // 选年份
+    showPopup(e) {
+      this.setData({
+        showPicker: true,
+      });
+    },
+    onClose() {
+      this.setData({
+        showPicker: false,
+      });
+    },
+    confirmPicker(event) {
+      const { picker, value, index } = event.detail;
+      console.log(value);
+      this.setData({
+        beginTime: value,
+        showPicker: false,
+      });
+    },
+    showPopup1(e) {
+      this.setData({
+        showPicker1: true,
+      });
+    },
+    onClose1() {
+      this.setData({
+        showPicker1: false,
+      });
+    },
+    confirmPicker1(event) {
+      const { picker, value, index } = event.detail;
+      console.log(value);
+      this.setData({
+        endTime: value,
+        showPicker1: false,
+      });
+    },
   },
-
 
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
       this.getContractTypeList();
     },
-   
+
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     },

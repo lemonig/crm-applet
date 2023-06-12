@@ -78,23 +78,23 @@
   <view class="tag-wrap">
     <van-row gutter="20">
 
-      <van-col span="24">
-        <sd-datetime-picker
-          overlay="{{false}}"
-          model:value="{{beginTime}}"
-          title="开始年份"
-          formated="YYYY-MM-DD"
-        ></sd-datetime-picker>
+      <van-col span="6">
+        开始年份:
       </van-col>
-    </van-row>
-    <van-row gutter="20">
-      <van-col span="24">
-        <sd-datetime-picker
-          overlay="{{false}}"
-          model:value="{{endTime}}"
-          title="结束日期"
-          formated="YYYY-MM-DD"
-        ></sd-datetime-picker>
+      <van-col span="5">
+        <view bindtap="showPopup">
+          <text>{{beginTime}}</text>
+          <van-icon name="arrow-down" />
+        </view>
+      </van-col>
+      <van-col span="6">
+        结束年份:
+      </van-col>
+      <van-col span="5">
+        <view bindtap="showPopup1">
+          <text>{{endTime}}</text>
+          <van-icon name="arrow-down" />
+        </view>
       </van-col>
     </van-row>
   </view>
@@ -123,3 +123,44 @@
   </view>
 
 </scroll-view>
+
+<!-- overlay="{{false}}" -->
+<van-popup
+  show="{{ showPicker }}"
+  bind:close="onClose"
+  custom-style="height: 40%;padding-bottom: 100rpx;box-sizing: border-box;"
+  position="bottom"
+  custom-class="custom-popup"
+  root-portal="{{true}}"
+  safe-area-tab-bar
+>
+  <van-picker
+    columns="{{ yearList }}"
+    bind:change="onChange"
+    bind:cancel="onClose"
+    show-toolbar
+    bind:confirm="confirmPicker"
+    model:values="{{beginTime}}"
+    title="年份选择"
+    custom-class="custom-picker"
+  />
+</van-popup>
+<van-popup
+  show="{{ showPicker1 }}"
+  bind:close="onClose1"
+  custom-style="height: 40%;padding-bottom: 100rpx;box-sizing: border-box;" position="bottom"
+  root-portal="{{true}}"
+  custom-class="custom-popup"
+  safe-area-tab-bar
+>
+  <van-picker
+    columns="{{ yearList }}"
+    bind:change="onChange1"
+    bind:cancel="onClose1"
+    show-toolbar
+    bind:confirm="confirmPicker1"
+    model:values="{{endTime}}"
+    title="年份选择"
+    custom-class="custom-picker"
+  />
+</van-popup>

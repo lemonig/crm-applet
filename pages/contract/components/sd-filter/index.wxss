@@ -29,3 +29,13 @@
 .checked {
   color: #0252cc !important;
 }
+.custom-popup {
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+.custom-picker {
+  height: 100%;
+}
+.van-popup--bottom {
+  z-index: 10000 !important;
+}

@@ -29,7 +29,10 @@ Page({
       },
     ],
     option3: [
-    
+      {
+        text: '全部',
+        value: 0,
+      },
       {
         text: '赢单商机',
         value: 1,
@@ -83,8 +86,8 @@ Page({
     ],
     value1: 0,
     value2: 1,
-    value3: 1,
-    value4: 0,
+    value3: 4,
+    value4: 1,
     pageData: [],
     pageDataCum: {},
     id: '',
@@ -102,7 +105,7 @@ Page({
   },
 
   fetchData: async function () {
-    let { value1, value2, value3 } = this.data;
+    let { value1, value2, value3 ,value4} = this.data;
     let params = {
       page: this.data.pageNo,
       size: 30,
@@ -110,6 +113,7 @@ Page({
         pipelineStageId: value1,
         filterBy: value3,
         orderBy: value2,
+        dataScope:value4
       },
     };
     let { data, additional_data } = await pageDeal(params);

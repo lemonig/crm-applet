@@ -11,6 +11,7 @@
     <van-cell title="业务类型" value="{{pagaData.businessTypeName}}" />
     <van-cell title="信心指数" value="{{pagaData.probability}}%" />
     <van-cell title="预计金额" value="￥{{pagaData.value}}" />
+    <van-cell title="创建日期" value="{{pagaData.createTime}}" />
     <van-cell title="备注" value="{{pagaData.description}}" />
   </van-cell-group>
 

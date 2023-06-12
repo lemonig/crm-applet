@@ -30,7 +30,7 @@
     />
     <van-dropdown-item
       bind:change="sortChange4"
-      title="权限范围"
+      title="可见范围"
       value="{{ value4 }}"
       options="{{ option4 }}"
     />

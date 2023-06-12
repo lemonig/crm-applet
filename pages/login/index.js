@@ -28,6 +28,8 @@ Page({
       },
     },
     hasUserInfo: false,
+    errMsg:'xx',
+    closeAnimation:true
   },
   onLoad() {},
   //  用户名输入框输入方法
@@ -89,24 +91,36 @@ Page({
         success: async ({ code:loginCode, errMsg }) => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           if (errMsg == 'login:ok') {
-            let { data, success } = await wxLogin({
+            let { data, success,message } = await wxLogin({
               code,
               loginCode,
             });
 
             if (success) {
               wx.setStorage({ key: 'token', data: data.access_token });
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 2000,
+                complete: function () {
+                  wx.switchTab({
+                    url: '/pages/home/index',
+                  });
+                },
+              });
+            }else{
+              this.setData({
+                errMsg:message,
+                closeAnimation:false
+              })
+              setTimeout(()=>{
+                this.setData({
+                  closeAnimation: true
+                })
+              },1000).bind(this)
             }
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              duration: 2000,
-              complete: function () {
-                wx.switchTab({
-                  url: '/pages/home/index',
-                });
-              },
-            });
+          }else{
+
           }
         },
       });
