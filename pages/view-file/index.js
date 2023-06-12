@@ -15,7 +15,6 @@ Page({
     this.setData({
       filepath:options.filepath
     })
-    console.log(this.data.filepath);
   },
 
   /**

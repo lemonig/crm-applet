@@ -69,9 +69,7 @@ Page({
   },
 
   showPopup(e) {
-    console.log(e.currentTarget.dataset.index);
     let idx = e.currentTarget.dataset.index;
-    console.log('show' + idx);
     this.setData({
       ['show' + idx]: true,
     });

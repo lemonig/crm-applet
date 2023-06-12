@@ -90,7 +90,6 @@ Page({
           wx.navigateBack();
         },
         fail(res) {
-          console.log(res);
         },
       });
       // wx.addPhoneCalendar({
@@ -133,7 +132,6 @@ Page({
     });
   },
   onTaskChange({ detail }) {
-    console.log(!detail);
     this.setData({
       status: detail,
     });
@@ -173,7 +171,6 @@ Page({
       },
       status: data.done,
     });
-    console.log(this.data.form);
   },
 
   /**
@@ -181,7 +178,6 @@ Page({
    */
   onLoad(options) {
     let { id, dealId, dealName } = options;
-    console.log(id);
     this.pageInit(id, dealId, dealName);
   },
 

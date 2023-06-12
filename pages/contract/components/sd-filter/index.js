@@ -77,7 +77,6 @@ Component({
     },
     search(event) {
       let { value, key, value2, beginTime, endTime } = this.data;
-      console.log(beginTime);
       var myEventDetail = {
         dataScope: value,
         contractType: value2,

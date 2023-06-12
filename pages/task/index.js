@@ -119,7 +119,6 @@ Page({
   }, 500),
 
   gotoDetail(eve) {
-    console.log(eve);
     let id = eve.currentTarget.dataset.id;
     wx.navigateTo({
       url: '/pages/task-detail/index?id=' + id,

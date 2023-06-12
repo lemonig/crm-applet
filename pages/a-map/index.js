@@ -9,17 +9,14 @@ Page({
     textData: {}
   },
   makertap: function (e) {
-    console.log(e);
     var id = e.markerId;
     var that = this;
     that.showMarkerInfo(markersData,id);
     that.changeMarkerColor(markersData,id);
   },
   regionchange(e) {
-    console.log(e);
     var that = this
     if (e.type == "end") {
-      console.log(e);
     } else {
       console.log("拖动ing");
     }

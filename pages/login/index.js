@@ -77,12 +77,10 @@ Page({
   },
 
   getPhoneNumber(e) {
-    console.log(e.detail.code);
   },
 
   // wxlogin
   onGetPhoneNumber: async function (e) {
-    console.log(e.detail);
     let { code, iv, cloudID, encryptedData, errMsg } = e.detail;
     let that = this;
     if (errMsg === 'getPhoneNumber:ok') {

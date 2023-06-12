@@ -27,7 +27,6 @@ Page({
     this.setData({
       btnLoad: true,
     });
-    console.log(this.data.result);
     let { success, message } =await updateDeal({
       id: this.data.id,
       biddingAgencyId:  this.data.result,

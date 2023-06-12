@@ -28,7 +28,6 @@ Component({
 
   lifetimes: {
     ready: function () {
-      console.log(this.data.toImg)
     },
   },
 
@@ -58,7 +57,6 @@ Component({
         //  动画执行完毕图表转图片
         this.chartsComponent.canvasToTempFilePath({
           success: res => {
-            console.log("转换成功:", res.tempFilePath)
             this.setData({
               chartsImg: res.tempFilePath
             })

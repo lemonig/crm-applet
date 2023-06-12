@@ -179,9 +179,12 @@ Page({
       pageData:[]
     })
     const linkPage =   this.selectComponent('#linkPage')
-    linkPage.setData({
-      pageData:[]
-    })
+    if(linkPage){
+      linkPage.setData({
+        pageData:[]
+      })
+    }
+
   },
 
   /**

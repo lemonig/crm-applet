@@ -12,7 +12,6 @@ Component({
       observer: function (newVal, oldVal) {
 
         let res = this.data.options.find(ele => ele.value == newVal)
-        console.log(res);
         if (res) {
           this.setData({
             label: res.label,

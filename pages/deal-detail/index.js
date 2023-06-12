@@ -23,11 +23,9 @@ Page({
       id: this.data.dealId,
     });
     let res = data.pipelineDetailList.findLastIndex((item) => item.isShow);
-    console.log(res);
     this.setData({ data, pipelineIdx: res + 1 });
   },
   onChange(event) {
-    console.log(event.detail.name);
     this.setData({
       active: event.detail.name,
     });

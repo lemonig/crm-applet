@@ -78,7 +78,6 @@ Component({
     },
     confirmPicker(event) {
       let time = dayjs(event.detail).format(this.properties.formated) 
-      console.log(time);
       this.setData({
         value: time,
         label:time,

@@ -24,7 +24,6 @@ Page({
     this.setData({
       btnLoad: true,
     });
-    console.log(this.data.result);
     let { success, message } =await updateDeal({
       id: this.data.id,
       competitorList: this.data.result.map(item=> ({competitorId:item})),

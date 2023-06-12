@@ -11,7 +11,6 @@ Component({
       type:Object,
       observer: function (newVal, oldVal) {
 
-        console.log(newVal);
       }
     }
   },

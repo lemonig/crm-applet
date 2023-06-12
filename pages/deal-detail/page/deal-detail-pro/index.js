@@ -92,7 +92,6 @@ Page({
   },
 
   onLoad(options) {
-    console.log(options);
 
     this.setData({
       id: options.dealId ? options.dealId:'',

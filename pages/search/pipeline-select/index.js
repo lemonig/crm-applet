@@ -41,7 +41,6 @@ Page({
 
   onConfirmt(event) {
     const { picker, value, index } = event.detail;
-    console.log(event.detail);
     this.setData({
       terminaId: value,
     });
@@ -63,7 +62,6 @@ Page({
       pipelineStageId: currentID,
       type: pipelineType,
     };
-    console.log(pipelineType);
     switch (pipelineType) {
       case 'terminate':
         params.terminationReasonId = terminaId;

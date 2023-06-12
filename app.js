@@ -12,7 +12,6 @@ App({
     const systemInfo = wx.getSystemInfoSync();
     // 胶囊按钮位置信息
     const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-    console.log(menuButtonInfo);
     // 导航栏高度 = 状态栏高度 + 44
     that.globalData.navBarHeight = systemInfo.statusBarHeight + 44;
     that.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;

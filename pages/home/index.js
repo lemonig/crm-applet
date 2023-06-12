@@ -271,7 +271,6 @@ Page({
   gotoSaleDetail(events) {
     let { panel } = events.currentTarget.dataset;
     let url = `/pages/${panel}/index`;
-    console.log(url);
     wx.switchTab({
       url: url,
     });
@@ -279,7 +278,6 @@ Page({
   gotoPage(events) {
     let { panel } = events.currentTarget.dataset;
     let url = `/pages/${panel}-form/index`;
-    console.log(url);
     wx.navigateTo({
       url: url,
       // events: events,

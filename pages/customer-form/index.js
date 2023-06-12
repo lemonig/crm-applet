@@ -71,9 +71,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options);
     let { id } = options;
-    console.log(id);
     if (id) {
       this.setData({
         _id: id,
@@ -109,7 +107,6 @@ Page({
         name: event.detail,
       },
     });
-    console.log(event.detail);
   },
 
   // debouncedHandleInput : debounce(this.onCustomerChange, 300),

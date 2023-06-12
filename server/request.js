@@ -91,7 +91,6 @@ const request = ({ url, method, data, header }) => {
         }
       },
       fail: function (err) {
-        console.log('err---',err);
         // wx.hideLoading();
 
         // wx.showToast({
@@ -123,7 +122,6 @@ const _post = async ({
     header,
     method: 'POST',
   });
-  console.log(res);
   return res;
 };
 const _get = async ({

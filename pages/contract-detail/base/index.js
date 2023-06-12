@@ -32,7 +32,6 @@ Component({
       this.setData({ show: true, pageShow: page });
     },
     viewL(eve) {
-      console.log(eve);
       wx.navigateTo({
         url: '/pages/view-file/index?filepath='+eve.currentTarget.dataset.filepath,
       });

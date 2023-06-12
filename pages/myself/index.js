@@ -17,7 +17,6 @@ Page({
     userName:''
   },
   onChooseAvatar(e) {
-    console.log(e);
     const { avatarUrl } = e.detail 
     this.setData({
       avatarUrl,
@@ -93,7 +92,6 @@ Page({
   async getUserInfo(){
     
     let res = await getUserInfoApi()
-    console.log(res);
     this.setData({
       pageData: res.data
     })

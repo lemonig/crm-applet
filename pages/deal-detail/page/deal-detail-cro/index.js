@@ -26,7 +26,6 @@ Page({
     this.setData({
       btnLoad: true,
     });
-    console.log(this.data.result);
     let { success, message } =await updateDeal({
       id: this.data.id,
       partnerList:  this.data.result.map(item=> ({partnerId:item})),
