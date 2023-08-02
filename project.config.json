@@ -43,7 +43,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false,
+    "condition": true,
     "ignoreDevUnusedFiles": false,
     "ignoreUploadUnusedFiles": true
   },

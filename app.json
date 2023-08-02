@@ -32,7 +32,8 @@
     "pages/view-file/index",
     "pages/search/contract-win/index",
     "pages/login/index",
-    "pages/myself/index"
+    "pages/myself/index",
+    "pages/project/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -144,5 +145,4 @@
       }
     ]
   }
-
 }

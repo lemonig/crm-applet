@@ -20,3 +20,9 @@ export function contractTypeList(data) {
     data,
   });
 }
+export function worklog(data) {
+  return _post({
+    url: `/mini/api/contract/worklog`,
+    data,
+  });
+}

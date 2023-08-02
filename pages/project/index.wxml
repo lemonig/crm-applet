@@ -1,0 +1,75 @@
+<!--pages/project/index.wxml-->
+<navigation-bar
+    default-data="{{titleProps}}"
+    back="{{true}}"
+>
+
+</navigation-bar>
+<view
+    class="container pro-container"
+    style="height: calc(100vh - {{navBarHeight}}px)"
+>
+<view class="h1">建设进展</view>
+
+    <van-row
+        gutter='5'
+        custom-class="row-class"
+    >
+        <van-col
+            span="8"
+            style="text-align: center;"
+        >任务项</van-col>
+        <van-col
+            span="8"
+            style="text-align: center;"
+        >完成数量
+        </van-col>
+        <van-col
+            span="8"
+            style="text-align: center;"
+        >进展
+        </van-col>
+    </van-row>
+    <!-- list -->
+    <van-row
+        wx:for="{{pageData.detail}}"
+        wx:key="id"
+        gutter='16'
+        custom-class="row-class"
+    >
+        <van-col span="8"    style="text-align: center;">
+            <view>{{item.name ? item.name : '--'}}</view>
+        </van-col>
+        <van-col span="8"    style="text-align: center;">
+            <view>{{item.value ? item.value :'--'}}</view>
+        </van-col>
+
+        <van-col span="8">
+            <van-progress
+                percentage="{{ item.rate * 1 }}"
+            />
+        </van-col>
+
+    </van-row>
+    <view style="margin-top:var(--dropdown-margin);background-color: rgb(228, 224, 224);height: 25rpx;"></view>
+
+    <view class="h1">历史记录</view>
+
+    <view
+        wx:if="{{pageData.list.length}}"
+        bindscrolltolower="handleToLower"
+    >
+        <sd-list
+            wx:for="{{pageData.list}}"
+            wx:key="id"
+            title="{{item.nickname + '  '+item.gmtCreate}}"
+            data-id="{{item.id}}"
+            bindtap="gotoDetail"
+            value="{{item.executeStageStr }}"
+            lab1="{{item.description }}"
+        >
+        </sd-list>
+
+    
+    </view>
+</view>

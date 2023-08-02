@@ -5,31 +5,37 @@ Component({
    */
   properties: {
     id: {
-      type:String
+      type: String,
     },
-    pageData:{
-      type:Object
-    }
+    pageData: {
+      type: Object,
+      value:{
+        worklogs:[]
+      }
+    },
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
-
-
-  },
+  data: {},
 
   /**
    * 组件的方法列表
    */
   methods: {
     selectProduct(eve) {
-      let url = eve.currentTarget.dataset.url
-      let urlAll = `/pages/deal-detail-${url}/index?id=`+ this.properties.id
+      let url = eve.currentTarget.dataset.url;
+      let urlAll = `/pages/deal-detail-${url}/index?id=` + this.properties.id;
       wx.navigateTo({
         url: urlAll,
-      })
-    }
-  }
-})
+      });
+    },
+    gotoProject(eve) {
+      let prcode = eve.currentTarget.dataset.prcode;
+      wx.navigateTo({
+        url: '/pages/project/index?prcode=' + prcode,
+      });
+    },
+  },
+});

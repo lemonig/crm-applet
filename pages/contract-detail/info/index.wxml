@@ -1,14 +1,57 @@
 <!--pages/deal-detail/info/index.wxml-->
 <view class="info-wrap">
-  <sd-card custom-class="card-margin" title="商机">
-    <view slot="body">
-      <!-- <sd-list 
-        wx:for="{{pageData.deals}}" 
-        wx:key="id"
-        title="{{item.dealName}}" 
-      >
-      </sd-list> -->
-      <van-cell wx:key="index" wx:for="{{pageData.deals}}" title="{{item.dealName}}" />
-    </view>
-  </sd-card>
+    <!-- <sd-card
+        custom-class="card-margin"
+        title="商机"
+    >
+        <view slot="body">
+            <van-cell
+                wx:key="index"
+                wx:for="{{pageData.deals}}"
+                title="{{item.dealName}}"
+            />
+        </view>
+    </sd-card> -->
+
+    <sd-card
+        wx:for="{{pageData.worklogs}}"
+        custom-class="card-margin"
+        title="工程进展"
+        bindtap="gotoProject"
+
+    >
+        <van-icon
+            slot="icon"
+            name="arrow"
+            data-prcode="{{item.projectCode}}"
+        />
+        <view slot="body">
+            <van-cell-group>
+                <van-cell
+                    title="填报人"
+                    value="{{item.nickname}}"
+                />
+                <van-cell
+                    title="填报时间"
+                    value="{{item.gmtCreate}}"
+                />
+                <van-cell
+                    title="到岗地"
+                    value="{{item.area}}"
+                />
+                <van-cell
+                    title="站点数量"
+                    value="{{item.siteQuantity}}"
+                />
+                <van-cell
+                    title="执行阶段"
+                    value="{{item.executeStageStr}}"
+                />
+                <van-cell title="备注">
+                    <text>{{item.description}}  </text>
+                </van-cell>
+            </van-cell-group>
+        </view>
+    </sd-card>
+
 </view>
