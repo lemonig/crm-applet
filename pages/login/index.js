@@ -83,11 +83,7 @@ Page({
   onGetPhoneNumber: async function (e) {
     let { code, iv, cloudID, encryptedData, errMsg } = e.detail;
     let that = this;
-    wx.setStorage({ key: 'token', data: '65cbe3e1-ca0a-4052-9f15-166420c7dd5c' });
-    wx.switchTab({
-      url: '/pages/home/index',
-    });
-return
+
     if (errMsg === 'getPhoneNumber:ok') {
       wx.login({
         success: async ({ code:loginCode, errMsg }) => {

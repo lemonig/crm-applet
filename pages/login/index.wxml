@@ -1,5 +1,8 @@
 <!--index.wxml-->
-<navigation-bar default-data="{{titleProps}}" back="{{false}}">
+<navigation-bar
+    default-data="{{titleProps}}"
+    back="{{false}}"
+>
 
 
 </navigation-bar>
@@ -17,18 +20,39 @@
 <van-notify id="van-notify" /> -->
 
 <view class="container">
-  <van-image class="logo" fit="contain" src="/assets/imgs/bg_welcome.png" />
-  <view class="title">CRM</view>
-  <van-button class="login-btn" type="primary" round block open-type="getPhoneNumber" bind:getphonenumber="onGetPhoneNumber" color="#07c160">微信一键登录</van-button>
-  <!-- <view class="{{closeAnimation ? '': 'error-message'}}" style="color: red; margin-top: 40rpx;">{{errMsg}}</view> -->
-  <view class="error-message" style="color: red; margin-top: 40rpx;">{{errMsg}}</view>
-  
-  
-  <van-divider contentPosition="center">
-  </van-divider>
-  <!-- 其它登录方式 -->
+    <van-image
+        class="logo"
+        fit="contain"
+        src="/assets/imgs/bg_welcome.png"
+    />
+    <view class="title">CRM</view>
+    <van-button
+        class="login-btn"
+        type="primary"
+        round
+        block
+        open-type="getPhoneNumber"
+        bind:getphonenumber="onGetPhoneNumber"
+        color="#07c160"
+    >手机号登录</van-button>
+    <!-- <view class="{{closeAnimation ? '': 'error-message'}}" style="color: red; margin-top: 40rpx;">{{errMsg}}</view> -->
+    <view
+        class="error-message"
+        style="color: red; margin-top: 40rpx;"
+    >{{errMsg}}</view>
 
-  <text class="iconfont icon-suoti" style="font-size: 2em;"></text>
-  <text class="iconfont icon-shouji" style="font-size: 2em;"></text>
+
+    <van-divider contentPosition="center">
+    </van-divider>
+    <!-- 其它登录方式 -->
+
+    <text
+        class="iconfont icon-suoti"
+        style="font-size: 2em;"
+    ></text>
+    <text
+        class="iconfont icon-shouji"
+        style="font-size: 2em;"
+    ></text>
 
 </view>

@@ -8,9 +8,9 @@ Component({
     id: {
       type: String,
     },
-    pageData:{
-      type:Object
-    }
+    pageData: {
+      type: Object,
+    },
   },
 
   /**
@@ -31,22 +31,62 @@ Component({
 
       this.setData({ show: true, pageShow: page });
     },
+
     viewL(eve) {
+    //   wx.navigateToMiniProgram({
+    //     appId: 'wxd45c635d754dbf59',
+    //     path:
+    //       'pages/detail/detail?url=' +
+    //       encodeURIComponent('https://docs.qq.com/doc/DVmtlZUVtVGxQZFp3'),
+    //     envVersion: 'release',
+
+    //     success(res) {
+    //       // 打开成功
+    //     },
+    //     fail: function (e) {
+    //       console.log(e);
+    //     },
+    //   });
+      // wx.navigateToMiniProgram({
+      //     appId: 'wxd45c635d754dbf59',
+      //     path: 'pages/view-file/index.html?filepath='+ eve.currentTarget.dataset.filepath,
+      //     envVersion: 'release',
+
+      //   })
+
       wx.navigateTo({
-        url: '/pages/view-file/index?filepath='+eve.currentTarget.dataset.filepath,
+        url: '/pages/view-file/index?filepath='+encodeURIComponent(eve.currentTarget.dataset.filepath),
       });
-      // wx.downloadFile({
-      //   url: 'https://grean-project-file.oss-cn-hangzhou.aliyuncs.com/rule/%E5%9C%B0%E8%A1%A8%E6%B0%B4%E7%8E%AF%E5%A2%83%E8%B4%A8%E9%87%8F%E6%A0%87%E5%87%86%EF%BC%88GB%203838-2002%20%EF%BC%89.pdf',
-      //   success: function (res) {
-      //     const filePath = res.tempFilePath
-      //     wx.openDocument({
-      //       filePath: filePath,
-      //       success: function (res) {
-      //         console.log('打开文档成功')
-      //       }
-      //     })
-      //   }
-      // })
+
+      //   wx.showLoading({
+      //     title: '加载中',
+      //     mask: true,
+      //   });
+      //   wx.downloadFile({
+      //     url: eve.currentTarget.dataset.filepath,
+      //     success: function (res) {
+      //       wx.hideLoading();
+      //       const filePath = res.tempFilePath;
+      //       wx.showLoading({
+      //         title: '正在打开',
+      //         mask: true,
+      //       });
+      //       wx.openDocument({
+      //         filePath: filePath,
+      //         showMenu: true,
+      //         success: function (res) {
+      //           console.log('打开文档成功');
+      //         },
+      //         fail: function () {
+      //           uni.showToast({
+      //             title: '打开文件失败',
+      //             icon: 'none',
+      //             duration: 2000,
+      //           });
+      //         },
+      //       });
+      //     },
+      //   });
     },
     onClickHide() {
       this.setData({ show: false });

@@ -18,12 +18,12 @@
         custom-class="card-margin"
         title="工程进展"
         bindtap="gotoProject"
+        data-prcode="{{item.projectCode}}"
 
     >
         <van-icon
             slot="icon"
             name="arrow"
-            data-prcode="{{item.projectCode}}"
         />
         <view slot="body">
             <van-cell-group>
