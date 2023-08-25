@@ -1,6 +1,6 @@
 <view class="page-body">
   <view class="page-section page-section-gap">
-    <web-view wx:if="{{filepath}}" src="{{filepath}}"></web-view>
+    <web-view wx:if="{{filepath}}" src="{{filepath}}" bindload="webLoad"></web-view>
     <van-empty wx:else description="无法预览" />
   </view>
 </view>

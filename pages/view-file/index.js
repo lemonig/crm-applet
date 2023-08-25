@@ -12,11 +12,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+      console.log(options.filepath);
     this.setData({
-      filepath:options.filepath
+      filepath:decodeURIComponent(options.filepath)  
     })
   },
-
+  onWebviewMessage(event) {
+    console.log("Webview message received:", event);
+    // You can handle messages from the webview if needed
+  },
+  webLoad(e){
+    let   { src } = e.detail
+    console.log(src);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
