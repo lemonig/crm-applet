@@ -83,7 +83,7 @@
         <sd-record
           dealId="{{dealId}}"
           pagaData="{{data.followUpInfo}}"
-          isOwner="{{this.data.data.baseInfo.isOwner}}"
+          isOwner="{{data.baseInfo.isOwner}}"
         ></sd-record>
       </van-tab>
       <van-tab title="基本资料">
@@ -98,8 +98,12 @@
           wx:if="{{ active ==   2}}"
           dealId="{{dealId}}"
           pagaDate="{{data.relatedInfo}}"
-          isOwner="{{this.data.data.baseInfo.isOwner}}"
+          isOwner="{{data.baseInfo.isOwner}}"
         ></sd-info>
+      </van-tab>
+
+      <van-tab title="变更日志">
+        <sd-infolog wx:if="{{active == 3}}" dealId="{{id}}"  pageData="{{data.logList}}"></sd-infolog>
       </van-tab>
     </van-tabs>
   </view>

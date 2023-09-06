@@ -20,6 +20,7 @@
       <van-tab title="相关信息">
         <sd-info wx:if="{{active == 2}}" dealId="{{id}}"  pageData="{{data.relatedInfo}}"></sd-info>
       </van-tab>
+    
     </van-tabs>
   </view>
 

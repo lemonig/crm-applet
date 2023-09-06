@@ -1,35 +1,47 @@
 <!--pages/deal-detail-pro/index.wxml-->
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
 <view class="container">
-
-  <van-cell-group>
-    <van-cell
-      wx:for="{{ list }}"
-      wx:key="index"
-      value-class="value-class"
-      data-index="{{ index }}"
-    >
-    <view slot="title">
-      <van-checkbox
-        class="checkboxes-{{ index }}"
-        name="{{ item.id }}"
-        bind:change="onCheckChange"
-        value="{{item.checked}}"
-        data-index="{{index}}"
-      > 
-        {{ item.name }}  （单位：{{item.unit ? item.unit : '--'}}）
-      </van-checkbox> 
-    </view>
-    <van-stepper 
-    bind:change="stepChange" 
-    value="{{ item.value }}" integer min="0" max="1000" data-index="{{index}}" />
-    </van-cell>
-  </van-cell-group>
+    <van-cell-group>
+        <van-cell
+            wx:for="{{ list }}"
+            wx:key="index"
+            value-class="value-class"
+            data-index="{{ index }}"
+        >
+            <view slot="title">
+                <van-checkbox
+                    class="checkboxes-{{ index }}"
+                    name="{{ item.id }}"
+                    bind:change="onCheckChange"
+                    value="{{item.checked}}"
+                    data-index="{{index}}"
+                >
+                    {{ item.name }} （单位：{{item.unit ? item.unit : '--'}}）
+                </van-checkbox>
+            </view>
+            <van-stepper
+                bind:change="stepChange"
+                value="{{ item.value }}"
+                integer
+                min="0"
+                max="1000"
+                data-index="{{index}}"
+            />
+        </van-cell>
+    </van-cell-group>
 
 </view>
 
 <view>找不到产品，请联系管理员添加</view>
 
-<view class="form-btn-area" style="margin-top: 50rpx;">
-      <van-button type="info" loading="{{btnLoad}}"   bind:click="submit" custom-style="width: 600rpx;">提交</van-button>
+<view
+    class="form-btn-area"
+    style="margin-top: 50rpx;"
+>
+    <van-button
+        type="info"
+        loading="{{btnLoad}}"
+        bind:click="submit"
+        custom-style="width: 600rpx;"
+    >提交</van-button>
 </view>

@@ -51,7 +51,6 @@ const request = ({ url, method, data, header }) => {
       // enableHttp2:true,
       success({ data }) {
         wx.hideLoading();
-
         // 若data.code存在，覆盖默认code
         let code = data && data[statusName] ? data[statusName] : 9999;
         if (codeVerificationArray.indexOf(data[statusName]) + 1) code = 200;

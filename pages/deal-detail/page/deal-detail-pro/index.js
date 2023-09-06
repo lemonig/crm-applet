@@ -92,11 +92,10 @@ Page({
   },
 
   onLoad(options) {
-
     this.setData({
-      id: options.dealId ? options.dealId:'',
+      id: options.dealId ? options.dealId : '',
       result: options.selected ? JSON.parse(options.selected) : [],
-      needPost:options.post ? JSON.parse(options.post) : false
+      needPost: options.post ? JSON.parse(options.post) : false,
     });
 
     this.getDetail();

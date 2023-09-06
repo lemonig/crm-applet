@@ -14,7 +14,7 @@
     </van-cell-group>
   </scroll-view>
   <van-empty wx:else class="custom-image"
-     description="请先选择客户" />
+     description="请前往创建联系人" />
   <view class="form-btn-area" wx:if="{{pageData.length}}">
     <van-button type="info" loading="{{btnLoad}}"   bind:click="confirm" custom-style="width: 600rpx;">确定</van-button>
   </view>

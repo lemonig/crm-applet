@@ -23,14 +23,18 @@ Page({
   },
   //  页面加载事件
   onLoad(options) {
+    this.fetchData()
+
     if (!options.dataType) return Notify({ type: 'warning', message: '未获取到数据类型' });
     this.setData({
       dataType: options.dataType,
     });
+
   },
   //  页面显示事件
   onShow() {
     if (!this.data.dataType) return Notify({ type: 'warning', message: '未获取到数据类型' });
+
   },
   //  获取页面数据
   async fetchData() {
@@ -44,9 +48,7 @@ Page({
   },
 
   handleListFilter: debounce(function (eve) {
-    if (!eve.detail) {
-      return;
-    }
+
     this.setData({
       key: eve.detail,
     });
@@ -69,6 +71,9 @@ Page({
     prePages.setData({
       'form.dealName': this.data.value.title,
       'form.dealId': this.data.value.id,
+      'form.personId': -1,
+      'form.optionsLink': [],
+      'form.personName': '',
 
     });
     wx.navigateBack({

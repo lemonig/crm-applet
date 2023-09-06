@@ -11,7 +11,8 @@
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <van-field value="{{form.subject}}" placeholder="请输入" name='subject' label="任务标题" input-align="right" />
-      <sd-picker value="{{form.personId}}" name="personId" title="联系人" options="{{optionsLink}}"></sd-picker>
+      <van-cell wx:if="{{form.dealId}}" value="{{form.personName}}" name="personId"  title="联系人" bindtap="beforeTap" is-link></van-cell>
+      <!-- <sd-picker wx:if="{{form.dealId}}" value="{{form.personId}}" name="personId" title="联系人" options="{{optionsLink}}" id="the-id" capture-bind:tap="beforeTap"></sd-picker> -->
       <van-field model:value="{{form.participant}}" placeholder="请输入" name='participant' label="其他参与人" input-align="right" />
       <van-cell title="地点" is-link value="{{location.address}}" bindtap="onChooseLocation" />
       <van-field model:value="{{form.description}}" placeholder="请输入" name='description' label="任务描述" input-align="right" />
@@ -26,3 +27,19 @@
     </view>
   </form>
 </view>
+
+<van-popup
+  show="{{ show }}"
+  bind:close="onClose"
+  custom-style="height: 50%;"
+  position="bottom"
+>
+  <van-picker
+    columns="{{ optionsLink }}"
+    bind:cancel="onClose"
+    show-toolbar
+    title="联系人"
+    bind:confirm="confirmPicker"
+    value-key="label"
+  />
+</van-popup>

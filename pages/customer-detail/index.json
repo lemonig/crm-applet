@@ -3,6 +3,5 @@
     "sd-record": "./record/index",
     "sd-base": "./base/index",
     "sd-info": "./info/index"
-
   }
 }

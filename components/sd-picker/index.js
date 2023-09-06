@@ -1,65 +1,61 @@
 Component({
-  behaviors: ['wx://form-field'],
+  behaviors: ['wx://form-field', 'wx://component-export'],
+
   properties: {
     title: {
-      type: String
+      type: String,
     },
     options: {
-      type: Array
+      type: Array,
     },
     value: {
       type: String | Number,
       observer: function (newVal, oldVal) {
-
-        let res = this.data.options.find(ele => ele.value == newVal)
+        let res = this.data.options.find((ele) => ele.value == newVal);
         if (res) {
           this.setData({
             label: res.label,
-            value: res.value
-          })
+            value: res.value,
+          });
         }
-      }
+      },
     },
     required: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
   data: {
     show: false,
     // 分开，label留本地，val回传
-    label: "",
-    valIdx: ""
+    label: '',
+    valIdx: '',
   },
   lifetimes: {
-    created: function () {
-    
-    },
+    created: function () {},
   },
 
   methods: {
     showPopup(e) {
       this.setData({
-        show: true
+        show: true,
       });
     },
     onClose() {
-      this.setData({
-        show: false
+      setTimeout(() => {
+        this.setData({
+          show: false,
+        });
       });
     },
     confirmPicker(event) {
-      const {
-        picker,
-        value,
-        index
-      } = event.detail;
+      const { picker, value, index } = event.detail;
       this.setData({
         value: value.value,
         label: value.label,
-        show: false
-      })
-      this.triggerEvent('confirm', value )
-    }
+        show: false,
+      });
+      this.triggerEvent('confirm', value);
+    },
   },
-})
+});

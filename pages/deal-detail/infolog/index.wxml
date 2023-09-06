@@ -1,0 +1,16 @@
+<!--pages/customer-detail/infolog/index.wxml-->
+<view>
+
+    <van-cell-group>
+        <van-cell
+        wx:for="{{pageData}}"
+        wx:key="unique"
+            title="{{item.message}}"
+            value="{{item.createTime}}"
+        />
+
+
+    </van-cell-group>
+
+  
+</view>

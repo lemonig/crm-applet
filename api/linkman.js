@@ -22,6 +22,13 @@ export function linkmanInfo(data) {
     data,
   });
 }
+//商机相关联系人
+export function dealLinkman(data) {
+  return _post({
+    url: `/mini/api/deal/person/list`,
+    data,
+  });
+}
 // 客户联系人分页查询
 export function linkmanDetail(data) {
   return _post({

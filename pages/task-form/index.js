@@ -9,7 +9,7 @@ import {
   activityList,
 } from '../../api/task';
 
-import { linkmanInfo } from '../../api/linkman';
+import { dealLinkman } from '../../api/linkman';
 
 Page({
   /**
@@ -41,6 +41,7 @@ Page({
       department: '',
       description: '',
       personId: '',
+      personName: '',
       done: true,
       remindMe: dayjs().format(),
       participant: '',
@@ -51,6 +52,7 @@ Page({
     },
     location: {},
     status: false,
+    show: false,
   },
 
   formSubmit: async function (e) {
@@ -63,6 +65,7 @@ Page({
     params.longitude = this.data.location.longitude;
     params.latitude = this.data.location.latitude;
     params.address = this.data.location.address;
+    params.personId = this.data.form.personId;
     params.startTimeDto = {
       date: dayjs(params.startTime).format('YYYYMMDD'),
     };
@@ -71,7 +74,6 @@ Page({
     };
 
     let { description, subject, value } = e.detail.value;
-
     if (this.data._id) {
       params.id = this.data._id;
       var { success, message } = await updateTask(params);
@@ -89,8 +91,7 @@ Page({
         success(res) {
           wx.navigateBack();
         },
-        fail(res) {
-        },
+        fail(res) {},
       });
       // wx.addPhoneCalendar({
       //   title:subject,
@@ -141,13 +142,48 @@ Page({
       url: '/pages/search/business-select/index',
     });
   },
+  async beforeTap() {
+    if (!this.data.form.dealId) {
+      wx.showToast({
+        title: '请先选择商机',
+        icon: 'none',
+      });
 
-  getLinkman: async function () {
+      return;
+    }
+    this.setData({
+      show: true,
+    });
+    let res2 = await this.getLinkman(this.data.form.dealId);
+    this.setData({
+      optionsLink: res2.map((item) => ({
+        label: item.name,
+        value: item.id,
+      })),
+    });
+  },
+
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  confirmPicker(event) {
+    const { picker, value, index } = event.detail;
+    this.setData({
+      form: {
+        ...this.data.form,
+        personId: value.value,
+        personName: value.label,
+      },
+      show: false,
+    });
+  },
+  getLinkman: async function (dealId) {
     let params = {
-      page: 1,
-      size: 100000,
+      id: dealId,
     };
-    let { data } = await linkmanInfo(params);
+    let { data } = await dealLinkman(params);
     return data;
   },
   getActivityList: async function () {
@@ -183,7 +219,9 @@ Page({
 
   pageInit: async function (id, dealId, dealName) {
     let res1 = await this.getActivityList();
-    let res2 = await this.getLinkman();
+    if (id) {
+      var res2 = await this.getLinkman(dealId);
+    }
     this.setData({
       _id: id,
       titleProps: {
@@ -193,10 +231,12 @@ Page({
         label: item.name,
         value: item.id,
       })),
-      optionsLink: res2.map((item) => ({
-        label: item.name,
-        value: item.id,
-      })),
+      optionsLink: id
+        ? res2.map((item) => ({
+            label: item.name,
+            value: item.id,
+          }))
+        : [],
     });
     if (id) this.fetchData();
     // if (!id) {
@@ -218,7 +258,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    console.log(this.data.form);
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -186,7 +186,8 @@
       </view>
     </sd-title>
     <view style="font-size: 24rpx;color:rgb(107, 119, 140) ;float: right;">
-      单位（万元）
+        单位 {{funnelValue !== 'valueCount'? '（个）' : ' （万元）'}}
+
     </view>
     <view>
       <echart-bar id="funnel-money-bar" idRef="{{ 'funnel-money-bar' }}" toImg="{{ false }}" />

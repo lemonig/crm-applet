@@ -35,7 +35,7 @@ Page({
         // on confirm
         wxLogOut()
         wx.clearStorage();
-        wx.redirectTo({
+        wx.reLaunch({
           url: '/pages/login/index',
         });
 

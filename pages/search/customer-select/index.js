@@ -68,6 +68,7 @@ Page({
     this.setData({
       key: options.text,
     });
+    this.fetchData();
   },
 
   /**

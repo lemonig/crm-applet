@@ -12,7 +12,7 @@
       <sd-picker value="{{form.pipelineStageId}}" name="pipelineStageId" title="销售阶段" options="{{columnsStage}}"></sd-picker>
       <sd-picker value="{{form.isFinalOrg}}" name="isFinalOrg" title="最终用户" options="{{columnsUser}}"></sd-picker>
       <!-- <sd-picker value="{{form.personList}}" name="personList" title="联系人" options="{{columnsLink}}"></sd-picker> -->
-      <van-cell value="{{form.personName  ? form.personName: '无' }}" title="联系人" is-link bind:click="selectLinkman" />
+      <van-cell wx:if="{{form.orgName}}" value="{{form.personName  ? form.personName: '无' }}" title="联系人" is-link bind:click="selectLinkman" />
       <sd-picker value="{{form.businessType}}" name="businessType" title="业务类型" options="{{columnsSale}}"></sd-picker>
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">

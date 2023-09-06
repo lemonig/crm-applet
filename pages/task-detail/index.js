@@ -33,7 +33,7 @@ Page({
   },
   gotoForm() {
     wx.navigateTo({
-      url: '/pages/task-form/index?id=' + this.data.id,
+      url: '/pages/task-form/index?id=' + this.data.id+ '&dealId='+this.data.data.dealId,
     });
   },
   fetchData: async function () {
