@@ -83,6 +83,8 @@ Component({
         label:time,
         show: false
       })
+      this.triggerEvent('timeChange', { time:event.detail });
+
     }
   },
 })
