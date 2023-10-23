@@ -1,0 +1,57 @@
+<!--pages/login-code/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"  ></navigation-bar>
+<view
+    class="container"
+    style="height: calc(100vh - {{navBarHeight}}px)"
+    wx:if="{{!isSend}}"
+>
+    <view class="title">请输入手机号</view>
+    <van-field
+        value="{{ value }}"
+        placeholder="请输入手机号"
+        bind:change="handlePhoneInput"
+        style="width: 80vw;"
+        focus="{{true}}"
+        auto-focus="{{true}}"
+        type="number"
+    />
+
+    <van-button
+        class="login-btn"
+        type="primary"
+        round
+        block
+        color="#07c160"
+        bind:click="send"
+    >获取验证码</van-button>
+    <!-- disabled="{{!isPhone}}" -->
+
+</view>
+<!-- 验证码 -->
+<!-- class='hiddenIpt' -->
+<view wx:else style="margin-top: 20%;">
+    <van-field
+    class='hiddenIpt'
+        bind:change='bindPhoneInput'
+        maxlength="6"
+        focus="{{verificationCode.isFocus}}"
+        value="{{verificationCode.value}}"
+        type="number"
+        data-flag='verificationCode'
+    ></van-field>
+    <view class='pw-wrap'>
+        <view class='item'>
+            <view>
+                <input
+                    wx:for="{{6}}"
+                    wx:key="{{index}}"
+                    value='{{verificationCode.value[index]}}'
+                    disabled
+                    catchtap='bindKeyInput'
+                    type='number'
+                    data-flag='verificationCode'
+                ></input>
+            </view>
+        </view>
+    </view>
+</view>

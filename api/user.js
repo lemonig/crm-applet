@@ -28,3 +28,15 @@ import {
       data  
     })
   }
+  export function getSMS(data) {  
+    return _post({    
+      url:`/mini/api/sms/send`,    
+      data  
+    })
+  }
+  export function smsLogin(data) {  
+    return _post({    
+      url:`/mini/api/sms/login`,    
+      data  
+    })
+  }

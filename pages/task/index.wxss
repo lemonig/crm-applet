@@ -43,7 +43,7 @@
   align-items: center;
 }
 .task-container .flex-row .cell-right .one text:first-child {
-  flex-basis: 100rpx;
+  flex-basis: 200rpx;
 }
 .task-container .mar-12 {
   margin-left: 12rpx;

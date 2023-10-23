@@ -47,3 +47,10 @@ export function activityDelte(data) {
     data,
   });
 }
+// 联系人
+export function activityPerson(data) {
+  return _post({
+    url: `/mini/api/activity/person/list`,
+    data,
+  });
+}

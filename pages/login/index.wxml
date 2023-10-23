@@ -19,20 +19,35 @@
 <van-toast id="van-toast" />
 <van-notify id="van-notify" /> -->
 
-<view class="container">
+<view
+    class="container"
+    style="height: calc(100vh - {{navBarHeight}}px)"
+>
     <van-image
         class="logo"
         fit="contain"
         src="/assets/imgs/bg_welcome.png"
     />
     <view class="title">CRM</view>
+
+    <!-- <view style="text-align: center;" bind:tap="gotoLoginCode">
+        <van-image
+            width="36"
+            height="36"
+            src="/assets/imgs/phone.png"
+        />
+        <view class="text">
+            手机验证
+        </view>
+    </view> -->
+
     <van-button
         class="login-btn"
         type="primary"
         round
         block
-        open-type="getPhoneNumber"
-        bind:getphonenumber="onGetPhoneNumber"
+        bind:tap="gotoLoginCode"
+
         color="#07c160"
     >手机号登录</van-button>
     <!-- <view class="{{closeAnimation ? '': 'error-message'}}" style="color: red; margin-top: 40rpx;">{{errMsg}}</view> -->
@@ -41,18 +56,13 @@
         style="color: red; margin-top: 40rpx;"
     >{{errMsg}}</view>
 
+<!-- 
+    <view class="login-footer">
+        <van-divider contentPosition="center">
+            其他登录方式
+        </van-divider>
 
-    <van-divider contentPosition="center">
-    </van-divider>
-    <!-- 其它登录方式 -->
 
-    <text
-        class="iconfont icon-suoti"
-        style="font-size: 2em;"
-    ></text>
-    <text
-        class="iconfont icon-shouji"
-        style="font-size: 2em;"
-    ></text>
+    </view> -->
 
 </view>

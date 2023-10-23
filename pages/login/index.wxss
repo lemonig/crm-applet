@@ -60,3 +60,25 @@
     transform: translateX(-5px);
   }
 }
+.login-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 40rpx 0 60rpx ;
+}
+.login-footer .footer-main {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-footer .footer-main .main-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.login-footer .footer-main .main-item .text {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.4);
+}

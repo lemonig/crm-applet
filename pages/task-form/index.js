@@ -7,6 +7,7 @@ import {
   searchDeal,
   listTask,
   activityList,
+  activityPerson,
 } from '../../api/task';
 
 import { dealLinkman } from '../../api/linkman';
@@ -34,16 +35,18 @@ Page({
       },
     ],
     form: {
+      typeId: '',
       dealId: '',
       dealName: '',
-      startTime: dayjs().format(),
-      endTime: dayjs().add(1, 'day').format(),
+      orgId: '',
+      orgName: '',
+      startTime: dayjs().add(2, 'days').format(),
+      endTime: dayjs().add(3, 'days').format(),
       department: '',
       description: '',
       personId: '',
       personName: '',
       done: true,
-      remindMe: dayjs().format(),
       participant: '',
       longitude: '',
       latitude: '',
@@ -53,6 +56,21 @@ Page({
     location: {},
     status: false,
     show: false,
+    hasDeal: true,
+    remindMe: dayjs().add(1, 'days').hour(14).minute(0).second(0).millisecond(0).format(),
+  },
+
+  onTimeChange(event) {
+    const selectedTime = event.detail.time;
+    this.setData({
+      remindMe: dayjs(selectedTime)
+        .subtract(1, 'day')
+        .hour(14)
+        .minute(0)
+        .second(0)
+        .millisecond(0)
+        .format(),
+    });
   },
 
   formSubmit: async function (e) {
@@ -60,12 +78,18 @@ Page({
       btnLoad: true,
     });
     let params = e.detail.value;
-    params.dealId = this.data.form.dealId;
+    if (this.data.hasDeal) {
+      params.dealId = this.data.form.dealId;
+    } else {
+      params.orgId = this.data.form.orgId;
+    }
     params.done = this.data.status;
-    params.longitude = this.data.location.longitude;
+    (params.remindMe = dayjs(this.data.remindMe).format('YYYYMMDDHHmm')),
+      (params.longitude = this.data.location.longitude);
     params.latitude = this.data.location.latitude;
     params.address = this.data.location.address;
     params.personId = this.data.form.personId;
+    params.hasDeal = this.data.hasDeal
     params.startTimeDto = {
       date: dayjs(params.startTime).format('YYYYMMDD'),
     };
@@ -137,24 +161,57 @@ Page({
       status: detail,
     });
   },
+  onHasDealChange({ detail }) {
+    this.setData({
+      form: {
+        ...this.data.form,
+        orgId: '',
+        orgName: '',
+        dealId: '',
+        dealName: '',
+        personId: '',
+        personName: '',
+      },
+    });
+    this.setData({
+      hasDeal: detail,
+    });
+  },
+
   gotoBusiness() {
     wx.navigateTo({
       url: '/pages/search/business-select/index',
     });
   },
   async beforeTap() {
-    if (!this.data.form.dealId) {
-      wx.showToast({
-        title: '请先选择商机',
-        icon: 'none',
-      });
+    if (this.data.hasDeal) {
+      if (!this.data.form.dealId) {
+        wx.showToast({
+          title: '请先选择商机',
+          icon: 'none',
+        });
 
-      return;
+        return;
+      }
+    } else {
+      if (!this.data.form.orgId) {
+        wx.showToast({
+          title: '请先选择客户',
+          icon: 'none',
+        });
+
+        return;
+      }
     }
+
     this.setData({
       show: true,
     });
-    let res2 = await this.getLinkman(this.data.form.dealId);
+    let id = {
+      orgId: this.data.form.orgId,
+      dealId: this.data.form.dealId,
+    };
+    let res2 = await this.getLinkman(id);
     this.setData({
       optionsLink: res2.map((item) => ({
         label: item.name,
@@ -162,7 +219,15 @@ Page({
       })),
     });
   },
-
+  onConfirml(event) {
+    const { picker, value, index } = event.detail;
+    this.setData({
+      form: {
+          ...this.data.form,
+          typeId:value
+      },
+    });
+  },
   onClose() {
     this.setData({
       show: false,
@@ -176,14 +241,11 @@ Page({
         personId: value.value,
         personName: value.label,
       },
-      show: false,
+        show: false,
     });
   },
-  getLinkman: async function (dealId) {
-    let params = {
-      id: dealId,
-    };
-    let { data } = await dealLinkman(params);
+  getLinkman: async function (params) {
+    let { data } = await activityPerson(params);
     return data;
   },
   getActivityList: async function () {
@@ -206,6 +268,8 @@ Page({
         latitude: data.latitude,
       },
       status: data.done,
+      hasDeal: !!data.dealId,
+      remindMe: data.remindMe,
     });
   },
 
@@ -213,14 +277,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let { id, dealId, dealName } = options;
-    this.pageInit(id, dealId, dealName);
+    let { id, idJson, dealName } = options;
+    this.pageInit(id, idJson, dealName);
   },
 
-  pageInit: async function (id, dealId, dealName) {
+  pageInit: async function (id, idJson, dealName) {
     let res1 = await this.getActivityList();
     if (id) {
-      var res2 = await this.getLinkman(dealId);
+      let params = JSON.parse(idJson);
+
+      var res2 = await this.getLinkman(params);
     }
     this.setData({
       _id: id,
@@ -249,7 +315,11 @@ Page({
     //   });
     // }
   },
-
+  selectCus() {
+    wx.navigateTo({
+      url: '/pages/search/customer-select/index',
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -259,7 +329,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    console.log(this.data.form);
+    // if (this.data.form.dealId) {
+
+    //     var pages = getCurrentPages();
+    //     var prePages = pages[pages.length - 1];
+    //     var formDealId = prePages.data;
+    //     console.log(formDealId);
+
+    //   this.setData({
+    //     form: {
+    //       ...this.data.form,
+    //       personName: '',
+    //       personId: '',
+    //     },
+    //   });
+    // }
   },
 
   /**

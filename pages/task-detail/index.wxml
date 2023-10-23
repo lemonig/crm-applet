@@ -8,8 +8,11 @@
     <van-cell title="任务类型">
       <text>{{data.typeName}}</text>
     </van-cell>
-    <van-cell title="关联商机">
+    <van-cell  title="关联商机">
       <text>{{data.dealName}}</text>
+    </van-cell>
+    <van-cell title="关联客户">
+      <text>{{data.orgName}}</text>
     </van-cell>
     <van-cell title="开始日期">
       <text>{{data.startTimeDto.date}}</text>

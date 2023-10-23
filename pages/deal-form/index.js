@@ -25,6 +25,7 @@ Page({
       personName: '',
       productList: '',
       businessType: '1',
+      probability:10,
     },
     currentValue: 50,
 
@@ -41,6 +42,33 @@ Page({
         label: '否',
         value: false,
       },
+    ],
+    columnScore: [
+      {
+        label: '90',
+        value: 90,
+      },
+     
+      {
+        label: '70',
+        value: 70,
+      },
+     
+      {
+        label: '50',
+        value: 50,
+      },
+     
+      {
+        label: '30',
+        value: 30,
+      },
+     
+      {
+        label: '10',
+        value: 10,
+      },
+     
     ],
     columnsLink: [],
     columnsSale: [
@@ -101,7 +129,7 @@ Page({
     params.orgId = this.data.form.orgId;
     params.dealProductList = this.data.productMsg;
     params.personList = this.data.linkmanMsg;
-    params.probability = this.data.currentValue;
+    // params.probability = this.data.currentValue;
 
     if (this.data._id) {
       params.id = this.data._id;

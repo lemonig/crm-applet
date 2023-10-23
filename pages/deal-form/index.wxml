@@ -16,12 +16,14 @@
       <sd-picker value="{{form.businessType}}" name="businessType" title="业务类型" options="{{columnsSale}}"></sd-picker>
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
+        <sd-picker value="{{form.probability}}" name="probability" title="信心指数" options="{{columnScore}}"></sd-picker>
+<!-- 
       <sd-list>
         <text slot="title" style="flex-basis: 120rpx;">信心指数</text>
         <van-slider value="{{ currentValue }}" use-button-slot bind:drag="sliderChange" slot="value" custom-class="progress">
           <view class="custom-button" slot="button">{{ currentValue }}</view>
         </van-slider>
-      </sd-list>
+      </sd-list> -->
       <van-field value="{{form.value}}" name='value' label="预计金额" input-align="right" placeholder="请输入" />
       <van-cell wx:if="{{!_id}}" value="共{{productMsg.length}}项" name="productList" title="产品信息" is-link bind:click="selectProduct" />
       <!-- <sd-picker value="{{form.productList}}" name="productList" title="产品信息" options="{{columnsPro}}"></sd-picker> -->

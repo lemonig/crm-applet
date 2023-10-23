@@ -32,8 +32,13 @@ Page({
     });
   },
   gotoForm() {
+    let id ={
+        orgId:  this.data.data.orgId,
+        dealId:this.data.data.dealId
+    };
+    let idJson = JSON.stringify(id)
     wx.navigateTo({
-      url: '/pages/task-form/index?id=' + this.data.id+ '&dealId='+this.data.data.dealId,
+      url: '/pages/task-form/index?id=' + this.data.id+ '&idJson='+idJson,
     });
   },
   fetchData: async function () {

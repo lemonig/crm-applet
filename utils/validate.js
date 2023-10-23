@@ -144,7 +144,7 @@ export function isPort(value) {
  * @returns {boolean}
  */
 export function isPhone(value) {
-  const reg = /^1\d{10}$/
+  const reg = /^1[3456789]\d{9}$/
   return reg.test(value)
 }
 
