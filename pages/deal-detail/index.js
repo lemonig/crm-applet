@@ -16,12 +16,18 @@ Page({
     active: 0,
     dealId: '',
     data: {},
-  },
 
+  },
+  parentMethod() {
+    wx.switchTab({
+        url: '/pages/deal/index',
+      });
+  },
   fetchData: async function () {
     let { data } = await detailDeal({
       id: this.data.dealId,
     });
+    console.log(data.pipelineDetailList);
     let res = data.pipelineDetailList.findLastIndex((item) => item.isShow);
     this.setData({ data, pipelineIdx: res + 1 });
   },
@@ -47,7 +53,7 @@ Page({
                 });
                 if(success){
                   wx.navigateTo({
-                    url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId,
+                    url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId+'&pipelineStageId='+ this.data.data.baseInfo.pipelineStageId,
                   });
                 }
                   resolve(true);
@@ -59,8 +65,8 @@ Page({
       return 
     }
     wx.navigateTo({
-      url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId,
-    });
+        url: '/pages/search/pipeline-select/index?dealId=' + this.data.dealId+'&pipelineStageId='+ this.data.data.baseInfo.pipelineStageId,
+      });
   },
 
   async getListPipelineStage() {
@@ -90,6 +96,7 @@ Page({
     this.setData({
       dealId: options.id,
     });
+    wx.hideHomeButton()
   },
 
   /**
@@ -112,7 +119,9 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {},
+  onUnload(event) {
+        event.preventDefault(); // 阻止用户通过左滑手势离开小程序
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

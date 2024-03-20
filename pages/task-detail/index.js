@@ -21,7 +21,14 @@ Page({
     },
     id: '',
     data: {},
+
   },
+
+  parentMethod() {
+    wx.switchTab({
+        url: '/pages/task/index' 
+    })
+},
 
   deleteItem() {
     Dialog.confirm({
@@ -37,7 +44,7 @@ Page({
         dealId:this.data.data.dealId
     };
     let idJson = JSON.stringify(id)
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/task-form/index?id=' + this.data.id+ '&idJson='+idJson,
     });
   },
@@ -47,11 +54,46 @@ Page({
     });
     this.setData({ data });
   },
+  viewImg(event){
+    console.log(event);
+    let {src} = event.currentTarget.dataset
+    console.log(src);
+    wx.previewImage({
+        current: src, // 当前显示图片的http链接
+        urls: this.data.data.fileList.map(item=> item.url), // 需要预览的图片http链接列表,
+        success(res){
+            console.log(res);
+        },
+        fail(err){
+            console.log(err);
+        },
+        complete(){
 
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+      if('dealId' in options){
+            Dialog.confirm({
+          title: '消息',
+          message: '任务已完成，是否去更新商机状态？ ',
+          confirmButtonText: '好',
+          cancelButtonText: '暂不更新',
+          beforeClose: (action) =>
+            action === 'confirm'
+              ? wx.redirectTo({
+                  url: '/pages/deal-detail/index?id=' + options.dealId,
+                })
+              : true,
+        })
+          .then(() => {
+          })
+          .catch(() => {
+          });
+      }
     this.setData({
       id: options.id,
     });

@@ -1,19 +1,19 @@
 // components/nav-bar/index.js
-const app = getApp()
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
    */
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
   properties: {
     defaultData: {
       type: Object,
       value: {
-        title: ""
+        title: '',
       },
-      observer: function (newVal, oldVal) {}
+      observer: function (newVal, oldVal) {},
     },
     back: {
       type: Boolean,
@@ -21,8 +21,11 @@ Component({
     },
     title: {
       type: String,
-
-    }
+    },
+    isCusBack: {
+      type: Boolean,
+      value: false,
+    },
   },
 
   /**
@@ -40,10 +43,13 @@ Component({
    */
   methods: {
     goback: function () {
+      if (this.data.isCusBack) {
+        this.triggerEvent('customBack');
+        return;
+      }
       wx.navigateBack({
-        delta: 1
-      })
-
-    }
-  }
-})
+        delta: 1,
+      });
+    },
+  },
+});

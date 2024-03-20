@@ -1,55 +1,83 @@
 <!--pages/task-detail/index.wxml-->
 
-<navigation-bar default-data="{{titleProps}}">
+<navigation-bar default-data="{{titleProps}}" bind:customBack="parentMethod" isCusBack="{{true}}">
 </navigation-bar>
-
 <view class="container task-container">
-  <van-cell-group custom-class="cell-group-class">
-    <van-cell title="任务类型">
-      <text>{{data.typeName}}</text>
-    </van-cell>
-    <van-cell  title="关联商机">
-      <text>{{data.dealName}}</text>
-    </van-cell>
-    <van-cell title="关联客户">
-      <text>{{data.orgName}}</text>
-    </van-cell>
-    <van-cell title="开始日期">
-      <text>{{data.startTimeDto.date}}</text>
-    </van-cell>
-    <van-cell title="结束日期">
-      <text>{{data.endTimeDto.date}}</text>
-    </van-cell>
-    <van-cell title="提醒我">
-      <text>{{data.remindMe}}</text>
-    </van-cell>
-  </van-cell-group>
-  <van-cell-group custom-class="cell-group-class">
-    <van-cell title="任务标题">
-      <text>{{data.subject}}</text>
-    </van-cell>
-    <van-cell title="联系人">
-      <text>{{data.personName}}</text>
-    </van-cell>
-    <van-cell title="其它联系人">
-      <text>{{data.participant}}</text>
-    </van-cell>
-    <van-cell title="地点">
-      <text>{{data.address}}</text>
-    </van-cell>
-    <van-cell title="完成纪要">
-      <text>{{data.description}}</text>
-    </van-cell>
-  </van-cell-group>
-  <van-cell-group custom-class="cell-group-class">
-    <van-cell title="任务状态">
-      <text>{{data.done ? '已完成': '未完成'}}</text>
-    </van-cell>
-  </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+        <van-cell title="任务类型">
+            <text>{{data.typeName}}</text>
+        </van-cell>
+        <van-cell title="关联商机">
+            <text>{{data.dealName}}</text>
+        </van-cell>
+        <van-cell title="关联客户">
+            <text>{{data.orgName}}</text>
+        </van-cell>
+        <van-cell title="开始日期">
+            <text>{{data.startTimeDto.date}}</text>
+        </van-cell>
+        <van-cell title="结束日期">
+            <text>{{data.endTimeDto.date}}</text>
+        </van-cell>
+        <van-cell title="提醒我">
+            <text>{{data.remindMe}}</text>
+        </van-cell>
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+        <van-cell title="任务标题">
+            <text>{{data.subject}}</text>
+        </van-cell>
+        <van-cell title="联系人">
+            <text>{{data.personName}}</text>
+        </van-cell>
+        <van-cell title="其它联系人">
+            <text>{{data.participant}}</text>
+        </van-cell>
+        <van-cell title="地点">
+            <text>{{data.address}}</text>
+        </van-cell>
+        <van-cell title="完成纪要">
+            <text>{{data.description}}</text>
+        </van-cell>
+        <van-cell title="实际费用">
+            <text>{{data.fee}}</text>
+        </van-cell>
+        <sd-list title="照片">
+            <van-image
+                wx:for="{{data.fileList}}"
+                wx:key="id"
+                width="50"
+                height="50"
+                src="{{item.url}}"
+                slot="value"
+                bind:click="viewImg"
+                data-src="{{item.url}}"
+                style="margin: 0 4rpx;"
+            />
+        </sd-list>
+    </van-cell-group>
+    <van-cell-group custom-class="cell-group-class">
+        <van-cell title="任务状态">
+            <text>{{data.done ? '已完成': '未完成'}}</text>
+        </van-cell>
+    </van-cell-group>
 
-  <view class="btn-wrap" wx:if="{{data.isOwner}}">
-      <van-button type="danger" loading="{{btnLoad}}"   custom-style="width: 250rpx;" bind:click="deleteItem">删除</van-button>
-      <van-button type="info" loading="{{btnLoad}}"   custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
+    <view
+        class="btn-wrap"
+        wx:if="{{data.isOwner}}"
+    >
+        <van-button
+            type="danger"
+            loading="{{btnLoad}}"
+            custom-style="width: 250rpx;"
+            bind:click="deleteItem"
+        >删除</van-button>
+        <van-button
+            type="info"
+            loading="{{btnLoad}}"
+            custom-style="width: 250rpx;"
+            bindtap="gotoForm"
+        >编辑</van-button>
     </view>
 </view>
 

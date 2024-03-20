@@ -10,7 +10,11 @@ import {
   activityPerson,
 } from '../../api/task';
 
+import { uploadFile } from '../../api/public';
+
 import { dealLinkman } from '../../api/linkman';
+import { baseURL } from '../../server/request';
+import Dialog from '@vant/weapp/dialog/dialog';
 
 Page({
   /**
@@ -52,12 +56,67 @@ Page({
       latitude: '',
       address: '',
       subject: '',
+      fee: undefined,
     },
     location: {},
     status: false,
     show: false,
     hasDeal: true,
     remindMe: dayjs().add(1, 'days').hour(14).minute(0).second(0).millisecond(0).format(),
+    feeRequire: false,
+    fileList: [],
+ 
+  },
+  parentMethod() {
+    console.log(this.data._id);
+    let id = this.data._id
+    wx.redirectTo({
+        url: '/pages/task-detail/index?id=' + id,
+    })
+},
+  showActions() {
+    wx.chooseMedia({
+      count: 9,
+      mediaType: ['image', 'video'],
+      sourceType: ['album', 'camera'],
+      maxDuration: 30,
+      sizeType: ['original', 'compressed'],
+      camera: 'back',
+      async success(res) {
+        console.log(res);
+        let res1 = await uploadFile(res.tempFiles[0].tempFilePath);
+        console.log(res1);
+        const { fileList = [] } = this.data;
+        fileList.push({ ...file, url: res1.data.url });
+        this.setData({ fileList });
+      },
+      fail(err) {
+        console.log(err);
+      },
+    });
+  },
+  onDelete(event) {
+    const { index, file } = event.detail;
+    // 从 fileList 中删除指定位置的图片
+    const fileList = this.data.fileList.slice();
+    fileList.splice(index, 1);
+    this.setData({
+      fileList,
+    });
+  },
+  async afterRead(event) {
+    const { file } = event.detail;
+    let _this = this;
+    wx.compressImage({
+      src: file.url, // 图片路径
+      quality: 30, // 压缩质量,
+      async success(cfile) {
+        let res = await uploadFile(cfile.tempFilePath);
+        const { fileList = [] } = _this.data;
+        fileList.push(res.data);
+        _this.setData({ fileList });
+      },
+    });
   },
 
   onTimeChange(event) {
@@ -89,20 +148,23 @@ Page({
     params.latitude = this.data.location.latitude;
     params.address = this.data.location.address;
     params.personId = this.data.form.personId;
-    params.hasDeal = this.data.hasDeal
+    params.hasDeal = this.data.hasDeal;
     params.startTimeDto = {
       date: dayjs(params.startTime).format('YYYYMMDD'),
     };
     params.endTimeDto = {
       date: dayjs(params.endTime).format('YYYYMMDD'),
     };
+    params.fileList = this.data.fileList.map((i) => ({
+      id: i.id,
+    }));
 
     let { description, subject, value } = e.detail.value;
     if (this.data._id) {
       params.id = this.data._id;
-      var { success, message } = await updateTask(params);
+      var { success, message, data } = await updateTask(params);
     } else {
-      var { success, message } = await addTask(params);
+      var { success, message, data } = await addTask(params);
     }
     wx.showToast({
       title: message,
@@ -110,13 +172,42 @@ Page({
     });
 
     if (success) {
+      this.setData({
+        btnLoad: false,
+      });
       wx.requestSubscribeMessage({
         tmplIds: ['qtdVbTeX4B04lSAgzfTAI77IgePhkq80y9IxLGC_wyQ'],
         success(res) {
-          wx.navigateBack();
+          //   wx.navigateBack();
         },
         fail(res) {},
       });
+
+      if (data.done && data.dealId) {
+        let id = this.data._id;
+        // wx.navigateTo({
+        //   url: '/pages/task-detail/index?id=' + id + '&dealId=' + data.dealId,
+        // });
+        Dialog.confirm({
+          title: '消息',
+          message: '任务已完成，是否去更新商机状态？ ',
+          confirmButtonText: '好',
+          cancelButtonText: '暂不更新',
+          beforeClose: (action) =>
+            action === 'confirm'
+              ? wx.redirectTo({
+                  url: '/pages/deal-detail/index?id=' + data.dealId,
+                })
+              : wx.redirectTo({
+                  url: '/pages/task-detail/index?id=' + id,
+                }),
+        })
+          .then(() => {})
+          .catch(() => {});
+      } else {
+        wx.navigateBack();
+      }
+
       // wx.addPhoneCalendar({
       //   title:subject,
       //   startTime: dayjs(this.data.tipme).unix(),
@@ -222,9 +313,10 @@ Page({
   onConfirml(event) {
     const { picker, value, index } = event.detail;
     this.setData({
+      feeRequire: this.data.optionsActive.find((ele) => ele.value == value)['isFeeRequired'],
       form: {
-          ...this.data.form,
-          typeId:value
+        ...this.data.form,
+        typeId: value,
       },
     });
   },
@@ -241,7 +333,7 @@ Page({
         personId: value.value,
         personName: value.label,
       },
-        show: false,
+      show: false,
     });
   },
   getLinkman: async function (params) {
@@ -270,6 +362,7 @@ Page({
       status: data.done,
       hasDeal: !!data.dealId,
       remindMe: data.remindMe,
+      fileList: data.fileList,
     });
   },
 
@@ -294,6 +387,7 @@ Page({
         title: `${id ? '编辑' : '新建'}任务`,
       },
       optionsActive: res1.map((item) => ({
+        ...item,
         label: item.name,
         value: item.id,
       })),
@@ -330,12 +424,10 @@ Page({
    */
   onShow() {
     // if (this.data.form.dealId) {
-
     //     var pages = getCurrentPages();
     //     var prePages = pages[pages.length - 1];
     //     var formDealId = prePages.data;
     //     console.log(formDealId);
-
     //   this.setData({
     //     form: {
     //       ...this.data.form,

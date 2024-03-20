@@ -1,6 +1,9 @@
 /* pages/task-detail/index.wxss */
 .text-color{
 }
+.task-container {
+    padding-bottom: 50rpx;
+}
 .task-container text{
   color: #0252cc
 

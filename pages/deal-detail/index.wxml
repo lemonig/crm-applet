@@ -1,5 +1,5 @@
 <!--pages/deal-detail/index.wxml-->
-<navigation-bar default-data="{{titleProps}}">
+<navigation-bar default-data="{{titleProps}}" bind:customBack="parentMethod" isCusBack="{{true}}">
 </navigation-bar>
 
 <view class=" container deal-detail-container ">

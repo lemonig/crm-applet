@@ -1,5 +1,5 @@
 <!-- 自定义顶部栏 -->
-<view class="nav-bar" style="height:{{navBarHeight}}px;z-index: 9999;">
+<view class="nav-bar" id="nav_bar" style="height:{{navBarHeight}}px;z-index: 9999;">
   <view class="nav-amin" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px;  top:{{menuTop}}px;">
     <block wx:if="{{defaultData.title}}">
       <view class="icon">
