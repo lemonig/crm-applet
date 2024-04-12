@@ -134,6 +134,7 @@ Page({
   onLoad(options) {
     this.setData({
       dealId: options.dealId,
+      currentID:options.pipelineStageId *1
     });
     this.getListPipelineStage();
     this.getTerminationReasonList();

@@ -69,7 +69,7 @@
             {{item.typeName}}
           </text>
           <text class="font-color-gray {{item.done ? 'check-style' :''}}">
-            {{item.dealName}}
+            {{item.dealName || '*'+ item.orgName}}
           </text>
         </view>
         <view class="two desc-label">
@@ -119,3 +119,5 @@
   />
 </view>
 <van-notify id="van-notify" />
+<van-dialog id="van-dialog" />
+

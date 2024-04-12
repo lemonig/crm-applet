@@ -95,6 +95,7 @@ Page({
     pageNo: 1,
     loading: false,
     isAllData: false,
+    show:false
   },
 
   /**
@@ -163,6 +164,28 @@ Page({
         })),
       ],
     });
+  },
+  
+  filterPop() {
+    this.setData({
+      show: true,
+    });
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+
+
+  filterData(eve) {
+    this.onClose();
+    this.setData({
+      filterD: eve.detail,
+      pageNo: 1,
+      isScrollFeatch: false,
+    });
+    this.fetchData();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

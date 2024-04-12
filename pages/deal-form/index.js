@@ -25,7 +25,7 @@ Page({
       personName: '',
       productList: '',
       businessType: '1',
-      probability:10,
+      probability:50,
     },
     currentValue: 50,
 
@@ -45,27 +45,27 @@ Page({
     ],
     columnScore: [
       {
-        label: '90',
+        label: '90%',
         value: 90,
       },
      
       {
-        label: '70',
+        label: '70%',
         value: 70,
       },
      
       {
-        label: '50',
+        label: '50%',
         value: 50,
       },
      
       {
-        label: '30',
+        label: '30%',
         value: 30,
       },
      
       {
-        label: '10',
+        label: '10%',
         value: 10,
       },
      
@@ -88,6 +88,7 @@ Page({
     productMsg: [],
     linkmanMsg: [],
     personName: '',
+    dealMoney:'0'
   },
 
   async getListPipelineStage() {
@@ -171,6 +172,7 @@ Page({
       url,
     });
   },
+
   fetchData: async function () {
     let { data } = await detailDeal({
       id: this.data._id,
@@ -181,7 +183,10 @@ Page({
       productMsg: data.relatedInfo.products,
       linkmanMsg: data.baseInfo.personList,
       currentValue: data.baseInfo.probability,
+      dealMoney: data.baseInfo.value / 10000
+
     });
+  
   },
   /**
    * 生命周期函数--监听页面加载
@@ -207,7 +212,45 @@ Page({
 
     if (id) this.fetchData();
   },
+   digitToChinese:function(num) {
+    var digitArr = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+    var unitArr = ['元', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟'];
+    var decimalArr = ['角', '分'];
 
+    var numStr = num.toString();
+    var parts = numStr.split('.');
+    var integerPart = parts[0];
+    var decimalPart = parts[1] ? parts[1].substr(0, 2) : '';
+
+    var result = '';
+
+    // 处理整数部分
+    var integerLength = integerPart.length;
+    for (var i = 0; i < integerLength; i++) {
+        var digit = parseInt(integerPart[i]);
+        var unit = integerLength - i - 1;
+        result += digitArr[digit] + unitArr[unit];
+    }
+
+    // 处理小数部分
+    if (decimalPart) {
+        for (var j = 0; j < decimalPart.length; j++) {
+            var digit = parseInt(decimalPart[j]);
+            result += digitArr[digit] + decimalArr[j];
+        }
+    } else {
+        result += '整';
+    }
+
+    return result;
+},
+onMoneyChange(event) {
+    // event.detail 为当前输入的值
+   let res =  this.digitToChinese(event.detail)
+   this.setData({
+    dealMoney: event.detail / 10000
+   })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

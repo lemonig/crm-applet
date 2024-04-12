@@ -1,6 +1,6 @@
 <view class="sd-list {{border ? 'border' :'' }}" bindtap="onClick" >
   <view  class="title">
-    <text wx:if="{{title}}" style="max-width: 90%;"> {{ title  }} </text>
+    <text wx:if="{{title}}" style="max-width: 90%; color: #323233;"> {{ title  }} </text>
     <slot wx:else="{{!title}}" name="title"></slot> 
     <text wx:if="{{value}}"> {{ value  }} </text>
     <slot wx:else="{{!value}}" name="value"></slot> 

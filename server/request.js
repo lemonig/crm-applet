@@ -2,7 +2,7 @@ import { contentType, messageName, statusName, successCode } from '../config/ind
 
 import { isArray } from '../utils/validate.js';
 // const baseURL = 'http://192.168.188.176:8890';
-const baseURL = 'https://wx.greandata1.com';
+ const baseURL = 'https://wx.greandata1.com';
 // const baseURL = 'http://192.168.168.9:15612';
 
 let loadingInstance = null;
@@ -140,8 +140,36 @@ const _get = async ({
   return res;
 };
 
+const _upload = async ({
+    url,
+    data,
+    
+  }) => {
+      return new Promise((rso,rej)=>{
+        wx.uploadFile({
+            url: baseURL + url, 
+            filePath: data,
+            name: 'file',
+            header:{
+                token:wx.getStorageSync('token')
+            },
+            success: function (uploadRes) {
+                let obj = JSON.parse(uploadRes.data)
+              rso(obj)
+            },
+            fail: function (uploadError) {
+              rej(uploadError)
+            },
+          });
+      })
+   
+  };
+  
+
 module.exports = {
   request,
   _post,
   _get,
+  _upload,
+  baseURL:baseURL
 };

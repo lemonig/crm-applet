@@ -62,7 +62,8 @@
                 name="remindMe"
                 title="提醒我"
                 formated="YYYY-MM-DD HH:mm"
-            ></sd-datetime-picker>
+                bind:timeChange="onTimeChange1"
+            ></sd-datetime-picker>  
         </van-cell-group>
         <van-cell-group custom-class="cell-group-class">
             <van-field

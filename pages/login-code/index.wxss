@@ -61,3 +61,27 @@
 .pw-wrap > .item:last-of-type > view > input {
   border: 1rpx solid rgba(0, 0, 0, 0.5);
 }
+.title-wrap {
+  padding: 0 70rpx;
+  text-align: left;
+  letter-spacing: 5rpx;
+}
+.title-wrap .title {
+  font-size: 65rpx;
+  font-weight: 650;
+  color: #000;
+}
+.title-wrap .desc {
+  font-size: 35rpx;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 4rpx;
+}
+.title-wrap .desc .phone {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 800;
+}
+.send-btn {
+  padding: 0 70rpx;
+  margin-top: 30rpx;
+  color: rgba(0, 0, 0, 0.4);
+}

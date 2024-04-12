@@ -1,4 +1,4 @@
-import { _post } from '../server/request';
+import { _post,_upload } from '../server/request';
 // 任务添加
 export function addTask(data) {
   return _post({
@@ -16,6 +16,12 @@ export function listTask(data) {
 export function updateTask(data) {
   return _post({
     url: `/mini/api/activity/update`,
+    data,
+  });
+}
+export function updateAct(data) {
+  return _post({
+    url: `/mini/api/activity/act`,
     data,
   });
 }
@@ -54,3 +60,5 @@ export function activityPerson(data) {
     data,
   });
 }
+
+

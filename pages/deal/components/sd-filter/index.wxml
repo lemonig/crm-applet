@@ -1,3 +1,4 @@
+<!--pages/deal/components/sd-filter/index.wxml-->
 <scroll-view
   class="filter-wrap"
   style="height:calc(100vh - {{ navBarHeight }}px  - 100px) ;padding-top: {{ navBarHeight }}px;"

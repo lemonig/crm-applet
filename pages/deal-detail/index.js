@@ -120,7 +120,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload(event) {
-        event.preventDefault(); // 阻止用户通过左滑手势离开小程序
   },
 
   /**

@@ -2,35 +2,105 @@
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
 
 <view class=" container form-container ">
-  <form catchsubmit="formSubmit" catchreset="formReset">
-    <van-cell-group custom-class="cell-group-class">
-      <van-cell value="{{form.orgName}}" name="orgId" required title="客户名称" is-link bind:click="selectCus" />
-      <!-- <sd-list value="{{form.orgName}}" name="orgId" required title="客户名称" ></sd-list> -->
-      <van-field value="{{form.title}}" name='title' required label="商机名称" input-align="right" placeholder="请输入" />
-    </van-cell-group>
-    <van-cell-group custom-class="cell-group-class">
-      <sd-picker value="{{form.pipelineStageId}}" name="pipelineStageId" title="销售阶段" options="{{columnsStage}}"></sd-picker>
-      <sd-picker value="{{form.isFinalOrg}}" name="isFinalOrg" title="最终用户" options="{{columnsUser}}"></sd-picker>
-      <!-- <sd-picker value="{{form.personList}}" name="personList" title="联系人" options="{{columnsLink}}"></sd-picker> -->
-      <van-cell wx:if="{{form.orgName}}" value="{{form.personName  ? form.personName: '无' }}" title="联系人" is-link bind:click="selectLinkman" />
-      <sd-picker value="{{form.businessType}}" name="businessType" title="业务类型" options="{{columnsSale}}"></sd-picker>
-    </van-cell-group>
-    <van-cell-group custom-class="cell-group-class">
-        <sd-picker value="{{form.probability}}" name="probability" title="信心指数" options="{{columnScore}}"></sd-picker>
-<!-- 
+    <form
+        catchsubmit="formSubmit"
+        catchreset="formReset"
+    >
+        <van-cell-group custom-class="cell-group-class">
+            <van-cell
+                value="{{form.orgName}}"
+                name="orgId"
+                required
+                title="客户名称"
+                is-link
+                bind:click="selectCus"
+            />
+            <!-- <sd-list value="{{form.orgName}}" name="orgId" required title="客户名称" ></sd-list> -->
+            <van-field
+                value="{{form.title}}"
+                name='title'
+                required
+                label="商机名称"
+                input-align="right"
+                placeholder="请输入"
+            />
+        </van-cell-group>
+        <van-cell-group custom-class="cell-group-class">
+            <sd-picker
+                value="{{form.pipelineStageId}}"
+                name="pipelineStageId"
+                title="销售阶段"
+                options="{{columnsStage}}"
+            ></sd-picker>
+            <sd-picker
+                value="{{form.isFinalOrg}}"
+                name="isFinalOrg"
+                title="最终用户"
+                options="{{columnsUser}}"
+            ></sd-picker>
+            <!-- <sd-picker value="{{form.personList}}" name="personList" title="联系人" options="{{columnsLink}}"></sd-picker> -->
+            <van-cell
+                wx:if="{{form.orgName}}"
+                value="{{form.personName  ? form.personName: '无' }}"
+                title="联系人"
+                is-link
+                bind:click="selectLinkman"
+            />
+            <sd-picker
+                value="{{form.businessType}}"
+                name="businessType"
+                title="业务类型"
+                options="{{columnsSale}}"
+            ></sd-picker>
+        </van-cell-group>
+        <van-cell-group custom-class="cell-group-class">
+            <sd-picker
+                value="{{form.probability}}"
+                name="probability"
+                title="信心指数"
+                options="{{columnScore}}"
+                default-index="{{ 2 }}"
+            ></sd-picker>
+            <!-- 
       <sd-list>
         <text slot="title" style="flex-basis: 120rpx;">信心指数</text>
         <van-slider value="{{ currentValue }}" use-button-slot bind:drag="sliderChange" slot="value" custom-class="progress">
           <view class="custom-button" slot="button">{{ currentValue }}</view>
         </van-slider>
       </sd-list> -->
-      <van-field value="{{form.value}}" name='value' label="预计金额" input-align="right" placeholder="请输入" />
-      <van-cell wx:if="{{!_id}}" value="共{{productMsg.length}}项" name="productList" title="产品信息" is-link bind:click="selectProduct" />
-      <!-- <sd-picker value="{{form.productList}}" name="productList" title="产品信息" options="{{columnsPro}}"></sd-picker> -->
-      <van-field value="{{form.description}}" name='description' label="备注" input-align="right" placeholder="请输入" />
-    </van-cell-group>
-    <view class="form-btn-area">
-      <van-button type="info" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 600rpx;">提交</van-button>
-    </view>
-  </form>
+            <van-field
+                value="{{form.value}}"
+                name='value'
+                label="预计金额"
+                input-align="right"
+                placeholder="请输入"
+                bind:change="onMoneyChange"
+            />
+            <van-cell title="" value="{{dealMoney}}万" />
+            <van-cell
+                wx:if="{{!_id}}"
+                value="共{{productMsg.length}}项"
+                name="productList"
+                title="产品信息"
+                is-link
+                bind:click="selectProduct"
+            />
+            <!-- <sd-picker value="{{form.productList}}" name="productList" title="产品信息" options="{{columnsPro}}"></sd-picker> -->
+            <van-field
+                value="{{form.description}}"
+                name='description'
+                label="备注"
+                input-align="right"
+                placeholder="请输入"
+            />
+        </van-cell-group>
+        <view class="form-btn-area">
+            <van-button
+                type="info"
+                loading="{{btnLoad}}"
+                form-type="submit"
+                custom-style="width: 600rpx;"
+            >提交</van-button>
+        </view>
+    </form>
 </view>

@@ -315,12 +315,14 @@ Page({
     });
     this.contractMoneyBarInit(data.contractChart[this.data.contractValue]);
     this.funnelMoneyBarInit(data.funnelChart[this.data.funnelValue]);
+    return success
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
     this.getSaleCount();
     this.getDashboard();
   },
@@ -353,12 +355,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    wx.startPullDownRefresh({
-      success(){
-        this.getSaleCount();
-        this.getDashboard();
-      }
-    })
+    this.onLoad();
+    
+  },
+
+  refreshData: function() {
+
+  
   },
 
   /**

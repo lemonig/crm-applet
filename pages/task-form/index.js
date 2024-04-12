@@ -132,6 +132,13 @@ Page({
     });
   },
 
+  onTimeChange1(event) {
+    const selectedTime = event.detail.time;
+    this.setData({
+      remindMe:selectedTime
+    });
+  },
+
   formSubmit: async function (e) {
     this.setData({
       btnLoad: true,

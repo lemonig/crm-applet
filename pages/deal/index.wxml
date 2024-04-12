@@ -2,7 +2,9 @@
 <navigation-bar
   default-data="{{titleProps}}"
   back="{{false}}"
-></navigation-bar>
+>
+<!-- <van-icon name="filter-o" bindtap="filterPop" size="40rpx" /> -->
+</navigation-bar>
 
 <view
   class="container deal-container"
@@ -126,3 +128,9 @@
     color="#0252CC"
   />
 </view>
+
+
+
+<van-popup show="{{ show }}" position="right" custom-style="width: 90%; height: 100%" bind:close="onClose" closeable>
+  <sd-filter bind:filtercall="filterData"></sd-filter>
+</van-popup>

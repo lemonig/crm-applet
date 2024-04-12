@@ -1,4 +1,4 @@
-// pages/contract/components/sd-filter/index.js
+// pages/deal/components/sd-filter/index.js
 import dayjs from 'dayjs';
 import { contractTypeList } from '../../../../api/contract';
 import { range, yearListFun } from './dataColum';

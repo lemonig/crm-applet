@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8rpx;
+  color: #323233;
 }
 .title> text:first-child{
   flex: 1;

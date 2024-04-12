@@ -30,15 +30,22 @@ Component({
     // 分开，label留本地，val回传
     label: '',
     valIdx: '',
+
   },
   lifetimes: {
-    created: function () {},
+    created: function () {
+     
+       
+    },
   },
 
   methods: {
     showPopup(e) {
+        let idx = this.data.options.findIndex(ele => ele.value == this.data.value)?? 0
       this.setData({
         show: true,
+        valIdx  :idx
+
       });
     },
     onClose() {

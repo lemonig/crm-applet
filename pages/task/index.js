@@ -1,7 +1,8 @@
 // pages/task/index.js
-import { updateTask, listTask, activityList } from '../../api/task';
+import { updateAct, listTask, activityList } from '../../api/task';
 import { taskInfo } from '../../api/home';
 import { debounce } from '../../utils/util';
+import Dialog from '@vant/weapp/dialog/dialog';
 
 const app = getApp();
 Page({
@@ -87,11 +88,32 @@ Page({
       id,
       done: !checked,
     };
-    updateTask(params).then((res) => {
+    updateAct(params).then((res) => {
       if (res.success) {
-        let res = this.data.pageData.find((ele) => ele.id == id);
-        if (res) {
-          res.done = !checked;
+        if (res.data.done && res.data.dealId) {
+          Dialog.confirm({
+            title: '消息',
+            message: '任务已完成，是否去更新商机状态？ ',
+            confirmButtonText: '好',
+            cancelButtonText: '暂不更新',
+            beforeClose: (action) =>
+              action === 'confirm'
+                ? wx.navigateTo({
+                    url: '/pages/deal-detail/index?id=' + res.data.dealId,
+                  })
+                : true,
+          })
+            .then(() => {
+              // on confirm
+            })
+            .catch(() => {
+              // on cancel
+            });
+        }
+        let res1 = this.data.pageData.find((ele) => ele.id == id);
+
+        if (res1) {
+          res1.done = !checked;
           this.setData({
             pageData: [...this.data.pageData],
           });
@@ -185,8 +207,8 @@ Page({
    */
   onShow() {
     this.setData({
-      isAllData: false
-    })
+      isAllData: false,
+    });
     this.fetchData();
 
     this.getTabBar().init();
