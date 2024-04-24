@@ -1,112 +1,122 @@
 <!--pages/deal-detail/index.wxml-->
-<navigation-bar default-data="{{titleProps}}" bind:customBack="parentMethod" isCusBack="{{true}}">
+<navigation-bar
+    default-data="{{titleProps}}"
+    bind:customBack="parentMethod"
+    isCusBack="{{true}}"
+>
 </navigation-bar>
 
 <view class=" container deal-detail-container ">
-  <view class="card">
-    <view class="title">
-      <text>{{data.baseInfo.title}}</text>
-      <text
-        class="font-color-gray"
-        style="font-size: 24rpx;"
-        wx:if="{{data.baseInfo.status === '1'}}"
-      > {{data.baseInfo.statusName}} </text>
-      <van-tag
-        size="large"
-        wx:if="{{data.baseInfo.status === '2'}}"
-        color="rgb(17, 145, 67)"
-        type="primary"
-      >赢单</van-tag>
-      <van-tag
-        size="large"
-        wx:if="{{data.baseInfo.status === '3'}}"
-        color="#ff4d4f"
-        type="primary"
-      >丢单</van-tag>
-      <van-tag
-        size="large"
-        wx:if="{{data.baseInfo.status === '4'}}"
-        color="#ff4d4f"
-        type="primary"
-      >终止</van-tag>
-    </view>
+    <view class="card">
+        <view class="title">
+            <text>{{data.baseInfo.title}}</text>
+            <text
+                class="font-color-gray"
+                style="font-size: 24rpx;"
+                wx:if="{{data.baseInfo.status === '1'}}"
+            > {{data.baseInfo.statusName}} </text>
+            <van-tag
+                size="large"
+                wx:if="{{data.baseInfo.status === '2'}}"
+                color="rgb(17, 145, 67)"
+                type="primary"
+            >赢单</van-tag>
+            <van-tag
+                size="large"
+                wx:if="{{data.baseInfo.status === '3'}}"
+                color="#ff4d4f"
+                type="primary"
+            >丢单</van-tag>
+            <van-tag
+                size="large"
+                wx:if="{{data.baseInfo.status === '4'}}"
+                color="#ff4d4f"
+                type="primary"
+            >终止</van-tag>
+        </view>
 
-    <view class="desc-1">
-      <text bindtap="gotoCustomer"><text
-          class="iconfont icon-gongsi"
-          style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
-        ></text> {{data.baseInfo.orgName}} </text> <text
-        wx:if="{{data.baseInfo.personName}}"
-        class="iconfont icon-lxr-book"
-        style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
-      ></text> {{data.baseInfo.personName}}
-    </view>
-    <view
-      class="desc-2"
-      style="margin-bottom: 20rpx;"
-    >
-      <text style="font-weight: bold">¥{{data.baseInfo.value}}</text><text>{{data.baseInfo.ownerUserName}} 信心指数{{data.baseInfo.probability}}%</text>
-    </view>
-
-    <view bindtap="selectPipeline">
-      <view class="stage-wrap">
+        <view class="desc-1">
+            <text bindtap="gotoCustomer"><text
+                    class="iconfont icon-gongsi"
+                    style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
+                ></text> {{data.baseInfo.orgName}} </text> <text
+                wx:if="{{data.baseInfo.personName}}"
+                class="iconfont icon-lxr-book"
+                style="font-size: 1.4em;font-weight: bold;margin-right: 4px;"
+            ></text> {{data.baseInfo.personName}}
+        </view>
         <view
-          class="triangle"
-          style="left: calc({{(pipelineIdx / data.pipelineDetailList.length ) * 100 - (100 /  data.pipelineDetailList.length / 2)}}vw - 8px);"
-        ></view>
-        <text
-          style="width:calc( {{ 100 / data.pipelineDetailList.length }}vw ) ;"
-          wx:for="{{data.pipelineDetailList}}"
-          wx:key="id"
+            class="desc-2"
+            style="margin-bottom: 20rpx;"
         >
-          {{item.name}}
-        </text>
-      </view>
+            <text style="font-weight: bold">¥{{data.baseInfo.value}}</text><text>{{data.baseInfo.ownerUserName}} 信心指数{{data.baseInfo.probability}}%</text>
+        </view>
 
-      <sd-stage
-        list="{{data.pipelineDetailList}}"
-        value="{{pipelineId}}"
-      ></sd-stage>
-      <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
+        <view bindtap="selectPipeline">
+            <view class="stage-wrap">
+                <view
+                    class="triangle"
+                    style="left: calc({{(pipelineIdx / data.pipelineDetailList.length ) * 100 - (100 /  data.pipelineDetailList.length / 2)}}vw - 8px);"
+                ></view>
+                <text
+                    style="width:calc( {{ 100 / data.pipelineDetailList.length }}vw ) ;"
+                    wx:for="{{data.pipelineDetailList}}"
+                    wx:key="id"
+                >
+                    {{item.name}}
+                </text>
+            </view>
+
+            <sd-stage
+                list="{{data.pipelineDetailList}}"
+                value="{{pipelineId}}"
+            ></sd-stage>
+            <!-- <van-steps steps="{{ steps }}" active="{{ active }}"  /> -->
+        </view>
     </view>
-  </view>
 
-  <view style="margin-top: 50rpx;">
+    <view style="margin-top: 50rpx;">
 
-    <van-tabs
-      active="{{ active }}"
-      bind:change="onChange"
-      title-style="tabs-title"
-      lazy-render
-    >
-      <van-tab title="跟进记录">
-        <sd-record
-          dealId="{{dealId}}"
-          pagaData="{{data.followUpInfo}}"
-          isOwner="{{data.baseInfo.isOwner}}"
-        ></sd-record>
-      </van-tab>
-      <van-tab title="基本资料">
-        <sd-base
-          wx:if="{{ active ==   1}}"
-          dealId="{{dealId}}"
-          pagaData="{{data.baseInfo}}"
-        ></sd-base>
-      </van-tab>
-      <van-tab title="相关信息">
-        <sd-info
-          wx:if="{{ active ==   2}}"
-          dealId="{{dealId}}"
-          pagaDate="{{data.relatedInfo}}"
-          isOwner="{{data.baseInfo.isOwner}}"
-        ></sd-info>
-      </van-tab>
+        <van-tabs
+            active="{{ active }}"
+            bind:change="onChange"
+            title-style="tabs-title"
+            lazy-render
+        >
 
-      <van-tab title="变更日志">
-        <sd-infolog wx:if="{{active == 3}}" dealId="{{id}}"  pageData="{{data.logList}}"></sd-infolog>
-      </van-tab>
-    </van-tabs>
-  </view>
+            <van-tab title="时间线">
+                <sd-infolog
+                    wx:if="{{active == 0 && !!data.timeline}}"
+                    dealId="{{id}}"
+                    pageData="{{data.timeline}}"
+                ></sd-infolog>
+            </van-tab>
+            <van-tab title="跟进记录">
+                <sd-record
+                    wx:if="{{active == 1}}"
+                    dealId="{{dealId}}"
+                    pagaData="{{data.followUpInfo}}"
+                    isOwner="{{data.baseInfo.isOwner}}"
+                ></sd-record>
+            </van-tab>
+            <van-tab title="基本资料">
+                <sd-base
+                    wx:if="{{ active ==   2}}"
+                    dealId="{{dealId}}"
+                    pagaData="{{data.baseInfo}}"
+                ></sd-base>
+            </van-tab>
+            <van-tab title="相关信息">
+                <sd-info
+                    wx:if="{{ active ==   3}}"
+                    dealId="{{dealId}}"
+                    pagaDate="{{data.relatedInfo}}"
+                    isOwner="{{data.baseInfo.isOwner}}"
+                ></sd-info>
+            </van-tab>
+
+        </van-tabs>
+    </view>
 
 </view>
 <van-dialog id="van-dialog" />

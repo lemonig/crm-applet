@@ -1,5 +1,4 @@
 <!--pages/pipeline-select/index.wxml-->
-<!--pages/task-detail/index.wxml-->
 
 <navigation-bar default-data="{{titleProps}}">
 </navigation-bar>

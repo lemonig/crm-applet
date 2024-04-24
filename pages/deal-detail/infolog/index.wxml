@@ -1,7 +1,7 @@
 <!--pages/customer-detail/infolog/index.wxml-->
-<view>
+<view style="background-color: #fff;padding: 20rpx 10rpx;">
 
-    <van-cell-group>
+    <!-- <van-cell-group>
         <van-cell
         wx:for="{{pageData}}"
         wx:key="unique"
@@ -10,7 +10,13 @@
         />
 
 
-    </van-cell-group>
+    </van-cell-group> -->
 
-  
+    <van-steps
+        steps="{{ steps }}"
+        direction="vertical"
+        active-color="#38f"
+        desc-class="desc"
+        custom-class="step-class"
+    />
 </view>

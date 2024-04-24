@@ -105,6 +105,7 @@ Page({
     });
   },
   async afterRead(event) {
+      console.log(event)
     const { file } = event.detail;
     let _this = this;
     wx.compressImage({

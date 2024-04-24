@@ -40,6 +40,13 @@ Component({
                 fail: (res) => {},
                 complete: (res) => {},
             })
-        }
+        },
+        gotoRelation(eve) {
+            if (eve.currentTarget.dataset.id) {
+              wx.navigateTo({
+                url: '/pages/task-detail/index?id=' + eve.currentTarget.dataset.id,
+              });
+            }
+          },
     }
 })

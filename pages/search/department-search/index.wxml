@@ -1,0 +1,23 @@
+<!--pages/search/department-search/index.wxml-->
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class="staff-contain">
+    <view>
+        <van-tree-select
+            items="{{ pageData }}"
+            main-active-index="{{ mainActiveIndex }}"
+            active-id="{{ activeId }}"
+            bind:click-nav="onClickNav"
+            bind:click-item="onClickItem"
+        />
+    </view>
+</view>
+<van-goods-action>
+    <view style="flex:1;padding : 0 20rpx">已选择： {{activeId.length}}部门</view>
+    <van-goods-action-button
+        color="#0252cc"
+        text="确定"
+        bind:click="confrim"
+    />
+</van-goods-action>

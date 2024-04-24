@@ -53,10 +53,10 @@
   <sd-title title="仪表盘">
     <view slot="select" class="double-btn">
       <sd-space>
-        <view class="select-btn" bindtap="onShowSalePopup1">
+        <!-- <view class="select-btn" bindtap="onShowSalePopup1">
           <text>{{utils.filterlabel(saleOptions1,saleValue1)}}</text>
           <van-icon name="arrow-down" />
-        </view>
+        </view> -->
         <view class="select-btn" bindtap="onShowTimePopup">
           <text>{{utils.filterlabel(timeOptions,timeValue)}}</text>
           <van-icon name="arrow-down" />
@@ -202,7 +202,7 @@
 <van-dialog id="van-dialog" />
 <!-- 我的销售 -->
 <sd-select  height="50" open="{{ saleShow }}" options="{{saleOptions}}" value="{{saleValue}}" bindmyevent="onSaleChange"></sd-select>
-<sd-select height="50" open="{{ saleShow1 }}" options="{{saleOptions1}}" value="{{saleValue1}}" bindmyevent="onSaleChange1"></sd-select>
+<!-- <sd-select height="50" open="{{ saleShow1 }}" options="{{saleOptions1}}" value="{{saleValue1}}" bindmyevent="onSaleChange1"></sd-select> -->
 <sd-select  height="62" open="{{ timeShow }}" options="{{timeOptions}}" value="{{timeValue}}" bindmyevent="onTimeChange"></sd-select>
 <sd-select  open="{{ contractShow }}" options="{{contractMOp}}" value="{{contractValue}}" bindmyevent="onContractChange"></sd-select>
 <sd-select  open="{{ rankShow }}" options="{{rankList}}" value="{{rankValue}}" bindmyevent="onRankChange"></sd-select>

@@ -23,11 +23,12 @@
       <sd-list 
       wx:for="{{pageData.deals}}" 
         wx:key="id"
-        title="{{item.deals}}" 
+        title="{{item.name}}" 
         value="{{item.value}}" 
         lab1="{{item.ownerUserName}}" 
         desc1="{{item.pipelineStageName}}" 
-        
+        bind:tap="gotoRelation"
+        data-dealId="{{item.id}}"
       >
       </sd-list>
     </view>

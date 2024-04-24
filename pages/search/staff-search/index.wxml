@@ -1,0 +1,126 @@
+<!--pages/search/staff-search/index.wxml-->
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class="staff-contain">
+    <view class="top-wrap">
+        <!-- <van-icon name="arrow-left" />
+        <text>返回</text> -->
+        <view class="nav-wrap">
+            <view class="nav-ol">
+                <view
+                    class="nav-li"
+                    bind:tap="navToTop"
+                >
+                    <text>绿洁</text>
+                    <text class="breadcrumb-separator">/</text>
+                </view>
+                <block wx:if="{{!!peoplePageIndex.length}}">
+
+                    <view
+                        wx:key="index"
+                        class="nav-li"
+                        wx:for="{{peoplePageLabel}}"
+                        bind:tap="navToNode"
+                        data-index="{{index}}"
+                    >
+                        <text>{{item}}</text>
+                        <text class="breadcrumb-separator">/</text>
+                    </view>
+                </block>
+
+            </view>
+        </view>
+
+    </view>
+    <view
+        wx:for="{{renderData}}"
+        wx:key="id"
+        class="flex-row"
+    >
+        <view
+            class="cell-left"
+            bindtap="onChange"
+            id="{{item.id}}"
+            data-item="{{item}}"
+        >
+            <van-icon
+                wx:if="{{item.checked === 1}}"
+                name="checked"
+                size="20"
+                color="#0252cc"
+            />
+            <van-icon
+                wx:if="{{item.checked === 0}}"
+                name="circle"
+                size="20"
+            />
+            <van-icon
+                wx:if="{{item.checked === -1}}"
+                name="passed"
+                size="20"
+                color="#0252cc"
+            />
+
+        </view>
+
+        <view
+            class="cell-right"
+            bindtap="gotoNextNode"
+            data-id="{{item.id}}"
+            data-isLeaf="{{item.isLeaf}}"
+            data-index="{{index}}"
+            data-label="{{item.label}}"
+        >
+            <view class="left">
+                <view class="img-wrap">
+                    <text
+                        class="iconfont icon-shouji"
+                        style="font-size: 1em;color: var(--primary);"
+                    ></text>
+                    <van-icon
+                        name="bars"
+                        color="#0252cc"
+                        size="24px"
+                        wx:if="{{!item.isLeaf}}"
+                    />
+                    <van-icon
+                        name="user-o"
+                        color="#0252cc"
+                        wx:if="{{item.isLeaf}}"
+                        size="24px"
+                    />
+
+
+
+                </view>
+
+                <view class="label">
+
+                    <text>{{item.label}} </text>
+                </view>
+
+            </view>
+
+            <view
+                class="right"
+                wx:if="{{!item.isLeaf}}"
+            >
+                <van-icon name="arrow" />
+            </view>
+        </view>
+
+    </view>
+</view>
+
+
+
+
+<van-goods-action>
+    <view style="flex:1;padding : 0 20rpx">已选择： {{selectedIds.length}}人</view>
+    <van-goods-action-button
+        color="#0252cc"
+        text="确定"
+        bind:click="confrim"
+    />
+</van-goods-action>

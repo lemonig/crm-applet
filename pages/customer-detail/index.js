@@ -8,7 +8,7 @@ Page({
    */
   data: {
     titleProps: {
-      title: "详情"
+      title: "客户详情"
     },
     msg: [{
       text: "信息获取",

@@ -1,0 +1,21 @@
+<!--components/sd-tree/index.wxml-->
+<view wx:for="{{tree}}" wx:key="key" class="tree_container">
+  <!-- 一级菜单 -->
+  <view style="margin-left: {{treeListIndex*40}}rpx" class="tree-item">
+    <view class="tree-item-onOff" wx:if="{{item.children && item.children.length > 0}}" bindtap="isOpen" data-index="{{index}}">
+      <!-- <image src="../../assets/imgs/u1490.svg" class="{{item.open ? 'expand' : 'collapse'}}" /> -->
+      <van-icon name="arrow-down" class="{{item.open ? 'expand' : 'collapse'}}" />
+    </view>
+    <view class="tree-item-onOff" wx:else>
+    </view>
+    <view class="tree-item-name" bindtap="select" data-item="{{item}}" data-index="{{index}}">
+      <image wx:if="{{item.checked === 1}}" src="../../assets/imgs/choice.png" class="check-box"></image>
+      <image wx:if="{{item.checked === 0}}" src="../../assets/imgs/unchoice.png" class="check-box"></image>
+      <image wx:if="{{item.checked === -1}}" src="../../assets/imgs/unfullChoice.png" class="check-box"></image>
+      <text class="tree-item-title {{item.checked === 1 ? 'tree-item-name-select' : '' }}">{{item.label}}</text>
+    </view>
+  </view>
+  <!-- 二级菜单 -->
+  <sd-tree wx:if="{{item.children && item.children.length > 0 && item.open }}" data-parent="{{item}}" dataTree='{{ item.children }}' isOpenAll="{{isOpenAll}}" treeListIndex="{{treeListIndex+1}}" catch:select="handleSelect" />
+</view>
+

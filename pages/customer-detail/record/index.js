@@ -11,28 +11,9 @@ Component({
       type:String
     },
     pageData:{
-      type: Object,
+      type: Array,
       value: [
-        {
-          id:"1",
-          a1: "周巧夏难",
-          a2: "2023-3-3",
-          a3: " 和李主任整顿饭",
-  
-          a4: '张思',
-          a5: '平湖标准站采购计划',
-          type:'宴请',
-        },
-        {
-          id:"2",
-          a1: "周巧夏难1",
-          a2: "2023-3-3",
-          a3: "和洪主任沟通水站建设",
-          a4: '王五',
-          a5:'平湖标准站采购计划',
-          a6: '平湖老百姓酒楼',
-          type:'电话',
-        }
+
       ]
     }
   },
@@ -43,6 +24,9 @@ Component({
   data: {
     
   },
+
+
+
 
   /**
    * 组件的方法列表
@@ -61,7 +45,14 @@ Component({
       wx.makePhoneCall({
         phoneNumber: eve.currentTarget.dataset.phone
       })
-    }
+    },
+    gotoRelation(eve) {
+      if (eve.currentTarget.dataset.id) {
+        wx.navigateTo({
+          url: '/pages/task-detail/index?id=' + eve.currentTarget.dataset.id,
+        });
+      }
+    },
   }
 
   

@@ -11,6 +11,12 @@ export const saleOptions = [
     label: '我及我下属的',
     value: '3',
   },
+  {
+    label: '按部门与人员',
+    value: '4',
+    isLink:true,
+    url:"/pages/search/staff-search/index"
+  },
 
 ];
 export const saleOptions1 = [

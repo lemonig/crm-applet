@@ -55,16 +55,21 @@ Page({
         text: '我及我下属的',
         value: 3,
       },
+      {
+        text: '按部门与人员',
+        value: '4',
+      },
     ],
     value1: 0,
     value2: 0,
-    value3: 1,
+    value3: 3,
 
     checked: false,
     pageData: [],
     pageNo: 1,
     loading: false,
     isAllData: false,
+    userIdList: [],
   },
 
   onChange(event) {
@@ -155,6 +160,7 @@ Page({
         status: value1,
         typeId: value2,
         filterBy: value3,
+        userIdList: this.data.userIdList,
       },
     };
     let { data, additional_data } = await listTask(params);
@@ -265,6 +271,15 @@ Page({
       pageData: [],
       value3: eve.detail,
     });
-    this.fetchData();
+    if (eve.detail == 4) {
+      wx.navigateTo({
+        url: '/pages/search/staff-search/index',
+      });
+    } else {
+      this.setData({
+        userIdList: [],
+      });
+      this.fetchData();
+    }
   },
 });

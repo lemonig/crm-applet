@@ -26,7 +26,7 @@ Page({
       title: '首页', // 导航栏标题
     },
     saleOptions: saleOptions,
-    saleValue: '1',
+    saleValue: '3',
     saleShow: false,
 
     saleOptions1: saleOptions1,
@@ -166,6 +166,8 @@ Page({
     pageData2: {},
     pageData3: {},
     pageData4: {},
+    userIdList: [],
+    deptIdList: [],
   },
 
   onSaleClose() {
@@ -181,11 +183,22 @@ Page({
   },
 
   onSaleChange: function (e) {
+    console.log(e);
+    if (e.detail.isLink) {
+      wx.navigateTo({
+        url: '/pages/search/staff-search/index',
+      });
+    }
     this.setData({
       saleValue: e.detail.value,
       saleShow: false,
     });
-    this.getSaleCount();
+    if (!e.detail.isLink) {
+      this.setData({
+        userIdList: [],
+      });
+      this.getPageData();
+    }
   },
   onShowSalePopup1() {
     this.setData({
@@ -197,7 +210,7 @@ Page({
       saleValue1: e.detail.value,
       saleShow1: false,
     });
-    this.getDashboard()
+    this.getDashboard();
   },
   // 时间
   onShowTimePopup() {
@@ -210,7 +223,7 @@ Page({
       timeValue: e.detail.value,
       timeShow: false,
     });
-    this.getDashboard()
+    this.getDashboard();
     // 自定义组件触发事件时提供的detail对象
   },
   // 合同
@@ -296,6 +309,7 @@ Page({
   async getSaleCount() {
     let { success, data } = await saleCount({
       filterBy: this.data.saleValue,
+      userIdList: this.data.userIdList,
     });
     this.setData({
       pageData1: data,
@@ -304,8 +318,9 @@ Page({
 
   async getDashboard() {
     let params = {
-      filterBy: this.data.saleValue1,
+      filterBy: this.data.saleValue,
       timeBy: this.data.timeValue,
+      userIdList: this.data.userIdList,
     };
     let { success, data } = await dashboard(params);
     this.setData({
@@ -315,23 +330,26 @@ Page({
     });
     this.contractMoneyBarInit(data.contractChart[this.data.contractValue]);
     this.funnelMoneyBarInit(data.funnelChart[this.data.funnelValue]);
-    return success
+    return success;
   },
 
+  getPageData() {
+    this.getSaleCount();
+    this.getDashboard();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
-    this.getSaleCount();
-    this.getDashboard();
+    this.getPageData();
+    wx.stopPullDownRefresh(); //刷新完成后停止下拉刷新动效
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    
+    console.log(this.data.userIdList);
   },
 
   /**
@@ -356,13 +374,9 @@ Page({
    */
   onPullDownRefresh() {
     this.onLoad();
-    
   },
 
-  refreshData: function() {
-
-  
-  },
+  refreshData: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
@@ -412,9 +426,9 @@ Page({
           label: {
             show: true,
             position: 'top',
-            color: '#000', 
-            fontSize: 12 
-          }
+            color: '#000',
+            fontSize: 12,
+          },
         },
       ],
     });
@@ -458,8 +472,8 @@ Page({
             show: true,
             position: 'right',
             color: '#000',
-            fontSize: 12 
-          }
+            fontSize: 12,
+          },
         },
       ],
     });

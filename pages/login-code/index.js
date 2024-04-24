@@ -19,7 +19,7 @@ Page({
     maskedPhoneNumber: '',
     hasUserInfo: false,
     errMsg: '',
-    isSend: true,
+    isSend: false,
     verificationCode: {
       // 保存输入的验证码
       value: '',

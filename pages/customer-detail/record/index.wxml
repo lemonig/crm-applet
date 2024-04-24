@@ -1,21 +1,52 @@
-<!--pages/deal-detail/record/index.wxml-->
-<van-cell-group wx:if="{{pagaData.length}}">
+<block wx:if="{{!!pageData.length}}">
+    <van-cell-group>
+        <sd-list
+            wx:for="{{pageData}}"
+            wx:key="id"
+            title="{{item.ownerUserName}}"
+            value="{{item.startTime}}"
+            desc1="联系人  {{item.personName}}"
+            lab2="{{item.dealName}}"
+            bind:tap="gotoRelation"
+            data-id="{{item.id}}"
+        >
+            <view
+                slot="lab1"
+                class="label font-color-gray"
+            >
+                {{item.typeName}}
+                <van-button
+                    slot="button"
+                    custom-class="gs-btn"
+                    wx:if="{{item.typeName === '电话'}}"
+                    bind:click="callMe"
+                    data-phone="{{item.personPhone}}"
+                >
+                    <text
+                        class="iconfont icon-callme"
+                        style="font-size: 1.2em;"
+                    ></text>
+                </van-button>
+                {{item.description}}
+            </view>
+            <view
+                wx:if="{{item.address}}"
+                class="label-text"
+                slot="lab3"
+            >
+                <van-icon name="location" /> {{item.address}}
+            </view>
+        </sd-list>
 
-  <sd-list wx:for="{{pageData}}" wx:key="id" title="{{item.ownerUserName}}" value="{{item.startTime}}" desc1="联系人  {{item.a4}}" lab2="{{item.dealName}}">
-    <view slot="lab1" class="label font-color-gray">
-      {{item.typeName}}
-      <van-button slot="button" custom-class="gs-btn" wx:if="{{item.type === '电话'}}" bind:click="callMe" data-phone="{{item.personPhone}}">
-        <text class="iconfont icon-callme" style="font-size: 1.2em;"></text>
-      </van-button>
-      {{item.description}}
-    </view>
-    <view wx:if="{{item.address}}" class="label-text" slot="lab3">
-      <van-icon name="location" /> {{item.address}}
-    </view>
-  </sd-list>
+    </van-cell-group>
+</block>
 
-</van-cell-group>
-<van-empty wx:else description="无数据" />
+
+
+<van-empty
+    wx:else
+    description="无数据"
+/>
 <!-- <view class="fix-add-btn">
   <van-icon name="add" style="font-size: 100rpx;" bindtap="addDeal" color="#0252CC" />
 </view> -->

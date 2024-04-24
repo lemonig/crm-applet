@@ -8,7 +8,7 @@ Page({
    */
   data: {
     titleProps: {
-      title: '详情',
+      title: '商机详情',
     },
     pipeState: [],
     pipelineId: '',
@@ -27,7 +27,7 @@ Page({
     let { data } = await detailDeal({
       id: this.data.dealId,
     });
-    console.log(data.pipelineDetailList);
+    console.log(data);
     let res = data.pipelineDetailList.findLastIndex((item) => item.isShow);
     this.setData({ data, pipelineIdx: res + 1 });
   },

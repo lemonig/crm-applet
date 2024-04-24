@@ -1,5 +1,5 @@
 <!--pages/deal-detail/record/index.wxml-->
-<van-cell-group wx:if="{{pagaData.length}}">
+<van-cell-group wx:if="{{!!pagaData.length}}">
   
   <sd-list 
     wx:for="{{pagaData}}" 
@@ -8,6 +8,8 @@
     value="{{item.startTime}}" 
     lab1="{{item.typeName}} {{item.description}}"
     desc1="联系人 {{item.personName}}"
+    bind:tap="gotoRelation"
+            data-id="{{item.id}}"
   >
     <view wx:if="{{item.address}}" class="label-text" slot="lab2">
       <van-icon name="location" /> {{item.address}}

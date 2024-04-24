@@ -1,1 +1,10 @@
 /* pages/customer-detail/infolog/index.wxss */
+.step-class{
+    font-size: 28rpx;
+    color:rgba(16, 16, 16, 1);
+    font-weight: bold;
+}
+
+.desc{
+    font-size: 24rpx;
+}

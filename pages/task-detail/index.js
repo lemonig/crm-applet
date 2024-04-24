@@ -10,7 +10,6 @@ import {
   activityDelte,
 } from '../../api/task';
 
-
 Page({
   /**
    * 页面的初始数据
@@ -21,31 +20,32 @@ Page({
     },
     id: '',
     data: {},
-
   },
 
   parentMethod() {
     wx.switchTab({
-        url: '/pages/task/index' 
-    })
-},
+      url: '/pages/task/index',
+    });
+  },
 
   deleteItem() {
     Dialog.confirm({
       title: '警告',
       message: '确定要删除吗？',
       beforeClose: (action) =>
-        action === 'confirm' ? activityDelte({ id: this.data.id }).then(res => res.success && wx.navigateBack()) : true,
+        action === 'confirm'
+          ? activityDelte({ id: this.data.id }).then((res) => res.success && wx.navigateBack())
+          : true,
     });
   },
   gotoForm() {
-    let id ={
-        orgId:  this.data.data.orgId,
-        dealId:this.data.data.dealId
+    let id = {
+      orgId: this.data.data.orgId,
+      dealId: this.data.data.dealId,
     };
-    let idJson = JSON.stringify(id)
+    let idJson = JSON.stringify(id);
     wx.redirectTo({
-      url: '/pages/task-form/index?id=' + this.data.id+ '&idJson='+idJson,
+      url: '/pages/task-form/index?id=' + this.data.id + '&idJson=' + idJson,
     });
   },
   fetchData: async function () {
@@ -54,49 +54,59 @@ Page({
     });
     this.setData({ data });
   },
-  viewImg(event){
+  viewImg(event) {
     console.log(event);
-    let {src} = event.currentTarget.dataset
+    let { src } = event.currentTarget.dataset;
     console.log(src);
     wx.previewImage({
-        current: src, // 当前显示图片的http链接
-        urls: this.data.data.fileList.map(item=> item.url), // 需要预览的图片http链接列表,
-        success(res){
-            console.log(res);
-        },
-        fail(err){
-            console.log(err);
-        },
-        complete(){
-
-        }
-      })
+      current: src, // 当前显示图片的http链接
+      urls: this.data.data.fileList.map((item) => item.url), // 需要预览的图片http链接列表,
+      success(res) {
+        console.log(res);
+      },
+      fail(err) {
+        console.log(err);
+      },
+      complete() {},
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-      if('dealId' in options){
-            Dialog.confirm({
-          title: '消息',
-          message: '任务已完成，是否去更新商机状态？ ',
-          confirmButtonText: '好',
-          cancelButtonText: '暂不更新',
-          beforeClose: (action) =>
-            action === 'confirm'
-              ? wx.redirectTo({
-                  url: '/pages/deal-detail/index?id=' + options.dealId,
-                })
-              : true,
-        })
-          .then(() => {
-          })
-          .catch(() => {
-          });
-      }
+    if ('dealId' in options) {
+      Dialog.confirm({
+        title: '消息',
+        message: '任务已完成，是否去更新商机状态？ ',
+        confirmButtonText: '好',
+        cancelButtonText: '暂不更新',
+        beforeClose: (action) =>
+          action === 'confirm'
+            ? wx.redirectTo({
+                url: '/pages/deal-detail/index?id=' + options.dealId,
+              })
+            : true,
+      })
+        .then(() => {})
+        .catch(() => {});
+    }
     this.setData({
       id: options.id,
     });
+  },
+  gotoRelation(eve) {
+    if (eve.currentTarget.dataset.dealid) {
+      wx.navigateTo({
+        url: '/pages/deal-detail/index?id=' + eve.currentTarget.dataset.dealid,
+      });
+    }
+  },
+  gotoRelation1(eve) {
+    if (eve.currentTarget.dataset.orgid) {
+      wx.navigateTo({
+        url: '/pages/customer-detail/index?id=' + eve.currentTarget.dataset.orgid,
+      });
+    }
   },
 
   /**

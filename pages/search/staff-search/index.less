@@ -1,0 +1,131 @@
+.staff-contain {
+  padding: 20rpx 0 120rpx 0;
+  background-color: #fff;
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #f0f0f0; /* 圆圈的背景颜色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #333; /* 文字颜色 */
+  }
+  .top-wrap {
+    height: 50rpx;
+    line-height: 50rpx;
+    padding: 10rpx 20rpx;
+    .nav-wrap {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      color: #000000d9;
+      font-variant: tabular-nums;
+      line-height: 1.5715;
+      list-style: none;
+      font-feature-settings: 'tnum';
+      color: #00000073;
+      font-size: 14px;
+      .nav-ol {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        .nav-li {
+          .breadcrumb-separator {
+            margin: 0 8px;
+            color: #00000073;
+          }
+        }
+        .nav-li:last-child {
+          color: #000000d9;
+          .breadcrumb-separator {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .dis-block {
+    display: block;
+  }
+
+  .label-text {
+    font-size: 28rpx;
+  }
+
+  .title {
+    font-size: 24rpx;
+    background-color: #fff;
+    padding: 24rpx;
+  }
+
+  .font-color-gray {
+    color: rgb(107, 119, 140);
+  }
+
+  .desc-label {
+    font-size: 24rpx;
+    margin-bottom: 8rpx;
+  }
+
+  .flex-row {
+    display: flex;
+    align-items: center;
+    // align-items: center;
+    padding: 12rpx 24rpx;
+    background-color: #fff;
+    width: 100vw;
+    box-sizing: border-box;
+    border-top: 4rpx solid #eee;
+
+    .cell-left {
+      flex-basis: 80rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cell-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 100rpx;
+      .left {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        .img-wrap {
+          background-color: rgba(186, 224, 255, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 16rpx;
+          width: 90rpx;
+          height: 90rpx;
+        }
+
+        .label {
+          padding: 0 10rpx 0 20rpx;
+          text {
+            font-size: 32rpx;
+            font-weight: bold;
+            color: #000000e0;
+          }
+        }
+      }
+      .right {
+        flex-basis: 80rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .mar-12 {
+    margin-left: 12rpx;
+  }
+}

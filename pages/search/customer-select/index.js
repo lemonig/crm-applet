@@ -17,7 +17,7 @@ Page({
     value: null,
     name: '',
   },
-  
+
   onSelect(event) {
     const { value, name } = event.currentTarget.dataset;
     this.setData({
@@ -25,15 +25,16 @@ Page({
       name,
     });
   },
-  
 
-   confirm() {
+  confirm() {
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
-    prePages.setData({
-      'form.orgId': this.data.value.id,
-      'form.orgName': this.data.value.name,
-    });
+    if (!!this.data.value) {
+      prePages.setData({
+        'form.orgId': this.data.value.id,
+        'form.orgName': this.data.value.name,
+      });
+    }
     wx.navigateBack({
       delta: 1,
     });
@@ -41,7 +42,6 @@ Page({
 
   fetchData: async function () {
     let params = {
- 
       name: this.data.key,
     };
     let { data } = await organizationSearch(params);

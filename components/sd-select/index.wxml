@@ -25,7 +25,10 @@
           title="{{item.label}}"
           bind:click="onSelect"
           data-value="{{item.value}}"
+          data-url="{{item.url}}"
+          data-isLink="{{item.isLink ? true: false}}"
         >
+        <van-icon name="arrow" wx:if="{{item.isLink}}"/>
           <van-icon
             color="green"
             wx:if="{{value ==  item.value}}"

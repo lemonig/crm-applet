@@ -83,11 +83,15 @@ Page({
         text: '我及我下属负责的商机',
         value: 3,
       },
+      {
+        text: '按部门与人员',
+        value: '4',
+      },
     ],
     value1: 0,
     value2: 1,
     value3: 4,
-    value4: 1,
+    value4: 3,
     pageData: [],
     pageDataCum: {},
     id: '',
@@ -95,7 +99,8 @@ Page({
     pageNo: 1,
     loading: false,
     isAllData: false,
-    show:false
+    show: false,
+    userIdList: [],
   },
 
   /**
@@ -106,7 +111,7 @@ Page({
   },
 
   fetchData: async function () {
-    let { value1, value2, value3 ,value4} = this.data;
+    let { value1, value2, value3, value4 } = this.data;
     let params = {
       page: this.data.pageNo,
       size: 30,
@@ -114,7 +119,8 @@ Page({
         pipelineStageId: value1,
         filterBy: value3,
         orderBy: value2,
-        dataScope:value4
+        dataScope: value4,
+        userIdList: this.data.userIdList,
       },
     };
     let { data, additional_data } = await pageDeal(params);
@@ -165,7 +171,7 @@ Page({
       ],
     });
   },
-  
+
   filterPop() {
     this.setData({
       show: true,
@@ -176,7 +182,6 @@ Page({
       show: false,
     });
   },
-
 
   filterData(eve) {
     this.onClose();
@@ -207,8 +212,8 @@ Page({
   onHide() {
     this.setData({
       pageData: [],
-      pageNo:1,
-      pageDataCum:{},
+      pageNo: 1,
+      pageDataCum: {},
       isAllData: false,
     });
   },
@@ -263,6 +268,16 @@ Page({
       pageData: [],
       value4: eve.detail,
     });
-    this.fetchData();
+
+    if (eve.detail == 4) {
+      wx.navigateTo({
+        url: '/pages/search/staff-search/index',
+      });
+    } else {
+      this.setData({
+        userIdList: [],
+      });
+      this.fetchData();
+    }
   },
 });

@@ -16,3 +16,16 @@ import {
         data,
       });
 }
+
+export function personTree(data){
+    return _post({
+        url: `/mini/api/dept/person/tree`,
+        data,
+      });
+}
+export function deptTree(data){
+    return _post({
+        url: `/mini/api/dept/tree`,
+        data,
+      });
+}
