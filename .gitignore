@@ -5,7 +5,7 @@
 /miniprogram_npm
 /.pnp
 .pnp.js
-
+/.vscode
 # testing
 /coverage
 
