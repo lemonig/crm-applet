@@ -27,11 +27,8 @@ Component({
   methods: {},
   lifetimes: {
     created: function () {
-      console.log(this.data.pageData);
     },
     attached: function () {
-      console.log(this.data.pageData);
-
      this.data.steps =  this.data.pageData.map(item=>{
         return  {
             text: item.message,

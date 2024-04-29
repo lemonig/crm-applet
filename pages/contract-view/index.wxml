@@ -1,0 +1,61 @@
+<!--pages/contract/index.wxml-->
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class="container con-container" style="height: calc(100vh - {{navBarHeight}}px)">
+      <block>
+        <van-row gutter='5' custom-class="row-class">
+          <van-col span="12" style="text-align: center;">项目</van-col>
+          <van-col span="6">
+            金额
+          </van-col>
+          <van-col span="6" wx:if="{{  active === 0}}">
+            签订时间
+          </van-col>
+          <van-col span="6" wx:else>
+            比例
+          </van-col>
+        </van-row>
+        <!-- list -->
+        <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px  ) ;" scroll-y="{{ true }}" bindscrolltolower="handleToLower">
+          <van-row wx:for="{{pageData}}" wx:key="id" gutter='16' custom-class="row-class" data-id="{{item.id}}" bindtap="gotoDetail">
+            <van-col span="12">
+              <view>{{item.name}}</view>
+              <sd-space>
+                <text class="color-gray">{{item.code}}</text>
+                <text class="color-gray">{{item.ownerUserName}}</text>
+              </sd-space>
+            </van-col>
+            <van-col span="6">
+              <sd-money bold style="color: {{(item.rate ) <50 ? '#017737':'#FF4D4F'}}" text="{{item.value}}">
+                {{item.value}}
+              </sd-money>
+              <!-- <text style="color: {{(item.receivedValue / item.value) < 0.5 ? '#017737':'#FF4D4F'}}"> {{item.value}}</text> -->
+            </van-col>
+
+            <van-col span="6" wx:if="{{  active === 0}}">
+              <text>{{item.signedDate}}</text>
+            </van-col>
+            <van-col span="6" wx:else>
+              <van-tag wx:if="{{item.rate}}" color="{{ item.rate < 50 ? '#017737':'#FF4D4F' }}">
+                <view class="tag-text"> {{item.rate}}%
+                </view>
+              </van-tag>
+            </van-col>
+
+          </van-row>
+          <view style="text-align: center;margin: 8px 0" wx:if="{{loading}}">
+            <van-loading color="var(--primary)">加载中...</van-loading>
+          </view>
+          <van-divider wx:if="{{isAllData}}" contentPosition="center" customStyle=" font-size: 12px;">
+            到底了
+          </van-divider>
+
+        </scroll-view>
+        <van-empty wx:else class="custom-image" description="无数据" />
+      </block>
+
+
+</view>
+
+

@@ -1,0 +1,31 @@
+/* pages/contract-view/index.wxss */
+/* pages/contract/index.wxss */
+.con-container{
+    font-size: 24rpx;
+    padding-bottom: 100rpx;
+    background-color: #fff;
+  }
+  .row-class{
+    text-align: left;
+    border-bottom: 1px solid #fff;
+    padding: 14rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
+  }
+  .color-gray{
+    color: #BBBBBB;
+  }
+  .scroll-contianer{
+    height: 100%;
+    overflow: scroll;
+    background-color: #fff;
+  }
+  .tag-class{
+  
+  }
+  .tag-text{
+    width: 100rpx;
+    text-align: center;
+    margin: 6rpx 0;
+    font-weight: bold;
+  }

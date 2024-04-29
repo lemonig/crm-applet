@@ -55,9 +55,7 @@ Page({
     this.setData({ data });
   },
   viewImg(event) {
-    console.log(event);
     let { src } = event.currentTarget.dataset;
-    console.log(src);
     wx.previewImage({
       current: src, // 当前显示图片的http链接
       urls: this.data.data.fileList.map((item) => item.url), // 需要预览的图片http链接列表,

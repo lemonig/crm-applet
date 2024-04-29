@@ -41,7 +41,6 @@ Component({
       });
     },
     gotoRelation(eve) {
-        console.log(eve);
       if (eve.currentTarget.dataset.dealid) {
         wx.navigateTo({
           url: '/pages/deal-detail/index?id=' + eve.currentTarget.dataset.dealid,

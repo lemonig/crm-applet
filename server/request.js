@@ -3,7 +3,7 @@ import { contentType, messageName, statusName, successCode } from '../config/ind
 import { isArray } from '../utils/validate.js';
 // const baseURL = 'http://192.168.188.176:8890';
  const baseURL = 'https://wx.greandata1.com';
-// const baseURL = 'http://192.168.168.9:15612';
+// const baseURL = 'http://192.168.168.9:15456';
 
 let loadingInstance = null;
 
@@ -29,6 +29,7 @@ const CODE_MESSAGE = {
 };
 
 const request = ({ url, method, data, header }) => {
+    const startTime = new Date().getTime();
   //  加载请求拦截器
   //  token
   const token = wx.getStorageSync('token');
@@ -50,6 +51,7 @@ const request = ({ url, method, data, header }) => {
       timeout: 30000,
       // enableHttp2:true,
       success({ data }) {
+        reportApiMonitorSuccess(url, 0,startTime);
         wx.hideLoading();
         // 若data.code存在，覆盖默认code
         let code = data && data[statusName] ? data[statusName] : 9999;
@@ -90,6 +92,7 @@ const request = ({ url, method, data, header }) => {
         }
       },
       fail: function (err) {
+        reportApiMonitorFail(url,500 ,startTime, err);
         // wx.hideLoading();
 
         // wx.showToast({
@@ -164,6 +167,39 @@ const _upload = async ({
       })
    
   };
+
+
+
+// 在接口请求成功时上报接口监控数据
+function reportApiMonitorSuccess(url, code,startTime) {
+    const endTime = new Date().getTime();
+    const duration = endTime - startTime;
+    wx.reportEvent('wxdata_perf_monitor', {
+        "wxdata_perf_monitor_id": url,
+        "wxdata_perf_monitor_level": 1,
+        "wxdata_perf_error_code": code,
+        "wxdata_perf_error_msg": '错误',
+        "wxdata_perf_cost_time": duration,
+        "wxdata_perf_extra_info1": "",
+        "wxdata_perf_extra_info2": "",
+        "wxdata_perf_extra_info3": "",
+
+    });
+  }
+  
+  // 在接口请求失败时上报接口监控数据
+  function reportApiMonitorFail(url, code,startTime, error) {
+    const endTime = new Date().getTime();
+    const duration = endTime - startTime;
+    wx.reportEvent('wxdata_perf_monitor', {
+      url: url,             
+      status: 'fail',     
+      duration: duration, 
+      error: error     
+    });
+  }
+  
+
   
 
 module.exports = {

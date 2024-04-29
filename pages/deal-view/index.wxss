@@ -1,0 +1,28 @@
+/* pages/deal-view/index.wxss */
+.deal-container {
+    background-color: rgb(241, 244, 249);
+    padding-bottom: 100rpx;
+  
+  }
+  .deal-title {
+    font-size: 24rpx;
+    background-color: #fff;
+    padding: 24rpx;
+  }
+  .deal-title .number {
+    color: rgb(1, 119, 55);
+    font-weight: bold;
+  }
+  .deal-title .moeny {
+    color: rgb(255, 77, 79);
+    font-weight: bold;
+  }
+  
+  .font-color-gray {
+    color: rgb(107, 119, 140);
+  }
+  .desc-label {
+    font-size: 24rpx;
+    margin-bottom: 8rpx;
+  }
+  

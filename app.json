@@ -1,6 +1,5 @@
 {
   "pages": [
-
     "pages/home/index",
     "pages/login-code/index",
     "pages/a-map/index",
@@ -36,9 +35,10 @@
     "pages/login/index",
     "pages/myself/index",
     "pages/project/index",
-    "pages/search/staff-search/index"
-
-
+    "pages/search/staff-search/index",
+    "pages/contract-view/index",
+    "pages/task-view/index",
+    "pages/deal-view/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

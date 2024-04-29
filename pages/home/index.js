@@ -95,6 +95,7 @@ Page({
         unit: '个',
         link: 'task',
         key: 'todayActivityCount',
+        type:1
       },
       {
         label: '全部待办',
@@ -102,6 +103,7 @@ Page({
         unit: '个',
         link: 'task',
         key: 'allActivityCount',
+        type:2
       },
       {
         label: '超期任务',
@@ -109,6 +111,7 @@ Page({
         unit: '个',
         link: 'task',
         key: 'overdueActivityCount',
+        type:3
       },
       {
         label: '商机数量',
@@ -116,6 +119,7 @@ Page({
         unit: '个',
         link: 'deal',
         key: 'dealCount',
+        type:1
       },
       {
         label: '无跟进计划商机',
@@ -123,6 +127,7 @@ Page({
         unit: '个',
         link: 'deal',
         key: 'noFollowUpDealCount',
+        type:2
       },
       {
         label: '无变化商机',
@@ -130,6 +135,7 @@ Page({
         unit: '个',
         link: 'deal',
         key: 'noChangeDealCount',
+        type:3
       },
       {
         label: '商机金额',
@@ -137,6 +143,7 @@ Page({
         unit: '',
         link: 'deal',
         key: 'allDealValue',
+        type:1
       },
 
       {
@@ -145,6 +152,7 @@ Page({
         unit: '',
         link: 'deal',
         key: 'prevDealValue',
+        type:1
       },
       {
         label: '应收未收额',
@@ -152,6 +160,8 @@ Page({
         unit: '',
         link: 'contract',
         key: 'unreceivedValue',
+        type:3
+
       },
       {
         label: '已开票未收款',
@@ -159,6 +169,7 @@ Page({
         unit: '',
         link: 'contract',
         key: 'invoicedUnreceivedValue',
+        type:2
       },
     ],
 
@@ -183,7 +194,6 @@ Page({
   },
 
   onSaleChange: function (e) {
-    console.log(e);
     if (e.detail.isLink) {
       wx.navigateTo({
         url: '/pages/search/staff-search/index',
@@ -275,18 +285,37 @@ Page({
   },
   // 跳转
   gotoDetail: function (e) {
-    let { panel } = e.currentTarget.dataset;
-    let url = `/pages/${panel}/index`;
-    wx.switchTab({
-      url: url,
-    });
+    let { panel,type } = e.currentTarget.dataset;
+    let url = `/pages/${panel}-view/index`;
+    let _this = this
+    wx.navigateTo({
+        url: url,
+        success: function(res) {
+          res.eventChannel.emit('acceptData', { data: {
+            type,
+            filterBy: _this.data.saleValue,
+            timeBy: _this.data.timeValue,
+            userIdList: _this.data.userIdList,
+          } })
+        }
+      })
   },
   gotoSaleDetail(events) {
-    let { panel } = events.currentTarget.dataset;
-    let url = `/pages/${panel}/index`;
-    wx.switchTab({
-      url: url,
-    });
+    let { panel,type } = events.currentTarget.dataset;
+    let url = `/pages/${panel}-view/index`;
+    let _this = this
+    wx.navigateTo({
+        url: url,
+        success: function(res) {
+          res.eventChannel.emit('acceptData', { data: {
+            type,
+            filterBy: _this.data.saleValue,
+            timeBy: _this.data.timeValue,
+            userIdList: _this.data.userIdList,
+          } })
+        }
+      })
+ 
   },
   gotoPage(events) {
     let { panel } = events.currentTarget.dataset;
@@ -349,7 +378,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    console.log(this.data.userIdList);
   },
 
   /**

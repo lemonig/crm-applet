@@ -68,7 +68,6 @@ Page({
  
   },
   parentMethod() {
-    console.log(this.data._id);
     let id = this.data._id
     wx.redirectTo({
         url: '/pages/task-detail/index?id=' + id,
@@ -83,9 +82,7 @@ Page({
       sizeType: ['original', 'compressed'],
       camera: 'back',
       async success(res) {
-        console.log(res);
         let res1 = await uploadFile(res.tempFiles[0].tempFilePath);
-        console.log(res1);
         const { fileList = [] } = this.data;
         fileList.push({ ...file, url: res1.data.url });
         this.setData({ fileList });
@@ -105,7 +102,6 @@ Page({
     });
   },
   async afterRead(event) {
-      console.log(event)
     const { file } = event.detail;
     let _this = this;
     wx.compressImage({

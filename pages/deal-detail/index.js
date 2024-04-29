@@ -27,7 +27,6 @@ Page({
     let { data } = await detailDeal({
       id: this.data.dealId,
     });
-    console.log(data);
     let res = data.pipelineDetailList.findLastIndex((item) => item.isShow);
     this.setData({ data, pipelineIdx: res + 1 });
   },

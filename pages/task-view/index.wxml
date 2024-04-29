@@ -1,0 +1,94 @@
+<!--pages/task/index.wxml-->
+
+<navigation-bar
+  default-data="{{titleProps}}"
+>
+</navigation-bar>
+
+<view class="task-container">
+  <!-- FIMME 点击范围无效 -->
+  <scroll-view
+    wx:if="{{pageData.length}}"
+    style="height:calc(100vh - {{ navBarHeight }}px  ) ;"
+    scroll-y="{{ true }}"
+    bindscrolltolower="handleToLower"
+  >
+    <view
+      wx:for="{{pageData}}"
+      wx:key="id"
+      class="flex-row"
+    >
+      <view
+        class="cell-left"
+        bindtap="onChange"
+        id="{{item.id}}"
+        data-checked="{{item.done}}"
+        data-myself="{{item.isOwner}}"
+      >
+        <van-checkbox
+          bind:change="onChange"
+          value="{{ item.done }}"
+          checked-color="#07c160"
+          data-checked="{{item.done}}"
+          id="{{item.id}}"
+          disabled="{{!item.isOwner}}"
+          data-myself="{{item.isOwner}}"
+        />
+      </view>
+
+
+      <view
+        class="cell-right"
+        bindtap="gotoDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="one label-text">
+          <text>
+            {{item.typeName}}
+          </text>
+          <text class="font-color-gray {{item.done ? 'check-style' :''}}">
+            {{item.dealName || '*'+ item.orgName}}
+          </text>
+        </view>
+        <view class="two desc-label">
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}">{{item.subject}}</text>
+
+        </view>
+        <view class="desc-label ">
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}">{{item.ownerUserName}} {{item.personPhone}}</text>
+          <van-icon
+            name="underway-o"
+            class="mar-12"
+          />
+          <text class="font-color-gray  {{item.done ? 'check-style' :''}}"> {{item.startTimeDto.date}} 至{{item.endTimeDto.date}} </text>
+        </view>
+      </view>
+    </view>
+
+    <view
+      style="text-align: center;margin: 8px 0"
+      wx:if="{{loading}}"
+    >
+      <van-loading color="var(--primary)">加载中...</van-loading>
+    </view>
+    <van-divider
+      wx:if="{{isAllData}}"
+      contentPosition="center"
+      customStyle=" font-size: 12px;"
+    >
+      到底了
+    </van-divider>
+
+  </scroll-view>
+  <van-empty
+    wx:else
+    class="custom-image"
+    description="无数据"
+  />
+</view>
+
+
+
+<van-notify id="van-notify" />
+<van-dialog id="van-dialog" />
+

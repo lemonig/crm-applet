@@ -84,7 +84,6 @@ Page({
 
   // 下一页
   gotoNextNode: function (e) {
-    console.log(e);
     let { id, index, isleaf, label } = e.currentTarget.dataset;
     if (isleaf) return;
     this.setData({
@@ -259,13 +258,8 @@ Page({
     prePage.setData({
       userIdList: this.data.selectedIds ?? [],
     });
-
-    console.log(prePage.data.pageNo);
     if (prePage.data.pageNo) {
-      //商机
-    
     }else{
-
         prePage.getPageData();
     }
     wx.navigateBack({
