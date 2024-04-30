@@ -285,7 +285,7 @@ Page({
   },
   // 跳转
   gotoDetail: function (e) {
-    let { panel,type } = e.currentTarget.dataset;
+    let { panel,type,title } = e.currentTarget.dataset;
     let url = `/pages/${panel}-view/index`;
     let _this = this
     wx.navigateTo({
@@ -296,12 +296,13 @@ Page({
             filterBy: _this.data.saleValue,
             timeBy: _this.data.timeValue,
             userIdList: _this.data.userIdList,
+            title
           } })
         }
       })
   },
   gotoSaleDetail(events) {
-    let { panel,type } = events.currentTarget.dataset;
+    let { panel,type,title } = events.currentTarget.dataset;
     let url = `/pages/${panel}-view/index`;
     let _this = this
     wx.navigateTo({
@@ -310,8 +311,8 @@ Page({
           res.eventChannel.emit('acceptData', { data: {
             type,
             filterBy: _this.data.saleValue,
-            timeBy: _this.data.timeValue,
             userIdList: _this.data.userIdList,
+            title
           } })
         }
       })

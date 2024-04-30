@@ -32,7 +32,7 @@
   </sd-title>
   <view class="block-white block-main">
     <van-row gutter="20">
-      <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.link}}" bindtap="gotoSaleDetail" data-type="{{item.type}}">
+      <van-col span="12" wx:for="{{salePanel}}" wx:key="label" data-panel="{{item.link}}" bindtap="gotoSaleDetail" data-type="{{item.type}}" data-title="{{item.label}}">
         <view class="flex-col text-block">
           <text>{{item.label}}</text>
           <text wx:if="{{!!item.unit}}">{{ pageData1[item.key] }}{{item.unit}}</text>
@@ -71,61 +71,61 @@
     </view>
     <van-row gutter="12">
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="5">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="5" data-title="新签合同">
           <text>新签合同</text>
           <text>{{pageData2.contractAddNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="3">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="3" data-title="合同金额">
           <text>合同金额</text>
           <sd-money text="{{pageData2.contractValue}}">{{pageData2.contractValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="4">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="contract" data-type="4" data-title="回款金额">
           <text>回款金额</text>
           <sd-money text="{{pageData2.contractReceivedValue}}">{{pageData2.contractReceivedValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="新增商机">
           <text>新增商机</text>
           <text>{{pageData2.dealAddNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="新增商机金额">
           <text>新增商机金额</text>
           <sd-money text="{{pageData2.dealAddValue}}">{{pageData2.dealAddValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="商机金额预测">
           <text>商机金额预测</text>
           <sd-money text="{{pageData2.dealPrevValue}}">{{pageData2.dealPrevValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="4">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="4" data-title="赢单商机">
           <text>赢单商机</text>
           <text>{{pageData2.dealWinNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="5">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="5" data-title="输单商机">
           <text>输单商机</text>
           <text>{{pageData2.dealLoseNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="6">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="6" data-title="终止商机">
           <text>终止商机</text>
           <text>{{pageData2.dealTerminateNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="task" data-type="2">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="task" data-type="2" data-title="新增跟进记录">
           <text>新增跟进记录</text>
           <text>{{pageData2.followUpAddNum}}个</text>
         </view>

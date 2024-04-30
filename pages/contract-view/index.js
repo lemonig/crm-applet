@@ -80,6 +80,9 @@ Page({
     eventChannel.on('acceptData', function ({ data }) {
       _this.setData({
         feachParams: data,
+        titleProps:{
+            title: data.title ?? ''
+        }
       });
       _this.fetchData();
     });

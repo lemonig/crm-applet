@@ -1,5 +1,6 @@
 // pages/task/index.js
-import { updateAct, listTask, activityList } from '../../api/task';
+import { updateAct } from '../../api/task';
+import { activity as listTask } from '../../api/navgate';
 import { taskInfo } from '../../api/home';
 import { debounce } from '../../utils/util';
 import Dialog from '@vant/weapp/dialog/dialog';
@@ -14,9 +15,7 @@ Page({
     titleProps: {
       title: '任务看板',
     },
-    feachParams:[],
-
-
+    feachParams: [],
     checked: false,
     pageData: [],
     pageNo: 1,
@@ -135,6 +134,9 @@ Page({
     eventChannel.on('acceptData', function ({ data }) {
       _this.setData({
         feachParams: data,
+        titleProps: {
+          title: data.title || '',
+        },
       });
       _this.fetchData();
     });

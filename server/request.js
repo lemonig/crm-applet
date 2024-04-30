@@ -1,9 +1,8 @@
 import { contentType, messageName, statusName, successCode } from '../config/index.js';
-
+import {getUrl} from './getUrlByEnv'
 import { isArray } from '../utils/validate.js';
-// const baseURL = 'http://192.168.188.176:8890';
- const baseURL = 'https://wx.greandata1.com';
-// const baseURL = 'http://192.168.168.9:15456';
+ const baseURL = getUrl();
+//  const baseURL = 'https://wx.greandata1.com/test';
 
 let loadingInstance = null;
 
@@ -43,6 +42,7 @@ const request = ({ url, method, data, header }) => {
     mask: true,
   });
   return new Promise((resolve, reject) => {
+      console.log(getUrl());
     wx.request({
       url: baseURL + url,
       method,
