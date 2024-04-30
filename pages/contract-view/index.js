@@ -1,5 +1,5 @@
 // pages/contract/index.js
-import { pageContract, getContract } from '../../api/contract';
+import { contract as pageContract } from '../../api/navgate.js';
 import { debounce } from '../../utils/util';
 const app = getApp();
 

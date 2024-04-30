@@ -89,19 +89,19 @@
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="新增商机">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="7" data-title="新增商机">
           <text>新增商机</text>
           <text>{{pageData2.dealAddNum}}个</text>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="新增商机金额">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="7" data-title="新增商机金额">
           <text>新增商机金额</text>
           <sd-money text="{{pageData2.dealAddValue}}">{{pageData2.dealAddValue}}</sd-money>
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="1" data-title="商机金额预测">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="deal" data-type="7" data-title="商机金额预测">
           <text>商机金额预测</text>
           <sd-money text="{{pageData2.dealPrevValue}}">{{pageData2.dealPrevValue}}</sd-money>
         </view>
@@ -125,7 +125,7 @@
         </view>
       </van-col>
       <van-col span="12">
-        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="task" data-type="2" data-title="新增跟进记录">
+        <view class="flex-col text-block" bindtap="gotoDetail" data-panel="task" data-type="4" data-title="新增跟进记录">
           <text>新增跟进记录</text>
           <text>{{pageData2.followUpAddNum}}个</text>
         </view>
