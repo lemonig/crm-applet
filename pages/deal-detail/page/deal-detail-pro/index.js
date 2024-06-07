@@ -18,6 +18,9 @@ Page({
   onCheckChange(event) {
     let idx = event.currentTarget.dataset.index;
     this.data.list[idx].checked = event.detail;
+    if( event.detail && !this.data.list[idx].value){
+        this.data.list[idx].value = 1
+    }
     this.setData({
       list: [...this.data.list],
     });
@@ -41,6 +44,25 @@ Page({
         }
       })
       .filter(Boolean);
+      let flag = true
+      for(let i of productMsg){
+          if(i.num == 0) {
+            flag = false
+           
+              break
+          }
+       
+      }
+      if(!flag){
+        wx.showToast({
+            title: '已选产品数量不能为0',
+            icon: 'none',
+          });
+          this.setData({
+            btnLoad: false,
+          });
+          return
+      }
     if (this.data.needPost) {
       let { success, message } = await updateDeal({
         id: this.data.id,
@@ -48,7 +70,7 @@ Page({
       });
       wx.showToast({
         title: message,
-        icon: 'none',
+        icon: 'warn',
       });
       setTimeout(() => {
         if (success) {

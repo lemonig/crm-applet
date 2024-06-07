@@ -138,7 +138,11 @@ Page({
           title: data.title || '',
         },
       });
-      _this.fetchData();
+      _this.fetchData()
+
+    });
+    this.setData({
+      isAllData: false,
     });
   },
 
@@ -151,19 +155,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setData({
-      isAllData: false,
-    });
+ 
+   
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.setData({
-      pageData: [],
-      pageNo: 1,
-    });
+    
   },
 
   /**

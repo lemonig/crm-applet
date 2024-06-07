@@ -93,7 +93,11 @@ Page({
     value3: 4,
     value4: 3,
     pageData: [],
-    pageDataCum: {},
+    pageDataCum: {
+      prev: '0',
+      pv: '0',
+      total: 0,
+    },
     id: '',
     isPage: false,
     pageNo: 1,

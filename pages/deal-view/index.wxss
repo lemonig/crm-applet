@@ -1,7 +1,6 @@
 /* pages/deal-view/index.wxss */
 .deal-container {
     background-color: rgb(241, 244, 249);
-    padding-bottom: 100rpx;
   
   }
   .deal-title {

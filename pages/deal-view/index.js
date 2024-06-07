@@ -28,11 +28,12 @@ Page({
   onLoad(options) {
     const eventChannel = this.getOpenerEventChannel();
     let _this = this;
+    let text = ['商机数量','商机金额',]
     eventChannel.on('acceptData', function ({ data }) {
       _this.setData({
         feachParams: data,
         titleProps:{
-            title: data.title || ''
+            title: text.includes(data.title) ? '进行中商机':data.title || ''
         }
       });
       _this.fetchData();
@@ -83,18 +84,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    this.setData({
-      pageData: [],
-      pageNo: 1,
-      pageDataCum: {},
-      isAllData: false,
-    });
+
   },
 
   /**

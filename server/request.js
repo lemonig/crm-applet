@@ -51,7 +51,8 @@ const request = ({ url, method, data, header }) => {
       timeout: 30000,
       // enableHttp2:true,
       success({ data }) {
-        reportApiMonitorSuccess(url, 0,startTime);
+          console.log(data);
+        reportApiMonitorSuccess(url, data.code,startTime,data.message);
         wx.hideLoading();
         // 若data.code存在，覆盖默认code
         let code = data && data[statusName] ? data[statusName] : 9999;
@@ -171,14 +172,14 @@ const _upload = async ({
 
 
 // 在接口请求成功时上报接口监控数据
-function reportApiMonitorSuccess(url, code,startTime) {
+function reportApiMonitorSuccess(url, code,startTime,msg) {
     const endTime = new Date().getTime();
     const duration = endTime - startTime;
     wx.reportEvent('wxdata_perf_monitor', {
         "wxdata_perf_monitor_id": url,
-        "wxdata_perf_monitor_level": 1,
+        "wxdata_perf_monitor_level": 0,
         "wxdata_perf_error_code": code,
-        "wxdata_perf_error_msg": '错误',
+        "wxdata_perf_error_msg": msg,
         "wxdata_perf_cost_time": duration,
         "wxdata_perf_extra_info1": "",
         "wxdata_perf_extra_info2": "",

@@ -9,7 +9,7 @@
           <van-col span="6">
             金额
           </van-col>
-          <van-col span="6" wx:if="{{  active === 0}}">
+          <van-col span="6" wx:if="{{  feachParams.type == '5' || feachParams.type == '3'  }}">
             签订时间
           </van-col>
           <van-col span="6" wx:else>
@@ -33,7 +33,7 @@
               <!-- <text style="color: {{(item.receivedValue / item.value) < 0.5 ? '#017737':'#FF4D4F'}}"> {{item.value}}</text> -->
             </van-col>
 
-            <van-col span="6" wx:if="{{  active === 0}}">
+            <van-col span="6"  wx:if="{{  feachParams.type == '5' || feachParams.type == '3'  }}">
               <text>{{item.signedDate}}</text>
             </van-col>
             <van-col span="6" wx:else>

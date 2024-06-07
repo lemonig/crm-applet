@@ -11,7 +11,7 @@
 >
 
  
-  <view style="margin-top:var(--dropdown-margin);">
+  <view>
     <view class="deal-title">
       <text class="number">{{pageDataCum.total}}个</text>商机 商机金额 <sd-money
         class="moeny"
@@ -23,7 +23,7 @@
     </view>
     <scroll-view
       wx:if="{{pageData.length}}"
-      style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 270rpx) ;"
+      style="height:calc(100vh - {{ navBarHeight }}px) ;"
       scroll-y="{{ true }}"
       bindscrolltolower="handleToLower"
     >

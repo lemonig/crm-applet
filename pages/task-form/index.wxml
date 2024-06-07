@@ -75,12 +75,10 @@
             />
             <van-cell
                 value="{{form.personName}}"
-                name="personId"
                 title="联系人"
                 bindtap="beforeTap"
                 is-link
             ></van-cell>
-            <!-- <sd-picker wx:if="{{form.dealId}}" value="{{form.personId}}" name="personId" title="联系人" options="{{optionsLink}}" id="the-id" capture-bind:tap="beforeTap"></sd-picker> -->
             <van-field
                 model:value="{{form.participant}}"
                 placeholder="请输入"
@@ -96,10 +94,17 @@
             />
             <van-field
                 model:value="{{form.description}}"
-                placeholder="请输入"
+                placeholder="记录下最后的进展吧，不少于10个字"
                 name='description'
-                label="任务描述"
+                label="完成纪要"
                 input-align="right"
+                type="textarea"
+                autosize
+                clearable
+                required="{{status}}"
+                show-word-limit
+                maxlength="{{255}}"
+                fixed
             />
             <van-field
                 model:value="{{form.fee}}"

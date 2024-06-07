@@ -45,6 +45,7 @@
                 title="联系人"
                 is-link
                 bind:click="selectLinkman"
+                 required
             />
             <sd-picker
                 value="{{form.businessType}}"
@@ -78,12 +79,12 @@
             />
             <van-cell title="" value="{{dealMoney}}万" />
             <van-cell
-                wx:if="{{!_id}}"
                 value="共{{productMsg.length}}项"
                 name="productList"
                 title="产品信息"
                 is-link
                 bind:click="selectProduct"
+                required
             />
             <!-- <sd-picker value="{{form.productList}}" name="productList" title="产品信息" options="{{columnsPro}}"></sd-picker> -->
             <van-field

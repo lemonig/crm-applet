@@ -5,7 +5,7 @@
     title="产品"
   >
     <van-icon
-      wx:if="{{isOwner}}"
+      wx:if="{{isOwner && false}}"
       slot="icon"
       name="edit"
       bindtap="gotoEdit"

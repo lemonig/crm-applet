@@ -65,14 +65,18 @@ Page({
     remindMe: dayjs().add(1, 'days').hour(14).minute(0).second(0).millisecond(0).format(),
     feeRequire: false,
     fileList: [],
- 
   },
   parentMethod() {
-    let id = this.data._id
-    wx.redirectTo({
-        url: '/pages/task-detail/index?id=' + id,
-    })
-},
+      if(this.data._id){
+        let id = this.data._id;
+        wx.redirectTo({
+          url: '/pages/task-detail/index?id=' + id,
+        });
+      }else{
+          wx.navigateBack()
+      }
+  
+  },
   showActions() {
     wx.chooseMedia({
       count: 9,
@@ -132,11 +136,12 @@ Page({
   onTimeChange1(event) {
     const selectedTime = event.detail.time;
     this.setData({
-      remindMe:selectedTime
+      remindMe: selectedTime,
     });
   },
 
   formSubmit: async function (e) {
+    console.log(this.data.form);
     this.setData({
       btnLoad: true,
     });
@@ -203,7 +208,7 @@ Page({
                   url: '/pages/deal-detail/index?id=' + data.dealId,
                 })
               : wx.redirectTo({
-                  url: '/pages/task-detail/index?id=' + id,
+                  url: '/pages/task-detail/index?id=' + data.id,
                 }),
         })
           .then(() => {})
@@ -258,17 +263,12 @@ Page({
   },
   onHasDealChange({ detail }) {
     this.setData({
-      form: {
-        ...this.data.form,
-        orgId: '',
-        orgName: '',
-        dealId: '',
-        dealName: '',
-        personId: '',
-        personName: '',
-      },
-    });
-    this.setData({
+      'form.orgId     ': '',
+      'form.orgName   ': '',
+      'form.dealId    ': '',
+      'form.dealName  ': '',
+      'form.personId  ': '',
+      'form.personName': '',
       hasDeal: detail,
     });
   },
@@ -318,10 +318,7 @@ Page({
     const { picker, value, index } = event.detail;
     this.setData({
       feeRequire: this.data.optionsActive.find((ele) => ele.value == value)['isFeeRequired'],
-      form: {
-        ...this.data.form,
-        typeId: value,
-      },
+      'form.typeId': value,
     });
   },
   onClose() {
@@ -332,11 +329,8 @@ Page({
   confirmPicker(event) {
     const { picker, value, index } = event.detail;
     this.setData({
-      form: {
-        ...this.data.form,
-        personId: value.value,
-        personName: value.label,
-      },
+      'form.personId': value.value,
+      'form.personName': value.label,
       show: false,
     });
   },

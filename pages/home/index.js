@@ -91,7 +91,7 @@ Page({
     salePanel: [
       {
         label: '今日任务',
-        val: '2',
+        val: '0',
         unit: '个',
         link: 'task',
         key: 'todayActivityCount',
@@ -99,7 +99,7 @@ Page({
       },
       {
         label: '全部待办',
-        val: '6',
+        val: '0',
         unit: '个',
         link: 'task',
         key: 'allActivityCount',
@@ -107,7 +107,7 @@ Page({
       },
       {
         label: '超期任务',
-        val: '5',
+        val: '0',
         unit: '个',
         link: 'task',
         key: 'overdueActivityCount',
@@ -115,7 +115,7 @@ Page({
       },
       {
         label: '商机数量',
-        val: '4',
+        val: '0',
         unit: '个',
         link: 'deal',
         key: 'dealCount',
@@ -123,7 +123,7 @@ Page({
       },
       {
         label: '无跟进计划商机',
-        val: '3',
+        val: '0',
         unit: '个',
         link: 'deal',
         key: 'noFollowUpDealCount',
@@ -131,7 +131,7 @@ Page({
       },
       {
         label: '无变化商机',
-        val: '2',
+        val: '0',
         unit: '个',
         link: 'deal',
         key: 'noChangeDealCount',
@@ -139,7 +139,7 @@ Page({
       },
       {
         label: '商机金额',
-        val: '2',
+        val: '0',
         unit: '',
         link: 'deal',
         key: 'allDealValue',
@@ -148,24 +148,24 @@ Page({
 
       {
         label: '商机金额预测',
-        val: 60000,
+        val: 0,
         unit: '',
         link: 'deal',
         key: 'prevDealValue',
         type:1
       },
       {
-        label: '应收未收额',
-        val: 400000,
+        label: '未收款',
+        val: 0,
         unit: '',
         link: 'contract',
         key: 'unreceivedValue',
-        type:3
+        type:6
 
       },
       {
         label: '已开票未收款',
-        val: 200,
+        val: 0,
         unit: '',
         link: 'contract',
         key: 'invoicedUnreceivedValue',

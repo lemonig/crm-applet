@@ -103,11 +103,11 @@ export const timeList = [
     value: '4',
   },
   {
-    label: '上月',
+    label: '上周',
     value: '5',
   },
   {
-    label: '上周',
+    label: '上月',
     value: '6',
   },
   {
