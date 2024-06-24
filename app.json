@@ -38,7 +38,10 @@
     "pages/search/staff-search/index",
     "pages/contract-view/index",
     "pages/task-view/index",
-    "pages/deal-view/index"
+    "pages/deal-view/index",
+    "pages/deal-detail/page/deal-form-agent/index",
+    "pages/deal-detail/page/deal-form-cro/index",
+    "pages/deal-detail/page/deal-form-oppo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

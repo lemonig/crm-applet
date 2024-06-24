@@ -9,7 +9,7 @@ Page({
   data: {
     navBarHeight: app.globalData.navBarHeight,
     titleProps: {
-      title: '选择客户名称',
+      title: '选择客户',
     },
     key: '',
     pageData: [],
@@ -27,6 +27,13 @@ Page({
   },
 
   confirm() {
+    if (!this.data.value.personName) {
+        wx.showToast({
+          title: '该客户没有联系人，请完善后再选择',
+          icon: 'none',
+        });
+        return;
+      }
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
     if (!!this.data.value) {

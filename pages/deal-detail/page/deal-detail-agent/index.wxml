@@ -1,29 +1,31 @@
-<!--pages/deal-detail-pro/index.wxml-->
-<navigation-bar default-data="{{titleProps}}"></navigation-bar>
-<view class="container">
 
-<van-radio-group value="{{ result }}" bind:change="onChange">
-  <van-cell-group>
-    <van-cell
-      wx:for="{{ list }}"
-      wx:key="index"
-      value-class="value-class"
-      data-index="{{ index }}"
-    >
-    <view slot="title">
-      <van-radio 
-      catch:tap="noop"
-        class="checkboxes-{{ index }}"
-        name="{{ item.id }}"
-      > {{ item.name }}</van-radio > 
-    </view>
+<navigation-bar default-data="{{titleProps}}">
+</navigation-bar>
+
+<view class="container task-container">
+
+  <van-cell-group custom-class="cell-group-class">
+    <van-cell title="招标代理名称">
+      <text>{{data.companyName }}</text>
+    </van-cell>
+    <van-cell title="联系人">
+      <text>{{data.contactPersonName}}</text>
+    </van-cell>
+    <van-cell title="电话">
+      <text>{{data.contactPersonPhone}}</text>
+    </van-cell>
+    <van-cell title="备注">
+      <text>{{data.description}}</text>
     </van-cell>
   </van-cell-group>
-</van-radio-group>
 
+
+
+  <view class="btn-wrap"  >
+      <van-button  type="danger" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 250rpx;" bindtap="deleteItem">删除</van-button>
+      <van-button  type="info" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 250rpx;" bindtap="gotoForm">编辑</van-button>
+    </view>
 </view>
 
-
-<view class="form-btn-area" style="margin-top: 50rpx;">
-      <van-button type="info" loading="{{btnLoad}}"   bind:click="submit" custom-style="width: 600rpx;">提交</van-button>
-</view>
+<van-notify id="van-notify" />
+<van-dialog id="van-dialog" />

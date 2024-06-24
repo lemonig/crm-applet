@@ -1,23 +1,59 @@
 <navigation-bar default-data="{{titleProps}}"></navigation-bar>
-<van-search value="{{ key }}" bind:change="handleListFilter" bind:search="handleListFilter" placeholder="请输入搜索关键词" />
+<van-search
+    value="{{ key }}"
+    bind:change="handleListFilter"
+    bind:search="handleListFilter"
+    placeholder="请输入搜索关键词"
+/>
 
 
 <view class="select-main">
-  <scroll-view wx:if="{{pageData.length}}" style="height:calc(100vh - {{ navBarHeight }}px  - 360rpx) ;" scroll-y="{{ true }}">
+    <scroll-view
+        wx:if="{{pageData.length}}"
+        style="height:calc(100vh - {{ navBarHeight }}px  - 360rpx) ;"
+        scroll-y="{{ true }}"
+    >
 
-    <van-cell-group>
-      <block wx:for="{{pageData}}" wx:key="unique">
-        <van-cell title="{{item.name}}" bind:click="onSelect" data-value="{{item}}" data-name="{{item.name}}">
-          <van-icon color="#0252cc" wx:if="{{value.id ==  item.id}}" slot="right-icon" name="success" class="custom-icon" size="1.4em" />
-        </van-cell>
-      </block>
+        <van-cell-group>
+            <block
+                wx:for="{{pageData}}"
+                wx:key="unique"
+            >
+                <van-cell
+                    title="{{item.name}}"
+                    bind:click="onSelect"
+                    data-value="{{item}}"
+                    data-name="{{item.name}}"
+                    label="主要联系人：{{item.personName || '无' }}"
+                >
+                    <van-icon
+                        color="#0252cc"
+                        wx:if="{{value.id ==  item.id}}"
+                        slot="right-icon"
+                        name="success"
+                        class="custom-icon"
+                        size="1.4em"
+                    />
+                </van-cell>
+            </block>
 
-    </van-cell-group>
-  </scroll-view>
-  <van-empty wx:else class="custom-image"
-     description="无数据" />
-  <view class="form-btn-area" wx:if="{{pageData.length}}">
-    <van-button type="info" loading="{{btnLoad}}"   bind:click="confirm" custom-style="width: 600rpx;">确定</van-button>
-  </view>
+        </van-cell-group>
+    </scroll-view>
+    <van-empty
+        wx:else
+        class="custom-image"
+        description="无数据"
+    />
+    <view
+        class="form-btn-area"
+        wx:if="{{pageData.length}}"
+    >
+        <van-button
+            type="info"
+            loading="{{btnLoad}}"
+            bind:click="confirm"
+            custom-style="width: 600rpx;"
+        >确定</van-button>
+    </view>
 
 </view>

@@ -27,7 +27,7 @@ Page({
     },
     isPhone: false,
     countdown: 0,
-    flagLogin:false
+    flagLogin: true,
   },
   async send() {
     if (!!this.data.countdown) {
@@ -90,17 +90,31 @@ Page({
     }
   },
   async bindPhoneInput(e) {
-   
     const self = this;
     const { flag } = e.currentTarget.dataset;
     self.data[flag].value = e.detail;
     self.setData({
       [flag]: self.data[flag],
     });
-    if (e.detail.length === 6) {
+    if (e.detail.length === 6 && this.data.flagLogin) {
+      this.setData({
+        flagLogin: false,
+      });
+
+      let { code: wxCode, errMsg } = await this.wxLoginInner();
+      if (errMsg !== 'login:ok') {
+        wx.showToast({
+          title: '获取code失败',
+          icon: 'none',
+          duration: 2000,
+        });
+        return;
+      }
+
       let { success, data } = await smsLogin({
         phone: this.data.phoneNum,
         code: this.data.verificationCode.value,
+        wxCode,
       });
       if (success) {
         wx.setStorage({ key: 'token', data: data.access_token });
@@ -108,9 +122,21 @@ Page({
           url: '/pages/home/index',
         });
       }
-    
     }
   },
+  wxLoginInner() {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: ({ code, errMsg }) => {
+          resolve({
+            code,
+            errMsg,
+          });
+        },
+      });
+    });
+  },
+
   bindKeyInput(e) {
     const self = this;
     const { flag } = e.currentTarget.dataset;

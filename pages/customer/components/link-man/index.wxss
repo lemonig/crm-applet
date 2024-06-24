@@ -1,2 +1,14 @@
 /* pages/customer/components/link-man/index.wxss */
-@import '../../../../common.wxss'
+@import '../../../../common.wxss';
+.cus-container{
+    background-color: rgb(241, 244, 249);
+  }
+
+  .desc-label{
+      font-weight: bold;
+  }
+  
+.font-color-gray {
+    color: rgba(0, 0, 0,0.4);
+    font-size: 14px;
+  }

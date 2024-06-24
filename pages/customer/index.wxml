@@ -96,5 +96,6 @@
   </view>
 </view>
 <block wx:else>
+
   <link-page id="linkPage"></link-page>
 </block>

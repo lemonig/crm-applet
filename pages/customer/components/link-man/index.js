@@ -1,6 +1,7 @@
 // pages/customer/components/link-man/index.js
 import { linkmanInfo } from '../../../../api/linkman';
 import { debounce } from '../../../../utils/util';
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -11,6 +12,7 @@ Component({
    * 组件的初始数据 排序：跟进时间（正反）、姓名首字母 搜索：按姓名、职务、单位、手机号码
    */
   data: {
+    navBarHeight: app.globalData.navBarHeight,
     option1: [
       {
         text: '录入时间',
@@ -66,7 +68,7 @@ Component({
           filterBy: this.data.value2,
         },
         page: this.data.pageNo,
-        size: 10,
+        size: 20,
       };
       let { data,additional_data } = await linkmanInfo(params);
       if (additional_data.pagination.total === this.data.pageData.length) {
@@ -119,6 +121,12 @@ Component({
         url: '/pages/linkman-detail/index?id=' + id,
       });
     },
+    callMe(eve) {
+        console.log(eve.currentTarget.dataset.phone);
+        wx.makePhoneCall({
+          phoneNumber: eve.currentTarget.dataset.phone,
+        });
+      },
   },
   ready: function () {
     this.fetchData();
@@ -127,5 +135,6 @@ Component({
     this.setData({
       pageData: []
     });
-  }
+  },
+
 });

@@ -19,22 +19,20 @@ Page({
     indexList: [],
     pageData: [],
     loading: false,
-    value:{}
+    value: {},
   },
   //  页面加载事件
   onLoad(options) {
-    this.fetchData()
+    this.fetchData();
 
     if (!options.dataType) return Notify({ type: 'warning', message: '未获取到数据类型' });
     this.setData({
       dataType: options.dataType,
     });
-
   },
   //  页面显示事件
   onShow() {
     if (!this.data.dataType) return Notify({ type: 'warning', message: '未获取到数据类型' });
-
   },
   //  获取页面数据
   async fetchData() {
@@ -48,7 +46,6 @@ Page({
   },
 
   handleListFilter: debounce(function (eve) {
-
     this.setData({
       key: eve.detail,
     });
@@ -65,7 +62,14 @@ Page({
   },
   // delete
 
-   confirm() {
+  confirm() {
+    if (!this.data.value.personName) {
+      wx.showToast({
+        title: '该商机没有联系人，请完善后再选择',
+        icon: 'none',
+      });
+      return;
+    }
     var pages = getCurrentPages();
     var prePages = pages[pages.length - 2];
     prePages.setData({
@@ -74,12 +78,9 @@ Page({
       'form.personId': -1,
       'form.optionsLink': [],
       'form.personName': '',
-
     });
     wx.navigateBack({
       delta: 1,
     });
   },
-
-
 });

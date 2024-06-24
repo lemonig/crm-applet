@@ -18,7 +18,6 @@ Page({
     var that = this
     if (e.type == "end") {
     } else {
-      console.log("拖动ing");
     }
   },
   onLoad: function() {

@@ -4,6 +4,8 @@
     <slot wx:else="{{!title}}" name="title"></slot> 
     <text wx:if="{{value}}"> {{ value  }} </text>
     <slot wx:else="{{!value}}" name="value"></slot> 
+    <van-icon wx:if="{{isLink}}" name="arrow" />
+
   </view>
 
   <view wx:if="{{ lab1 }}"  class="desc-label font-color-gray" style="max-width: 90%;">

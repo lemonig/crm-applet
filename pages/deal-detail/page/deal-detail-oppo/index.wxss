@@ -1,1 +1,11 @@
 /* pages/deal-detail-oppo/index.wxss */
+.task-container text{
+    color: #0252cc
+  
+  }
+  .btn-wrap{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 100rpx;
+  }

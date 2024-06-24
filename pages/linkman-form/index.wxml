@@ -10,8 +10,8 @@
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <sd-picker value="{{form.isKdm}}" name="isKdm" title="关键决策人" options="{{deciedOption}}"></sd-picker>
-      <van-field value="{{form.department}}" placeholder="请输入" name='department' label="部门" input-align="right" />
-      <van-field value="{{form.jobTitle}}" placeholder="请输入" name='jobTitle' label="职位" input-align="right" />
+      <van-field value="{{form.department}}" required placeholder="请输入" name='department' label="部门" input-align="right" />
+      <van-field value="{{form.jobTitle}}" required placeholder="请输入" name='jobTitle' label="职位" input-align="right" />
     </van-cell-group>
     <van-cell-group custom-class="cell-group-class">
       <sd-picker value="{{form.gender}}" name="gender" title="性别" options="{{sexOption}}"></sd-picker>

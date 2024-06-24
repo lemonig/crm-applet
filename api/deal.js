@@ -106,3 +106,88 @@ export function listPipelineStagePlus(data) {
       data  
     })
   }
+
+    // 添加合作伙伴 
+    export function addpartner(data) {  
+        return _post({    
+          url:`/mini/api/deal/add/partner`,    
+          data  
+        })
+      }
+      // 添加竞争对手 
+      export function addcompetitor(data) {  
+        return _post({    
+          url:`/mini/api/deal/add/competitor`,    
+          data  
+        })
+      }
+      // 添加招标代理 
+      export function addbiddingAgency(data) {  
+        return _post({    
+          url:`/mini/api/deal/add/biddingAgency`,    
+          data  
+        })
+      }
+      // 删除合作伙伴 
+      export function deletepartner(data) {  
+        return _post({    
+          url:`/mini/api/deal/delete/partner`,    
+          data  
+        })
+      }
+      // 删除竞争对手 
+      export function deletecompetitor(data) {  
+        return _post({    
+          url:`/mini/api/deal/delete/competitor`,    
+          data  
+        })
+      }
+      // 删除招标代理 
+      export function deletebiddingAgency(data) {  
+        return _post({    
+          url:`/mini/api/deal/delete/biddingAgency`,    
+          data  
+        })
+      }
+      // 获取合作伙伴详情 
+      export function getpartner(data) {  
+        return _post({    
+          url:`/mini/api/deal/get/partner`,    
+          data  
+        })
+      }
+      // 获取竞争对手详情 
+      export function getcompetitor(data) {  
+        return _post({    
+          url:`/mini/api/deal/get/competitor`,    
+          data  
+        })
+      }
+      // 获取招标代理详情 
+      export function getbiddingAgency(data) {  
+        return _post({    
+          url:`/mini/api/deal/get/biddingAgency`,    
+          data  
+        })
+      }
+      // 更新合作伙伴 
+      export function updatepartner(data) {  
+        return _post({    
+          url:`/mini/api/deal/update/partner`,    
+          data  
+        })
+      }
+      // 更新竞争对手 
+      export function updatecompetitor(data) {  
+        return _post({    
+          url:`/mini/api/deal/update/competitor`,    
+          data  
+        })
+      }
+      // 更新招标代理 
+      export function updatebiddingAgency(data) {  
+        return _post({    
+          url:`/mini/api/deal/update/biddingAgency`,    
+          data  
+        })
+      }

@@ -1,66 +1,62 @@
-import { listPartner,updateDeal } from '../../../../api/deal';
+import Dialog from '@vant/weapp/dialog/dialog';
+import { getpartner, deletepartner } from '../../../../api/deal';
+
 Page({
+  /**
+   * 页面的初始数据
+   */
   data: {
     titleProps: {
-      title:"选择合作伙伴"
+      title: '合作伙伴',
     },
-    id:'',
-    btnLoad: false,
-    list: [
-     
-    ],
-    result: ['1', '2'],
-  },
-  onChange(event) {
-    this.setData({
-      result: event.detail,
-    });
+    id: '',
+    data: {},
   },
 
-  toggle(event) {
-    // const { index } = event.currentTarget.dataset;
-    // const checkbox = this.selectComponent(`.checkboxes-${index}`);
-    // checkbox.toggle();
-  },
-  async submit() {
-    this.setData({
-      btnLoad: true,
-    });
-    this.data.result.shift()
-    let { success, message } =await updateDeal({
-      id: this.data.id,
-      partnerList:  this.data.result.map(item=> ({partnerId:item})),
-    });
-    wx.showToast({
-      title: message,
-      icon: 'none',
-    });
-    setTimeout(()=>{
-      if(success){
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-    },1000)
-  },
-
-  noop() {},
-
-  
   async getDetail() {
-    let { data } = await listPartner({
+    let { data } = await getpartner({
       id: this.data.id,
     });
-    data.forEach((item) => {
-      this.data.result.forEach((jtem) => {
-        if (item.id == jtem) {
-          item.checked = true;
-          item.value = jtem.num;
-        }
-      });
-    });
     this.setData({
-      list: data,
+      data,
+    });
+  },
+
+  deleteItem() {
+    let that = this;
+    Dialog.confirm({
+      title: '警告',
+      message: '确定要删除吗？',
+      beforeClose: (action) =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            if (action === 'confirm') {
+              deletepartner({
+                id: this.data.id,
+              }).then((res) => {
+                wx.showToast({
+                  title: res.message,
+                  icon: 'none',
+                });
+                wx.navigateBack();
+              });
+              resolve(true);
+            } else {
+              // 拦截取消操作
+              resolve(false);
+            }
+          }, 1000);
+        }),
+    });
+  },
+  gotoForm() {
+    let url =
+      '/pages/deal-detail/page/deal-form-cro/index?id=' +
+      this.data.id +
+      '&dealid=' +
+      this.data.data.dealId;
+    wx.navigateTo({
+      url,
     });
   },
   /**
@@ -68,58 +64,44 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      id: options.dealId,
-      result: options.selected.split(',').filter(Boolean),
+      id: options.id,
     });
-    this.getDetail();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getDetail();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {},
+});

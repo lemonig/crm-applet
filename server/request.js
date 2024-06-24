@@ -42,7 +42,6 @@ const request = ({ url, method, data, header }) => {
     mask: true,
   });
   return new Promise((resolve, reject) => {
-      console.log(getUrl());
     wx.request({
       url: baseURL + url,
       method,
@@ -51,7 +50,6 @@ const request = ({ url, method, data, header }) => {
       timeout: 30000,
       // enableHttp2:true,
       success({ data }) {
-          console.log(data);
         reportApiMonitorSuccess(url, data.code,startTime,data.message);
         wx.hideLoading();
         // 若data.code存在，覆盖默认code

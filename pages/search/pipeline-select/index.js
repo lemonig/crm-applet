@@ -111,11 +111,16 @@ Page({
   },
   async getTerminationReasonList() {
     let { data } = await terminationReasonList();
+    const { contract } = data;
     this.setData({
       tarminalList: data.map((item) => ({
         label: item.name,
         value: item.id,
       })),
+      winForm: {
+        conId: 'id' in contract ?  contract.id :'',
+        conNmae:'name' in contract ?  contract.name :'',
+      },
     });
   },
   async getLostReasonList() {
@@ -134,7 +139,7 @@ Page({
   onLoad(options) {
     this.setData({
       dealId: options.dealId,
-      currentID:options.pipelineStageId *1
+      currentID: options.pipelineStageId * 1,
     });
     this.getListPipelineStage();
     this.getTerminationReasonList();

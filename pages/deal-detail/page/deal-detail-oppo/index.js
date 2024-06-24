@@ -1,76 +1,71 @@
-import { listCompetitor, updateDeal } from '../../../../api/deal';
+import Dialog from '@vant/weapp/dialog/dialog';
+import { getcompetitor, deletecompetitor } from '../../../../api/deal';
+
 Page({
+  /**
+   * 页面的初始数据
+   */
   data: {
     titleProps: {
-      title: '选择竞争对手',
+      title: '竞争对手',
     },
     id: '',
-    list: [],
-    result: [],
-    btnLoad: false,
+    data: {},
   },
-  onChange(event) {
-    this.setData({
-      result: event.detail,
-    });
-  },
-
-  toggle(event) {
-    // const { index } = event.currentTarget.dataset;
-    // const checkbox = this.selectComponent(`.checkboxes-${index}`);
-    // checkbox.toggle();
-  },
-  async submit() {
-    this.setData({
-      btnLoad: true,
-    });
-    this.data.result.shift()
-    let { success, message } =await updateDeal({
-      id: this.data.id,
-      competitorList: this.data.result.map(item=> ({competitorId:item})),
-    });
-    wx.showToast({
-      title: message,
-      icon: 'none',
-    });
-    setTimeout(()=>{
-      if(success){
-        wx.navigateBack({
-          delta: 1
-        })
-      }
-    },1000)
-    
-  },
-
-  noop() {},
 
   async getDetail() {
-    let { data } = await listCompetitor({
+    let { data } = await getcompetitor({
       id: this.data.id,
     });
-    data.forEach((item) => {
-      this.data.result.forEach((jtem) => {
-        if (item.id == jtem) {
-          item.checked = true;
-          item.value = jtem.num;
-        }
-      });
-    });
     this.setData({
-      list: data,
+      data,
+    });
+  },
+
+  deleteItem() {
+    let that = this;
+    Dialog.confirm({
+      title: '警告',
+      message: '确定要删除吗？',
+      beforeClose: (action) =>
+        new Promise((resolve) => {
+          setTimeout(() => {
+            if (action === 'confirm') {
+              deletecompetitor({
+                id: this.data.id,
+              }).then((res) => {
+                wx.showToast({
+                  title: res.message,
+                  icon: 'none',
+                });
+                wx.navigateBack();
+              });
+              resolve(true);
+            } else {
+              // 拦截取消操作
+              resolve(false);
+            }
+          }, 1000);
+        }),
+    });
+  },
+  gotoForm() {
+    let url =
+      '/pages/deal-detail/page/deal-form-oppo/index?id=' +
+      this.data.id +
+      '&dealid=' +
+      this.data.data.dealId;
+    wx.navigateTo({
+      url,
     });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-  
     this.setData({
-      id: options.dealId,
-      result: options.selected.split(',').filter(Boolean),
+      id: options.id,
     });
-    this.getDetail();
   },
 
   /**
@@ -81,7 +76,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.getDetail();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -84,51 +84,5 @@ Page({
       url: '/pages/login-code/index',
     })
   },
-  // wxlogin
-//   onGetPhoneNumber: async function (e) {
-//     let { code, iv, cloudID, encryptedData, errMsg } = e.detail;
-//     let that = this;
 
-//     if (errMsg === 'getPhoneNumber:ok') {
-//       wx.login({
-//         success: async ({ code:loginCode, errMsg }) => {
-//           if (errMsg == 'login:ok') {
-//             let { data, success,message } = await wxLogin({
-//               code,
-//               loginCode,
-//             });
-
-//             if (success) {
-//               wx.setStorage({ key: 'token', data: data.access_token });
-//               wx.showToast({
-//                 title: '登录成功',
-//                 icon: 'success',
-//                 duration: 2000,
-//                 complete: function () {
-//                   wx.switchTab({
-//                     url: '/pages/home/index',
-//                   });
-//                 },
-//               });
-//             }else{
-//               this.setData({
-//                 errMsg:message,
-//               })
-           
-//             }
-//           }else{
-
-//           }
-//         },
-//       });
-
-//       // 登录
-//     } else {
-//       wx.showToast({
-//         title: '登录失败',
-//         icon: 'none',
-//         duration: 2000,
-//       });
-//     }
-//   },
 });

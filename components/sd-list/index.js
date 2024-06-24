@@ -1,52 +1,60 @@
 // components/sd-list/index.js
 Component({
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
   properties: {
     border: {
       type: Boolean,
-      value:true
+      value: true,
     },
     title: {
-      type: String
+      type: String,
     },
     value: {
-      type: String
+      type: String,
     },
     lab1: {
-      type:String
+      type: String,
     },
     desc1: {
-      type:String
+      type: String,
     },
     lab2: {
-      type:String
+      type: String,
     },
     desc2: {
-      type:String
+      type: String,
     },
     lab3: {
-      type:String
+      type: String,
     },
     desc3: {
-      type:String
-    }
+      type: String,
+    },
+    isLink: {
+      type: Boolean,
+    },
+    clickable: {
+      type: Boolean,
+      value:true
+    },
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   /**
    * 组件的方法列表
    */
   methods: {
     onClick: function (event) {
-      this.triggerEvent('click', event.detail)
+      if (!this.properties.clickable) {
+        return
+      }
+      this.triggerEvent('click', event.detail);
+    },
   },
-  }
-})
+});

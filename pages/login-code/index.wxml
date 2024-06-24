@@ -1,5 +1,5 @@
 <!--pages/login-code/index.wxml-->
-<navigation-bar default-data="{{titleProps}}"  ></navigation-bar>
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
 <view
     class="container"
     style="height: calc(100vh - {{navBarHeight}}px)"
@@ -30,14 +30,18 @@
 </view>
 <!-- 验证码 -->
 <!-- class='hiddenIpt' -->
-<view wx:else style="margin-top: 20%;">
-<view class="title-wrap">
-    <view class="title">请输入验证码</view>
+<view
+    wx:else
+    style="margin-top: 20%;"
+>
+    <view class="title-wrap">
+        <view class="title">请输入验证码</view>
 
-    <text class="desc">我们已向<text class="phone">{{maskedPhoneNumber}}</text>发送验证短信，请查看短信并输入验证码</text>
-</view>
+        <text class="desc">我们已向<text class="phone">{{maskedPhoneNumber}}</text>发送验证短信，请查看短信并输入验证码</text>
+    </view>
+
     <van-field
-    class='hiddenIpt'
+        class='hiddenIpt'
         bind:change='bindPhoneInput'
         maxlength="6"
         focus="{{verificationCode.isFocus}}"
@@ -60,6 +64,9 @@
             </view>
         </view>
     </view>
-    <view class="send-btn" bind:tap="send">重新获取{{countdown ?'('+ countdown+'s)' :''}}</view>
+    <view
+        class="send-btn"
+        bind:tap="send"
+    >重新获取{{countdown ?'('+ countdown+'s)' :''}}</view>
 </view>
 <van-notify id="van-notify" />

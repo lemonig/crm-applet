@@ -1,0 +1,30 @@
+<!--pages/deal-detail/page/deal-form-agent/index.wxml-->
+<!--pages/customer-form/index.wxml-->
+<navigation-bar default-data="{{titleProps}}"></navigation-bar>
+
+<view class=" container form-container ">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <van-cell-group custom-class="cell-group-class">
+      <van-field 
+        value="{{form.name}}"
+        name='name'
+        required
+        center
+        label="招标代理名称" 
+        input-align="right"
+        placeholder="请输入"
+        bind:change="debouncedHandleInput"
+        use-button-slot>
+        <van-button slot="button" custom-class="gs-btn"  bind:click="selectCustomer">
+          <text class="iconfont icon-gszc-a" style="font-size: 1.6em;color: var(--primary);"></text>
+        </van-button>
+      </van-field>
+      <van-field value="{{form.contactPersonName}}" placeholder="请输入" name='contactPersonName' label="联系人" input-align="right" />
+      <van-field value="{{form.contactPersonPhone}}" placeholder="请输入" name='contactPersonPhone' label="电话" input-align="right" />
+      <van-field value="{{form.description}}" placeholder="请输入" name='description' label="备注" input-align="right" />
+    </van-cell-group>
+    <view class="form-btn-area">
+      <van-button type="info" loading="{{btnLoad}}"   form-type="submit" custom-style="width: 600rpx;">提交</van-button>
+    </view>
+  </form>
+</view>

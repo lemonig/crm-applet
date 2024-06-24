@@ -114,3 +114,8 @@ page {
 .bg-color {
   background-color: #f1f4f9;
 }
+
+.gs-btn{
+    width: 50rpx !important;
+    border: none !important;
+  }
