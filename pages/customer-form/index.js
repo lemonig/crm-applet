@@ -113,7 +113,7 @@ Page({
 
   selectCustomer() {
     wx.navigateTo({
-      url: '/pages/search/customer-search/index?text=' + this.data.form.name,
+      url: '/pages/search/customer-search/index?text=' + this.data.form.name ,
     });
   },
   /**

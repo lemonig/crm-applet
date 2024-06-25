@@ -141,7 +141,6 @@ Page({
   },
 
   formSubmit: async function (e) {
-    console.log(this.data.form);
     this.setData({
       btnLoad: true,
     });

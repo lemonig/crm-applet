@@ -16,6 +16,7 @@ Page({
     btnLoad: false,
     value: null,
     name: '',
+    need: true
   },
 
   onSelect(event) {
@@ -27,7 +28,7 @@ Page({
   },
 
   confirm() {
-    if (!this.data.value.personName) {
+    if (this.data.need && !this.data.value.personName) {
         wx.showToast({
           title: '该客户没有联系人，请完善后再选择',
           icon: 'none',
@@ -74,6 +75,7 @@ Page({
   onLoad(options) {
     this.setData({
       key: options.text,
+      need: 'need' in options?  JSON.parse(options.need) : true
     });
     this.fetchData();
   },

@@ -92,7 +92,7 @@ Page({
 
   selectCus() {
     wx.navigateTo({
-      url: '/pages/search/customer-select/index',
+      url: '/pages/search/customer-select/index?'+ 'need=false',
     });
   },
   /**

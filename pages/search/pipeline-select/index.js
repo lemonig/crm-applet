@@ -100,27 +100,32 @@ Page({
   },
 
   async getListPipelineStage() {
-    let { data } = await listPipelineStagePlus();
+    let { data } = await listPipelineStagePlus({
+      dealId: this.data.dealId,
+    });
+    const contract = data[data.length - 1]['data'];
     this.setData({
       pipeState: data.map((item) => ({
         ...item,
         label: item.name,
         value: item.dealProbability,
       })),
+      winForm: {
+        conId: 'id' in contract ? contract.id : '',
+        conName: 'name' in contract ? contract.name : '',
+      },
     });
+
+ 
   },
   async getTerminationReasonList() {
     let { data } = await terminationReasonList();
-    const { contract } = data;
     this.setData({
       tarminalList: data.map((item) => ({
         label: item.name,
         value: item.id,
       })),
-      winForm: {
-        conId: 'id' in contract ?  contract.id :'',
-        conNmae:'name' in contract ?  contract.name :'',
-      },
+
     });
   },
   async getLostReasonList() {
