@@ -352,15 +352,23 @@ Page({
       timeBy: this.data.timeValue,
       userIdList: this.data.userIdList,
     };
-    let { success, data } = await dashboard(params);
-    this.setData({
-      pageData2: data.simpleReport,
-      pageData3: data.contractChart,
-      pageData4: data.funnelChart,
-    });
-    this.contractMoneyBarInit(data.contractChart[this.data.contractValue]);
-    this.funnelMoneyBarInit(data.funnelChart[this.data.funnelValue]);
-    return success;
+    try {
+      let { success, data } = await dashboard(params);
+      if(success){
+        this.setData({
+          pageData2: data.simpleReport,
+          pageData3: data.contractChart,
+          pageData4: data.funnelChart,
+        });
+        this.contractMoneyBarInit(data.contractChart[this.data.contractValue]);
+        this.funnelMoneyBarInit(data.funnelChart[this.data.funnelValue]);
+        return success;
+      }
+      
+    } catch (error) {
+      
+    }
+
   },
 
   getPageData() {

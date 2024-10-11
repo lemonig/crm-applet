@@ -92,7 +92,7 @@ const request = ({ url, method, data, header }) => {
       },
       fail: function (err) {
         reportApiMonitorFail(url,500 ,startTime, err);
-        // wx.hideLoading();
+        wx.hideLoading();
 
         // wx.showToast({
         //   title: err.message,
@@ -102,7 +102,7 @@ const request = ({ url, method, data, header }) => {
         reject(err);
       },
       complete() {
-        // wx.hideLoading();
+        wx.hideLoading();
 
       },
     });
@@ -171,8 +171,12 @@ const _upload = async ({
 
 // 在接口请求成功时上报接口监控数据
 function reportApiMonitorSuccess(url, code,startTime,msg) {
+    if(code == 200){
+      code = 0
+    }
     const endTime = new Date().getTime();
     const duration = endTime - startTime;
+    console.log('request time--',duration)
     wx.reportEvent('wxdata_perf_monitor', {
         "wxdata_perf_monitor_id": url,
         "wxdata_perf_monitor_level": 0,

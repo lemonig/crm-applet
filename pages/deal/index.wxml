@@ -49,7 +49,7 @@
     </view>
     <scroll-view
       wx:if="{{pageData.length}}"
-      style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,44px) - 270rpx) ;"
+      style="height:calc(100vh - {{ navBarHeight }}px - var(--tabs-line-height,50px) - 210rpx) ;"
       scroll-y="{{ true }}"
       bindscrolltolower="handleToLower"
     >

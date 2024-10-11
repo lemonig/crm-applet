@@ -3,10 +3,12 @@ import { updateAct, listTask, activityList } from '../../api/task';
 import { taskInfo } from '../../api/home';
 import { debounce } from '../../utils/util';
 import Dialog from '@vant/weapp/dialog/dialog';
+import Monitor from '../../utils/monitor';
 
 const app = getApp();
-Page({
-  /**
+
+Page(Monitor.hookPage({
+ /**
    * 页面的初始数据
    */
   data: {
@@ -281,5 +283,5 @@ Page({
       });
       this.fetchData();
     }
-  },
-});
+  },   
+}));

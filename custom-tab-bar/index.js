@@ -62,12 +62,25 @@ Component({
       attached: function () {
         // 在组件实例进入页面节点树时执行
       },
+  
+    },
+    pageLifetimes: {
+      show: function() {
+        // 页面被展示
+        console.log('bar');
+      },
+  
     },
     async getRelaInfo() {
-      let { data } = await taskInfo();
-      this.setData({
-        taskNum: data.undoneActivityCount
-      })
+      try {
+        let { data ,success} = await taskInfo();
+        if(success){
+          this.setData({
+            taskNum: data.undoneActivityCount
+          })
+        }
+      } catch (error) { }
+    
  
     },
 

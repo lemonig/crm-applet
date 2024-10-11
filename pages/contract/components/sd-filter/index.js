@@ -92,12 +92,17 @@ Component({
     },
 
     async getContractTypeList() {
-      let { data } = await contractTypeList();
-      if(data.length){
-        this.setData({
-            types: [...this.data.types, ...data],
-          });
+      try {
+        let { data,success } = await contractTypeList();
+        if(success && data.length){
+          this.setData({
+              types: [...this.data.types, ...data],
+            });
+        }
+      } catch (error) {
+        
       }
+
     
     },
     // 选年份
