@@ -112,6 +112,7 @@ Page({
       src: file.url, // 图片路径
       quality: 30, // 压缩质量,
       async success(cfile) {
+        console.log(cfile);
         let res = await uploadFile(cfile.tempFilePath);
         const { fileList = [] } = _this.data;
         fileList.push(res.data);

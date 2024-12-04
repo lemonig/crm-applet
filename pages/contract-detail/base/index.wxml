@@ -17,7 +17,7 @@
       </text>
     </van-cell>
     <van-cell title="附件">
-      <view wx:for="{{pageData.fileList}}" wx:key="id" style="color: blue;" bindtap="viewL" data-filePath="{{item.filePath}}" >{{item.fileName}}</view>
+      <view wx:for="{{pageData.fileList}}" wx:key="id" style="color: blue;" bindtap="viewL" data-filePath="{{item.filePath1}}" >{{item.fileName}}</view>
     </van-cell>
 
   </van-cell-group>

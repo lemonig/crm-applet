@@ -54,39 +54,42 @@ Component({
 
       //   })
 
-      wx.navigateTo({
-        url: '/pages/view-file/index?filepath='+encodeURIComponent(eve.currentTarget.dataset.filepath),
-      });
+      // wx.navigateTo({
+      //   url: '/pages/view-file/index?filepath='+encodeURIComponent(eve.currentTarget.dataset.filepath),
+      // });
 
-      //   wx.showLoading({
-      //     title: '加载中',
-      //     mask: true,
-      //   });
-      //   wx.downloadFile({
-      //     url: eve.currentTarget.dataset.filepath,
-      //     success: function (res) {
-      //       wx.hideLoading();
-      //       const filePath = res.tempFilePath;
-      //       wx.showLoading({
-      //         title: '正在打开',
-      //         mask: true,
-      //       });
-      //       wx.openDocument({
-      //         filePath: filePath,
-      //         showMenu: true,
-      //         success: function (res) {
-      //           console.log('打开文档成功');
-      //         },
-      //         fail: function () {
-      //           uni.showToast({
-      //             title: '打开文件失败',
-      //             icon: 'none',
-      //             duration: 2000,
-      //           });
-      //         },
-      //       });
-      //     },
-      //   });
+        wx.showLoading({
+          title: '加载中',
+          mask: true,
+        });
+        wx.downloadFile({
+          url: eve.currentTarget.dataset.filepath,
+          success: function (res) {
+            wx.hideLoading();
+            const filePath = res.tempFilePath;
+            wx.showLoading({
+              title: '正在打开',
+              mask: true,
+            });
+            wx.openDocument({
+              filePath: filePath,
+              showMenu: true,
+              success: function (res) {
+                console.log('打开文档成功');
+              },
+              fail: function () {
+                uni.showToast({
+                  title: '打开文件失败',
+                  icon: 'none',
+                  duration: 2000,
+                });
+              },
+            });
+          },
+           fail(err) {
+            console.error('PDF 下载失败', err);
+          }
+        });
     },
     onClickHide() {
       this.setData({ show: false });
